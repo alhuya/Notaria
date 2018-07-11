@@ -5,6 +5,7 @@ namespace Notaria\Http\Controllers;
 use Illuminate\Http\Request;
 use Notaria\puestos;
 use Notaria\Categorias;
+use Notaria\categoriaPuesto;
 class PuestosController extends Controller
 {
     /**
@@ -46,11 +47,36 @@ class PuestosController extends Controller
      */
     public function store(Request $request)
     {
-         $puestos = new puestos;
+        $puestos = new puestos;
         $puestos->nombre = $request->input('puesto');
-          $puestos->abogado = $request->input('abogado');
+        $puestos->abogado = $request->input('abogado');
+        
+        $nom = $puestos->nombre;
         $puestos->save();
+       
+
+        $idPuesto =  $puestos->select('id','nombre')->where('nombre', '=', $nom)->get();
+       
+        $puestoID;
+        foreach ($idPuesto as $idp) {
+             $puestoID = $idp->id;             
+        }
+        //echo $puestoID;
+        $categoriasId = $request->input('catId');
+        $catID;
+        foreach ($categoriasId as $categoriaId) {
+            $catID=  $categoriaId;   
+            $catPuesto = new categoriaPuesto;
+            $catPuesto->puesto_id = $puestoID;
+            $catPuesto->categoria_funcion_id = $catID;   
+            $catPuesto->save();       
+        }    
+
         return redirect('/puestos')->with('status','Puesto guardado exitosamente');
+
+        
+
+
     }
 
     /**

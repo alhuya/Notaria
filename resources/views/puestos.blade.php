@@ -58,9 +58,9 @@
 
                                 <div class="col-md-6">
                                 @foreach($categorias as $categoria)
-    						<input type="checkbox" name="vehicle" value="{{ $categoria['nombre']}}" > {{$categoria['nombre'] }} <br>
-    					
-                            @endforeach
+                                    <input type="checkbox" name="catId[]" value="{{ $categoria['categoria_funcion_id']}}" > {{$categoria['nombre'] }} <br>
+                                
+                                @endforeach
 
                                 
                                 </div>
