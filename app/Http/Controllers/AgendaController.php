@@ -1,22 +1,20 @@
 <?php
 
 namespace Notaria\Http\Controllers;
-use Notaria\User; 
- 
+
 use Illuminate\Http\Request;
 
-class ConsultaUsuarioController extends Controller
+class AgendaController extends Controller
 {
-    /** 
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response 
      */
-    public function index() 
+    public function index()
     {
-        $usuarios = User::all();
-        return view('consulta_usuario', compact('usuarios'));
-       
+        $clientes = Clientes::all();
+        return view('editar_cliente', compact('clientes'));
     }
 
     /**

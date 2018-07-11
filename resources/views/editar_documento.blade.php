@@ -10,35 +10,35 @@
   <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
  
-</head>
+</head> 
 
 <div class="container">
-<h2 style="text-align: center;">Editar Usuario</h2>
+<h2 style="text-align: center;">Editar Documento</h2>
            <div class="form-group row"> 
         
                         @csrf   
-                      <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Usuarios') }}</label>
+                      <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Documentos') }}</label>
 
                              <div class="col-md-6">
-                               <input list="browsers" name="usuario"  class="form-control" id ="usuario" required>                             
+                               <input list="browsers" name="cliente"  class="form-control" id ="doc1" required>                             
                                <datalist  id="browsers">                              
-                                @foreach($usuarios as $usuario)
-                                <option value="{{ $usuario['id']}} {{$usuario['nombre'] }} {{$usuario['ap_paterno'] }}">@endforeach
+                                @foreach($Documentos as $documento)
+                                <option value="{{ $documento['id']}} {{ $documento['documento']}}">@endforeach
                                </datalist>
                            </div>
                             
                         </div> 
- 
+
                     
                         
                          <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Usuarios') }}</div>
+                <div class="card-header">{{ __('Documentos') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action=" eliminar_usuario/{{$usuario['id']}}">
+                <form method="POST" action=" editar_documento/{{$documento['id']}}">
                       {{ method_field('patch')}}
                       @if(session('status')) 
 
@@ -51,7 +51,7 @@
 
                         <div class="form-group row">
                           
-                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
+                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Documento') }}</label>
                           
                             <div class="col-md-6">
                               <div id="div1">
@@ -61,7 +61,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="ap_paterno" class="col-md-4 col-form-label text-md-right">{{ __('Apellido Paterno') }}</label>
+                            <label for="ap_paterno" class="col-md-4 col-form-label text-md-right">{{ __('Costo') }}</label>
 
                             <div class="col-md-6">
                               <div id="div2">
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                          <div class="form-group row">
-                            <label for="ap_materno" class="col-md-4 col-form-label text-md-right">{{ __('Apellido Materno') }}</label>
+                            <label for="ap_materno" class="col-md-4 col-form-label text-md-right">{{ __('Origen') }}</label>
 
                             <div class="col-md-6">
                                <!-- <label id="ap_materno" class="form-control"></label>-->
@@ -80,28 +80,8 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo') }}</label>
-
-                            <div class="col-md-6">
-                               <!--<label id="correo" class="form-control"></label>-->
-                               <div id="div4">
-                                 
-                               </div>
-                            </div>
-                        </div>
-                      
-                         
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Puesto') }}</label>
-
-                            <div class="col-md-6">
-                               <!-- <label id="puesto" class="form-control"></label>-->
-                               <div id="div5">
-                                 
-                               </div>
-                            </div>
-                        </div>
+                       
+                        
                          <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -129,25 +109,23 @@
 @section('script')
 <script type="text/javascript">
   $(document).ready(function(){
-  $("#usuario").change(function(event){
-  $.get("User/"+event.target.value+"",function(response ,state){
+  $("#doc1").change(function(event){
+  $.get("Documentacion/"+event.target.value+"",function(response ,state){
     console.log(response);
      $("#div1").empty(); 
      $("#div2").empty();
-     $("#div3").empty();
-     $("#div4").empty();
-     $("#div5").empty();
+     $("#div3").empty(); 
+
      
     
     for(i=0; i<response.length; i++){
-      $("#div1").append('<input class="form-control" type="text" name="nombre" value='+response[i].nombre+' >');
-      $("#div2").append('<input class="form-control" type="text" name="ap_paterno"  value='+response[i].ap_paterno+'>');
-      $("#div3").append('<input class="form-control" type="text" name="ap_materno" value='+response[i].ap_materno+'>');
-      $("#div4").append('<input class="form-control" type="text" name="correo" value='+response[i].email+'>');
-      $("#div5").append('<input  class="form-control" type="text" name="puesto"  value='+response[i].puesto+'>');
+      $("#div1").append('<input class="form-control" type="text" name="documento" value='+response[i].documento+' >');
+      $("#div2").append('<input class="form-control" type="text" name="costo"  value='+response[i].costo+'>');
+      $("#div3").append('<input class="form-control" type="text" name="origen" value='+response[i].origen+'>');
+
      
     }
-  });
+  }); 
 });
 });
 </script>

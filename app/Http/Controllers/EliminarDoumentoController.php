@@ -1,22 +1,21 @@
 <?php
 
 namespace Notaria\Http\Controllers;
-use Notaria\User; 
- 
-use Illuminate\Http\Request;
 
-class ConsultaUsuarioController extends Controller
+use Illuminate\Http\Request;
+use Notaria\Documentacion;
+
+class EliminarDoumentoController extends Controller 
 {
-    /** 
+    /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response 
+     * @return \Illuminate\Http\Response
      */
-    public function index() 
+    public function index()
     {
-        $usuarios = User::all();
-        return view('consulta_usuario', compact('usuarios'));
-       
+        $Documentos = Documentacion::all();
+        return view('eliminar_documento', compact('Documentos'));
     }
 
     /**
@@ -35,9 +34,12 @@ class ConsultaUsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
-        //
+        if($request->ajax()){
+            $documentos = Documentacion::doc($id);
+            return response()->json($documentos);
+          }
     }
 
     /**
@@ -82,6 +84,8 @@ class ConsultaUsuarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $documentos = Documentacion::find($id);
+        $documentos->delete();
+       return redirect('/eliminar_documento')->with('status','Documento eliminado exitosamente');
     }
 }

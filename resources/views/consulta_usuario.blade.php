@@ -7,7 +7,7 @@
  
 
  <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center"> 
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Usuarios') }}</div>
@@ -38,13 +38,13 @@
 					    </tr>
 					  </thead>
 					  <tbody>
-					  	@foreach($usuarios as $usuario)
+					  	@foreach($usuarios as $usuario) 
 					    <tr>
 					      
-					      <td>{{$usuario['nombre'] }}</td>
+					      <td>{{$usuario['nombre'] }}</td> 
 					      <td>{{$usuario['ap_paterno'] }}</td>
 					      <td>{{$usuario['ap_materno'] }}</td>
-					      <td>{{$usuario['puesto'] }}</td>
+					      <td>{{$usuario['puesto_id'] }}</td>
 					    </tr>
 					    
 					    @endforeach

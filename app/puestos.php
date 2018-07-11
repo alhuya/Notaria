@@ -4,6 +4,7 @@ namespace Notaria;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class puestos extends Model
 {
 
@@ -12,8 +13,10 @@ class puestos extends Model
      *
      * @var array
      */
-    //protected $table = 'puestos';
-    protected $fillable = ['nombre'];
+    protected $table = 'puestos';
+    protected $fillable = ['puesto_id','nombre','abogado'];
+
+     
    
     
 }

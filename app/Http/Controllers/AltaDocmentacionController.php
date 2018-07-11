@@ -42,7 +42,7 @@ class AltaDocmentacionController extends Controller
             'origen' => 'required|string|max:255',
 
         ]);
-
+ 
 
         $documentacion = new Documentacion;
         $documentacion->documento = $request->input('documento');

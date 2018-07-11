@@ -48,7 +48,7 @@ class PuestosController extends Controller
     {
          $puestos = new puestos;
         $puestos->nombre = $request->input('puesto');
-          $puestos->abogado = 'no';
+          $puestos->abogado = $request->input('abogado');
         $puestos->save();
         return redirect('/puestos')->with('status','Puesto guardado exitosamente');
     }

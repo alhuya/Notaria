@@ -1,22 +1,20 @@
 <?php
 
 namespace Notaria\Http\Controllers;
-use Notaria\User; 
- 
-use Illuminate\Http\Request;
 
-class ConsultaUsuarioController extends Controller
+use Illuminate\Http\Request;
+use Notaria\TiposTramites;
+class ConsultaTramiteController extends Controller
 {
-    /** 
+    /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response 
-     */
-    public function index() 
+     * @return \Illuminate\Http\Response
+     */ 
+    public function index()
     {
-        $usuarios = User::all();
-        return view('consulta_usuario', compact('usuarios'));
-       
+        $tramites = TiposTramites::all();
+        return view('consulta_tramite', compact('tramites'));
     }
 
     /**

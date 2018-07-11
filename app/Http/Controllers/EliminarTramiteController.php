@@ -1,22 +1,21 @@
 <?php
 
 namespace Notaria\Http\Controllers;
-use Notaria\User; 
- 
-use Illuminate\Http\Request;
 
-class ConsultaUsuarioController extends Controller
+use Illuminate\Http\Request;
+use Notaria\TiposTramites;
+
+class EliminarTramiteController extends Controller
 {
     /** 
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response 
+     * @return \Illuminate\Http\Response
      */
-    public function index() 
+    public function index()
     {
-        $usuarios = User::all();
-        return view('consulta_usuario', compact('usuarios'));
-       
+        $Tramites = TiposTramites::all();
+        return view('eliminar_tramite', compact('Tramites'));
     }
 
     /**
@@ -31,15 +30,17 @@ class ConsultaUsuarioController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
-        //
+        if($request->ajax()){
+            $tramites = TiposTramites::tramite($id);
+            return response()->json($tramites);
+          }
     }
-
     /**
      * Display the specified resource.
      *
@@ -82,6 +83,8 @@ class ConsultaUsuarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tramite = TiposTramites::find($id);
+        $tramite->delete();
+       return redirect('/eliminar_tramite')->with('status','Tramite eliminado exitosamente');
     }
 }

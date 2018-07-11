@@ -1,22 +1,26 @@
 <?php
 
 namespace Notaria\Http\Controllers;
-use Notaria\User; 
- 
-use Illuminate\Http\Request;
 
-class ConsultaUsuarioController extends Controller
+use Illuminate\Http\Request;
+use Notaria\Clientes;
+use Notaria\TiposTramites;
+use Notaria\TipoCitas;
+use Notaria\Citas;
+
+class AltaCitaController extends Controller
 {
-    /** 
+    /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response 
-     */
-    public function index() 
+     * @return \Illuminate\Http\Response
+     */ 
+    public function index()
     {
-        $usuarios = User::all();
-        return view('consulta_usuario', compact('usuarios'));
-       
+        $clientes = Clientes::all();
+        $tramites = TiposTramites::all();
+        $tipos = TipoCitas::all();
+        return view('alta_cita', compact('clientes','tramites','tipos'));
     }
 
     /**
@@ -37,7 +41,15 @@ class ConsultaUsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $citas = new Citas ;
+        $citas->cliente_id = $request->input('nombre');
+        $citas->fecha_hora = $request->input('fecha');
+        $citas->tipo_tramite = $request->input('tramite');
+        $citas->usuario_id =('3');
+        $citas->tipo_cita_id = $request->input('tipo');
+        $citas->confirmacion_tramite=('No');
+        $citas->save();
+        return redirect('/alta_cita')->with('status','Cita guardada exitosamente');
     }
 
     /**

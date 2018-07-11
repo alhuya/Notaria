@@ -16,7 +16,7 @@
                         @csrf
 
                         @if(session('status'))
-
+ 
                         <div class="alert alert-success">
                             {{session ('status')}}
                             
@@ -24,7 +24,7 @@
                         @endif
 
                         <div class="form-group row">
-                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
+                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombres') }}</label>
 
                             <div class="col-md-6">
                                 <input id="nombre" type="text" class="form-control{{ $errors->has('nombre') ? ' is-invalid' : '' }}" name="nombre" value="{{ old('nombre') }}" required autofocus>
@@ -37,14 +37,14 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="ap_paterno" class="col-md-4 col-form-label text-md-right">{{ __('Apellido Paterno') }}</label>
+                            <label for="apellido_paterno" class="col-md-4 col-form-label text-md-right">{{ __('Apellido Paterno') }}</label>
 
                             <div class="col-md-6">
-                                <input id="ap_paterno" type="text" class="form-control{{ $errors->has('ap_paterno') ? ' is-invalid' : '' }}" name="ap_paterno" value="{{ old('ap_paterno') }}" required autofocus>
+                                <input id="apellido_paterno" type="text" class="form-control{{ $errors->has('apellido_paterno') ? ' is-invalid' : '' }}" name="apellido_paterno" value="{{ old('apellido_paterno') }}" required autofocus>
  
-                                @if ($errors->has('ap_paterno'))
+                                @if ($errors->has('apellido_paterno'))
                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('ap_paterno') }}</strong>
+                                        <strong>{{ $errors->first('apellido_paterno') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -102,7 +102,7 @@
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
-                            </div>
+                            </div> 
                         </div>
 
                         <div class="form-group row">
@@ -116,7 +116,7 @@
                                         <strong>{{ $errors->first('calle') }}</strong>
                                     </span>
                                 @endif
-                            </div>
+                            </div> 
                         </div>
 
                          <div class="form-group row">
@@ -134,42 +134,42 @@
                         </div>
 
                           <div class="form-group row">
-                            <label for="num_int" class="col-md-4 col-form-label text-md-right">{{ __('numero interior') }}</label>
+                            <label for="numero_interior" class="col-md-4 col-form-label text-md-right">{{ __('numero interior') }}</label>
 
                             <div class="col-md-6">
-                                <input id="num_int" type="text" class="form-control{{ $errors->has('num_int') ? ' is-invalid' : '' }}" name="num_int" value="{{ old('num_int') }}" required autofocus>
+                                <input id="numero_interior" type="text" class="form-control{{ $errors->has('numero_interior') ? ' is-invalid' : '' }}" name="numero_interior" value="{{ old('numero_interior') }}" required autofocus>
 
-                                @if ($errors->has('num_int'))
+                                @if ($errors->has('numero_interior'))
                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('num_int') }}</strong>
+                                        <strong>{{ $errors->first('numero_interior') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
                          <div class="form-group row">
-                            <label for="num_ext" class="col-md-4 col-form-label text-md-right">{{ __('numero exterior') }}</label>
+                            <label for="numero_exterior" class="col-md-4 col-form-label text-md-right">{{ __('numero exterior') }}</label>
 
                             <div class="col-md-6">
-                                <input id="num_ext" type="text" class="form-control{{ $errors->has('num_ext') ? ' is-invalid' : '' }}" name="num_ext" value="{{ old('num_ext') }}" required autofocus>
+                                <input id="numero_exterior" type="text" class="form-control{{ $errors->has('numero_exterior') ? ' is-invalid' : '' }}" name="numero_exterior" value="{{ old('numero_exterior') }}" required autofocus>
 
-                                @if ($errors->has('num_ext'))
+                                @if ($errors->has('numero_exterior'))
                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('num__ext') }}</strong>
+                                        <strong>{{ $errors->first('numero_exterior') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="cod_post" class="col-md-4 col-form-label text-md-right">{{ __('codigo postal') }}</label>
+                            <label for="codigo_postal" class="col-md-4 col-form-label text-md-right">{{ __('codigo postal') }}</label>
 
                             <div class="col-md-6">
-                                <input id="cod_post" type="text" class="form-control{{ $errors->has('cod_pot') ? ' is-invalid' : '' }}" name="cod_post" value="{{ old('cod_post') }}" required autofocus>
+                                <input id="codigo_postal" type="text" class="form-control{{ $errors->has('codigo_postal') ? ' is-invalid' : '' }}" name="codigo_postal" value="{{ old('codigo_postal') }}" required autofocus>
 
-                                @if ($errors->has('cod_post'))
+                                @if ($errors->has('codigo_postal'))
                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('cod_post') }}</strong>
+                                        <strong>{{ $errors->first('codigo_postal') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -181,7 +181,7 @@
                       <label for="estado" class="col-md-4 col-form-label text-md-right">{{ __('Estados') }}</label>
 
                              <div class="col-md-6">
-                               <select name="estado" id="puesto" class="form-control" required>
+                               <select name="estado" id="estado" class="form-control" required>
                                 !<option value="">{{ __('-- Seleccione el estado --') }}</option>
                                 @foreach($estados as $estado)
                                 <option value="{{ $estado['id']}}">{{$estado['estado'] }}</option>
@@ -190,19 +190,16 @@
                            </div>
                         </div> 
                         
-                          <div class="form-group row">
-                            <label for="municipio" class="col-md-4 col-form-label text-md-right">{{ __('Municipio') }}</label>
+                        <div class="form-group row">    
+                      <label for="municipio" class="col-md-4 col-form-label text-md-right">{{ __('Municipios') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="municipio" type="text" class="form-control{{ $errors->has('municipio') ? ' is-invalid' : '' }}" name="municipio" value="{{ old('municipio') }}" required autofocus>
-
-                                @if ($errors->has('municipio'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('municipio') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                             <div class="col-md-6">
+                               <select name="municipio" id="municipio" class="form-control" required>
+                            
+                               
+                               </select>
+                           </div>
+                        </div> 
                         
                          <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
@@ -212,7 +209,7 @@
                             </div>
                         </div>
 
-                    </form>
+                    </form> 
                 </div>
             </div>
         </div>
@@ -225,14 +222,14 @@
 <script type="text/javascript">
   $(document).ready(function(){
   $("#estado").change(function(event){
-  $.get("User/"+event.target.value+"",function(response ,state){
+  $.get("Municipios/"+event.target.value+"",function(response ,state){
     console.log(response);
-     $("#estado").empty();   
-    for(i=0; i<response.length; i++){
-      $("#municipio").append("<option value='"+response[i].nombre+"'>"+response[i].nombre"</option>");
+    $("#municipio").empty();   
+   for(i=0; i<response.length; i++){
+      $("#municipio").append("<option value='"+response[i].id+"'>"+response[i].municipio+"</option>");
     }
   });
-});
+}); 
 });
 </script>
 @endsection

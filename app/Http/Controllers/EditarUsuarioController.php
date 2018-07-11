@@ -83,7 +83,7 @@ class EditarUsuarioController extends Controller
     {
         
             User::where('id',$id)->first()->update($request->all());
-            return redirect('/eliminar_usuario')->with('status','Usuario editado exitosamente');
+            return redirect('/editar_usuario')->with('status','Usuario editado exitosamente');
 
         /* $usuarios = new User;
          $usuarios->nombre = $request->input('nombre');

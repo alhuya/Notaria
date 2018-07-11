@@ -4,7 +4,7 @@
 @if(Gate::check('isAdministrador'))
 @include('layouts.menu_new')  
 
-@endif
+@endif 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -66,7 +66,7 @@
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
-                            </div>
+                            </div> 
                         </div>
                         <div class="form-group row">    
                       <label for="puesto" class="col-md-4 col-form-label text-md-right">{{ __('Puesto') }}</label>
@@ -75,8 +75,8 @@
                                <select name="puesto" id="puesto" class="form-control" required>
                                 !<option value="">{{ __('-- Seleccione el puesto --') }}</option>
                                 @foreach($puestos as $puesto)
-                                <option value="{{ $puesto['nombre']}}">{{$puesto['nombre'] }}</option>
-                                @endforeach
+                                <option value="{{ $puesto['id']}}">{{$puesto['nombre'] }}</option>
+                                 @endforeach
                                </select>
                            </div>
                         </div>  
@@ -102,7 +102,7 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>                     
-                         <div class="form-group row">
+                      <!--   <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Abogado') }}</label>
 
                             <div class="col-md-3">
@@ -115,7 +115,7 @@
                                 <input type="radio" name="abogado" value="no" checked>
                             </div>
                             
-                        </div>
+                        </div>-->
                          <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

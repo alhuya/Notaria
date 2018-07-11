@@ -1,22 +1,21 @@
 <?php
 
 namespace Notaria\Http\Controllers;
-use Notaria\User; 
- 
-use Illuminate\Http\Request;
 
-class ConsultaUsuarioController extends Controller
+use Illuminate\Http\Request;
+use Notaria\Clientes;
+
+class EditarClienteController extends Controller
 {
-    /** 
+    /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response 
+     * @return \Illuminate\Http\Response
      */
-    public function index() 
+    public function index()
     {
-        $usuarios = User::all();
-        return view('consulta_usuario', compact('usuarios'));
-       
+        $clientes = Clientes::all();
+        return view('editar_cliente', compact('clientes'));
     }
 
     /**
@@ -31,13 +30,16 @@ class ConsultaUsuarioController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
-        //
+        if($request->ajax()){
+        $cliente = Clientes::clientes($id);
+        return response()->json($cliente);
+      }
     }
 
     /**
@@ -50,7 +52,7 @@ class ConsultaUsuarioController extends Controller
     {
         //
     }
-
+ 
     /**
      * Show the form for editing the specified resource.
      *
@@ -59,7 +61,7 @@ class ConsultaUsuarioController extends Controller
      */
     public function edit($id)
     {
-        //
+         
     }
 
     /**
@@ -71,7 +73,8 @@ class ConsultaUsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         Clientes::where('id',$id)->first()->update($request->all());
+            return redirect('/editar_cliente')->with('status','Cliente editado exitosamente');
     }
 
     /**

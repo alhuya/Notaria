@@ -26,34 +26,34 @@
                 </li>  
                 <ul class="sub-menu collapse" id="clientes">
                   <li style="border-top = 1px solid #fff"><a href="{{ route('registrar_cliente') }}">Registrar Cliente</a></li>
-                  <li><a href="#">Editar Cliente</a></li>
-                  <li><a href="#">Eliminar Cliente</a></li>
+                  <li><a href="{{ route('editar_client') }}">Editar Cliente</a></li>
+                  <li><a href="{{ route('eliminar_client') }}">Eliminar Cliente</a></li>
                   <li><a href="#">Reportes</a></li>
                 </ul>
                 <li data-toggle="collapse" data-target="#tramites" class="btn-menu collapsed ">
                   <a href="#">Trámites</a>
-                </li>  
+                </li>   
                 <ul class="sub-menu collapse" id="tramites">
                   <li><a href="{{ route('alta_tramite') }}">Alta Trámite</a></li>
-                  <li><a href="#">Eliminar Trámite</a></li>
-                  <li><a href="#">Editar Trámite</a></li>
+                  <li><a href="{{ route('eliminar_tramite') }}">Eliminar Trámite</a></li>
+                  <li><a href="{{ route('editar_tramite') }}">Editar Trámite</a></li>
                    <li data-toggle="collapse" data-target="#documento" class=" collapsed "><a  class="dropdown-toggle" href="#" >
-                   Documentación<span  class="caret"></span>
+                   Documentación<span  class="caret"></span> 
                   </a></li>
                         <ul class="sub-menu collapse" id="documento">
                             <li><a href="{{ route('alta_documentacion') }}">Alta Documento</a></li>
-                            <li><a href="#">Eliminar Documento</a></li>
-                            <li><a href="#">Editar Documento</a></li>
+                            <li><a href="{{ route('eliminar_doc') }}">Eliminar Documento</a></li>
+                            <li><a href="{{ route('editar_doc') }}">Editar Documento</a></li>
                         </ul>
-                   <li><a href="#">Documentación por Tramite</a></li>
+                   <li><a href="{{ route('Doc_tram') }}">Documentación por Tramite</a></li>
                   <li><a href="#">Reportes</a></li>
                 </ul>
-          
+           
             <li data-toggle="collapse" data-target="#tarifas" class="btn-menu collapsed ">
                   <a href="#">Tarifario de Honorarios</a>
                 </li>  
-                <ul class="sub-menu collapse" id="tarifas">
-                  <li><a href="#">Tarifas</a></li>
+                <ul class="sub-menu collapse" id="tarifas"> 
+                  <li><a href="{{ route('tarifas') }}">Tarifas</a></li>
                   <li><a href="#">Reportes</a></li>
                 </ul>
           
@@ -61,25 +61,23 @@
                   <a href="#">Recepción de Clientes</a>
                 </li>  
                 <ul class="sub-menu collapse" id="recepcion">
-                  <li><a href="#">Consulta Cliente</a></li>
+                  <li><a href="{{ route('consulta_client') }}">Consulta Cliente</a></li>
                   <li data-toggle="collapse" data-target="#realizar"><a  class="dropdown-toggle" href="#" >
                    Trámites a Realizar<span  class="caret"></span>
                   </a></li>
                   <ul class="sub-menu collapse" id="realizar">
-                            <li ><a href="#">Consulta Tramite</a></li>
-                            <li><a href="#">Validacion Documentación</a></li>
+                            <li ><a href="{{ route('consult_tramites') }}">Consulta Tramite</a></li>
+                            <li><a href="{{ route('valida_doc') }}">Validacion Documentación</a></li>
                         </ul>
                   <li data-toggle="collapse" data-target="#programacion"  collapsed ><a  class="dropdown-toggle" href="#" >
                    Programación de citas<span  class="caret"></span>
                   </a></li>
                    <ul class="sub-menu collapse" id="programacion">
-                            <li ><a href="#">Selección de Agenda</a></li>
-                            <li><a href="#">Registro de cita</a></li>
+                            <li ><a href="{{ route('agenda') }}">Selección de Agenda</a></li>
+                            <li><a href="{{ route('cita') }}">Alta de cita</a></li>
                             <li><a href="#">Editar Cita</a></li>
-                            <li><a href="#">Tipos de cita</a></li>
-                            <li><a href="#">Reportes</a></li>
+                            <li><a href="{{ route('tipo') }}">Tipos de cita</a></li>
                    </ul>
-                  <li><a href="#">Tipos de Cita</a></li>
                   <li><a href="#">Reportes</a></li>
                 </ul>
 
@@ -88,13 +86,24 @@
                 </li>  
                 <ul class="sub-menu collapse" id="abogado">
                   <li><a href="#">Consulta Citas</a></li>
-                    <li data-toggle="collapse" data-target="#rec"><a  class="dropdown-toggle" href="#" >
+                    <li data-toggle="collapse" data-target="#rep"><a  class="dropdown-toggle" href="#" >
                    Recepcion de clientes<span  class="caret"></span>
                   </a></li>
-                  <ul class="sub-menu collapse" id="rec">
+                  <ul class="sub-menu collapse" id="rep">
                             <li ><a href="#">Confirma Tramite</a></li>
                             <li><a href="#">Validacion Documentos</a></li>
                         </ul>
+                        <li data-toggle="collapse" data-target="#tram"><a  class="dropdown-toggle" href="#" >
+                   Creacion de Tramites<span  class="caret"></span>
+                  </a></li>
+                  <ul class="sub-menu collapse" id="tram">
+                            <li ><a href="#">Apertura de Carpetas</a></li>
+                            <li><a href="#">Consulta de Folio Interno</a></li>
+                            <li><a href="#">Elaboracion de Presupuesto</a></li>
+                        </ul>
+                  <li><a href="#">Actualización de Guía</a></li>
+                  <li><a href="#">Control de Calidad</a></li>
+                  
                   <li><a href="#">Reportes</a></li>
                 </ul>
 
@@ -102,16 +111,52 @@
                   <a href="#">Caja</a>
                 </li>  
                 <ul class="sub-menu collapse" id="caja">
-                  <li><a href="#">Tarifas</a></li>
+                <li data-toggle="collapse" data-target="#prep"><a  class="dropdown-toggle" href="#" >
+                   Presupuesto<span  class="caret"></span>
+                  </a></li>
+                  <ul class="sub-menu collapse" id="prep">
+                            <li ><a href="#">Consulta Presupuesto</a></li>
+                            <li><a href="#">Edita Presupuesto</a></li>
+                            <li><a href="#">Autorizacion Presupuesto</a></li>
+                        </ul>
+                        <li data-toggle="collapse" data-target="#cuent"><a  class="dropdown-toggle" href="#" >
+                   Cuentas por Cobrar<span  class="caret"></span>
+                  </a></li>
+                  <ul class="sub-menu collapse" id="cuent">
+                            <li ><a href="#">Recepcion de Pagos</a></li>
+                            <li><a href="#">Cortes</a></li>
+                        </ul>
+                        <li data-toggle="collapse" data-target="#guia"><a  class="dropdown-toggle" href="#" >
+                   Guía<span  class="caret"></span>
+                  </a></li>
+                  <ul class="sub-menu collapse" id="guia">
+                            <li ><a href="#">Actualizacion</a></li>
+                            <li><a href="#">Registro de Guía</a></li>
+                            <li data-toggle="collapse" data-target="#term"><a  class="dropdown-toggle" href="#" >
+                   Termino de Trámites<span  class="caret"></span>
+                  </a></li>
+                  <ul class="sub-menu collapse" id="term">
+                            <li ><a href="#">Registro y Entregas de Kinegramas</a></li>
+                            
+                        </ul>
+                        </ul>
                   <li><a href="#">Reportes</a></li>
                 </ul>
+                
 
                  <li data-toggle="collapse" data-target="#cuentas" class="btn-menu collapsed ">
                   <a href="#">Cuentas por pagar</a>
                 </li>  
                 <ul class="sub-menu collapse" id="cuentas">
-                  <li><a href="#">Tarifas</a></li>
-                  <li><a href="#">Reportes</a></li>
+                <li data-toggle="collapse" data-target="#dep"><a  class="dropdown-toggle" href="#" >
+                   Pago a Dependencias<span  class="caret"></span>
+                  </a></li>
+                  <ul class="sub-menu collapse" id="dep">
+                            <li ><a href="#">Control de Pago a Dependencias</a></li>
+                            <li ><a href="#">Control de Pago a Impuestos</a></li>
+                        </ul>
+                    <li><a href="#">Corte </a></li>
+                    <li><a href="#">Reportes </a></li>
                 </ul>
 
                  <li data-toggle="collapse" data-target="#archivo" class="btn-menu collapsed ">
@@ -119,7 +164,13 @@
                 </li>  
                 <ul class="sub-menu collapse" id="archivo">
                   <li><a href="#">Tramites Terminados</a></li>
-                  <li><a href="#">Proyecto Dependencia</a></li>
+                 <li data-toggle="collapse" data-target="#proyecto"><a  class="dropdown-toggle" href="#" >
+                   Proyecto Dependencia<span  class="caret"></span>
+                  </a></li>
+                  <ul class="sub-menu collapse" id="proyecto">
+                            <li ><a href="#">Ingreso</a></li>
+                            <li ><a href="#">Egreso</a></li>
+                        </ul>
                   <li><a href="#">Reportes</a></li>
                 </ul>
 

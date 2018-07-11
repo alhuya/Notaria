@@ -1,7 +1,7 @@
 <?php 
  
 namespace Notaria\Http\Controllers\Auth;  
-
+use Notaria\puestos;
 use Notaria\User;
 use Notaria\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -46,7 +46,7 @@ class RegisterController extends Controller
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
-     */
+     */ 
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -67,17 +67,29 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $usuario = User::create([
             'nombre' => $data['nombre'], 
             'ap_paterno' => $data['ap_paterno'],
             'ap_materno' => $data['ap_materno'],
-            'puesto' => 'Administrador',
-            'abogado' => $data['abogado'],
-            'email' => $data['email'],
+            'puesto_id' => $data['puesto'],
+            'email' => $data['email'], 
             'password' => Hash::make($data['password']),
            
       
         ]);
+
+      /*  usuarios($usuario->puesto_id);
+           dd($usuario->id)
+            $usuarios = User::all();
+            $puestos = puestos::all();
+
+            return view('editar_usuario', compact('usuarios'));
+
+
+*/
+
+
+
 
 
     }

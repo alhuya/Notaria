@@ -16,7 +16,7 @@ class User extends Authenticatable
      */
     // protected $table = 'users';
     protected $fillable = [
-        'nombre','ap_paterno','ap_materno','puesto','abogado', 'email', 'password'
+        'nombre','ap_paterno','ap_materno','puesto_id','abogado', 'email', 'password'
     ];
 
     /**
@@ -29,8 +29,14 @@ class User extends Authenticatable
     ];
 
 
-    public static function usuarios($id){
+    public static function usuarios($id){ 
         return User::where('id','=',$id)
         ->get();
+    }
+
+   public function puesto()//puesto_id
+     {
+    
+        return $this->belongsTo(puestos::class);
     }
 }

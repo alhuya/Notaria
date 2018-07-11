@@ -1,29 +1,28 @@
 <?php
 
 namespace Notaria\Http\Controllers;
-use Notaria\User; 
- 
-use Illuminate\Http\Request;
 
-class ConsultaUsuarioController extends Controller
+use Illuminate\Http\Request;
+use Notaria\Clientes;
+
+class EliminarClienteController extends Controller
 {
-    /** 
-     * Display a listing of the resource.
+    /**
+     * Display a listing of the resource. 
      *
      * @return \Illuminate\Http\Response 
      */
-    public function index() 
+    public function index()
     {
-        $usuarios = User::all();
-        return view('consulta_usuario', compact('usuarios'));
-       
+        $clientes = Clientes::all();
+        return view('eliminar_cliente', compact('clientes'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
-     */
+     */ 
     public function create()
     {
         //
@@ -35,9 +34,12 @@ class ConsultaUsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request ,$id)
     {
-        //
+        if($request->ajax()){
+            $cliente = Clientes::clientes($id);
+            return response()->json($cliente);
+          }
     }
 
     /**
@@ -52,7 +54,7 @@ class ConsultaUsuarioController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified resource. 
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -82,6 +84,8 @@ class ConsultaUsuarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cliente = Clientes::find($id);
+        $cliente->delete();
+       return redirect('/eliminar_cliente')->with('status','Cliente eliminado exitosamente');
     }
 }

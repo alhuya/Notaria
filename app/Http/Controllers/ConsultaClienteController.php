@@ -1,26 +1,25 @@
 <?php
 
 namespace Notaria\Http\Controllers;
-use Notaria\User; 
- 
-use Illuminate\Http\Request;
 
-class ConsultaUsuarioController extends Controller
+use Illuminate\Http\Request;
+use Notaria\Clientes;
+
+class ConsultaClienteController extends Controller 
 {
-    /** 
+    /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response 
+     * @return \Illuminate\Http\Response
      */
     public function index() 
     {
-        $usuarios = User::all();
-        return view('consulta_usuario', compact('usuarios'));
-       
+        $clientes = Clientes::all();
+        return view('consulta_cliente', compact('clientes'));
     }
-
+ 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new resource. 
      *
      * @return \Illuminate\Http\Response
      */
@@ -35,9 +34,12 @@ class ConsultaUsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
-        //
+        if($request->ajax()){
+        $cliente = Clientes::clientes($id);
+        return response()->json($cliente);
+      }
     }
 
     /**

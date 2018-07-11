@@ -27,10 +27,10 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies($gate);
 
         $gate->define('isAdministrador' , function ($user){
-            return $user-> puesto == 'Administrador';
+            return $user-> puesto_id == '3';
         });
 
-        $gate->define('isRecepcionista' , function($user){
+      /*  $gate->define('isRecepcionista' , function($user){
             return $user-> puesto == 'Recepcionista';
         });
 
@@ -46,6 +46,6 @@ class AuthServiceProvider extends ServiceProvider
             return $user-> puesto == 'Calidad';
         });
 
-        
+        */
     }
 }

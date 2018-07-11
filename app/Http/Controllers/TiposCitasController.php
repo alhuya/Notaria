@@ -1,22 +1,21 @@
 <?php
 
 namespace Notaria\Http\Controllers;
-use Notaria\User; 
- 
-use Illuminate\Http\Request;
 
-class ConsultaUsuarioController extends Controller
+use Illuminate\Http\Request;
+use Notaria\TipoCitas;
+
+class TiposCitasController extends Controller
 {
-    /** 
+    /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response 
+     * @return \Illuminate\Http\Response
      */
-    public function index() 
+    public function index()
     {
-        $usuarios = User::all();
-        return view('consulta_usuario', compact('usuarios'));
-       
+        $tipos =TipoCitas::all();
+        return view('tipos_citas', compact('tipos'));
     }
 
     /**
@@ -27,7 +26,7 @@ class ConsultaUsuarioController extends Controller
     public function create()
     {
         //
-    }
+    } 
 
     /**
      * Store a newly created resource in storage.
@@ -35,9 +34,12 @@ class ConsultaUsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
-        //
+        if($request->ajax()){
+            $tipos = TipoCitas::tipos2($id);
+            return response()->json($tipos);
+          }
     }
 
     /**
@@ -71,8 +73,10 @@ class ConsultaUsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        TipoCitas::where('id',$id)->first()->update($request->all());
+            return redirect('/tipos_citas')->with('status','Documento editado exitosamente');
     }
+
 
     /**
      * Remove the specified resource from storage.
