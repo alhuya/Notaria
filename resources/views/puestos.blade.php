@@ -1,3 +1,4 @@
+
     @extends('layouts.app')
     @section('content')
     @if(Gate::check('isAdministrador'))
@@ -58,12 +59,12 @@
 
                                 <div class="col-md-6">
                                 @foreach($categorias as $categoria)
-    						<input type="checkbox" name="vehicle" value="{{ $categoria['nombre']}}" > {{$categoria['nombre'] }} <br>
-    					
-                            @endforeach
+                                    <input type="checkbox" name="catId[]" value="{{ $categoria['id']}}" > {{$categoria['nombre'] }} <br>
+                                
+                                @endforeach
 
                                 
-                                </div>
+                                </div> 
                             </div>
                            
                          <!--     <div class="form-group row"

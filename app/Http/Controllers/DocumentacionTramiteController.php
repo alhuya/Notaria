@@ -4,6 +4,7 @@ namespace Notaria\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Notaria\TiposTramites;
+use Notaria\Documentacion;
 
 class DocumentacionTramiteController extends Controller
 {
@@ -13,9 +14,10 @@ class DocumentacionTramiteController extends Controller
      * @return \Illuminate\Http\Response
      */ 
     public function index()
-    {
+    {   
+        $documentos = Documentacion::all();
         $tramites = TiposTramites::all();
-        return view('Documentacion_tramite', compact('tramites'));
+        return view('Documentacion_tramite', compact('tramites','documentos'));
     }
 
     /**

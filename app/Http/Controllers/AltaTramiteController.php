@@ -5,6 +5,7 @@ namespace Notaria\Http\Controllers;
 use Illuminate\Http\Request;
 use Notaria\Documentacion; 
 use Notaria\TiposTramites;
+use Notaria\tramite_documento;
  
 class AltaTramiteController extends Controller
 {
@@ -18,7 +19,7 @@ class AltaTramiteController extends Controller
         $documentos = Documentacion::all();
         return view('alta_tramite', compact('documentos'));
     }
-
+ 
     /**
      * Show the form for creating a new resource.
      *
@@ -40,10 +41,31 @@ class AltaTramiteController extends Controller
         $tramites = new TiposTramites;
         $tramites->tramite = $request->input('tramite');
         $tramites->duracion = $request->input('tiempo');
+   
+        $tram = $tramites->tramite;
+        
+
         $tramites->save();
+       
+        $idtramite =  $tramites->select('id','tramite')->where('tramite', '=', $tram)->get();
+       
+        $tramiteID;
+        foreach ($idtramite as $idt) { 
+             $tramiteID = $idt->id;             
+        }
+        //echo $puestoID;
+        $documentosId = $request->input('docId');
+        $docID;
+        foreach ($documentosId as $documentoId) {
+            $docID=  $documentoId;   
+            $tramdoc = new tramite_documento;
+            $tramdoc->tipo_tramite_id = $tramiteID;
+            $tramdoc->documentacion_id = $docID;   
+            $tramdoc->save(); 
+        }
         return redirect('/alta_tramite')->with('status','Tramite guardado exitosamente'); 
     }
-
+ 
     /**
      * Display the specified resource.
      *

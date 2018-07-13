@@ -13,11 +13,11 @@
 </head>
 
 <div class="container">
-<h2 style="text-align: center;">Consulta Cliente</h2>
+<h2 style="text-align: center;">Documentación por Trámite</h2>
            <div class="form-group row"> 
         
                         @csrf   
-                      <label for="clientes" class="col-md-4 col-form-label text-md-right">{{ __('Clientes') }}</label>
+                      <label for="clientes" class="col-md-4 col-form-label text-md-right">{{ __('tramite') }}</label>
 
                              <div class="col-md-6">
                                <input list="browsers" name="cliente"  class="form-control" id ="cliente2" required>                             
@@ -43,18 +43,20 @@
 					  	 
 					    <tr>
 					      
-					      <th scope="col">Trámite</th>
-					      <th scope="col">Duración</th>
+					      <th scope="col">Documento</th>
+					      <th scope="col">Costo</th>
+                <th scope="col">Origen</th>
+
 
 					    </tr>
 					  </thead>
 					  <tbody>
-                      @foreach($tramites as $tramite)
+                      @foreach($documentos as $documento)
 					    <tr>
 					      
-					      <td>{{$tramite['tramite'] }}</td>
-					      <td>{{$tramite['duracion'] }}</td>
-
+					      <td>{{ $documento['documento']}}</td>
+					      <td>{{ $documento['costo']}}</td>
+                <td>{{ $documento['origen']}}</td>
 					    </tr>
 					    
 					    @endforeach
