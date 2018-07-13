@@ -47,6 +47,10 @@ class PuestosController extends Controller
         $nom = $puestos->nombre;
         $puestos->save();
        
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6bea69bdecd25d951bd4046ee3402817fe8e9064
         $idPuesto =  $puestos->select('id','nombre')->where('nombre', '=', $nom)->get();
        
         $puestoID;
@@ -63,8 +67,17 @@ class PuestosController extends Controller
             $catPuesto->categoria_funcion_id = $catID;   
             $catPuesto->save();       
         }    
+<<<<<<< HEAD
         return redirect('/puestos')->with('status','Puesto guardado exitosamente');
         
+=======
+
+        return redirect('/puestos')->with('status','Puesto guardado exitosamente');
+
+        
+
+
+>>>>>>> 6bea69bdecd25d951bd4046ee3402817fe8e9064
     }
     /**
      * Display the specified resource.
