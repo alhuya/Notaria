@@ -23,7 +23,8 @@
                                <input list="browsers" name="cliente"  class="form-control" id ="cliente" required>                             
                                <datalist  id="browsers">                              
                                 @foreach($tramites as $tramite)
-                                <option value="{{ $tramite['id']}}">@endforeach
+                                <option value="{{ $tramite['id']}}"><b>{{ $tramite['tramite']}}<b></option>
+                                @endforeach
                                </datalist>
                            </div>
                             
@@ -51,13 +52,8 @@
 
 					    </tr>
 					  </thead>
-					  <tbody>
+					  <tbody id="div1">
                       
-					    <tr id="div1">
-					      
-					     
-					    </tr>
-					    
 					  
 					  </tbody>
 					</table>
@@ -89,7 +85,7 @@
      
     
     for(i=0; i<response.length; i++){
-      $("#div1").append('<td>'+response[i].tipo_tramite_id+'</td><td>'+response[i].documentacion_id+'</td>');
+      $("#div1").append('<tr><td>'+response[i].documento+'</td><td>'+response[i].costo+'</td><td>'+response[i].origen+'</td></tr>');
 
      
     }
