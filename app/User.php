@@ -32,7 +32,7 @@ class User extends Authenticatable
     public static function usuarios($id){ 
         return User::where('id','=',$id)
         ->get();
-    }
+    } 
 
    public function puesto()//puesto_id
      {

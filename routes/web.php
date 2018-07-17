@@ -56,8 +56,8 @@ Route::patch('/editar_tramite/{id}', 'EditarTramiteController@update');
 
 //////// CONSULTA TRAMITES ///////////
 Route::get('/Documentacion_tramite', 'DocumentacionTramiteController@index')->name('Doc_tram');
-
-
+Route::get('tramite_documento/{id}', 'DocumentacionTramiteController@store');
+ 
 
 
 
@@ -98,7 +98,7 @@ Route::get('Clientes/{id}', 'EditarClienteController@store');
 Route::patch('/editar_cliente/{id}', 'EditarClienteController@update');
 //Route::get('/editar_usuario', 'editarUsuarioController@create')->name('editar_us2');
 
-
+ 
 /////// ELIMINAR CLIENTE ///
 Route::get('/eliminar_cliente', 'EliminarClienteController@index')->name('eliminar_client');
 Route::delete('/eliminar_cliente/{id}', 'EliminarClienteController@destroy');
