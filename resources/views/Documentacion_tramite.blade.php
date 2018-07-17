@@ -20,7 +20,7 @@
                       <label for="clientes" class="col-md-4 col-form-label text-md-right">{{ __('tramite') }}</label>
 
                              <div class="col-md-6">
-                               <input list="browsers" name="cliente"  class="form-control" id ="cliente2" required>                             
+                               <input list="browsers" name="tramite"  class="form-control" id ="tramite2" required>                             
                                <datalist  id="browsers">                              
                                 @foreach($tramites as $tramite)
                                 <option value="{{ $tramite['id']}} {{ $tramite['tramite']}} ">
@@ -51,7 +51,8 @@
 					    </tr>
 					  </thead>
 					  <tbody>
-                      @foreach($documentos as $documento)
+              
+              @foreach($documentos as $documento)
 					    <tr>
 					      
 					      <td>{{ $documento['documento']}}</td>
@@ -77,7 +78,7 @@
 @section('script')
 <script type="text/javascript">
   $(document).ready(function(){
-  $("#cliente2").change(function(event){
+  $("#tramite2").change(function(event){
     $.get("Clientes/"+event.target.value+"",function(response ,state){
     console.log(response);
      $("#nombre").empty();  
