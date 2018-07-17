@@ -17,11 +17,14 @@ class DocumentacionTramiteController extends Controller
      */ 
     public function index()
     {   
+
         $documentos = Documentacion::all();
         $tramites = TiposTramites::all();
         $tamdoc = tramite_documento::all();
         return view('Documentacion_tramite', compact('tramites','documentos','tramdoc'));
     } 
+
+    
 
     /**
      * Show the form for creating a new resource.
