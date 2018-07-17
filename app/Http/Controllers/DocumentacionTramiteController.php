@@ -6,10 +6,7 @@ use Illuminate\Http\Request;
 use Notaria\TiposTramites;
 use Notaria\Documentacion;
 use Notaria\tramite_documento;
-<<<<<<< HEAD
-=======
 use DB;
->>>>>>> 010358105f0879f78bb4a6dc6c285e4c135efab0
 
 class DocumentacionTramiteController extends Controller
 {

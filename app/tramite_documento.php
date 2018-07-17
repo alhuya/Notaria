@@ -10,7 +10,7 @@ class tramite_documento extends Model
     protected $fillable = ['tipo_tramite_id','documentacion_id'];
 
     public static function consult($id){ 
-        return tramite_documento::where('id','=',$id)
+        return tramite_documento::where('tipo_tramite_id','=',$id)
         ->get();
     } 
 
