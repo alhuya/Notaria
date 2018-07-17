@@ -5,6 +5,8 @@ namespace Notaria\Http\Controllers;
 use Illuminate\Http\Request;
 use Notaria\TiposTramites;
 use Notaria\Documentacion;
+use Notaria\tramite_documento;
+use DB;
 
 class DocumentacionTramiteController extends Controller
 {
@@ -17,8 +19,9 @@ class DocumentacionTramiteController extends Controller
     {   
         $documentos = Documentacion::all();
         $tramites = TiposTramites::all();
-        return view('Documentacion_tramite', compact('tramites','documentos'));
-    }
+        $tamdoc = tramite_documento::all();
+        return view('Documentacion_tramite', compact('tramites','documentos','tramdoc'));
+    } 
 
     /**
      * Show the form for creating a new resource.
@@ -36,10 +39,21 @@ class DocumentacionTramiteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function store(Request $request ,$id)
+    { 
+        if($request->ajax()){
+        $doc = tramite_documento::consult($id);
+        return response()->json($doc); 
+      }
+    
+    
+
+    
+    } 
+   
+    
+
+   
 
     /**
      * Display the specified resource.

@@ -38,7 +38,7 @@ class EditarClienteController extends Controller
     {
         if($request->ajax()){
         $cliente = Clientes::clientes($id);
-        return response()->json($cliente);
+        return response()->json($cliente); 
       }
     }
 
