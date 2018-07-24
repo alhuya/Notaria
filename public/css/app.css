@@ -4943,7 +4943,7 @@ input[type="button"].btn-block {
 }
 
 .navbar-light .navbar-nav .nav-link {
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.95);
 }
 
 .navbar-light .navbar-nav .nav-link:hover,

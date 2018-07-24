@@ -4,15 +4,18 @@ namespace Notaria\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Notaria\TiposTramites;
+
 class ConsultaTramiteController extends Controller
-{
+{ 
     /**
      * Display a listing of the resource.
-     *
+     * 
      * @return \Illuminate\Http\Response
      */ 
     public function index()
     {
+
+ 
         $tramites = TiposTramites::all();
         return view('consulta_tramite', compact('tramites'));
     }
@@ -35,7 +38,10 @@ class ConsultaTramiteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->ajax()){
+            $documentos = tramite_documento::consult($id);
+            return response()->json($documentos);
+          }
     }
 
     /**

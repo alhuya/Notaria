@@ -13,17 +13,17 @@
 </head> 
 
 <div class="container">
-<h2 style="text-align: center;">Editar Usuario</h2>
+<h2 style="text-align: center;">Editar Cliente</h2>
            <div class="form-group row"> 
         
                         @csrf   
-                      <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Usuarios') }}</label>
+                      <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Clientes') }}</label>
 
                              <div class="col-md-6">
                                <input list="browsers" name="cliente"  class="form-control" id ="cliente" required>                             
                                <datalist  id="browsers">                              
                                 @foreach($clientes as $cliente)
-                                <option value="{{ $cliente['id']}}">@endforeach
+                                <option value="{{ $cliente['id']}} {{ $cliente['nombre']}} {{ $cliente['apellido_paterno']}} {{ $cliente['apellido_materno']}}"></opion>@endforeach
                                </datalist>
                            </div>
                             
@@ -34,14 +34,14 @@
                          <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Usuarios') }}</div>
+            <div class="card"> 
+                <div class="card-header">{{ __('Clientes') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action=" editar_cliente/{{$cliente['id']}}">
                       {{ method_field('patch')}}
                       @if(session('status')) 
-
+ 
                         <div class="alert alert-success">
                           {{session ('status')}}
                            
@@ -231,7 +231,7 @@
      $("#div10").empty();
      $("#div11").empty();
      $("#div12").empty();
-     $("#div13").empty();
+     $("#div13").empty(); 
      $("#div14").empty();
      
     
@@ -247,11 +247,11 @@
       $("#div9").append('<input  class="form-control" type="text" name="numint"  value='+response[i].numero_interior+'>');
       $("#div10").append('<input  class="form-control" type="text" name="numext"  value='+response[i].numero_exterior+'>');
       $("#div11").append('<input  class="form-control" type="text" name="codpost"  value='+response[i].codigo_postal+'>');
-      $("#div12").append('<input  class="form-control" type="text" name="estadoid"  value='+response[i].estado_id+'>');
-      $("#div13").append('<input  class="form-control" type="text" name="municipioid"  value='+response[i].municipio_id+'>');
+      $("#div12").append('<input  class="form-control" type="text" name="estadoid"  value='+response[i].estado+'>');
+      $("#div13").append('<input  class="form-control" type="text" name="municipioid" value='+response[i].municipio+'>');
      
     }
-  });
+  }); 
 });
 });
 </script>

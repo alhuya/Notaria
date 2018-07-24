@@ -23,7 +23,7 @@
                                <input list="browsers" name="cliente"  class="form-control" id ="cliente2" required>                             
                                <datalist  id="browsers">                              
                                 @foreach($clientes as $cliente)
-                                <option value="{{ $cliente['id']}} {{ $cliente['nombre']}} {{ $cliente['apellido_paterno']}}">
+                                <option value="{{ $cliente['id']}} {{ $cliente['nombre']}} {{ $cliente['apellido_paterno']}} {{ $cliente['apellido_materno']}}"></option>
                                 @endforeach  
                                </datalist>
 
@@ -46,7 +46,7 @@
 					      <th scope="col">Nombre</th>
 					      <th scope="col">Apellido Paterno</th>
 					      <th scope="col">Apellido Materno</th>
-                          <th scope="col">teleefono</th>
+                          <th scope="col">telefono</th>
 					      <th scope="col">celular</th>
 					      <th scope="col">Correo</th>
                           <th scope="col">calle</th>
@@ -59,28 +59,17 @@
 					    
 					    </tr>
 					  </thead>
-					  <tbody>
-                      @foreach($clientes as $cliente)
-					    <tr>
+					  <tbody id="nombre">
+                     
+					  
 					      
-					      <td>{{$cliente['nombre'] }}</td>
-					      <td>{{$cliente['apellido_paterno'] }}</td>
-					      <td>{{$cliente['apellido_materno'] }}</td>
-                          <td>{{$cliente['telefono'] }}</td>
-					      <td>{{$cliente['celular'] }}</td>
-					      <td>{{$cliente['correo'] }}</td>
-                          <td>{{$cliente['calle'] }}</td>
-					      <td>{{$cliente['colonia'] }}</td>
-					      <td>{{$cliente['numero_interior'] }}</td>
-                          <td>{{$cliente['numero_exterior'] }}</td>
-                          <td>{{$cliente['codigo_postal'] }}</td>
-					      <td>{{$cliente['estado_id'] }}</td>
-					      <td>{{$cliente['municipio_id'] }}</td>
+					     
+					    
                           
 					     
-					    </tr>
 					    
-					    @endforeach
+					    
+				
 					  </tbody>
 					</table>
                     </form>
@@ -102,33 +91,11 @@
     $.get("Clientes/"+event.target.value+"",function(response ,state){
     console.log(response);
      $("#nombre").empty();  
-     $("#ap_paterno").empty();  
-     $("#ap_materno").empty(); 
-     $("#telefono").empty(); 
-     $("#celular").empty(); 
-     $("#correo").empty(); 
-     $("#calle").empty(); 
-     $("#colonia").empty(); 
-     $("#numint").empty(); 
-     $("#numext").empty(); 
-     $("#codpost").empty(); 
-     $("#estado").empty(); 
-     $("#municipio").empty(); 
+  
    
     for(i=0; i<response.length; i++){
-      $("#nombre").append(""+response[i].nombre+"");
-      $("#ap_paterno").append(""+response[i].apellido_paterno+"");
-      $("#ap_materno").append(""+response[i].apellido_materno+"");
-      $("#telefono").append(""+response[i].telefono+"");
-      $("#celular").append(""+response[i].celular+"");
-      $("#correo").append(""+response[i].correo+"");
-      $("#calle").append(""+response[i].calle+"");
-      $("#colonia").append(""+response[i].colonia+"");
-      $("#numint").append(""+response[i].numero_interior+"");
-      $("#numext").append(""+response[i].numero_exterior+"");
-      $("#codpos").append(""+response[i].codigo_postal+"");
-      $("#estado").append(""+response[i].estado_id+"");
-      $("#municipio").append(""+response[i].municipio_id+"");
+      $("#nombre").append('<tr><td>'+response[i].nombre+'</td><td>'+response[i].apellido_paterno+'</td><td>'+response[i].apellido_materno+'</td><td>'+response[i].telefono+'</td><td>'+response[i].celular+'</td><td>'+response[i].correo+'</td><td>'+response[i].calle+'</td><td>'+response[i].colonia+'</td><td>'+response[i].numero_interior+'</td><td>'+response[i].numero_exterior+'</td><td>'+response[i].codigo_postal+'</td><td>'+response[i].estado+'</td><td>'+response[i].municipio+'</td></tr>');
+     
          
     }
   }); 

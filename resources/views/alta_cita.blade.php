@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Alta de Cita') }}</div>
 
-                <div class="card-body">
+                <div class="card-body"> 
                     <form method="POST" action="{{ route('cita') }}">
                         @csrf
 
@@ -57,6 +57,18 @@
                                 !<option value="">{{ __('-- Seleccione el tramite --') }}</option>
                                 @foreach($tramites as $tramite)
                                 <option value="{{ $tramite['id']}}">{{$tramite['tramite'] }} </option>
+                                @endforeach
+                               </select>
+                           </div>
+                        </div>  
+
+                          <div class="form-group row">    
+                      <label for="tramite" class="col-md-4 col-form-label text-md-right">{{ __('Abogado') }}</label>
+                        <div class="col-md-6">
+                               <select name="abogado" id="abogado" class="form-control" required>
+                                !<option value="">{{ __('-- Seleccione el abogado --') }}</option>
+                                @foreach($usuarios as $usuario)
+                                <option value="{{ $usuario->id}}">{{$usuario->nombre }} </option>
                                 @endforeach
                                </select>
                            </div>

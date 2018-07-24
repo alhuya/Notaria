@@ -13,7 +13,7 @@ class EditarDoumentoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    { 
         $Documentos = Documentacion::all();
         return view('editar_documento', compact('Documentos'));
     }

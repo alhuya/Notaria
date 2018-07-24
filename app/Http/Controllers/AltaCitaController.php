@@ -1,5 +1,5 @@
 <?php
-
+ 
 namespace Notaria\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -7,6 +7,8 @@ use Notaria\Clientes;
 use Notaria\TiposTramites;
 use Notaria\TipoCitas;
 use Notaria\Citas;
+
+use DB;
 
 class AltaCitaController extends Controller
 {
@@ -17,10 +19,17 @@ class AltaCitaController extends Controller
      */ 
     public function index()
     {
+
+        $usuarios = DB::table('users')
+        ->leftJoin('puestos', 'users.puesto_id', '=', 'puestos.id')
+        ->where('puestos.abogado', '=', 'si')
+        ->select('users.*', 'puestos.abogado')
+        ->get();
+
         $clientes = Clientes::all();
         $tramites = TiposTramites::all();
         $tipos = TipoCitas::all();
-        return view('alta_cita', compact('clientes','tramites','tipos'));
+        return view('alta_cita', compact('clientes','tramites','tipos','usuarios'));
     }
 
     /**
@@ -40,12 +49,14 @@ class AltaCitaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+
+    
     {
         $citas = new Citas ;
         $citas->cliente_id = $request->input('nombre');
         $citas->fecha_hora = $request->input('fecha');
         $citas->tipo_tramite = $request->input('tramite');
-        $citas->usuario_id =('3');
+        $citas->usuario_id = $request->input('abogado');
         $citas->tipo_cita_id = $request->input('tipo');
         $citas->confirmacion_tramite=('No');
         $citas->save();

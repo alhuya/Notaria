@@ -1,5 +1,4 @@
-
-    @extends('layouts.app')
+@extends('layouts.app')
     @section('content')
     @if(Gate::check('isAdministrador'))
     @include('layouts.menu_new')  
@@ -59,7 +58,7 @@
 
                                 <div class="col-md-6">
                                 @foreach($categorias as $categoria)
-                                    <input type="checkbox" name="catId[]" value="{{ $categoria['categoria_funcion_id']}}" > {{$categoria['nombre'] }} <br>
+                                    <input type="checkbox" name="catId[]" value="{{ $categoria['id']}}" > {{$categoria['nombre'] }} <br>
                                 
                                 @endforeach
 

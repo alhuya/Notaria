@@ -3,7 +3,7 @@
 namespace Notaria\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Notaria\Clientes;
+use Notaria\Clientes; 
 
 class EditarClienteController extends Controller
 {
@@ -15,6 +15,7 @@ class EditarClienteController extends Controller
     public function index()
     {
         $clientes = Clientes::all();
+
         return view('editar_cliente', compact('clientes'));
     }
 
@@ -74,6 +75,7 @@ class EditarClienteController extends Controller
     public function update(Request $request, $id)
     {
          Clientes::where('id',$id)->first()->update($request->all());
+
             return redirect('/editar_cliente')->with('status','Cliente editado exitosamente');
     }
 

@@ -4,6 +4,7 @@ namespace Notaria\Http\Controllers;
 use Notaria\User; 
  
 use Illuminate\Http\Request;
+use DB;
 
 class ConsultaUsuarioController extends Controller
 {
@@ -11,10 +12,14 @@ class ConsultaUsuarioController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response 
-     */
+     */ 
     public function index() 
     {
-        $usuarios = User::all();
+      
+         $usuarios = DB::table('users')
+        ->leftJoin('puestos', 'users.puesto_id', '=', 'puestos.id')
+        ->select('users.*', 'puestos.puesto','puestos.abogado')
+        ->get();
         return view('consulta_usuario', compact('usuarios'));
        
     }

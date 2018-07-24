@@ -217,12 +217,12 @@
 </div>
 @endsection
 
-
+ 
 @section('script')
 <script type="text/javascript">
   $(document).ready(function(){
   $("#estado").change(function(event){
-  $.get("Municipios/"+event.target.value+"",function(response ,state){
+  $.get("Estados_Municipios/"+event.target.value+"",function(response ,state){
     console.log(response);
     $("#municipio").empty();   
    for(i=0; i<response.length; i++){
@@ -233,3 +233,4 @@
 });
 </script>
 @endsection
+

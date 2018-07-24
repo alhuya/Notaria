@@ -12,18 +12,18 @@
  
 </head>
 
-<div class="container"> 
-<h2 style="text-align: center;">Seleccion de Agenda</h2>
+<div class="container">
+<h2 style="text-align: center;">Eliminar Usuario</h2>
            <div class="form-group row"> 
         
                         @csrf   
-                      <label for="clientes" class="col-md-4 col-form-label text-md-right">{{ __('Clientes') }}</label>
+                      <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Usuarios') }}</label>
 
                              <div class="col-md-6">
-                               <input list="browsers" name="cliente"  class="form-control" id ="cliente2" required>                             
+                               <input list="browsers" name="usuario"  class="form-control" id ="usuario2" required>                             
                                <datalist  id="browsers">                              
-                                @foreach($clientes as $cliente)
-                                <option value="{{ $cliente['id']}} {{ $cliente['nombre']}} {{ $cliente['apellido_paterno']}}">
+                                @foreach($usuarios as $usuario)
+                                <option value="{{ $usuario->id }} ">
                                 @endforeach  
                                </datalist>
 
@@ -33,8 +33,14 @@
 
                     
                         
-    
-    <!--
+                    <div class="container">
+              <div class="row justify-content-center">
+                  <div id='calendar'></div>
+              </div>
+            </div> 
+        </div>
+    </div>
+</div>
  
                           
 
@@ -42,55 +48,63 @@
 
 @endsection
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="{{ asset('js/user.js') }}" ></script>-->
-  <!--
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+  <!--<script src="{{ asset('js/user.js') }}" ></script>-->
 
 @section('script')
+ 
+<script src="{{ asset('js/moment.min.js') }}" ></script>
+    <script src="{{ asset('js/fullcalendar.min.js') }}" ></script>
+     <script src="{{ asset('js/es.js') }}" ></script>
+
+
 <script type="text/javascript">
-  $(document).ready(function(){
-  $("#cliente2").change(function(event){
-    $.get("Clientes/"+event.target.value+"",function(response ,state){
+
+var fecha;
+$(document).ready(function(){
+    
+  $("#usuario2").change(function(event){
+  $.get("Citas/"+event.target.value+"",function(response ,state){
     console.log(response);
-     $("#nombre").empty();  
-     $("#ap_paterno").empty();  
-     $("#ap_materno").empty(); 
-     $("#telefono").empty(); 
-     $("#celular").empty(); 
-     $("#correo").empty(); 
-     $("#calle").empty(); 
-     $("#colonia").empty(); 
-     $("#numint").empty(); 
-     $("#numext").empty(); 
-     $("#codpost").empty(); 
-     $("#estado").empty(); 
-     $("#municipio").empty(); 
-   
-    for(i=0; i<response.length; i++){
-      $("#nombre").append(""+response[i].nombre+"");
-      $("#ap_paterno").append(""+response[i].apellido_paterno+"");
-      $("#ap_materno").append(""+response[i].apellido_materno+"");
-      $("#telefono").append(""+response[i].telefono+"");
-      $("#celular").append(""+response[i].celular+"");
-      $("#correo").append(""+response[i].correo+"");
-      $("#calle").append(""+response[i].calle+"");
-      $("#colonia").append(""+response[i].colonia+"");
-      $("#numint").append(""+response[i].numero_interior+"");
-      $("#numext").append(""+response[i].numero_exterior+"");
-      $("#codpos").append(""+response[i].codigo_postal+"");
-      $("#estado").append(""+response[i].estado_id+"");
-      $("#municipio").append(""+response[i].municipio_id+"");
-         
+     
+   for(i=0; i<response.length; i++){
+      //$("#municipio").append("<option value='"+response[i].id+"'>"+response[i].municipio+"</option>");
+      console.log(response[i].fecha_hora);
+      fecha = response[i].fecha_hora;
+      
     }
-  }); 
+    
+  });
 });
+
+$('#calendar').fullCalendar({
+header: {
+ left: 'prev,next today',
+ center: 'title',
+ right: 'month,agendaWeek,agendaDay,listWeek'
+},
+defaultDate: '2018-05-10',
+navLinks: true, // can click day/week names to navigate views
+editable: true,
+eventLimit: true, // allow "more" link when too many events
+events: [
+ {
+   title: 'All Day Event',
+   start: fecha,
+  
+ }, 
+]
+
 });
+
+});
+
 </script>
 @endsection
 
--->
+
  
- 
+
 
 
 

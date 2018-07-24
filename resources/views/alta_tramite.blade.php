@@ -22,7 +22,7 @@
                         @endif
                         @csrf
 
-                        <div class="form-group row">
+                        <div class="form-group row"> 
                             <label for="tramite" class="col-md-4 col-form-label text-md-right">{{ __('Trámite') }}</label>
 
                             <div class="col-md-6">
@@ -41,20 +41,20 @@
                             <label for="tiempo" class="col-md-4 col-form-label text-md-right">{{ __('Tiempo') }}</label>
 
                             <div class="col-md-6">
-                                <input id="tiempo" type="number" class="form-control{{ $errors->has('tiempo') ? ' is-invalid' : '' }}" name="tiempo" value="{{ old('email') }}" required>
-
+                                <input id="tiempo" min="1"  type="number"  name="tiempo" value="{{ old('email') }}" required>
+                                <label for="tiempo">{{ __('Dias') }}</label>
                                 @if ($errors->has('tiempo'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('tiempo') }}</strong>
                                     </span>
                                 @endif 
                             </div>
-                        </div>
-
+                        </div>  
+                                
                           <div class="form-group row">    
                       <label for="puesto" class="col-md-4 col-form-label text-md-right">{{ __('Documentos') }}</label>
 
-                             <div class="col-md-6">
+                             <div class="col-md-6"> 
                                
                                @foreach($documentos as $documento)
                             <input type="checkbox" name="docId[]" value="{{ $documento['id']}}" > {{$documento['documento'] }} <br>
@@ -68,7 +68,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
-                            </div>
+                            </div> 
                         </div>
 
                     </form>
@@ -77,4 +77,4 @@
         </div>
     </div>
 </div>
-@endsection
+@endsection 

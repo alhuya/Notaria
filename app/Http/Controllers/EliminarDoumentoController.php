@@ -5,6 +5,7 @@ namespace Notaria\Http\Controllers;
 use Illuminate\Http\Request;
 use Notaria\Documentacion;
 
+
 class EliminarDoumentoController extends Controller 
 {
     /**
@@ -14,6 +15,8 @@ class EliminarDoumentoController extends Controller
      */
     public function index()
     {
+       
+      
         $Documentos = Documentacion::all();
         return view('eliminar_documento', compact('Documentos'));
     }

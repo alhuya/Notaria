@@ -36,17 +36,17 @@
 					      <th scope="col">Apellido Materno</th>
 					       <th scope="col">Puesto</th>
 					    </tr>
-					  </thead>
+					  </thead> 
 					  <tbody>
-					  	@foreach($usuarios as $usuario) 
+					  	@foreach($usuarios as $usuario)  
 					    <tr>
 					      
-					      <td>{{$usuario['nombre'] }}</td> 
-					      <td>{{$usuario['ap_paterno'] }}</td>
-					      <td>{{$usuario['ap_materno'] }}</td>
-					      <td>{{$usuario['puesto_id'] }}</td>
+					      <td>{{$usuario->nombre }}</td> 
+					      <td>{{$usuario->ap_paterno }}</td>
+					      <td>{{$usuario->ap_materno }}</td>
+					      <td>{{$usuario->puesto }}</td>
 					    </tr>
-					    
+					     
 					    @endforeach
 					  </tbody>
 					</table>

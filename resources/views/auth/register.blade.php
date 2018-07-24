@@ -16,7 +16,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
+                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombres') }}</label>
 
                             <div class="col-md-6">
                                 <input id="nombre" type="text" class="form-control{{ $errors->has('nombre') ? ' is-invalid' : '' }}" name="nombre" value="{{ old('nombre') }}" required autofocus>
@@ -75,7 +75,7 @@
                                <select name="puesto" id="puesto" class="form-control" required>
                                 !<option value="">{{ __('-- Seleccione el puesto --') }}</option>
                                 @foreach($puestos as $puesto)
-                                <option value="{{ $puesto['id']}}">{{$puesto['nombre'] }}</option>
+                                <option value="{{ $puesto['id']}}">{{$puesto['puesto'] }}</option>
                                  @endforeach
                                </select>
                            </div>

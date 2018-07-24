@@ -28,7 +28,7 @@ class PuestosController extends Controller
      protected function validator(Request $request)
     {
         return Validator::make($request, [
-            'nombre' => 'required|string|max:255',
+            'puesto' => 'required|string|max:255',
             
         ]);
     }
@@ -41,20 +41,20 @@ class PuestosController extends Controller
     public function store(Request $request)
     {
         $puestos = new puestos;
-        $puestos->nombre = $request->input('puesto');
+        $puestos->puesto = $request->input('puesto');
         $puestos->abogado = $request->input('abogado');
         
-        $nom = $puestos->nombre;
+        $nom = $puestos->puesto;
         $puestos->save();
        
-        $idPuesto =  $puestos->select('id','nombre')->where('nombre', '=', $nom)->get();
+        $idPuesto =  $puestos->select('id','puesto')->where('puesto', '=', $nom)->get();
        
         $puestoID;
         foreach ($idPuesto as $idp) {
              $puestoID = $idp->id;             
         }
         //echo $puestoID;
-        $categoriasId = $request->input('catId');
+        $categoriasId = $request->input('catId'); 
         $catID;
         foreach ($categoriasId as $categoriaId) {
             $catID=  $categoriaId;   
@@ -63,12 +63,8 @@ class PuestosController extends Controller
             $catPuesto->categoria_funcion_id = $catID;   
             $catPuesto->save();       
         }    
-
         return redirect('/puestos')->with('status','Puesto guardado exitosamente');
-
         
-
-
     }
     /**
      * Display the specified resource.

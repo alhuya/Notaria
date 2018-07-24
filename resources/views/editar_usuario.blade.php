@@ -23,7 +23,7 @@
                                <input list="browsers" name="usuario"  class="form-control" id ="usuario" required>                             
                                <datalist  id="browsers">                              
                                 @foreach($usuarios as $usuario)
-                                <option value="{{ $usuario['id']}} {{$usuario['nombre'] }} {{$usuario['ap_paterno'] }}">@endforeach
+                                <option value="{{ $usuario['id']}} {{ $usuario['nombre']}} {{ $usuario['ap_paterno']}} {{ $usuario['ap_materno']}}">@endforeach
                                </datalist>
                            </div>
                             

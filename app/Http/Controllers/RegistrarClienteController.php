@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Notaria\Estados;
 use Notaria\Clientes;
 use Notaria\Municipios;
+use Notaria\Estados_Municipios;
 
 class RegistrarClienteController extends Controller
 {
@@ -80,8 +81,8 @@ class RegistrarClienteController extends Controller
 
     public function store2(Request $request,$id)
     {
-     if($request->ajax()){
-        $municipios = Municipios::Municipios($id); 
+     if($request->ajax()){ 
+        $municipios = Estados_Municipios::estmun($id); 
         return response()->json($municipios);
       }
  

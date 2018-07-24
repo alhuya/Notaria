@@ -23,7 +23,7 @@
                                <input list="browsers" name="cliente"  class="form-control" id ="cliente2" required>                             
                                <datalist  id="browsers">                              
                                 @foreach($clientes as $cliente)
-                                <option value="{{ $cliente['id']}}">
+                                <option value="{{ $cliente['id']}}  {{ $cliente['nombre']}} {{ $cliente['apellido_paterno']}} {{ $cliente['apellido_materno']}}"></option>
                                 @endforeach  
                                </datalist>
 
@@ -216,8 +216,8 @@
       $("#numint").append(""+response[i].numero_interior+"");
       $("#numext").append(""+response[i].numero_exterior+"");
       $("#codpos").append(""+response[i].codigo_postal+"");
-      $("#estado").append(""+response[i].estado_id+"");
-      $("#municipio").append(""+response[i].municipio_id+"");
+      $("#estado").append(""+response[i].estado+"");
+      $("#municipio").append(""+response[i].municipio+"");
          
     }
   }); 

@@ -4,6 +4,7 @@ namespace Notaria\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Notaria\Clientes;
+use Notaria\Citas;
 
 class ConsultaClienteController extends Controller 
 {
@@ -23,7 +24,7 @@ class ConsultaClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create() 
     {
         //
     }

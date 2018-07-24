@@ -3,7 +3,8 @@
 namespace Notaria\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Notaria\User; 
+use Notaria\User;  
+
 
 class EliminarUsuarioController extends Controller
 {
@@ -16,6 +17,8 @@ class EliminarUsuarioController extends Controller
     {
         $usuarios = User::all();
         return view('eliminar_usuario', compact('usuarios'));
+
+   
     }
 
     /**
@@ -42,7 +45,7 @@ class EliminarUsuarioController extends Controller
         return response()->json($usuarios);
 
 
-
+ 
 
       }
     }

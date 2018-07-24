@@ -56,6 +56,16 @@
                         
                     </div> 
 
+                     <div class="form-group row">    
+                      <label for="puesto" class="col-md-4 col-form-label text-md-right">{{ __('Documentos') }}</label>
+
+                             <div class="col-md-6" id="div1">
+                               
+                          
+                               
+                           </div>
+                        </div>  
+
                     
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
@@ -76,3 +86,34 @@
     </div>
 
     @endsection
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!--<script src="{{ asset('js/user.js') }}" ></script>-->
+
+@section('script')
+<script type="text/javascript">
+  $(document).ready(function(){
+  $("#tramites2").change(function(event){
+  $.get("tramite_documento/"+event.target.value+"",function(response ,state){
+    console.log(response);
+     $("#div1").empty(); 
+   
+     
+    
+    for(i=0; i<response.length; i++){
+      $("#div1").append('<input type="checkbox" name="docId[]" value='+response[i].id+' >'+response[i].documento+'</br>');
+   
+     
+    }
+  });
+});
+});
+</script>
+@endsection
+
+
+ 
+
+
+
+

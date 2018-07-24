@@ -13,29 +13,26 @@
 </head> 
 
 <div class="container">
-<h2 style="text-align: center;">Editar Documento</h2>
-           <div class="form-group row"> 
-        
-                        @csrf   
-                      <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Documentos') }}</label>
-
-                             <div class="col-md-6">
-                               <input list="browsers" name="cliente"  class="form-control" id ="doc1" required>                             
-                               <datalist  id="browsers">                              
-                                @foreach($tipos as $tipo)
-                                <option value="{{ $tipo['id']}}">@endforeach
-                               </datalist>
-                           </div>
-                            
-                        </div> 
-
-                    
-                        
-                         <div class="container">
+ <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Documentos') }}</div>
+                <div class="card-header">{{ __('TIPOS DE CITA') }}</div>
+                <br><br>   
+                 <div class="form-group row"> 
+        
+    
+      <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Tipo') }}</label>
+
+             <div class="col-md-6">
+               <input list="browsers" name="cliente"  class="form-control" id ="doc1" required>                             
+               <datalist  id="browsers">                              
+                @foreach($tipos as $tipo)
+                <option value="{{ $tipo['id']}}">{{ $tipo['tipo']}}</option>@endforeach
+               </datalist>
+           </div>
+            
+        </div> 
 
                 <div class="card-body">
                 <form method="POST" action="tipos_citas/{{$tipo['id']}}">

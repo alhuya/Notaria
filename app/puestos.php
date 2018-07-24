@@ -14,10 +14,10 @@ class puestos extends Model
      * @var array
      */
     protected $table = 'puestos';
-    protected $fillable = ['puesto_id','nombre','abogado'];
+    protected $fillable = ['puesto_id','puesto','abogado'];
 
      
-   
+    
     
 }
- 
+  

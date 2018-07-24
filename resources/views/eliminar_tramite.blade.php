@@ -23,7 +23,7 @@
                                <input list="browsers" name="tramite"  class="form-control" id ="tramite" required>                             
                                <datalist  id="browsers">                              
                                 @foreach($Tramites as $tramite)
-                                <option value="{{ $tramite['id']}}">
+                                <option value="{{ $tramite['id']}} {{ $tramite['tramite']}}"></option>
                                 @endforeach  
                                </datalist>
 

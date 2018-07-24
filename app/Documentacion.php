@@ -1,6 +1,7 @@
 <?php
  
-namespace Notaria; 
+namespace Notaria;  
+use DB;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,8 +12,10 @@ class Documentacion extends Model
 
 
     public static function doc($id){ 
-        return Documentacion::where('id','=',$id)
+       return DB::table('Documentacion')
+        ->where('id','=', $id)
+        ->select('Documentacion.*')
         ->get();
     }
-}
- 
+} 
+  

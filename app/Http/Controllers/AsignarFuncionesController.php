@@ -3,23 +3,26 @@
 namespace Notaria\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Notaria\puestos;
 
 class AsignarFuncionesController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource. 
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-           return view('asignar_funciones');
+    { 
+
+         $puestos = puestos::all();
+           return view('asignar_funciones', compact('puestos'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response 
      */
     public function create()
     {
@@ -34,7 +37,9 @@ class AsignarFuncionesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       // $puesto  = Input::get('puesto') ;
+
+       // return redirect('funciones/'.$firstName);
     }
 
     /**

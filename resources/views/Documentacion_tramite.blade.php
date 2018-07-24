@@ -11,31 +11,31 @@
  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
  
 </head> 
-
+<br><br><br>
 <div class="container">
-<h2 style="text-align: center;">Editar Usuario</h2>
+
            <div class="form-group row"> 
         
                         @csrf   
-                      <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Usuarios') }}</label>
+                      <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Trámite') }}</label>
 
                              <div class="col-md-6">
                                <input list="browsers" name="cliente"  class="form-control" id ="cliente" required>                             
                                <datalist  id="browsers">                              
                                 @foreach($tramites as $tramite)
-                                <option value="{{ $tramite['id']}}">@endforeach
+                                <option value="{{ $tramite['id']}} {{ $tramite['tramite']}}">@endforeach
                                </datalist>
                            </div>
                             
                         </div> 
 
-                    
+                     
                         
                          <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Usuarios') }}</div>
+           
+               
 
 
                 <div class="card-body">
@@ -51,18 +51,18 @@
 
 					    </tr>
 					  </thead>
-					  <tbody>
+					  <tbody id="div1">
                       
-					    <tr id="div1">
+					    
 					      
 					     
-					    </tr>
+					    
 					    
 					  
 					  </tbody>
 					</table>
                     
-                </div>
+               
             </div>
         </div>
     </div>
@@ -89,7 +89,7 @@
      
     
     for(i=0; i<response.length; i++){
-      $("#div1").append('<td>'+response[i].tipo_tramite_id+'</td><td>'+response[i].documentacion_id+'</td>');
+      $("#div1").append('<tr><td>'+response[i].documento+'</td><td>'+response[i].costo+'</td><td>'+response[i].origen+'</td></tr>');
 
      
     }

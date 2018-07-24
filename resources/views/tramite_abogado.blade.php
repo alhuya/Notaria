@@ -8,35 +8,42 @@
                 <div class="card-header">{{ __('TRÁMITES POR ABOGADO') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('tramite_abogado') }}">
                         @csrf
+                        @if(session('status')) 
 
+                        <div class="alert alert-success">
+                            {{session ('status')}}
+                            
+                        </div>
+                        @endif
                         <div class="form-group row">
-                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
+                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre Usuarios') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nombre" type="text" class="form-control{{ $errors->has('nombre') ? ' is-invalid' : '' }}" name="nombre" value="{{ old('nombre') }}" required autofocus>
-
-                                @if ($errors->has('nombre'))
+                            @foreach($usuarios as $usuario)
+                                <label>{{$usuario['nombre'] }} {{$usuario['ap_paterno'] }} {{$usuario['ap_materno'] }} </label>
+                                <input id="nombre" type="hidden" class="form-control{{ $errors->has('nombre') ? ' is-invalid' : '' }}" name="nombre" value="{{$usuario['id'] }}" required autofocus>
+                                @endforeach
+                                @if ($errors->has('nombre'))  
                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('nombre') }}</strong>
+                                        <strong>{{ $errors->first('nombre') }}</strong>  
                                     </span>
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="ap_paterno" class="col-md-4 col-form-label text-md-right">{{ __('Apellido Paterno') }}</label>
+                        <div class="form-group row">    
+                      <label for="puesto" class="col-md-4 col-form-label text-md-right">{{ __('Tramites') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="ap_paterno" type="text" class="form-control{{ $errors->has('ap_paterno') ? ' is-invalid' : '' }}" name="ap_paterno" value="{{ old('ap_paterno') }}" required autofocus>
-
-                                @if ($errors->has('ap_paterno'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('ap_paterno') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                             <div class="col-md-6"> 
+                               
+                               @foreach($tramites as $tramite)  
+                            <input type="checkbox" name="tramid[]" value="{{ $tramite['id']}}" > {{$tramite['tramite'] }} <br>
+                                                    
+                            @endforeach
+                               
+                           </div>
+                        </div>   
                          <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

@@ -4,6 +4,9 @@ namespace Notaria\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Notaria\TiposTramites;
+use Notaria\CostoTramite;
+use Notaria\Concepto; 
+use Notaria\ConceptoCosto;
 
 class TarifasController extends Controller
 {
@@ -12,10 +15,14 @@ class TarifasController extends Controller
      * 
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index()  
     {
+
+        
+        $Costos = CostoTramite::all();
         $tramites = TiposTramites::all();
-        return view('tarifas', compact('tramites'));
+        $conceptos = Concepto::all();
+        return view('tarifas', compact('tramites','Costos','conceptos'));
     }
 
     /**
@@ -24,7 +31,7 @@ class TarifasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    { 
         //
     }
 
@@ -32,14 +39,17 @@ class TarifasController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response 
      */
-    public function store(Request $request)
+    public function store(Request $request,$id,$tipo)
     {
-        //
+        if($request->ajax()){ 
+        $cliente = ConceptoCosto::consulta($id,$tipo);
+        return response()->json($cliente); 
+      }
     }
 
-    /**
+    /** 
      * Display the specified resource.
      *
      * @param  int  $id
@@ -48,7 +58,7 @@ class TarifasController extends Controller
     public function show($id)
     {
         //
-    }
+    } 
 
     /**
      * Show the form for editing the specified resource.
