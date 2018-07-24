@@ -109,19 +109,22 @@
  @section('script') 
  <script type="text/javascript">
   $(document).ready(function(){
-  $("#tramite","#tipo").change(function(event){
-    $.get("ConceptoCosto/"+event.target.value+"/"+event.target.value+"",function(response ,state){
-    console.log(response);
-     $("#div1").empty();  
-    for(i=0; i<response.length; i++){
-      $("#div").append('<input id="costou" type="text" class="form-control" name="costo[]" value='+response[i].duracion+'  autofocus>');
-
-    
-  
-         
-    }
-  }); 
-});
+    $("#tramite").change(function(event){
+        var tramite = $('#tramite').val();
+        console.log(tramite);
+        $("#tipo").change(function(event){
+            var tipo = $('#tipo').val();
+            console.log(tipo);
+            
+            $.get("ConceptoCosto/"+tramite+"/"+tipo+"",function(response ,state){
+            console.log(response);
+            $("#div1").empty();  
+                for(i=0; i<response.length; i++){
+                    $("#div1").append('<input id="costou" type="text" class="form-control" name="costo[]" value='+response[i].costo+'  autofocus>');    
+                }
+            }); 
+        });      
+    });
 });
 </script>
 @endsection

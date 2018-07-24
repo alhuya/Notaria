@@ -53,8 +53,8 @@ class ConceptoCostoController extends Controller
         
 
         foreach (array_combine($documentosId2, $documentosId) as $documentoId2 => $documentoId ) { 
-            $docID2   =    $documentoId2;  
-            $docID=  $documentoId;   
+            $docID2 = $documentoId2;  
+            $docID = $documentoId;   
             
             $concepto = new ConceptoCosto;
             $concepto->costo_tramite_id = $request->input('tipo'); 

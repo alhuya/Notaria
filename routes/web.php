@@ -153,7 +153,7 @@ Route::get('tramite_documento/{id}', 'ValidacionDocumentacionController@store');
 ///////// CONCEPTO COSTO ////
  
 Route::get('/concepto_costo', 'ConceptoCostoController@index')->name('costo');
-Route::post('ConceptoCosto/{id}', 'ConceptoCostoController@store'); 
+Route::post('/concepto_costo', 'ConceptoCostoController@store'); 
 
 ///////// CONCEPTO /////
 

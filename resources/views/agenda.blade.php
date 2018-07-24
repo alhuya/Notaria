@@ -77,6 +77,8 @@ $(document).ready(function(){
   });
 });
 
+// Enviar datos del response a los eventos del calendario
+
 $('#calendar').fullCalendar({
 header: {
  left: 'prev,next today',
