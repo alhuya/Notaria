@@ -23,7 +23,12 @@
                                <input list="browsers" name="cliente"  class="form-control" id ="cliente" required>                             
                                <datalist  id="browsers">                              
                                 @foreach($tramites as $tramite)
+<<<<<<< HEAD
                                 <option value="{{ $tramite['id']}} {{ $tramite['tramite']}}">@endforeach
+=======
+                                <option value="{{ $tramite['id']}}"><b>{{ $tramite['tramite']}}<b></option>
+                                @endforeach
+>>>>>>> 53ef0eef098f5242f92dcfda52a11e109dc018c3
                                </datalist>
                            </div>
                             
@@ -53,11 +58,14 @@
 					  </thead>
 					  <tbody id="div1">
                       
+<<<<<<< HEAD
 					    
 					      
 					     
 					    
 					    
+=======
+>>>>>>> 53ef0eef098f5242f92dcfda52a11e109dc018c3
 					  
 					  </tbody>
 					</table>
