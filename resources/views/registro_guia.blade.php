@@ -18,7 +18,30 @@
         <div class="col-md-8">
           
                 <br><br>  
-                <div class="form-group row"> 
+              
+            <div class="card">
+                <div class="card-header">{{ __('Guía Registro') }}</div>  
+
+                <div class="card-body"> 
+                <form method="POST"  action="{{ route('registro') }}">
+               
+                      @if(session('status'))  
+
+                        <div class="alert alert-success"> 
+                          {{session ('status')}}   
+                            
+                        </div>
+                        @endif  
+
+                        @if(session('status2'))  
+
+               <div  class="alert alert-danger">
+                  {{session ('status2')}}   
+   
+                     </div>
+                  @endif  
+                        @csrf 
+                        <div class="form-group row"> 
         
       
         <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Número de Carpeta') }}</label>
@@ -32,20 +55,6 @@
             </div>
                 
             </div>    
-            <div class="card">
-                <div class="card-header">{{ __('Guía Registro') }}</div> 
-
-                <div class="card-body"> 
-                <form method="POST"  action=" registro_guia/{{$tramite['carpeta_id']}}">
-                {{ method_field('patch')}}
-                      @if(session('status'))  
-
-                        <div class="alert alert-success"> 
-                          {{session ('status')}}   
-                           
-                        </div>
-                        @endif 
-                        @csrf 
 
                         
 
@@ -53,14 +62,12 @@
                             <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Número de Escritura') }}</label>
 
                             <div class="col-md-6">
-                                <input id="numero_ecritura" type="text" class="form-control{{ $errors->has('numero_ecritura') ? ' is-invalid' : '' }}" name="numero_escritura" value="{{ old('numero_ecritura') }}" required autofocus>
 
-                                @if ($errors->has('numero_ecritura'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('numero_ecritura') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                            @foreach($numeros as $numero ) 
+                                <input id="numero_ecritura" name='numero_escritura' type="text" class="form-control" value="{{$numero->numero_escritura + 1}}" required readonly>
+                            @endforeach
+                              
+                            </div> 
 
                             </div>
 

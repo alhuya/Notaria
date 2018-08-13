@@ -38,6 +38,7 @@
                 <div class="card-body">
                 <form method="POST" action="{{ route('register') }}">
                         @csrf
+              <div class="container">
 					<table class="table table-striped">
 					  <thead>
 					  	 
@@ -46,16 +47,16 @@
 					      <th scope="col">Nombre</th>
 					      <th scope="col">Apellido Paterno</th>
 					      <th scope="col">Apellido Materno</th>
-                          <th scope="col">telefono</th>
-					      <th scope="col">celular</th>
+                          <th scope="col">Telefono</th>
+					      <th scope="col">Celular</th>
 					      <th scope="col">Correo</th>
-                          <th scope="col">calle</th>
-					      <th scope="col">colonia</th>
-					      <th scope="col">numero interior</th>
-                          <th scope="col">numero exterior</th>
-                          <th scope="col">codigo postal</th>
-                          <th scope="col">estado</th>
-                          <th scope="col">municipio</th>
+                          <th scope="col">Calle</th>
+					      <th scope="col">Colonia</th>
+					      <th scope="col">Numero Interior</th>
+                          <th scope="col">Numero Exterior</th>
+                          <th scope="col">Codigo Postal</th>
+                          <th scope="col">Estado</th>
+                          <th scope="col">Municipio</th>
 					    
 					    </tr>
 					  </thead>
@@ -72,6 +73,7 @@
 				
 					  </tbody>
 					</table>
+          </div>
                     </form>
                 </div>
  

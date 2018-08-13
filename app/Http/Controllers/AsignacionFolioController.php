@@ -2,11 +2,15 @@
 
 namespace Notaria\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Notaria\ValidaDocumentosAbogado;
 use Notaria\Citas;
+use Notaria\Clientes;
 use DB;
 use Notaria\ControlTramites;
+use Notaria\ControlTramitesFolio;
 
 class AsignacionFolioController extends Controller
 {
@@ -17,13 +21,25 @@ class AsignacionFolioController extends Controller
      */
     public function index()
     {
-
+    
+         
         
-        $clientes = DB::table('citas')
-        ->leftJoin('clientes', 'citas.cliente_id', '=', 'clientes.id')
-        ->select('citas.*', 'clientes.nombre','clientes.apellido_paterno','clientes.apellido_materno') 
-        ->get();
-        return view('asignacion_folio', compact('citas','clientes'));
+       
+        $clientes = Clientes::all();
+        $carpetas = ControlTramites::all();
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
+        return view('asignacion_folio', compact('citas','clientes','carpetas','funciones','conceptos'));
     }
  
     /**
@@ -40,12 +56,12 @@ class AsignacionFolioController extends Controller
      * Store a newly created resource in storage. 
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response 
      */
-    public function store(Request $request ,$id)
+    public function store(Request $request ,$cliente,$carpeta)
     { 
-        if($request->ajax()){
-        $doc = ControlTramites::tramite($id);
+        if($request->ajax()){ 
+        $doc = ControlTramitesFolio::tramite($cliente,$carpeta);
         return response()->json($doc); 
       }
     

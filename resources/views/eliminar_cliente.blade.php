@@ -12,28 +12,9 @@
  
 </head>
 
-<div class="container">
+<div class="container"> 
 <h2 style="text-align: center;">Eliminar Cliente</h2>
-           <div class="form-group row"> 
-        
-                        @csrf   
-                      <label for="clientes" class="col-md-4 col-form-label text-md-right">{{ __('Clientes') }}</label>
-
-                             <div class="col-md-6">
-                               <input list="browsers" name="cliente"  class="form-control" id ="cliente2" required>                             
-                               <datalist  id="browsers">                              
-                                @foreach($clientes as $cliente)
-                                <option value="{{ $cliente['id']}}  {{ $cliente['nombre']}} {{ $cliente['apellido_paterno']}} {{ $cliente['apellido_materno']}}"></option>
-                                @endforeach  
-                               </datalist>
-
-                           </div>
-                            
-                        </div> 
-
-                    
-                        
-                         <div class="container">
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8"> 
             <div class="card">
@@ -41,7 +22,7 @@
  
                 <div class="card-body">
 
-                    <form method="POST" action=" eliminar_cliente/{{$cliente['id']}}">
+                    <form method="POST" action=" {{ route('eliminar_client') }}" >
                     	{{ method_field('delete')}}
                       @if(session('status'))
 
@@ -50,7 +31,22 @@
                           
                         </div>
                         @endif
-                        @csrf
+                        <div class="form-group row"> 
+                            
+                            @csrf   
+                        <label for="clientes" class="col-md-4 col-form-label text-md-right">{{ __('Clientes') }}</label>
+
+                                <div class="col-md-6">
+                                <input list="browsers2" name="cliente"  class="form-control" id ="cliente2" required>                             
+                                <datalist  id="browsers2">                              
+                                    @foreach($clientes as $cliente)
+                                    <option value="{{ $cliente['id']}} {{ $cliente['nombre']}} {{ $cliente['apellido_paterno']}} {{ $cliente['apellido_materno']}} "></option>
+                                    @endforeach  
+                                </datalist>
+
+                            </div>
+                                
+                            </div> 
 
                         <div class="form-group row">
                             <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
@@ -78,7 +74,7 @@
                         </div>
 
                          <div class="form-group row">
-                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Telefono') }}</label>
+                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Teléfono') }}</label>
 
                             <div class="col-md-6">
                                 <label id="telefono" class="form-control"></label>                               
@@ -118,7 +114,7 @@
                         </div>
 
                          <div class="form-group row">
-                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Numero Interior') }}</label>
+                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Número Interior') }}</label>
 
                             <div class="col-md-6">
                                 <label id="numint" class="form-control"></label>                               
@@ -126,7 +122,7 @@
                         </div>
 
                          <div class="form-group row">
-                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Numero Exterior') }}</label>
+                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Número Exterior') }}</label>
 
                             <div class="col-md-6">
                                 <label id="numext" class="form-control"></label>                               
@@ -134,8 +130,8 @@
                         </div>
 
                           <div class="form-group row">
-                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Codigo Postal') }}</label>
-
+                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Código Postal') }}</label>
+ 
                             <div class="col-md-6">
                                 <label id="codpos" class="form-control"></label>                               
                             </div>
@@ -196,7 +192,7 @@
      $("#telefono").empty(); 
      $("#celular").empty(); 
      $("#correo").empty(); 
-     $("#calle").empty(); 
+     $("#calle").empty();  
      $("#colonia").empty(); 
      $("#numint").empty(); 
      $("#numext").empty(); 
@@ -205,19 +201,19 @@
      $("#municipio").empty(); 
    
     for(i=0; i<response.length; i++){
-      $("#nombre").append(""+response[i].nombre+"");
-      $("#ap_paterno").append(""+response[i].apellido_paterno+"");
-      $("#ap_materno").append(""+response[i].apellido_materno+"");
-      $("#telefono").append(""+response[i].telefono+"");
-      $("#celular").append(""+response[i].celular+"");
-      $("#correo").append(""+response[i].correo+"");
-      $("#calle").append(""+response[i].calle+"");
-      $("#colonia").append(""+response[i].colonia+"");
-      $("#numint").append(""+response[i].numero_interior+"");
-      $("#numext").append(""+response[i].numero_exterior+"");
-      $("#codpos").append(""+response[i].codigo_postal+"");
-      $("#estado").append(""+response[i].estado+"");
-      $("#municipio").append(""+response[i].municipio+"");
+      $("#nombre").append(""+ $.trim(response[i].nombre) +"");
+      $("#ap_paterno").append(""+ $.trim(response[i].apellido_paterno) +"");
+      $("#ap_materno").append(""+ $.trim(response[i].apellido_materno) +"");
+      $("#telefono").append(""+ $.trim(response[i].telefono) +"");
+      $("#celular").append(""+ $.trim(response[i].celular) +"");
+      $("#correo").append(""+ $.trim(response[i].correo) +"");
+      $("#calle").append(""+ $.trim(response[i].calle) +"");
+      $("#colonia").append(""+ $.trim(response[i].colonia) +"");
+      $("#numint").append(""+ $.trim(response[i].numero_interior) +"");
+      $("#numext").append(""+ $.trim(response[i].numero_exterior) +"");
+      $("#codpos").append(""+ $.trim(response[i].codigo_postal) +"");
+      $("#estado").append(""+ $.trim(response[i].estado) +"");
+      $("#municipio").append(""+ $.trim(response[i].municipio) +"");
          
     }
   }); 

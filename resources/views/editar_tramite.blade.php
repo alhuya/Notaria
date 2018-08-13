@@ -13,41 +13,37 @@
 </head> 
 
 <div class="container">
-<h2 style="text-align: center;">Editar Trámite</h2>
-           <div class="form-group row"> 
-        
-                        @csrf   
-                      <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Tramites') }}</label>
-
-                             <div class="col-md-6">
-                               <input list="browsers" name="tramites"  class="form-control" id ="input" required>                             
-                               <datalist  id="browsers">                              
-                                @foreach($Tramites as $tramite)
-                                <option value="{{ $tramite['id']}} {{ $tramite['tramite']}}">@endforeach
-                               </datalist>
-                           </div>
-                            
-                        </div> 
-
-                    
+<h2 style="text-align: center;">Editar Trámite</h2> 
+         
                         
                          <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Tramites') }}</div>
+                <div class="card-header">{{ __('Trámites') }}</div>
 
                 <div class="card-body">
-                <form method="POST" action="editar_tramite/{{$tramite['id']}}">
+                <form method="POST" action="{{ route('editar_tramite') }}">
                       {{ method_field('patch')}}
                       @if(session('status')) 
 
                         <div class="alert alert-success">
                           {{session ('status')}}
-                           
-                        </div>
+                            
+                        </div> 
                         @endif
                         @csrf 
+                        <div class="form-group row">  
+                         <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Trámites') }}</label>
+                              <div class="col-md-6">
+                            <input list="browsers" name="tramites"  class="form-control" id ="input" required>                             
+                            <datalist  id="browsers">                              
+                                @foreach($Tramites as $tramite)
+                                <option value="{{ $tramite['id']}} {{ $tramite['tramite']}}"></option>@endforeach
+                            </datalist>
+                        </div> 
+                            
+                        </div> 
 
                         <div class="form-group row">
                             <label for="ap_paterno" class="col-md-4 col-form-label text-md-right">{{ __('Trámites') }}</label>
@@ -100,14 +96,14 @@
   $.get("TiposTramites/"+event.target.value+"",function(response ,state){
     console.log(response);
      $("#uno").empty(); 
-     $("#dos").empty();
+     $("#dos").empty(); 
       
     
     for(i=0; i<response.length; i++){
-      $("#uno").append('<input class="form-control" type="text" name="tramite" value='+response[i].tramite+' >');
-      $("#dos").append('<input class="form-control" type="text" name="documento"  value='+response[i].duracion+'>');
+      $("#uno").append('<input class="form-control" type="text" name="tramite" value="'+ $.trim(response[i].tramite) +'" >');
+      $("#dos").append('<input  type="text" name="duracion"  value="'+ $.trim(response[i].duracion) +'" >  <label for="tiempo">{{ __('Dias') }}</label>');
      
-
+ 
      
     }
   }); 

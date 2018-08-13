@@ -1,7 +1,8 @@
 <?php
 
 namespace Notaria\Http\Controllers;
- 
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 use Notaria\ValidaDocumentosAbogado; 
 use DB;
@@ -15,7 +16,7 @@ class AperturaCarpetasController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */  
+     */   
     public function index()
      
     {
@@ -29,6 +30,14 @@ class AperturaCarpetasController extends Controller
         
 
         //dd($tramites);
+        $numeros = DB::table('control_tramites')
+        -> orderBy('id', 'desc')
+        -> take(1)
+        ->select('control_tramites.carpeta_id') 
+        ->get();
+
+     
+
         $clientes = DB::table('clientes')
         ->select('clientes.*')
         ->get();
@@ -37,16 +46,26 @@ class AperturaCarpetasController extends Controller
         ->select('tipos_tramites.*')
         ->get();
 
-        $numeros = DB::table('control_tramites')
-        -> orderBy('id', 'desc')
-        -> take(1)
-        ->select('control_tramites.*') 
-        ->get();
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
+       
+    
 
+        
 
    
         
-        return view('apertura_carpetas', compact('clientes','tramites','numeros')); 
+        return view('apertura_carpetas', compact('clientes','tramites','numeros','conceptos','funciones')); 
     }
  
     /**
@@ -68,8 +87,12 @@ class AperturaCarpetasController extends Controller
     public function store(Request $request) 
     {
       
+     $n=   $request->input('numero');
+     if( $n == null    ){
+         $n = 1;
+     }
     $validar = new ControlTramites ;
-    $validar->carpeta_id = $request->input('numero');
+    $validar->carpeta_id = $n;
     $validar->cliente_id =$request->input('cliente');
     $validar->tramite_id= $request->input('tramite');
     $validar->save();

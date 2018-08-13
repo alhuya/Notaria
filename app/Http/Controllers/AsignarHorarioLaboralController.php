@@ -2,6 +2,8 @@
 
 namespace Notaria\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 use Notaria\User;  
 use Notaria\HorarioAbogado; 
@@ -27,8 +29,21 @@ class AsignarHorarioLaboralController extends Controller
             ->get();
            // dd($clientes);
 
+           $puesto = Auth::user()->puesto_id;
+               
+       
+           $conceptos = DB::table('menu_concepto')
+            ->where('menu_concepto.puesto_id', '=', $puesto)
+            ->select('menu_concepto.*')
+            ->get();
+    
+            $funciones = DB::table('menu')
+            ->where('menu.puesto_id', '=', $puesto)
+            ->select('menu.*') 
+            ->get();
+
         //$usuarios = User::orderBy('id', 'desc')->take(1)->where('tramite', '=', $tram)->get();
-        return view('/asignar_horario_laboral', compact('usuarios')); 
+        return view('/asignar_horario_laboral', compact('usuarios','conceptos','funciones')); 
     }
 
     /**

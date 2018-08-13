@@ -15,7 +15,7 @@
   
 
 
-   
+    
 
 
  @yield('script')
@@ -75,7 +75,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Cerrar Sesión') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -89,27 +89,31 @@
                 </div>
             </div>
         </nav>
-         
+      <!--  <div>
+        <img src="{{ asset('/imagenes/fondo2.png') }}" width="100%" height="%50" >
+         </div>-->
 
         <main class="py-4">
             @yield('content')
         </main>
        
     </div>
-<!--
-    <div style=" 
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 90px;
-  color: white;"> 
-  @yield('footer') 
-<img src="{{ asset('/imagenes/covel2.png') }}" width="150px" height="90px" align="right">
-</div> -->
 
+     
 
+   
 
 </body>
+<div style=" 
+   position: fixed;
+    bottom: 0;
+    z-index: 100;/* Depende el valor segun las capas flotantes que tengas */
+    right: 0;
+    ">
+  @yield('footer2') 
+<img src="{{ asset('/imagenes/covel2.png') }}" width="150px" height="90px" align="right">
+</div>
+
 
 
 

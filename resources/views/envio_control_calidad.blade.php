@@ -19,10 +19,10 @@
             <div class="card">
                 <div class="card-header">{{ __('Envio A Control de Calidad') }}</div>
                 <br><br>   
-                
+                 
 
                 <div class="card-body">
-                <form method="POST" action="{{ route('envio') }}"> 
+                <form method="POST" action="{{ route('envio') }}">  
                      
                       @if(session('status')) 
  
@@ -35,34 +35,19 @@
                                     <div class="form-group row"> 
                     
                 
-                    <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Cliente') }}</label>
+                    <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Numero de Carpeta') }}</label>
             
                         <div class="col-md-6"> 
-                            <input list="browsers" name="cliente"  class="form-control" id ="var" required>                             
+                            <input list="browsers" name="carpeta"  class="form-control" id ="var" required>                             
                             <datalist  id="browsers">                              
-                            @foreach($clientes as $cliente) 
-                            <option value="{{ $cliente->cliente_id}} "> {{ $cliente->nombre}} {{ $cliente->apellido_paterno}} {{ $cliente->apellido_materno}}  </option>@endforeach
+                            @foreach($carpetas as $carpeta) 
+                            <option value="{{ $carpeta->carpeta_id}} ">  </option>@endforeach
                             </datalist>
                         </div> 
                         
                     </div> 
 
-                        <div class="form-group row">
-                          
-                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Trámite') }}</label>
-                          
-                            <div class="col-md-6">
-                              <div id="div1">
-                               <!-- <label id="nombre" class="form-control"></label>-->
-
-                               </div>
-                               <div id="div3">
-                               <!-- <label id="nombre" class="form-control"></label>-->
-
-                               </div>
-                            </div>
-                        </div> 
-
+                       
                         
                             <div id="div2">
                              <!-- <label id="nombre" class="form-control"></label>-->
@@ -115,7 +100,7 @@
        
 
 @endsection
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!--<script src="{{ asset('js/user.js') }}" ></script>-->
 

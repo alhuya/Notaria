@@ -1,9 +1,11 @@
 <?php
 
 namespace Notaria\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+use DB;
 
 use Illuminate\Http\Request;
-use Notaria\TipoCitas;
+use Notaria\TipoCitas; 
 
 class TiposCitasController extends Controller
 {
@@ -15,7 +17,19 @@ class TiposCitasController extends Controller
     public function index()
     {
         $tipos =TipoCitas::all();
-        return view('tipos_citas', compact('tipos'));
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
+        return view('tipos_citas', compact('tipos','conceptos','funciones'));
     }
 
     /**
@@ -56,7 +70,7 @@ class TiposCitasController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $id 
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -71,13 +85,14 @@ class TiposCitasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+        $id = $request->input('tipotram');
         TipoCitas::where('id',$id)->first()->update($request->all());
-            return redirect('/tipos_citas')->with('status','Documento editado exitosamente');
+            return redirect('/tipos_citas')->with('status','Tipo de cita editada exitosamente');
     }
 
-
+ 
     /**
      * Remove the specified resource from storage.
      *

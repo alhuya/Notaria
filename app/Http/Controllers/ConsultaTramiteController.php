@@ -1,9 +1,12 @@
 <?php
 
 namespace Notaria\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+use DB;
 
 use Illuminate\Http\Request;
 use Notaria\TiposTramites;
+
 
 class ConsultaTramiteController extends Controller
 { 
@@ -17,7 +20,20 @@ class ConsultaTramiteController extends Controller
 
  
         $tramites = TiposTramites::all();
-        return view('consulta_tramite', compact('tramites'));
+
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
+        return view('consulta_tramite', compact('tramites','conceptos','funciones'));
     }
 
     /**

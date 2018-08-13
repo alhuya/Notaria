@@ -57,15 +57,15 @@ class RegisterController extends Controller
             'password' => 'required|string|min:6|confirmed',
 
         ]);
-    }
-
+    } 
+ 
     /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
      * @return \Notaria\User
      */
-    protected function create(array $data)
+    protected function create(array $data) 
     {
         $usuario = User::create([
             'nombre' => $data['nombre'], 
@@ -73,6 +73,7 @@ class RegisterController extends Controller
             'ap_materno' => $data['ap_materno'],
             'puesto_id' => $data['puesto'],
             'email' => $data['email'], 
+            'estado' => $data['estado'], 
             'password' => Hash::make($data['password']),
            
       

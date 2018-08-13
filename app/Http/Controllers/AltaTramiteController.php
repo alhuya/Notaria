@@ -1,10 +1,13 @@
 <?php
 
 namespace Notaria\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+use DB;
+
  
 use Illuminate\Http\Request;
 use Notaria\Documentacion; 
-use Notaria\TiposTramites;
+use Notaria\TiposTramites; 
 use Notaria\tramite_documento;
 use Notaria\CostoTramite;
  
@@ -18,7 +21,21 @@ class AltaTramiteController extends Controller
     public function index()
     {
         $documentos = Documentacion::all();
-        return view('alta_tramite', compact('documentos'));
+
+       
+        $puesto = Auth::user()->puesto_id;
+               
+       
+       $conceptos = DB::table('menu_concepto')
+        ->where('menu_concepto.puesto_id', '=', $puesto)
+        ->select('menu_concepto.*')
+        ->get();
+
+        $funciones = DB::table('menu')
+        ->where('menu.puesto_id', '=', $puesto)
+        ->select('menu.*')
+        ->get();
+        return view('alta_tramite', compact('documentos','conceptos','funciones'));
     }
  
     /**
@@ -39,6 +56,15 @@ class AltaTramiteController extends Controller
      */
     public function store(Request $request)
     {
+ 
+        $request->validate([
+            'tramite' => 'required|string|max:255',
+            'tiempo' => 'required|numeric|',        
+           
+
+        ]);
+
+
         $tramites = new TiposTramites;
         $tramites->tramite = $request->input('tramite');
         $tramites->duracion = $request->input('tiempo');

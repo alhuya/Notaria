@@ -3,6 +3,9 @@
 namespace Notaria\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Notaria\PagoImpuesto;
+use Illuminate\Support\Facades\Auth;
+use DB;
 
 class ControlPagoImpuestosController extends Controller
 {
@@ -12,8 +15,22 @@ class ControlPagoImpuestosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('/control_pago_impuestos');
+    { 
+
+        $puesto = Auth::user()->puesto_id;
+               
+       
+       $conceptos = DB::table('menu_concepto')
+        ->where('menu_concepto.puesto_id', '=', $puesto)
+        ->select('menu_concepto.*')
+        ->get();
+
+        $funciones = DB::table('menu')
+        ->where('menu.puesto_id', '=', $puesto)
+        ->select('menu.*')
+        ->get();
+
+        return view('/control_pago_impuestos',compact('funciones','conceptos'));
     } 
 
     /**
@@ -26,15 +43,35 @@ class ControlPagoImpuestosController extends Controller
         //
     }
 
-    /**
+    /** 
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response register
      */
-    public function store(Request $request)
+    public function store(Request $request) 
     {
-        //
+
+        $request->validate([
+            'impuesto' => 'required|string|max:255',
+            'cantidad' => 'required|numeric',
+            'cuenta' => 'required|numeric',
+            'entrega' => 'required|string|max:255',    
+
+        ]); 
+        
+        $hoy = date("y-m-d");
+   
+ 
+        $Impuestos = new PagoImpuesto ;  
+        $Impuestos->fecha = $hoy; 
+        $Impuestos->impuesto = $request->input('impuesto');
+        $Impuestos->cantidad = $request->input('cantidad');
+        $Impuestos->tipo_pago = $request->input('tipo_pago');
+        $Impuestos->cuenta= $request->input('cuenta');
+        $Impuestos->entrega= $request->input('entrega');   
+        $Impuestos->save();
+        return redirect('/control_pago_impuestos')->with('status','Pago de Impuesto Guardado');
     }
 
     /**

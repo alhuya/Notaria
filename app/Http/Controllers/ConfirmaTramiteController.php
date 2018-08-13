@@ -1,6 +1,7 @@
 <?php
 
 namespace Notaria\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use Notaria\ValidaDocumentosAbogado;
@@ -18,12 +19,23 @@ class ConfirmaTramiteController extends Controller
      */
     public function index()
     { 
-        $clientes = DB::table('citas')
-        ->leftJoin('clientes', 'citas.cliente_id', '=', 'clientes.id')
-        ->select('citas.*', 'clientes.nombre','clientes.apellido_paterno','clientes.apellido_materno')
+        $clientes = DB::table('clientes')
+        ->select('clientes.*')
         ->get();
         $tramites = TiposTramites::all();
-        return view('confirma_tramite', compact('clientes','tramites'));
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
+        return view('confirma_tramite', compact('clientes','tramites','funciones','conceptos'));
     }
 
     /**

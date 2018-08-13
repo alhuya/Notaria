@@ -1,27 +1,28 @@
  @extends('layouts.app') 
 
 @section('content')
-@if(Gate::check('isAdministrador'))
-@include('layouts.menu_new')  
 
-@endif 
+@include('layouts.menu_new')  
+ 
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Registro') }}</div>
-
+ 
                 <div class="card-body">
                     <form method="POST" action="{{ route('registrar_cliente') }}">
-                        @csrf
+                    @csrf
+                       
 
                         @if(session('status'))
  
                         <div class="alert alert-success">
                             {{session ('status')}}
                             
-                        </div>
-                        @endif
+                        </div> 
+                        @endif 
 
                         <div class="form-group row">
                             <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombres') }}</label>
@@ -64,10 +65,10 @@
                         </div>
 
                          <div class="form-group row">
-                            <label for="telefono" class="col-md-4 col-form-label text-md-right">{{ __('Telefono') }}</label>
+                            <label for="telefono" class="col-md-4 col-form-label text-md-right">{{ __('Teléfono') }}</label>
 
                             <div class="col-md-6">
-                                <input id="telefono" type="text" class="form-control{{ $errors->has('telefono') ? ' is-invalid' : '' }}" name="telefono" value="{{ old('telefono') }}" required autofocus>
+                                <input id="telefono" type="text" class="form-control{{ $errors->has('telefono') ? ' is-invalid' : '' }}" name="telefono" value="{{ old('telefono') }}"  required autofocus>
 
                                 @if ($errors->has('telefono'))
                                     <span class="invalid-feedback">
@@ -81,7 +82,7 @@
                             <label for="celular" class="col-md-4 col-form-label text-md-right">{{ __('Celular') }}</label>
 
                             <div class="col-md-6">
-                                <input id="celular" type="text" class="form-control{{ $errors->has('celular') ? ' is-invalid' : '' }}" name="celular" value="{{ old('celular') }}" required autofocus>
+                                <input id="celular" type="text" class="form-control{{ $errors->has('celular') ? ' is-invalid' : '' }}" name="celular" value="{{ old('celular') }}"   required autofocus>
 
                                 @if ($errors->has('celular'))
                                     <span class="invalid-feedback">
@@ -134,10 +135,10 @@
                         </div>
 
                           <div class="form-group row">
-                            <label for="numero_interior" class="col-md-4 col-form-label text-md-right">{{ __('numero interior') }}</label>
+                            <label for="numero_interior" class="col-md-4 col-form-label text-md-right">{{ __('Número interior') }}</label>
 
                             <div class="col-md-6">
-                                <input id="numero_interior" type="text" class="form-control{{ $errors->has('numero_interior') ? ' is-invalid' : '' }}" name="numero_interior" value="{{ old('numero_interior') }}" required autofocus>
+                                <input id="numero_interior" type="text" class="form-control{{ $errors->has('numero_interior') ? ' is-invalid' : '' }}" name="numero_interior" value="{{ old('numero_interior') }}" autofocus>
 
                                 @if ($errors->has('numero_interior'))
                                     <span class="invalid-feedback">
@@ -148,7 +149,7 @@
                         </div>
 
                          <div class="form-group row">
-                            <label for="numero_exterior" class="col-md-4 col-form-label text-md-right">{{ __('numero exterior') }}</label>
+                            <label for="numero_exterior" class="col-md-4 col-form-label text-md-right">{{ __('Número exterior') }}</label>
 
                             <div class="col-md-6">
                                 <input id="numero_exterior" type="text" class="form-control{{ $errors->has('numero_exterior') ? ' is-invalid' : '' }}" name="numero_exterior" value="{{ old('numero_exterior') }}" required autofocus>
@@ -159,10 +160,10 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                        </div> 
 
                         <div class="form-group row">
-                            <label for="codigo_postal" class="col-md-4 col-form-label text-md-right">{{ __('codigo postal') }}</label>
+                            <label for="codigo_postal" class="col-md-4 col-form-label text-md-right">{{ __('Código postal') }}</label>
 
                             <div class="col-md-6">
                                 <input id="codigo_postal" type="text" class="form-control{{ $errors->has('codigo_postal') ? ' is-invalid' : '' }}" name="codigo_postal" value="{{ old('codigo_postal') }}" required autofocus>
@@ -187,7 +188,7 @@
                                 <option value="{{ $estado['id']}}">{{$estado['estado'] }}</option>
                                 @endforeach
                                </select>
-                           </div>
+                           </div> 
                         </div> 
                         
                         <div class="form-group row">    
@@ -204,7 +205,7 @@
                          <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('Registrar') }}
                                 </button>
                             </div>
                         </div>
@@ -215,6 +216,15 @@
         </div>
     </div>
 </div>
+<!--<div style=" 
+   margin:0;
+  box-sizing: border-box;
+  flex-direction: column;
+  min-height: 17vh;
+    right: 0;
+    ">
+<img src="{{ asset('/imagenes/covel2.png') }}" width="150px" height="90px" align="right">
+</div> -->
 @endsection
 
  

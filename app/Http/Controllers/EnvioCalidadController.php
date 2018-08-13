@@ -1,6 +1,7 @@
 <?php
 
 namespace Notaria\Http\Controllers; 
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use DB;
@@ -16,13 +17,26 @@ class EnvioCalidadController extends Controller
      */
     public function index()
     {
-        $clientes = DB::table('control_tramites')
+        $carpetas = DB::table('control_tramites')
         ->leftJoin('clientes', 'control_tramites.cliente_id', '=', 'clientes.id')
-        ->select('control_tramites.*', 'clientes.nombre','clientes.apellido_paterno','clientes.apellido_materno')
+        ->select('control_tramites.*')
         ->get();
 
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
 
-        return view('/envio_control_calidad',compact('clientes')); 
+
+        return view('/envio_control_calidad',compact('carpetas','conceptos','funciones')); 
     }
 
     /**
@@ -36,7 +50,7 @@ class EnvioCalidadController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage. 
+     * Store a newly created resource in storage.  
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -44,28 +58,65 @@ class EnvioCalidadController extends Controller
     public function store(Request $request)
     { 
         
+        $carpeta = $request->input('carpeta');
+        $revision = $request->input('revision');
+        $comentario = $request->input('comentario');
+
+        $consulta = DB::table('revisiones')
+        ->where('revisiones.carpeta_id','=', $carpeta)
+        ->select('revisiones.*') 
+        
+        ->get();
+
+        if ($consulta->isEmpty()) {
 
       $cliente = new Reviciones;
-      $cliente->cliente_id = $request->input('cliente');
+     
       $cliente->fecha = Now();
-      $cliente->tipo_revision = $request->input('revision');  
-      $cliente->tipo_tramite_id = $request->input('tramite'); 
+      $cliente->tipo_revision = $request->input('revision'); 
       $cliente->comentario= $request->input('comentario'); 
-      $cliente->control_tramite_id= $request->input('carpeta');   
+      $cliente->carpeta_id= $request->input('carpeta');   
       $cli =  $cliente->cliente_id;
-      $rev =   $cliente->tipo_revision;
+      //$rev =   $cliente->tipo_revision;
       $cliente->save();
 
+      $revisiones = DB::table('revisiones')
+      -> orderBy('revision_id', 'desc')
+      -> take(1)
+      ->select('revisiones.*')
+      ->get();
 
+      $rev;
+      foreach($revisiones as $revision){
+
+        $rev = $revision ->revision_id;
+      }
 
       DB::table('control_tramites')
-            ->where('cliente_id','=', $cli)
-            ->update(['revision' => $rev]);
- 
+            ->where('carpeta_id','=', $carpeta)
+            ->update(['revision' => $rev]); 
 
+            return redirect('/envio_control_calidad')->with('status','Revicion guardado exitosamente');
+
+        }
+        else{
+
+            DB::table('revisiones')
+            ->where('carpeta_id','=', $carpeta)
+            ->update(['fecha'=> Now(),'tipo_revision' => $revision,'comentario' => $comentario]);
+
+            return redirect('/envio_control_calidad')->with('status','Revicion actualizada exitosamente');
+
+
+        }
+
+/*
+      
+ 
+*/
       
 
-      return redirect('/envio_control_calidad')->with('status','Revicion guardado exitosamente');
+     
     }
     
 

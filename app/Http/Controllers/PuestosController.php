@@ -1,10 +1,11 @@
 <?php
 namespace Notaria\Http\Controllers;
- 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Notaria\puestos;
 use Notaria\Categorias;
 use Notaria\categoriaPuesto;
+use DB;
 class PuestosController extends Controller
 {
     /**
@@ -15,7 +16,19 @@ class PuestosController extends Controller
     public function index()
     {
         $categorias = Categorias::all();
-        return view('puestos', compact('categorias'));
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
+        return view('puestos', compact('categorias','conceptos','funciones'));
     }
     /**
      * Show the form for creating a new resource.

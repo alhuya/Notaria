@@ -13,27 +13,10 @@
 </head>
 
 <div class="container">
-<h2 style="text-align: center;">Eliminar Documentacion</h2>
-           <div class="form-group row"> 
-        
-                        @csrf   
-                      <label for="documentos" class="col-md-4 col-form-label text-md-right">{{ __('Documentos') }}</label>
-
-                             <div class="col-md-6">
-                               <input list="browsers" name="documento"  class="form-control" id ="documentos" required>                             
-                               <datalist  id="browsers">                              
-                                @foreach($Documentos as $documento)
-                                <option value="{{ $documento['id']}}">
-                                @endforeach  
-                               </datalist>
-
-                           </div>
-                             
-                        </div> 
-
-                    
+<h2 style="text-align: center;">Eliminar Documentación</h2>
+         
                         
-                         <div class="container">
+   <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8"> 
             <div class="card">
@@ -41,7 +24,7 @@
  
                 <div class="card-body">
 
-                    <form method="POST" action="eliminar_documento/{{ $documento['id']}}">
+                    <form method="POST" action="{{ route('eliminar_doc') }}">  
                     	{{ method_field('delete')}}
                       @if(session('status'))
 
@@ -51,6 +34,20 @@
                         </div>
                         @endif
                         @csrf
+                        <div class="form-group row">  
+                    <label for="documentos" class="col-md-4 col-form-label text-md-right">{{ __('Documentos') }}</label>
+
+                            <div class="col-md-6">
+                            <input list="browsers" name="documento"  class="form-control" id ="documentos" required>                             
+                            <datalist  id="browsers">                              
+                                @foreach($Documentos as $documento)
+                                <option value="{{ $documento['id']}}">{{ $documento['documento']}}</option>
+                                @endforeach  
+                            </datalist>
+
+                        </div>
+                            
+                        </div> 
 
                         <div class="form-group row">
                             <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Documento') }}</label>
@@ -113,9 +110,9 @@
    
    
     for(i=0; i<response.length; i++){
-      $("#Documento").append(""+response[i].documento+"");
-      $("#Costo").append(""+response[i].costo+"");
-      $("#Origen").append(""+response[i].origen+"");
+      $("#Documento").append(""+ $.trim(response[i].documento) +"");
+      $("#Costo").append(""+ $.trim(response[i].costo) +"");
+      $("#Origen").append(""+ $.trim(response[i].origen) +"");
        
          
     }

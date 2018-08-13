@@ -6,6 +6,7 @@
 
 @endif 
 <div class="container">
+<//img src="{{ asset('/imagenes/fondo2.png') }}" width="100%" height="%50" style="position:absolute; z-index:1;"" >
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -64,7 +65,7 @@
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                    </span> 
                                 @endif
                             </div> 
                         </div>
@@ -79,8 +80,18 @@
                                  @endforeach
                                </select>
                            </div>
-                        </div>  
-                         
+                        </div> 
+                        <div class="form-group row">    
+                      <label for="estado" class="col-md-4 col-form-label text-md-right">{{ __('Estado') }}</label>
+
+                             <div class="col-md-6">
+                               <select name="estado" id="estado" class="form-control" required>
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                               </select>
+                           </div> 
+                        </div> 
+                        
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
 
@@ -102,20 +113,7 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>                     
-                      <!--   <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Abogado') }}</label>
-
-                            <div class="col-md-3">
-                                   <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Si') }}</label>
-                                <input type="radio" name="abogado" value="si" >
-                               
-                            </div>
-                            <div class="col-md-3">
-                                   <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('No') }}</label>
-                                <input type="radio" name="abogado" value="no" checked>
-                            </div>
-                            
-                        </div>-->
+                  
                          <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

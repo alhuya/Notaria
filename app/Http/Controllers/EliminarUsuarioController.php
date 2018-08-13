@@ -4,6 +4,8 @@ namespace Notaria\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Notaria\User;  
+use Illuminate\Support\Facades\Auth;
+use DB;
 
 
 class EliminarUsuarioController extends Controller
@@ -16,7 +18,20 @@ class EliminarUsuarioController extends Controller
     public function index()
     {
         $usuarios = User::all();
-        return view('eliminar_usuario', compact('usuarios'));
+
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
+        return view('eliminar_usuario', compact('usuarios','funciones','conceptos'));
 
    
     }
@@ -31,7 +46,7 @@ class EliminarUsuarioController extends Controller
         //
     }
 
-    /**
+    /** 
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -42,7 +57,7 @@ class EliminarUsuarioController extends Controller
         if($request->ajax()){
         $usuarios = User::usuarios($id);
 
-        return response()->json($usuarios);
+        return response()->json($usuarios); 
 
 
  
@@ -86,13 +101,13 @@ class EliminarUsuarioController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
+     * 
      * @param  int  $id 
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-
+        $id = $request->input('usuario');
       $user = User::find($id);
       $user->delete();
      return redirect('/eliminar_usuario')->with('status','Usuario eliminado exitosamente');

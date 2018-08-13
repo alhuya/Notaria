@@ -22,6 +22,11 @@
                             
                         </div>
                         @endif
+                        @if(session('status2'))
+                        <div class="alert alert-danger">
+                        {{session ('status2')}}
+                            </div>
+                            @endif
 
                         <div class="form-group row">
                             <label for="fecha" class="col-md-4 col-form-label text-md-right">{{ __('Fecha') }}</label>
@@ -68,11 +73,11 @@
                                <select name="abogado" id="abogado" class="form-control" required>
                                 !<option value="">{{ __('-- Seleccione el abogado --') }}</option>
                                 @foreach($usuarios as $usuario)
-                                <option value="{{ $usuario->id}}">{{$usuario->nombre }} </option>
+                                <option value="{{ $usuario->id}}">{{$usuario->nombre }} {{$usuario->ap_paterno }}  {{$usuario->ap_materno}}  </option>
                                 @endforeach
                                </select>
                            </div>
-                        </div> 
+                        </div>  
                         
                         <div class="form-group row">    
                       <label for="tipo" class="col-md-4 col-form-label text-md-right">{{ __('Tipo de Citas') }}</label>
@@ -89,7 +94,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('Guardar') }}
                                 </button>
                             </div>
                         </div>

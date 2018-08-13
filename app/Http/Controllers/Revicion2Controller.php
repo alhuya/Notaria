@@ -1,26 +1,38 @@
 <?php
-
+ 
 namespace Notaria\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use DB;
 
 class Revicion2Controller extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
+     * Display a listing of the resource. 
+     * 
      * @return \Illuminate\Http\Response
      */
     public function index() 
     {
-        $clientes = DB::table('control_tramites')
-        ->leftJoin('clientes', 'control_tramites.cliente_id', '=', 'clientes.id')
-        ->select('control_tramites.*', 'clientes.nombre','clientes.apellido_paterno','clientes.apellido_materno')
-        ->get();
+        $revisiones = DB::table('revisiones')
+        -> where('revisiones.tipo_revision', '=', 2)
+        ->select('revisiones.*')
+        ->get(); 
 
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
 
-        return view('/revicion1',compact('clientes')); 
+        return view('/revicion2',compact('revisiones','funciones','conceptos')); 
     } 
 
     /**
@@ -49,7 +61,7 @@ class Revicion2Controller extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
+     */ 
     public function show($id)
     {
         //
@@ -73,9 +85,19 @@ class Revicion2Controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        
+        $carpeta = $request->input('carpeta');
+        $comentario = $request->input('comentariocal');
+        $estatus = $request->input('estatus');
+
+        DB::table('revisiones')
+        ->where('carpeta_id','=', $carpeta)
+        ->update(['comentario_cal' => $comentario,'estatus2' => $estatus]);
+
+
+        return redirect('/revicion2')->with('status','Revision 2 guardada exitosamente');
     }
 
     /**

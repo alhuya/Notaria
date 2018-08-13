@@ -1,9 +1,12 @@
 <?php
 
 namespace Notaria\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+use DB;
 
 use Illuminate\Http\Request;
 use Notaria\TiposTramites;
+use Notaria\tramite_documento;
 
 class EliminarTramiteController extends Controller
 {
@@ -15,7 +18,21 @@ class EliminarTramiteController extends Controller
     public function index()
     {
         $Tramites = TiposTramites::all();
-        return view('eliminar_tramite', compact('Tramites'));
+
+
+        $puesto = Auth::user()->puesto_id;
+               
+       
+       $conceptos = DB::table('menu_concepto')
+        ->where('menu_concepto.puesto_id', '=', $puesto)
+        ->select('menu_concepto.*')
+        ->get();
+
+        $funciones = DB::table('menu')
+        ->where('menu.puesto_id', '=', $puesto)
+        ->select('menu.*')
+        ->get();
+        return view('eliminar_tramite', compact('Tramites','conceptos','funciones'));
     }
 
     /**
@@ -71,7 +88,7 @@ class EliminarTramiteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    { 
         //
     }
 
@@ -81,10 +98,14 @@ class EliminarTramiteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        $id = $request->input('tramite');
         $tramite = TiposTramites::find($id);
         $tramite->delete();
+
+        $doc = tramite_documento::where('tipo_tramite_id',$id);
+        $doc->delete();
        return redirect('/eliminar_tramite')->with('status','Tramite eliminado exitosamente');
     }
 }

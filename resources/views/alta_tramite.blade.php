@@ -9,7 +9,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Alta Tramite') }}</div>
+                <div class="card-header">{{ __('Alta Trámite') }}</div> 
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('alta_tramite') }}">
@@ -35,21 +35,21 @@
                                 @endif
                             </div>
                         </div>
-                        
+                         
                   
                         <div class="form-group row">
                             <label for="tiempo" class="col-md-4 col-form-label text-md-right">{{ __('Tiempo') }}</label>
 
                             <div class="col-md-6">
                                 <input id="tiempo" min="1"  type="number"  name="tiempo" value="{{ old('email') }}" required>
-                                <label for="tiempo">{{ __('Dias') }}</label>
+                                <label for="tiempo">{{ __('Días') }}</label>
                                 @if ($errors->has('tiempo'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('tiempo') }}</strong>
                                     </span>
                                 @endif 
                             </div>
-                        </div>  
+                        </div>   
                                 
                           <div class="form-group row">    
                       <label for="puesto" class="col-md-4 col-form-label text-md-right">{{ __('Documentos') }}</label>
@@ -61,12 +61,12 @@
                                                    
                             @endforeach
                                
-                           </div>
+                           </div> 
                         </div>  
                          <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('Guardar') }}
                                 </button>
                             </div> 
                         </div>

@@ -1,8 +1,10 @@
 <?php
 
 namespace Notaria\Http\Controllers;
-
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth; 
+use DB; 
+use Illuminate\Http\Request; 
+use Notaria\TramitesTerminados;
 
 class TramitesTerminadosController extends Controller
 {
@@ -10,10 +12,23 @@ class TramitesTerminadosController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('/tramites_terminados');
+     */ 
+    public function index() 
+    { 
+        $Terminados = TramitesTerminados::all();
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get(); 
+  
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
+        return view('/tramites_terminados' , compact('Terminados','conceptos','funciones'));
     }
 
     /**
@@ -32,10 +47,13 @@ class TramitesTerminadosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
-        //
-    }
+        if($request->ajax()){
+        $cliente = TramitesTerminados::tramites($id);
+        return response()->json($cliente);
+      }
+    } 
 
     /**
      * Display the specified resource.

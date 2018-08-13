@@ -3,10 +3,12 @@
 namespace Notaria\Http\Controllers; 
 
 use Illuminate\Http\Request; 
+use Illuminate\Support\Facades\Auth;
 use Notaria\Estados;
 use Notaria\Clientes;
 use Notaria\Municipios;
 use Notaria\Estados_Municipios;
+use DB;
 
 class RegistrarClienteController extends Controller
 {
@@ -17,9 +19,22 @@ class RegistrarClienteController extends Controller
      */
     public function index()
     { 
-
+       
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
+       
         $estados = Estados::all();
-        return view('registrar_cliente', compact('estados'));
+        return view('registrar_cliente', compact('estados','conceptos','funciones'));
         
     }
 
@@ -46,12 +61,12 @@ class RegistrarClienteController extends Controller
             'nombre' => 'required|string|max:255',
             'apellido_paterno' => 'required|string|max:255',
             'ap_materno' => 'required|string|max:255',
-            'telefono' => 'required|numeric',
-            'celular' => 'required|numeric',
+            'telefono' => 'required|numeric |digits:10',
+            'celular' => 'required|numeric|digits:10',
             'email' => 'required|string|email|max:255',
             'calle' => 'required|string|max:255',
-            'col_fracc' => 'required|string|max:255',
-            'numero_interior' => 'numeric',
+            'col_fracc' => 'required|string|max:255', 
+            'numero_interior' => 'string',
             'numero_exterior' => 'required|numeric',
             'codigo_postal' => 'required|numeric',
             

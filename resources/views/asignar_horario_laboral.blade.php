@@ -1,6 +1,10 @@
 @extends('layouts.app')
+ @section('content')
+@if(Gate::check('isAdministrador'))
+@include('layouts.menu_new')  
 
-@section('content')
+@endif 
+ 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

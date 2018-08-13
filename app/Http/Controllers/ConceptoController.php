@@ -4,6 +4,9 @@ namespace Notaria\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Notaria\Concepto;
+use Illuminate\Support\Facades\Auth;
+use DB;
+
 
 class ConceptoController extends Controller
 {
@@ -14,7 +17,19 @@ class ConceptoController extends Controller
      */
     public function index()
     {
-        return view('concepto');
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
+        return view('concepto' , compact('conceptos','funciones'));
     }
 
     /**

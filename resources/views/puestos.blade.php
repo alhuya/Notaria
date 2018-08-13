@@ -65,22 +65,6 @@
                                 
                                 </div> 
                             </div>
-                           
-                         <!--     <div class="form-group row"
-                                <label for="puesto" class="col-sm-6 col-form-label text-md-right">{{ __('Categorias') }}</label>
-                          
-                            <div class="container"  >
-                            <div class="row">
-    						<div class="col-md-6"> 
-                            @foreach($categorias as $categoria)
-    						<input type="checkbox" name="vehicle" value="{{ $categoria['nombre']}}" > {{$categoria['nombre'] }} <br>
-    					
-                            @endforeach
-                             </div>
-                            
-                            </div>
-                         	</div>
-                            </div>-->
                     
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">

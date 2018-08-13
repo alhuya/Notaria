@@ -13,7 +13,7 @@
 </head>
 
 <div class="container">
-<h2 style="text-align: center;">Eliminar Usuario</h2>
+<h2 style="text-align: center;">Agenda</h2>
            <div class="form-group row"> 
         
                         @csrf   
@@ -64,9 +64,9 @@ var fecha;
 $(document).ready(function(){
     
   $("#usuario2").change(function(event){
-  $.get("Citas/"+event.target.value+"",function(response ,state){
+  $.get("Citas/"+event.target.value+"",function(response ,state){ 
     console.log(response);
-     
+      
    for(i=0; i<response.length; i++){
       //$("#municipio").append("<option value='"+response[i].id+"'>"+response[i].municipio+"</option>");
       console.log(response[i].fecha_hora);
@@ -77,13 +77,23 @@ $(document).ready(function(){
   });
 });
 
+var d = new Date();
+
+var month = d.getMonth()+1;
+var day = d.getDate();
+
+var output = d.getFullYear() + '/' +
+    (month<10 ? '0' : '') + month + '/' +
+    (day<10 ? '0' : '') + day;
+
+
 $('#calendar').fullCalendar({
 header: {
  left: 'prev,next today',
  center: 'title',
  right: 'month,agendaWeek,agendaDay,listWeek'
 },
-defaultDate: '2018-05-10',
+defaultDate: d,
 navLinks: true, // can click day/week names to navigate views
 editable: true,
 eventLimit: true, // allow "more" link when too many events

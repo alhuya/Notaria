@@ -1,6 +1,8 @@
 <?php
  
 namespace Notaria\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+use DB;
 
 use Illuminate\Http\Request;
 use Notaria\Documentacion; 
@@ -8,13 +10,26 @@ use Notaria\Documentacion;
 class AltaDocmentacionController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource. 
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-          return view('alta_documentacion');
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
+
+          return view('alta_documentacion',compact('conceptos','funciones'));
     }
     
 

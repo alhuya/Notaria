@@ -25,9 +25,25 @@
 						    </div>
 						</div>
                     <form method="POST" action="{{ route('register') }}">
+
+					
+					<div class="form-group row"> 
+        
+                   
+				<label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Usuarios') }}</label>
+
+						<div class="col-md-6">
+						<input list="browsers" name="usuario"  class="form-control" id ="usuario" required>                             
+						<datalist  id="browsers">                              
+							@foreach($usuarios as $usuario)
+							<option value="{{ $usuario->id}} ">{{ $usuario->nombre}} {{ $usuario->ap_paterno}} {{ $usuario->ap_materno}}</option>@endforeach
+						</datalist>
+					</div>
+						
+					</div> 
                         @csrf
 					<table class="table table-striped">
-					  <thead>
+					  <thead> 
 					  	
 					    <tr>
 					      
@@ -37,17 +53,11 @@
 					       <th scope="col">Puesto</th>
 					    </tr>
 					  </thead> 
-					  <tbody>
-					  	@foreach($usuarios as $usuario)  
-					    <tr>
-					      
-					      <td>{{$usuario->nombre }}</td> 
-					      <td>{{$usuario->ap_paterno }}</td>
-					      <td>{{$usuario->ap_materno }}</td>
-					      <td>{{$usuario->puesto }}</td>
-					    </tr>
+					  <tbody id="us">
+					  
+					   
 					     
-					    @endforeach
+					  
 					  </tbody>
 					</table>
                     </form>
@@ -61,6 +71,29 @@
 
 
 
+@endsection
+
+@section('script')
+<script type="text/javascript">
+  $(document).ready(function(){
+  $("#usuario").change(function(event){
+  $.get("User/"+event.target.value+"",function(response ,state){
+    console.log(response);
+     $("#div1").empty(); 
+   
+ 
+    
+    for(i=0; i<response.length; i++){
+
+      $("#us").append("'<tr><td>"+ $.trim(response[i].nombre) +"</td><td>"+ $.trim(response[i].ap_paterno) +"</td><td>"+ $.trim(response[i].ap_materno) +"</td><td>"+ $.trim(response[i].puesto) +"</td></tr>'");
+	 
+					     
+     
+    }
+  });
+});
+});
+</script>
 @endsection
 
 

@@ -1,20 +1,41 @@
 <?php
 
 namespace Notaria\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
-
+use DB;
+use Notaria\Dependencias;
+use Notaria\ControlTramites;
+use Notaria\ProyectoDependencia;
 class ingresoController extends Controller
 
 {
     /**
      * Display a listing of the resource.
-     *
+     * 
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('/ingreso'); 
+      
+        $dependencias = Dependencias::all();
+        $numeros = ControlTramites::all();
+
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
+ 
+        return view('/ingreso', compact('numeros','dependencias','funciones','conceptos')); 
     }
 
     /**
@@ -35,7 +56,13 @@ class ingresoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            $proyecto = new ProyectoDependencia ;
+            $proyecto->fecha_ingreso = $request->input('fecha');
+            $proyecto->numero_folio = $request->input('numero');
+            $proyecto->dependencia = $request->input('dependencia');
+            $proyecto->save();
+            
+            return redirect('/ingreso')->with('status','Ingreso a Dependencia');
     }
 
     /**

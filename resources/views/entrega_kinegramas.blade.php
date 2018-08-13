@@ -16,22 +16,9 @@
  <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-          
-                <br><br>  
-                <div class="form-group row"> 
-        
-      
-        <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Número de Escritura') }}</label>
-
-                <div class="col-md-6">
-                <input list="browsers" name="carpeta"  class="form-control" id ="input" required>                             
-                <datalist  id="browsers">                              
-                    @foreach($Escrituras as $escritura)
-                    <option value="{{ $escritura['numero_escritura']}}">@endforeach
-                </datalist>
-            </div>
-                
-            </div>    
+           
+                <br><br>   
+                 
             <div class="card">
                 <div class="card-header">{{ __('Kinegramas') }}</div> 
 
@@ -39,21 +26,23 @@
  
                 <div class="card-body"> 
 
-                <div class="form-group row">
-                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Pagado') }}</label>
+         
+                <form method="POST"  action="{{ route('entki') }}">
 
-                            <div class="col-md-6">
-                                <input id="nombre" type="text" class="form-control{{ $errors->has('nombre') ? ' is-invalid' : '' }}" name="fecha" value="Si" required autofocus>
+                <div class="form-group row"> 
+        
+      
+        <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Número de Escritura') }}</label>
 
-                                @if ($errors->has('nombre')) 
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('nombre') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-</div>
-                <form method="POST"  action="{{ route('kin') }}">
-                 
+                <div class="col-md-6">
+                <input list="browsers" name="escritura"  class="form-control" id ="input" required>                             
+                <datalist  id="browsers">                              
+                    @foreach($Escrituras as $escritura)
+                    <option value="{{ $escritura['numero_escritura']}}">
+                    @endforeach
+                </datalist> 
+            </div>                
+            </div>                  
                       @if(session('status'))  
 
                         <div class="alert alert-success">  
@@ -61,12 +50,64 @@
                            
                         </div>
                         @endif 
-                        @csrf 
 
+                         @if(session('status2'))  
+
+                        <div  class="alert alert-danger"> 
+                        {{session ('status2')}}   
+                        
+                        </div>
+                        @endif 
+                        @csrf 
+                        <div class="form-group row">
+                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Número de Escritura') }}</label>
+
+                            <div class="col-md-6">
+                                <label id="numero" class="form-control"></label>                               
+                            </div>
+                        </div>
+
+                         <div class="form-group row">
+                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Cliente') }}</label>
+
+                            <div class="col-md-6">
+                                <label id="cliente" class="form-control"></label>                               
+                            </div>
+                        </div>
+
+                         <div class="form-group row">
+                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Tramite') }}</label>
+
+                            <div class="col-md-6">
+                                <label id="tramite" class="form-control"></label>                               
+                            </div>
+                        </div>
+
+                         <div class="form-group row">
+                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Volumen') }}</label>
+
+                            <div class="col-md-6">
+                                <label id="volumen" class="form-control"></label>                               
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('folio1') }}</label>
+
+                            <div class="col-md-6">
+                                <label id="folio1" class="form-control"></label>                               
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('folio2') }}</label>
+
+                            <div class="col-md-6">
+                                <label id="folio2" class="form-control"></label>                               
+                            </div>
+                        </div> 
             
 
                        
-<label for="nombre" class="col-md-8 col-form-label text-md-right">{{ __('Registro Kinegrama') }}</label>
+                   <label for="nombre" class="col-md-8 col-form-label text-md-right">{{ __('Registro Kinegrama') }}</label><br>
                             
                             <div class="form-group row">
                             <label for="folio1" class="col-md-4 col-form-label text-md-right">{{ __('Nùmero de Kinegrama') }}</label>
@@ -93,46 +134,11 @@
                                     {{ __('Guardar') }}
                                 </button> 
                             </div>
-                        </div>
+                        </div> 
  
                     </form>
                     <br><br> 
-                    <form method="POST"  action="entrega_kinegramas/{{ $escritura['numero_escritura']}}">
-                {{ method_field('patch')}} 
-                      @if(session('status2'))  
-
-                        <div class="alert alert-success"> 
-                          {{session ('status2')}}   
-                           
-                        </div>
-                        @endif 
-                        @csrf 
-                            <label for="nombre" class="col-md-8 col-form-label text-md-right">{{ __('Entrega') }}</label>
-
-                             <div class="form-group row">
-                            <label for="folio2" class="col-md-4 col-form-label text-md-right">{{ __('Fecha') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="folio2" type="date" class="form-control{{ $errors->has('folio2') ? ' is-invalid' : '' }}" name="fecha_entrega" value="{{ old('folio2') }}" required autofocus>
-
-                                @if ($errors->has('folio2')) 
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('folio2') }}</strong>
-                                    </span>
-                                @endif 
-                            </div>
-
-                            </div>
-
-                         <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary"> 
-                                    {{ __('Guardar') }}
-                                </button> 
-                            </div>
-                        </div>
- 
-                    </form>
+              
                 </div>
             </div> 
         </div> 
@@ -145,16 +151,30 @@
   <!--<script src="{{ asset('js/user.js') }}" ></script>-->
 
 @section('script')
+
 <script type="text/javascript">
-  $(document).ready(function(){ 
-  $("#input").change(function(event){ 
-  $.get("ControlTramites/"+event.target.value+"",function(response ,state){ 
+  $(document).ready(function(){   
+  $("#input").change(function(event){  
+  $.get("Kinegramas/"+event.target.value+"",function(response ,state){ 
     console.log(response);
-     $("#div1").empty();  
-     
-    for(i=0; i<response.length; i++){ 
-    $("#div1").append(' <input type="hidden" name="cliente" value='+response[i].cliente_id+'> ');
-         
+    $("#numero").empty();  
+     $("#cliente").empty();  
+     $("#tramite").empty(); 
+     $("#volumen").empty(); 
+     $("#folio1").empty();  
+     $("#folio2").empty(); 
+     $("#div1").empty(); 
+ 
+   
+    for(i=0; i<response.length; i++){
+      $("#numero").append(""+ $.trim(response[i].numero_escritura) +"");
+      $("#cliente").append(""+ $.trim(response[i].nombre) +" "+ $.trim(response[i].apellido_paterno) +" "+ $.trim(response[i].apellido_materno) +"");
+      $("#tramite").append(""+ $.trim(response[i].tramite) +"");
+      $("#volumen").append(""+ $.trim(response[i].volumen) +"");
+      $("#folio1").append(""+ $.trim(response[i].folio1) +"");
+      $("#folio2").append(""+ $.trim(response[i].folio2) +"");
+      $("#div1").append(' <input type="hidden" name="cliente" value='+response[i].cliente_id+'> ');
+              
     }
   }); 
 });

@@ -1,6 +1,7 @@
 <?php
 
 namespace Notaria\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use DB;
@@ -20,7 +21,19 @@ class ConsultaCitaController extends Controller
         ->where('puestos.abogado', '=', 'si')
         ->select('users.*', 'puestos.abogado')
         ->get();
-        return view('/consulta_citas', compact('usuarios'));
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
+        return view('/consulta_citas', compact('usuarios','funciones','conceptos'));
     }
 
     /**

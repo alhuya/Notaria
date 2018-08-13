@@ -1,10 +1,9 @@
 @extends('layouts.app')
-    @section('content')
-    @if(Gate::check('isAdministrador'))
+    @section('content') 
     @include('layouts.menu_new')  
  
+ 
 
-    @endif 
 
     <link rel="stylesheet" type="text/css" href="css/app.css">   
     <div class="container">
@@ -50,17 +49,6 @@
                                
                            </div>
                         </div>  
-
-
-                    
-                            <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Guardar') }}
-                                    </button>
-                                </div>
-                            </div>
-                            
                         </form>
                     </div>
                 </div>

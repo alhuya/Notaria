@@ -3,6 +3,9 @@
 namespace Notaria\Http\Controllers;
 use Illuminate\Http\Request; 
 use Notaria\User;
+use Notaria\puestos;
+use Illuminate\Support\Facades\Auth;
+use DB;
 
 
 
@@ -16,9 +19,23 @@ class EditarUsuarioController extends Controller
     public function index()
     {
          $usuarios = User::all();
-        return view('editar_usuario', compact('usuarios'));
+         $puestos = puestos::all();
+         $puesto = Auth::user()->puesto_id;
+               
+       
+         $conceptos = DB::table('menu_concepto')
+          ->where('menu_concepto.puesto_id', '=', $puesto)
+          ->select('menu_concepto.*')
+          ->get();
+  
+          $funciones = DB::table('menu')
+          ->where('menu.puesto_id', '=', $puesto)
+          ->select('menu.*')
+          ->get();
+         
+        return view('editar_usuario', compact('usuarios','puestos','funciones','conceptos'));
 
-
+ 
     }
 
     /**
@@ -42,7 +59,7 @@ class EditarUsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request ,$id)
+    public function store(Request $request , $id)
     {
       if($request->ajax()){
         $usuarios = User::usuarios($id);
@@ -69,7 +86,7 @@ class EditarUsuarioController extends Controller
      */
     public function edit($id)
     {
-        //
+        // 
     }
 
     /**
@@ -79,8 +96,8 @@ class EditarUsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request){
+        $id = $request->input('usuario');
         
             User::where('id',$id)->first()->update($request->all());
             return redirect('/editar_usuario')->with('status','Usuario editado exitosamente');

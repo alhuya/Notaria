@@ -12,11 +12,18 @@
                 <div class="card-header">{{ __('Concepto Costo') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('costo') }}">
+                    <form method="POST" action="{{ route('costo') }}"> 
                         @if(session('status'))
-
+ 
                         <div class="alert alert-success">
-                            {{session ('status')}}
+                            {{session ('status')}} 
+                            
+                        </div>
+                        @endif
+                        @if(session('status2'))
+ 
+                        <div  class="alert alert-danger">
+                            {{session ('status2')}}
                             
                         </div>
                         @endif
@@ -24,7 +31,7 @@
                          <div class="form-group row"> 
         
         @csrf   
-      <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Tramites') }}</label>
+      <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Trámites') }}</label>
 
              <div class="col-md-6">
                <input list="browsers2" name="tramite"  class="form-control" id ="tramite" required>                             
@@ -36,35 +43,41 @@
             
         </div> 
                         
-                        <div class="form-group row"> 
+        <div class="form-group row"> 
         
          
-      <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Tipo Costo') }}</label>
+        <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Tipo Costo') }}</label>
+  
+               <div class="col-md-6">
+                 <input list="browsers" name="tipo"  class="form-control" id ="tipo" required>                             
+                 <datalist  id="browsers">                              
+                  
+                  <option value="1">{{ __('Costo Estandar') }}</option>
+                  <option value="2">{{ __('Costo Especial 1') }}</option>
+                  <option value="3">{{ __('Costo Especial 2') }}</option>
+                  <option value="4">{{ __('Costo Especial 3') }}</option>
+                  <option value="5">{{ __('Abierto') }}</option>
+                 </datalist>
+             </div>
+               
+          </div> 
+ 
 
-             <div class="col-md-6">
-               <input list="browsers" name="tipo"  class="form-control" id ="tipo" required>                             
-               <datalist  id="browsers">                              
-                @foreach($Costos as $Costo)
-                <option value="{{ $Costo['costo_tramite_id']}}">{{ $Costo['nombre']}}</option>@endforeach
-               </datalist>
-           </div>
-            
-        </div> 
 
 
 
          <div class="row">
     <div class="col">
-    <label for="docuemnto" class="col-md-6 col-form-label text-md-right">{{ __('Concepto') }}</label>
-    @foreach($conceptos as $concepto)
+    <label for="docuemnto" class="col-md-6 col-form-label text-md-right">{{ __('Concepto') }}</label> 
+    @foreach($variables as $variable)
                                 
-                                <input id="concepto" type="text" class="form-control{{ $errors->has('') ? ' is-invalid' : '' }}" name="docId[]" value="{{ $concepto['concepto']}}" required autofocus>
+       <input id="concepto" type="text" class="form-control{{ $errors->has('') ? ' is-invalid' : '' }}" name="docId[]" value="{{ $variable['concepto']}}" readonly>
 
     @endforeach
     @if ($errors->has('documento'))
         <span class="invalid-feedback">
             <strong>{{ $errors->first('documento') }}</strong>
-        </span>
+        </span> 
     @endif
 
     </div>
@@ -72,7 +85,7 @@
 
      <div class="col">
     <label for="docuemnto" class="col-md-6 col-form-label text-md-right">{{ __('Costo') }}</label>
-    @foreach($conceptos as $concepto) 
+    @foreach($variables as $variable) 
 
 <input id="costou" type="text" class="form-control" name="costo[]"  autofocus>
 @endforeach
@@ -90,12 +103,9 @@
                                 </button>
                             </div>
                         </div>
-
-    </div>
-                        
-                         
-
-                    </form>
+                         </div>          
+    
+                        </form>
                 </div>
             </div>
         </div>

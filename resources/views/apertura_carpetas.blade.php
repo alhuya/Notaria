@@ -64,10 +64,10 @@
 
                               @foreach($numeros as $numero)
                               
+                            
+                             <input  name="numero" type="text" value="{{$numero->carpeta_id + 1}}"  class="form-control" readonly> 
 
-                             <input name="numero" type="text" value="{{$numero->carpeta_id + 1}}"  class="form-control" readonly> 
-
-                             
+                              
                                  
                                 @endforeach  
 

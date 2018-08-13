@@ -4,6 +4,7 @@ namespace Notaria\Http\Controllers;
 use Notaria\User; 
  
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use DB;
 
 class ConsultaUsuarioController extends Controller
@@ -20,7 +21,20 @@ class ConsultaUsuarioController extends Controller
         ->leftJoin('puestos', 'users.puesto_id', '=', 'puestos.id')
         ->select('users.*', 'puestos.puesto','puestos.abogado')
         ->get();
-        return view('consulta_usuario', compact('usuarios'));
+
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
+        return view('consulta_usuario', compact('usuarios','conceptos','funciones'));
        
     }
 
@@ -35,14 +49,17 @@ class ConsultaUsuarioController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in storage. 
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request , $id)
     {
-        //
+      if($request->ajax()){
+        $usuarios = User::usuarios($id);
+        return response()->json($usuarios);
+      }
     }
 
     /**

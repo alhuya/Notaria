@@ -3,30 +3,33 @@
 namespace Notaria; 
 
 use Illuminate\Database\Eloquent\Model;
-use DB;
-
+use DB; 
+ 
 class ControlTramites extends Model
 { 
     protected $table = 'control_tramites'; 
-    protected $fillable = ['carpeta_id','tramite_id','numero_escritura','cliente_id','fecha','volumen','folio1','folio2','otorgantes','contrato','puesto_id','dependencia_id','tramite_dependencia_id','revicion','kinegrama_id','terminado','fecha_entrega'];
+    protected $fillable = ['carpeta_id','tramite_id','numero_escritura','cliente_id','fecha','volumen','folio1','folio2','otorgantes','contrato','puesto_id','dependencia_id','tramite_dependencia_id','revicion','kinegrama_id','terminado','fecha_entrega','nombre_recibe'];
 
-    public static function tramite($id){ 
+
+
+  
+
+    public static function tramite($id){  
         return DB::table('control_tramites')
-    ->leftJoin('tipos_tramites', 'control_tramites.tramite_id', '=', 'tipos_tramites.id')
-    ->where('control_tramites.cliente_id', '=', $id)
-    ->select('control_tramites.*','tipos_tramites.tramite','tipos_tramites.id')
+    ->join('tipos_tramites', 'control_tramites.tramite_id', '=', 'tipos_tramites.id')
+    ->join('revisiones', 'control_tramites.revision', '=', 'revisiones.revision_id')
+    ->join('tramites_documento', 'control_tramites.tramite_id', '=', 'tramites_documento.tipo_tramite_id')
+    ->join('documentacion', 'documentacion.id', '=', 'tramites_documento.documentacion_id')
+    ->where('control_tramites.carpeta_id', '=', $id) 
+    ->select('control_tramites.*','tipos_tramites.tramite','revisiones.comentario','documentacion.documento')
     ->get();
 
     }  
 
-   /* public static function cliente($id){  
-        return DB::table('control_tramites')
-    ->leftJoin('tipos_tramites', 'control_tramites.tramite_id', '=', 'tipos_tramites.id')
-    ->where('control_tramites.numero_escritura', '=', $id)
-    ->select('control_tramites.*','tipos_tramites.tramite','tipos_tramites.id')
-    ->get();
+ 
 
-    }  */
+ 
+
 
 
 }

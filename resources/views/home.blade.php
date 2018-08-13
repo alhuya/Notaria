@@ -1,21 +1,19 @@
 @extends('layouts.app')
 @section('content')
-@if(Gate::check('isAdministrador'))
 @include('layouts.menu_new')  
-
-@endif
   
 <link rel="stylesheet" type="text/css" href="css/app.css">   
-<div class="container">
+<div class="container"> 
 
     <div class="row justify-content-center">
         @if(Gate::check('isRecepcionista') || Gate::check('isAbogado'))
          <div id='calendar'></div>
 
 @endif
-  
+
          
-</div>
+</div> 
+
 </div>
 
 @endsection

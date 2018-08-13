@@ -1,9 +1,12 @@
 <?php
 
 namespace Notaria\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+use DB; 
 
 use Illuminate\Http\Request;
 use Notaria\Clientes; 
+use Notaria\Estados;
 
 class EditarClienteController extends Controller
 {
@@ -15,8 +18,21 @@ class EditarClienteController extends Controller
     public function index()
     {
         $clientes = Clientes::all();
+        $estados = Estados::all();
+        $puesto = Auth::user()->puesto_id;
+               
+       
+       $conceptos = DB::table('menu_concepto')
+        ->where('menu_concepto.puesto_id', '=', $puesto)
+        ->select('menu_concepto.*')
+        ->get();
 
-        return view('editar_cliente', compact('clientes'));
+        $funciones = DB::table('menu')
+        ->where('menu.puesto_id', '=', $puesto)
+        ->select('menu.*')
+        ->get();
+
+        return view('editar_cliente', compact('clientes','estados','conceptos','funciones'));
     }
 
     /**
@@ -65,16 +81,16 @@ class EditarClienteController extends Controller
          
     }
 
-    /**
+    /** 
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $id 
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-         Clientes::where('id',$id)->first()->update($request->all());
+    public function update(Request $request){
+        $id = $request->input('cliente');
+         Clientes::where('id',$id)->first()->update($request->all()); 
 
             return redirect('/editar_cliente')->with('status','Cliente editado exitosamente');
     }
@@ -82,7 +98,7 @@ class EditarClienteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $id 
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

@@ -3,11 +3,12 @@
 namespace Notaria\Http\Controllers; 
 
 use Illuminate\Http\Request; 
+use Illuminate\Support\Facades\Auth;
 use Notaria\Concepto; 
 use Notaria\ConceptoCosto;
 use Notaria\CostoTramite;
 use Notaria\TiposTramites;
-
+use DB;
 class ConceptoCostoController extends Controller
 {
     /**
@@ -15,12 +16,27 @@ class ConceptoCostoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index() 
     { 
+
+        
         $tramites = TiposTramites::all();
-        $Costos = CostoTramite::all();
-        $conceptos = Concepto::all();
-        return view('concepto_costo', compact('conceptos','Costos','tramites'));
+        $Costos = CostoTramite::all(); 
+        $variables = Concepto::all();
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get(); 
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
+
+        return view('concepto_costo', compact('variables','Costos','tramites','conceptos','funciones'));
        
     }
 
@@ -39,34 +55,49 @@ class ConceptoCostoController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     */
+     */ 
     public function store(Request $request)
-    {
+    {  
+      
 
+        $tipo = $request->input('tipo');
+        $tramite = $request->input('tramite');
 
+       $consulta = DB::table('conceptos_costos')
+        ->where('costo_tramite_id', '=',  $tipo) 
+        ->where('tramite_id', '=',  $tramite)
+        ->select( 'conceptos_costos.*')
+        ->get();  
+        
+        if ($consulta->isEmpty()) {  
+         
         $documentosId = $request->input('docId');
         $docID;
-        $docID2;
+        $docID2;  
         
-
+ 
         $documentosId2 = $request->input('costo');
-        
+         
 
         foreach (array_combine($documentosId2, $documentosId) as $documentoId2 => $documentoId ) { 
             $docID2   =    $documentoId2;  
             $docID=  $documentoId;   
-            
+              
             $concepto = new ConceptoCosto;
             $concepto->costo_tramite_id = $request->input('tipo'); 
-            $concepto->concepto = $docID;
+            $concepto->concepto = $docID;  
             $concepto->costo = $docID2;
             $concepto->tramite_id = $request->input('tramite'); 
-
             $concepto->save();
        }
         
        
             return redirect('/concepto_costo')->with('status',' guardado exitosamente'); 
+    }
+    else{
+
+        return redirect('/concepto_costo')->with('status2',' Ya esta guardada la tarifa'); 
+    }
 
        
         

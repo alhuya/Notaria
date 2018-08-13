@@ -29,7 +29,7 @@
                         <div class="alert alert-success">
                           {{session ('status')}}  
                            
-                        </div>
+                        </div> 
                         @endif
                         @csrf 
                                     <div class="form-group row"> 
@@ -41,10 +41,10 @@
                             <input list="browsers" name="cliente"  class="form-control"  required>                             
                             <datalist  id="browsers">                              
                             @foreach($clientes as $cliente) 
-                            <option value="{{ $cliente->cliente_id}}">{{ $cliente->nombre}} {{ $cliente->apellido_paterno}} {{ $cliente->apellido_materno}}</option>@endforeach
+                            <option value="{{ $cliente->id}}">{{ $cliente->nombre}} {{ $cliente->apellido_paterno}} {{ $cliente->apellido_materno}}</option>@endforeach
                             </datalist>
                         </div>  
-                        
+                         
                     </div> 
 
                       <div class="form-group row"> 

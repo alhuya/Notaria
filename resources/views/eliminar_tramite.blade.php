@@ -14,36 +14,20 @@
 
 <div class="container">
 <h2 style="text-align: center;">Eliminar Trámite</h2> 
-           <div class="form-group row"> 
-        
-                        @csrf   
-                      <label for="documentos" class="col-md-4 col-form-label text-md-right">{{ __('Trámites') }}</label>
-
-                             <div class="col-md-6">
-                               <input list="browsers" name="tramite"  class="form-control" id ="tramite" required>                             
-                               <datalist  id="browsers">                              
-                                @foreach($Tramites as $tramite)
-                                <option value="{{ $tramite['id']}} {{ $tramite['tramite']}}"></option>
-                                @endforeach  
-                               </datalist>
-
-                           </div>
-                             
-                        </div> 
-
+         
                     
                         
-                         <div class="container">
+    <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8"> 
             <div class="card">
-                <div class="card-header">{{ __('Documentos') }}</div>
+                <div class="card-header">{{ __('Trámites') }}</div>
  
                 <div class="card-body">
 
-                    <form method="POST" action="eliminar_tramite/{{ $tramite['id']}}">
+                    <form method="POST" action="{{ route('eliminar_tramite') }}"> 
                     	{{ method_field('delete')}}
-                      @if(session('status'))
+                      @if(session('status')) 
 
                         <div class="alert alert-success">
                           {{session ('status')}}
@@ -51,6 +35,22 @@
                         </div>
                         @endif
                         @csrf
+                      <div class="form-group row"> 
+                            
+                        <label for="documentos" class="col-md-4 col-form-label text-md-right">{{ __('Trámites') }}</label>
+
+                                <div class="col-md-6">
+                                <input list="browsers" name="tramite"  class="form-control" id ="tramite" required>                             
+                                <datalist  id="browsers">                              
+                                    @foreach($Tramites as $tramite)
+                                    <option value="{{ $tramite['id']}} {{ $tramite['tramite']}}"> </option>
+                                    @endforeach  
+                                </datalist>
+
+                            </div>
+                                
+                            </div> 
+
 
                         <div class="form-group row">
                             <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Trámite') }}</label>
@@ -62,7 +62,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Duracion') }}</label>
+                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Duración') }}</label>
 
                             <div class="col-md-6">
                                 <label id="dos" class="form-control"></label>                               
@@ -81,7 +81,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
 </div>
  
                           
@@ -96,16 +96,16 @@
 @section('script')
 <script type="text/javascript">
   $(document).ready(function(){
-  $("#tramite").change(function(event){
+  $("#tramite").change(function(event){ 
     $.get("TiposTramites/"+event.target.value+"",function(response ,state){
     console.log(response);
      $("#uno").empty();  
      $("#dos").empty();  
     
    
-    for(i=0; i<response.length; i++){
-      $("#uno").append(""+response[i].tramite+"");
-      $("#dos").append(""+response[i].duracion+""); 
+    for(i=0; i<response.length; i++){ 
+      $("#uno").append(""+ $.trim(response[i].tramite) +"");
+      $("#dos").append(""+ $.trim(response[i].duracion) +"");  
     
        
          

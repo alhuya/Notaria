@@ -1,7 +1,7 @@
 <?php
 
 namespace Notaria\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Notaria\TiposTramites;
 use Notaria\Documentacion;
@@ -21,7 +21,21 @@ class DocumentacionTramiteController extends Controller
         $documentos = Documentacion::all();
         $tramites = TiposTramites::all();
         $tamdoc = tramite_documento::all();
-        return view('Documentacion_tramite', compact('tramites','documentos','tramdoc'));
+
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
+
+        return view('Documentacion_tramite', compact('tramites','documentos','tramdoc','conceptos','funciones'));
     } 
 
     

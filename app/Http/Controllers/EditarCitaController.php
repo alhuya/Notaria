@@ -5,11 +5,20 @@ namespace Notaria\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Notaria\Citas;
+use Notaria\CosultaCita;
+use Notaria\Clientes;
+use Notaria\TiposTramites;
+use Notaria\TipoCitas;
+use Illuminate\Support\Facades\Auth;
+
+
+
+
 class EditarCitaController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * 
      * @return \Illuminate\Http\Response
      */
     public function index() 
@@ -22,14 +31,28 @@ class EditarCitaController extends Controller
         ->select('users.*', 'puestos.abogado')
         ->get();
 
-        $clientes = DB::table('citas')
-        ->leftJoin('clientes', 'citas.cliente_id', '=', 'clientes.id')
-        ->select('citas.*', 'clientes.nombre','clientes.apellido_paterno','clientes.apellido_materno')
-        ->get();
-
         $citas = Citas::all();
+        $clientes = Clientes::all();
+        $tramites = TiposTramites::all();
+        $tipos = TipoCitas::all();
 
-        return view('/editar_cita', compact('usuarios','citas','clientes'));
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
+
+
+
+        return view('/editar_cita', compact('tramites','citas','clientes','tipos','usuarios','funciones','conceptos
+        '));
     }
 
     /**
@@ -37,7 +60,7 @@ class EditarCitaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create() 
     {
         //
     }
@@ -47,11 +70,11 @@ class EditarCitaController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     */
+     */ 
     public function store(Request $request)
-    {
-        //
-    }
+    { 
+       
+    } 
 
     /**
      * Display the specified resource.
@@ -70,7 +93,7 @@ class EditarCitaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id) 
     {
         //
     }
@@ -78,13 +101,39 @@ class EditarCitaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $request 
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request)
+    { 
+        $id = $request->input('fecha'); 
+        
+        $hoy = Now();
+
+        $fechas = DB::table('citas')
+        ->where('citas.id', '=', $id )
+        ->select('citas.*')
+        ->get();
+        
+          $fechcit;
+        foreach($fechas as $fecha){
+          $fechcit =  $fecha->fecha_hora;
+
+        }
+
+        
+        if($fechcit > $hoy){
+            Citas::where('id',$id)->first()->update($request->all()); 
+
+            return redirect('/editar_cita')->with('status','Cita editada exitosamente');
+        }
+        else{
+            return redirect('/editar_cita')->with('status2','La cita no se puede editar la fecha ya paso ');
+
+        }
+
+      
     }
 
     /**

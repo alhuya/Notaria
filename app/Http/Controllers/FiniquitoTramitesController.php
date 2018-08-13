@@ -1,6 +1,7 @@
 <?php
 
 namespace Notaria\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use DB;
@@ -13,15 +14,28 @@ class FiniquitoTramitesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    { 
 
         $clientes = DB::table('control_tramites')
         ->leftJoin('clientes', 'control_tramites.cliente_id', '=', 'clientes.id')
         ->select('control_tramites.*', 'clientes.nombre','clientes.apellido_paterno','clientes.apellido_materno')
         ->get();
 
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
 
-        return view('/finiquito_tramites',compact('clientes')); 
+
+        return view('/finiquito_tramites',compact('clientes','conceptos','funciones')); 
        
     } 
 

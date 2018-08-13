@@ -1,9 +1,13 @@
 <?php
 
 namespace Notaria\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
-use Notaria\puestos;
+use Notaria\puestos; 
+use Notaria\categoriaPuesto; 
+use DB;
+
 
 class AsignarFuncionesController extends Controller
 {
@@ -14,9 +18,20 @@ class AsignarFuncionesController extends Controller
      */
     public function index()
     { 
-
          $puestos = puestos::all();
-           return view('asignar_funciones', compact('puestos'));
+         $puesto = Auth::user()->puesto_id;
+               
+       
+         $conceptos = DB::table('menu_concepto')
+          ->where('menu_concepto.puesto_id', '=', $puesto)
+          ->select('menu_concepto.*')
+          ->get();
+  
+          $funciones = DB::table('menu')
+          ->where('menu.puesto_id', '=', $puesto)
+          ->select('menu.*')
+          ->get();
+           return view('asignar_funciones', compact('puestos','funciones','conceptos'));
     }
 
     /**
@@ -35,11 +50,12 @@ class AsignarFuncionesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-       // $puesto  = Input::get('puesto') ;
-
-       // return redirect('funciones/'.$firstName);
+    public function store(Request $request ,$id)
+    { 
+      if($request->ajax()){
+        $usuarios = categoriaPuesto::categoria($id);
+        return response()->json($usuarios);
+      }
     }
 
     /**

@@ -35,38 +35,30 @@
            </div>
             
         </div> 
-                        
-                        <div class="form-group row"> 
+        <div class="form-group row"> 
         
          
-      <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Tipo Costo') }}</label>
-
-             <div class="col-md-6">
-               <input list="browsers" name="tipo"  class="form-control" id ="tipo" required>                             
-               <datalist  id="browsers">                              
-                @foreach($Costos as $Costo)
-                <option value="{{ $Costo['costo_tramite_id']}}">{{ $Costo['nombre']}}</option>@endforeach
-               </datalist>
-           </div>
-            
-        </div> 
-
+        <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Tipo Costo') }}</label>
+  
+               <div class="col-md-6">
+                 <input list="browsers" name="tipo"  class="form-control" id ="tipo" required>                             
+                 <datalist  id="browsers">                              
+                  
+                  <option value="{{ __('1') }} {{ __('Costo Estandar') }}">{{ __('Costo Estandar') }}</option>
+                  <option value="{{ __('2') }} {{ __('Costo Especial 1') }} "></option>
+                  <option value="{{ __('3') }} {{ __('Costo Especial 2') }} "></option>
+                  <option value="{{ __('4') }} {{ __('Costo Especial 3') }}"></option>
+                  <option value="{{ __('5') }} {{ __('Abierto') }}"></option>
+                 </datalist>
+             </div>
+              
+          </div> 
 
 
          <div class="row">
     <div class="col">
     <label for="docuemnto" class="col-md-6 col-form-label text-md-right">{{ __('Concepto') }}</label>
-    @foreach($conceptos as $concepto)
-                                
-                                <input id="concepto" type="text" class="form-control{{ $errors->has('') ? ' is-invalid' : '' }}" name="docId[]" value="{{ $concepto['concepto']}}" required autofocus>
-
-    @endforeach
-    @if ($errors->has('documento')) 
-        <span class="invalid-feedback">
-            <strong>{{ $errors->first('documento') }}</strong>
-        </span>
-    @endif
-
+    <div id="div2"></div> 
     </div>
     
 
@@ -80,17 +72,7 @@
  
                         
    
-    <div class="col-12">
-    <br><br>
-    <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Guardar') }}
-                                </button>
-                            </div>
-                        </div>
-
-    </div>
+    
                         
                          
  
@@ -109,23 +91,28 @@
  @section('script') 
  <script type="text/javascript">
   $(document).ready(function(){
-  $("#tramite","#tipo").change(function(event){
-    $.get("ConceptoCosto/"+event.target.value+"/"+event.target.value+"",function(response ,state){
-    console.log(response);
-     $("#div1").empty();  
-    for(i=0; i<response.length; i++){
-      $("#div").append('<input id="costou" type="text" class="form-control" name="costo[]" value='+response[i].duracion+'  autofocus>');
-
-    
-  
-         
-    }
-  }); 
-});
+    $("#tramite").change(function(event){
+        var tramite = $('#tramite').val();
+        console.log(tramite);
+        $("#tipo").change(function(event){
+            var tipo = $('#tipo').val();
+            console.log(tipo);
+            
+            $.get("ConceptoCosto2/"+tramite+"/"+tipo+"",function(response ,state){
+            console.log(response);
+            $("#div1").empty();  
+                for(i=0; i<response.length; i++){
+                    $("#div1").append('<input id="costou" type="text" class="form-control"  value='+response[i].costo+' readonly>');  
+                    $("#div2").append('<input id="concepto" type="text" class="form-control" value='+response[i].concepto+' readonly>'); 
+                      
+                }
+            }); 
+        });      
+    });
 });
 </script>
 @endsection
-
+ 
 
  
  

@@ -1,6 +1,8 @@
 <?php
 
 namespace Notaria\Http\Controllers;
+use Illuminate\Support\Facades\Auth; 
+use DB;
 
 use Illuminate\Http\Request;
 use Notaria\Clientes;
@@ -11,12 +13,24 @@ class ConsultaClienteController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response 
      */
     public function index() 
     {
         $clientes = Clientes::all();
-        return view('consulta_cliente', compact('clientes'));
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
+        return view('consulta_cliente', compact('clientes','conceptos','funciones'));
     }
  
     /**

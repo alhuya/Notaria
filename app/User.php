@@ -11,13 +11,13 @@ class User extends Authenticatable
     use Notifiable;  
 
     /**
-     * The attributes that are mass assignable. 
+     * The attributes that are mass assignable.  
      *
      * @var array
      */
     // protected $table = 'users';
     protected $fillable = [
-        'nombre','ap_paterno','ap_materno','puesto_id','abogado', 'email', 'password'
+        'nombre','ap_paterno','ap_materno','puesto_id','estado','abogado', 'email', 'password'
     ];
  
     /**
@@ -28,8 +28,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-
+ 
+ 
     public static function usuarios($id){ 
         return DB::table('users')
     ->leftJoin('puestos', 'users.puesto_id', '=', 'puestos.id')
@@ -42,5 +42,5 @@ class User extends Authenticatable
  
 
     
-
+ 
 }

@@ -1,7 +1,7 @@
 <?php
 
 namespace Notaria\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request; 
 use Notaria\User;  
 use Notaria\HorarioAbogado; 
@@ -18,12 +18,30 @@ class HorarioAtencionClienteController extends Controller
     {
         $usuarios = DB::table('users')
         ->leftJoin('puestos', 'users.puesto_id', '=', 'puestos.id')
-        -> where('puestos.abogado', '=', 'si')
         -> orderBy('id', 'desc')
         -> take(1)
-        ->select('users.*', 'puestos.nombre','puestos.abogado')
+        ->select('users.*', 'puestos.puesto','puestos.abogado')
         ->get();
-        return view('/horario_atencion_clientes', compact('usuarios')); 
+
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*') 
+         ->get();
+
+
+             return view('/horario_atencion_clientes', compact('usuarios','funciones','conceptos'));
+             
+            
+        
+        
     }
 
     /**

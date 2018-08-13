@@ -1,17 +1,19 @@
 <?php
-
+ 
 namespace Notaria\Http\Controllers;
 use Illuminate\Http\Request;
 use Notaria\TiposTramites; 
 use Notaria\TramitesAbogados;
 use Notaria\User;   
+use Illuminate\Support\Facades\Auth;
+use DB;
 
 
 
 class TramiteAbogadoController extends Controller 
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource. 
      *
      * @return \Illuminate\Http\Response
      */
@@ -20,7 +22,20 @@ class TramiteAbogadoController extends Controller
        $usuarios = User::orderBy('id', 'desc')->take(1)->get();
       // dd($usuarios);
         $tramites = TiposTramites::all();
-        return view('/tramite_abogado', compact('tramites','usuarios'));
+
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
+        return view('/tramite_abogado', compact('tramites','usuarios','conceptos','funciones'));
     }
 
     /**
@@ -47,8 +62,8 @@ class TramiteAbogadoController extends Controller
         foreach ($TramitesId as $tramiteId) {
             $tramid=  $tramiteId;   
             $tramdoc = new TramitesAbogados;
-            $tramdoc->tipo_tramite_id = $request->input('nombre');
-            $tramdoc->usuario_id =$tramid;   
+            $tramdoc->usuario_id = $request->input('nombre');
+            $tramdoc->tipo_tramite_id =$tramid;   
             $tramdoc->save();  
         } 
  

@@ -42,7 +42,7 @@
                             <datalist  id="browsers">                              
                             @foreach($clientes as $cliente) 
                             <option value="{{ $cliente->cliente_id}}">{{ $cliente->nombre}} {{ $cliente->apellido_paterno}} {{ $cliente->apellido_materno}}</option>@endforeach
-                            </datalist>
+                            </datalist> 
                         </div>  
                         
                     </div> 
@@ -96,7 +96,7 @@
  
                     </form>
                 </div>
-            </div>
+            </div> 
         </div> 
     </div>
 </div> 
@@ -118,7 +118,7 @@
     $("#div1").append(' <input type="checkbox" name="docId[]" value='+response[i].id+'> '+response[i].documento+' <br>');
          
     }
-  }); 
+  });  
 });
 
 });

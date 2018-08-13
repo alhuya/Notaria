@@ -1,8 +1,13 @@
 <?php
 
 namespace Notaria\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+use DB;
 
 use Illuminate\Http\Request;
+use Notaria\Dependencias;
+use Notaria\PagoDependencia;
+
 
 class ControlPagoDependenciasController extends Controller
 {
@@ -11,9 +16,28 @@ class ControlPagoDependenciasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('/control_pago_dependencias');
+    public function index() 
+   {
+    $Dependencias = Dependencias::all();
+    
+               
+       
+    $puesto = Auth::user()->puesto_id;
+               
+       
+    $conceptos = DB::table('menu_concepto')
+     ->where('menu_concepto.puesto_id', '=', $puesto)
+     ->select('menu_concepto.*')
+     ->get();
+
+     $funciones = DB::table('menu')
+     ->where('menu.puesto_id', '=', $puesto)
+     ->select('menu.*')
+     ->get();
+
+     
+      
+        return view('/control_pago_dependencias',compact('Dependencias','conceptos','funciones'));
     } 
 
     /**
@@ -34,7 +58,29 @@ class ControlPagoDependenciasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+     
+        $request->validate([
+            'dependencia' => 'required|string|max:255',
+           
+            'cuenta' => 'required|numeric',
+            'entrega' => 'required|string|max:255',    
+
+        ]); 
+  
+        $hoy = date("y-m-d");
+   
+ 
+      $Dependencia = new PagoDependencia ;
+      $Dependencia->fecha = $hoy;
+      $Dependencia->dependencia = $request->input('dependencia');
+      $Dependencia->cantidad = $request->input('cantidad');
+      $Dependencia->tipo_pago = $request->input('tipo_pago');
+      $Dependencia->cuenta= $request->input('cuenta');
+      $Dependencia->entrega= $request->input('entrega');   
+      $Dependencia->save();
+
+      
+      return redirect('/control_pago_dependencias')->with('status','Pago a Dependencia Guardado');
     }
 
     /**

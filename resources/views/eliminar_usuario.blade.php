@@ -14,22 +14,7 @@
 
 <div class="container">
 <h2 style="text-align: center;">Eliminar Usuario</h2>
-           <div class="form-group row"> 
-        
-                        @csrf   
-                      <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Usuarios') }}</label>
-
-                             <div class="col-md-6">
-                               <input list="browsers" name="usuario"  class="form-control" id ="usuario2" required>                             
-                               <datalist  id="browsers">                              
-                                @foreach($usuarios as $usuario)
-                                <option value="{{ $usuario['id']}} {{ $usuario['nombre']}} {{ $usuario['ap_paterno']}} {{ $usuario['ap_materno']}}"></option>
-                                @endforeach  
-                               </datalist>
-
-                           </div>
-                            
-                        </div> 
+          
 
                     
                         
@@ -41,19 +26,35 @@
  
                 <div class="card-body">
 
-                    <form method="POST" action=" eliminar_usuario/{{$usuario['id']}}">
+                    <form method="POST"  action="{{ route('eliminar_us') }}"> 
                     	{{ method_field('delete')}}
-                      @if(session('status'))
+                      @if(session('status')) 
 
                         <div class="alert alert-success">
                           {{session ('status')}}
                           
                         </div>
-                        @endif
+                        @endif 
                         @csrf
+                        <div class="form-group row">  
+        
+                                
+                    <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Usuarios') }}</label>
+
+                        <div class="col-md-6">
+                            <input list="browsers" name="usuario"  class="form-control" id ="usuario2" required>                             
+                            <datalist  id="browsers">                              
+                            @foreach($usuarios as $usuario)
+                            <option value="{{ $usuario['id']}} ">{{ $usuario['nombre']}} {{ $usuario['ap_paterno']}} {{ $usuario['ap_materno']}}</option>
+                            @endforeach  
+                            </datalist>
+
+                        </div>
+                        
+                    </div> 
 
                         <div class="form-group row">
-                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
+                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombres') }}</label>
 
                             <div class="col-md-6">
                                 <label id="nombre" class="form-control"></label>
@@ -111,7 +112,7 @@
 
       
 
-@endsection
+@endsection  
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!--<script src="{{ asset('js/user.js') }}" ></script>-->
@@ -130,11 +131,11 @@
      
    
     for(i=0; i<response.length; i++){
-      $("#nombre").append(""+response[i].nombre+"");
-      $("#ap_paterno").append(""+response[i].ap_paterno+"");
-      $("#ap_materno").append(""+response[i].ap_materno+"");
+      $("#nombre").append(""+ $.trim(response[i].nombre) +"");
+      $("#ap_paterno").append(""+ $.trim(response[i].ap_paterno) +"");
+      $("#ap_materno").append(""+ $.trim(response[i].ap_materno) +"");
       $("#correo").append(""+response[i].email+"");
-      $("#puesto").append(""+response[i].puesto+"");
+      $("#puesto").append(""+ $.trim(response[i].puesto) +"");
      
     }
   });

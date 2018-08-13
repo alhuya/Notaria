@@ -3,7 +3,11 @@
 namespace Notaria\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Notaria\Dependencias;
+use Notaria\ControlTramites;
+use Notaria\ProyectoDependencia;
+use Illuminate\Support\Facades\Auth;
+use DB;
 class egresoController extends Controller
 {
     /**
@@ -13,7 +17,26 @@ class egresoController extends Controller
      */
     public function index()
     {
-        return view('/egreso'); 
+
+
+        $dependencias = Dependencias::all();
+        $numeros = ControlTramites::all();
+
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
+ 
+        return view('/egreso', compact('numeros','dependencias','funciones','conceptos')); 
+ 
     }
 
     /** 
@@ -32,11 +55,40 @@ class egresoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
-        //
+        if($request->ajax()){
+            $documentos = ProyectoDependencia::proydep($id);
+            return response()->json($documentos);
+          }
     }
+    public function store2(Request $request)
+    {
+      
+        
+            $fechain = $request->input('fecha_ingreso');
+            $folio = $request->input('numero_folio');
+            $dependencia = $request->input('dependencia');
+            $fechaegr = $request->input('fecha_egreso');
 
+
+            DB::table('proyecto_dependencia')->where('numero_folio', '=',  $folio )->delete();
+
+            foreach ($fechain as $key => $value){ 
+               
+
+            $proyecto = new ProyectoDependencia ;
+            $proyecto->fecha_ingreso = $fechain[$key];
+            $proyecto->numero_folio = $folio[$key];
+            $proyecto->dependencia = $dependencia[$key];
+            $proyecto->fecha_egreso = $fechaegr[$key];
+            $proyecto->save();
+
+            }
+        
+            return redirect('/egreso')->with('status','Ingreso a Dependencia');
+    
+    }
     /**
      * Display the specified resource.
      *

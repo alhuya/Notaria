@@ -19,36 +19,38 @@
             <div class="card">
                 <div class="card-header">{{ __('TIPOS DE CITA') }}</div>
                 <br><br>   
-                 <div class="form-group row"> 
-        
-    
-      <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Tipo') }}</label>
-
-             <div class="col-md-6">
-               <input list="browsers" name="cliente"  class="form-control" id ="doc1" required>                             
-               <datalist  id="browsers">                              
-                @foreach($tipos as $tipo)
-                <option value="{{ $tipo['id']}}">{{ $tipo['tipo']}}</option>@endforeach
-               </datalist>
-           </div>
-            
-        </div> 
+                
 
                 <div class="card-body">
-                <form method="POST" action="tipos_citas/{{$tipo['id']}}">
-                      {{ method_field('patch')}}
+                <form method="POST" action="{{ route('tipoedit') }}">
+                  
                       @if(session('status')) 
 
                         <div class="alert alert-success">
                           {{session ('status')}}
-                           
-                        </div>
+                            
+                        </div> 
                         @endif
                         @csrf 
 
+                         <div class="form-group row"> 
+        
+    
+                        <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Tipo') }}</label>
+                
+                            <div class="col-md-6">
+                                <input list="browsers" name="tipotram"  class="form-control" id ="doc1" required>                             
+                                <datalist  id="browsers">                              
+                                @foreach($tipos as $tipo)
+                                <option value="{{ $tipo['id']}}">{{ $tipo['tipo']}}</option>@endforeach
+                                </datalist> 
+                            </div>
+                            
+                        </div> 
+
                         <div class="form-group row">
                           
-                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Documento') }}</label>
+                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Tipo de Cita') }}</label>
                           
                             <div class="col-md-6">
                               <div id="div1">
@@ -58,7 +60,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="ap_paterno" class="col-md-4 col-form-label text-md-right">{{ __('Costo') }}</label>
+                            <label for="ap_paterno" class="col-md-4 col-form-label text-md-right">{{ __('Duración') }}</label>
 
                             <div class="col-md-6">
                               <div id="div2">
@@ -107,14 +109,14 @@
      
     
     for(i=0; i<response.length; i++){
-      $("#div1").append('<input class="form-control" type="text" name="documento" value='+response[i].tipo+' >');
-      $("#div2").append('<input class="form-control" type="text" name="costo"  value='+response[i].duracion+'>');
-      
+      $("#div1").append('<input class="form-control" type="text" name="tipo" value="'+ $.trim(response[i].tipo) +'" >');
+      $("#div2").append('<input class="form-control" type="text" name="duracion"  value='+response[i].duracion+'>');
+ 
      
     }
   }); 
 });
-});
+}); 
 </script>
 @endsection
 

@@ -1,6 +1,8 @@
 <?php
 
 namespace Notaria\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+use DB;
 
 use Illuminate\Http\Request;
 use Notaria\Documentacion;
@@ -13,12 +15,26 @@ class EliminarDoumentoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index() 
     {
        
       
         $Documentos = Documentacion::all();
-        return view('eliminar_documento', compact('Documentos'));
+
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
+
+        return view('eliminar_documento', compact('Documentos','conceptos','funciones'));
     }
 
     /**
@@ -85,10 +101,17 @@ class EliminarDoumentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        $id = $request->input('documento');
         $documentos = Documentacion::find($id);
         $documentos->delete();
+
+       
+        $doc = tramite_documento::where('documentacion_id',$id);
+        $doc->delete();
+
+        
        return redirect('/eliminar_documento')->with('status','Documento eliminado exitosamente');
     }
 }

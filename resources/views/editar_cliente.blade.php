@@ -1,9 +1,9 @@
  @extends('layouts.app')
 @section('content')
-@if(Gate::check('isAdministrador'))
+
 @include('layouts.menu_new')  
 
-@endif 
+
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
@@ -12,42 +12,42 @@
  
 </head> 
 
-<div class="container">
+<div class="container"> 
 <h2 style="text-align: center;">Editar Cliente</h2>
-           <div class="form-group row"> 
-        
-                        @csrf   
-                      <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Clientes') }}</label>
-
-                             <div class="col-md-6">
-                               <input list="browsers" name="cliente"  class="form-control" id ="cliente" required>                             
-                               <datalist  id="browsers">                              
-                                @foreach($clientes as $cliente)
-                                <option value="{{ $cliente['id']}} {{ $cliente['nombre']}} {{ $cliente['apellido_paterno']}} {{ $cliente['apellido_materno']}}"></opion>@endforeach
-                               </datalist>
-                           </div>
-                            
-                        </div> 
+          
 
                     
                         
                          <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center"> 
         <div class="col-md-8">
             <div class="card"> 
                 <div class="card-header">{{ __('Clientes') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action=" editar_cliente/{{$cliente['id']}}">
-                      {{ method_field('patch')}}
+                    <form method="POST" action="{{ route('client') }}"> 
+                     
                       @if(session('status')) 
  
                         <div class="alert alert-success">
                           {{session ('status')}}
-                           
+                            
                         </div>
-                        @endif
-                        @csrf 
+                        @endif 
+                        @csrf  
+                        <div class="form-group row"> 
+         
+                    <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Clientes') }}</label>
+
+                            <div class="col-md-6">
+                            <input list="browsers" name="cliente"  class="form-control" id ="cliente" required>                             
+                            <datalist  id="browsers">                              
+                            @foreach($clientes as $cliente)
+                            <option value="{{ $cliente['id']}}  "><label>{{ $cliente['nombre']}} {{ $cliente['apellido_paterno']}} {{ $cliente['apellido_materno']}}</label></opion>@endforeach
+                            </datalist>
+                        </div>
+                        
+                    </div> 
 
                         <div class="form-group row">
                           
@@ -81,7 +81,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Telefono') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Teléfono') }}</label>
 
                             <div class="col-md-6">
                                <!--<label id="correo" class="form-control"></label>-->
@@ -136,7 +136,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Numero Interno ') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Número Interno ') }}</label>
 
                             <div class="col-md-6">
                                <!-- <label id="puesto" class="form-control"></label>-->
@@ -146,7 +146,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Numero Exterior') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Número Exterior') }}</label>
 
                             <div class="col-md-6">
                                <!-- <label id="puesto" class="form-control"></label>-->
@@ -157,7 +157,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Codigo Postal') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Código Postal') }}</label>
 
                             <div class="col-md-6">
                                <!-- <label id="puesto" class="form-control"></label>-->
@@ -167,26 +167,29 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Estado') }}</label>
+                        <div class="form-group row">    
+                      <label for="estado" class="col-md-4 col-form-label text-md-right">{{ __('Estados') }}</label>
 
-                            <div class="col-md-6">
-                               <!-- <label id="puesto" class="form-control"></label>-->
-                               <div id="div12">
-                                 
-                               </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Municipio') }}</label>
+                             <div class="col-md-6">
+                               <select name="estado_id" id="estado" class="form-control" required>
+                                !<option value="">{{ __('-- Seleccione el estado --') }}</option>
+                                @foreach($estados as $estado)
+                                <option value="{{ $estado['id']}}">{{$estado['estado'] }}</option>
+                                @endforeach
+                               </select>
+                           </div>
+                        </div> 
+                        
+                        <div class="form-group row">    
+                      <label for="municipio" class="col-md-4 col-form-label text-md-right">{{ __('Municipios') }}</label>
 
-                            <div class="col-md-6">
-                               <!-- <label id="puesto" class="form-control"></label>-->
-                               <div id="div13">
-                                 
-                               </div>
-                            </div>
-                        </div>
+                             <div class="col-md-6">
+                               <select name="municipio_id" id="municipio" class="form-control" required>
+                            
+                               
+                               </select>
+                           </div>
+                        </div> 
                         
                          <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
@@ -230,28 +233,37 @@
      $("#div9").empty();
      $("#div10").empty();
      $("#div11").empty();
-     $("#div12").empty();
-     $("#div13").empty(); 
-     $("#div14").empty();
-     
+
     
-    for(i=0; i<response.length; i++){
-      $("#div1").append('<input class="form-control" type="text" name="nombre" value='+response[i].nombre+' >');
-      $("#div2").append('<input class="form-control" type="text" name="ap_paterno"  value='+response[i].apellido_paterno+'>');
-      $("#div3").append('<input class="form-control" type="text" name="ap_materno" value='+response[i].apellido_materno+'>');
-      $("#div4").append('<input class="form-control" type="text" name="telefono" value='+response[i].telefono+'>');
-      $("#div5").append('<input  class="form-control" type="text" name="celular"  value='+response[i].celular+'>');
-      $("#div6").append('<input  class="form-control" type="text" name="correo"  value='+response[i].correo+'>');
-      $("#div7").append('<input  class="form-control" type="text" name="calle"  value='+response[i].calle+'>');
-      $("#div8").append('<input  class="form-control" type="text" name="colonia"  value='+response[i].colonia+'>');
-      $("#div9").append('<input  class="form-control" type="text" name="numint"  value='+response[i].numero_interior+'>');
-      $("#div10").append('<input  class="form-control" type="text" name="numext"  value='+response[i].numero_exterior+'>');
-      $("#div11").append('<input  class="form-control" type="text" name="codpost"  value='+response[i].codigo_postal+'>');
-      $("#div12").append('<input  class="form-control" type="text" name="estadoid"  value='+response[i].estado+'>');
-      $("#div13").append('<input  class="form-control" type="text" name="municipioid" value='+response[i].municipio+'>');
-     
+        
+for(i=0; i<response.length; i++){
+      
+      $("#div1").append('<input class="form-control" type="text" name="nombre" value="'+ $.trim(response[i].nombre) +'" >');//eliminamos espacios con trim()
+      $("#div2").append('<input class="form-control" type="text" name="apellido_paterno"  value="'+ $.trim(response[i].apellido_paterno) +'">');
+      $("#div3").append('<input class="form-control" type="text" name="apellido_materno" value="'+ $.trim(response[i].apellido_materno) +'">');
+      $("#div4").append('<input class="form-control" type="text" name="telefono" value="'+ $.trim(response[i].telefono) +'">');
+      $("#div5").append('<input  class="form-control" type="text" name="celular"  value="'+ $.trim(response[i].celular) +'">');
+      $("#div6").append('<input  class="form-control" type="text" name="correo"  value="'+ $.trim(response[i].correo) +'">');
+      $("#div7").append('<input  class="form-control" type="text" name="calle"  value="'+ $.trim(response[i].calle) +'">');
+      $("#div8").append('<input  class="form-control" type="text" name="colonia"  value="'+ $.trim(response[i].colonia) +'">');
+      $("#div9").append('<input  class="form-control" type="text" name="numero_interior"  value="'+ $.trim(response[i].numero_interior) +'">');
+      $("#div10").append('<input  class="form-control" type="text" name="numero_exterior"  value="'+ $.trim(response[i].numero_exterior) +'">');
+      $("#div11").append('<input  class="form-control" type="text" name="codigo_postal"  value="'+ $.trim(response[i].codigo_postal) +'">');
+      
     }
   }); 
+});
+
+$(document).ready(function(){
+  $("#estado").change(function(event){
+  $.get("Estados_Municipios/"+event.target.value+"",function(response ,state){
+    console.log(response);
+    $("#municipio").empty();   
+   for(i=0; i<response.length; i++){
+      $("#municipio").append("<option value='"+response[i].id+"'>"+response[i].municipio+"</option>");
+    }
+  });
+}); 
 });
 });
 </script>

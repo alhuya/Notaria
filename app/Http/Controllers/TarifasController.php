@@ -1,12 +1,14 @@
 <?php
 
 namespace Notaria\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use Notaria\TiposTramites;
 use Notaria\CostoTramite;
 use Notaria\Concepto; 
-use Notaria\ConceptoCosto;
+use Notaria\ConceptoCosto2;
+use DB;
 
 class TarifasController extends Controller
 {
@@ -16,13 +18,25 @@ class TarifasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()  
-    {
+    { 
 
-        
-        $Costos = CostoTramite::all();
+       
         $tramites = TiposTramites::all();
-        $conceptos = Concepto::all();
-        return view('tarifas', compact('tramites','Costos','conceptos'));
+        
+
+        $puesto = Auth::user()->puesto_id;
+               
+       
+       $conceptos = DB::table('menu_concepto')
+        ->where('menu_concepto.puesto_id', '=', $puesto)
+        ->select('menu_concepto.*')
+        ->get();
+
+        $funciones = DB::table('menu')
+        ->where('menu.puesto_id', '=', $puesto)
+        ->select('menu.*') 
+        ->get();
+        return view('tarifas', compact('tramites','conceptos','funciones'));
     }
 
     /**
@@ -44,7 +58,7 @@ class TarifasController extends Controller
     public function store(Request $request,$id,$tipo)
     {
         if($request->ajax()){ 
-        $cliente = ConceptoCosto::consulta($id,$tipo);
+        $cliente = ConceptoCosto2::consulta($id,$tipo);
         return response()->json($cliente); 
       }
     }

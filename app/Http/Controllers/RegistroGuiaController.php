@@ -1,10 +1,12 @@
 <?php
 
 namespace Notaria\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use Notaria\ControlTramites;
 use Notaria\TiposTramites;
+use DB;
 class RegistroGuiaController extends Controller
 {
     /**
@@ -16,7 +18,30 @@ class RegistroGuiaController extends Controller
     {
         $Tramites = ControlTramites::all();
         $Tipos = TiposTramites::all();
-        return view('/registro_guia', compact('Tramites','Tipos')); 
+
+      
+        $numeros = DB::table('control_tramites')
+        -> orderBy('id', 'desc')
+        -> take(1)
+        ->select('control_tramites.numero_escritura') 
+        ->get();
+       
+
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
+
+
+        return view('/registro_guia', compact('Tramites','Tipos','numeros','conceptos','funciones')); 
          
     }
  
@@ -48,6 +73,15 @@ class RegistroGuiaController extends Controller
           
 
         ]);
+
+        $id = $request->input('carpeta'); 
+
+        $consulta = DB::table('control_tramites')
+        ->where('carpeta_id','=', $id )       
+        ->select('control_tramites.numero_escritura')
+        ->get(); 
+
+        if ($consulta->isEmpty()) {
      
  
       $control = new ControlTramites;
@@ -60,7 +94,13 @@ class RegistroGuiaController extends Controller
       $control->contrato= $request->input('contrato');
    
       $control->save();
-      return redirect('/registro_guia')->with('status','Cliente guardado exitosamente');
+      return redirect('/registro_guia')->with('status','Se guardo con exito');
+        }
+
+        else{
+
+     return redirect('/registro_guia')->with('status2','Ya se tiene el registro');
+        }
     }
 
 
@@ -93,8 +133,16 @@ class RegistroGuiaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+        $id = $request->input('carpeta'); 
+
+        $consulta = DB::table('control_tramites')
+        ->where('carpeta_id','=', $id )       
+        ->select('control_tramites.numero_escritura')
+        ->get(); 
+ 
+    
         ControlTramites::where('carpeta_id',$id)->first()->update($request->all()); 
  
     /*    DB::table('control_tramites')
@@ -102,7 +150,8 @@ class RegistroGuiaController extends Controller
         ->update(['revision' => $rev]);
 */
 
-        return redirect('/registro_guia')->with('status','Cliente editado exitosamente');
+        return redirect('/registro_guia')->with('status','Se guardo exitosamente');
+       
     }
 
     /**
