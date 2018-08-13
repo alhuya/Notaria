@@ -77,6 +77,7 @@ $(document).ready(function(){
   });
 });
 
+<<<<<<< HEAD
 var d = new Date();
 
 var month = d.getMonth()+1;
@@ -86,6 +87,9 @@ var output = d.getFullYear() + '/' +
     (month<10 ? '0' : '') + month + '/' +
     (day<10 ? '0' : '') + day;
 
+=======
+// Enviar datos del response a los eventos del calendario
+>>>>>>> 0d877ba202b989b69ff7273c7baa556dcdfb438e
 
 $('#calendar').fullCalendar({
 header: {

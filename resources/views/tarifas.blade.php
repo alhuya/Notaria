@@ -98,6 +98,7 @@
             var tipo = $('#tipo').val();
             console.log(tipo);
             
+<<<<<<< HEAD
             $.get("ConceptoCosto2/"+tramite+"/"+tipo+"",function(response ,state){
             console.log(response);
             $("#div1").empty();  
@@ -105,6 +106,13 @@
                     $("#div1").append('<input id="costou" type="text" class="form-control"  value='+response[i].costo+' readonly>');  
                     $("#div2").append('<input id="concepto" type="text" class="form-control" value='+response[i].concepto+' readonly>'); 
                       
+=======
+            $.get("ConceptoCosto/"+tramite+"/"+tipo+"",function(response ,state){
+            console.log(response);
+            $("#div1").empty();  
+                for(i=0; i<response.length; i++){
+                    $("#div1").append('<input id="costou" type="text" class="form-control" name="costo[]" value='+response[i].costo+'  autofocus>');    
+>>>>>>> 0d877ba202b989b69ff7273c7baa556dcdfb438e
                 }
             }); 
         });      
