@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-07-2018 a las 20:14:34
+-- Tiempo de generación: 13-08-2018 a las 18:22:53
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.9
 
@@ -63,7 +63,8 @@ INSERT INTO `categorias_funciones` (`id`, `nombre`, `created_at`, `updated_at`) 
 (5, 'Abogado', '2018-06-27 17:19:00', '2018-06-27 17:19:00'),
 (6, 'Caja', '2018-06-27 17:19:00', '2018-06-27 17:19:00'),
 (7, 'Cuentas por Pagar', '2018-06-27 17:19:00', '2018-06-27 17:19:00'),
-(8, 'Archivo', '2018-06-27 17:19:00', '2018-06-27 17:19:00');
+(8, 'Archivo', '2018-06-27 17:19:00', '2018-06-27 17:19:00'),
+(9, 'Usuarios', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -84,10 +85,14 @@ CREATE TABLE `categorias_puestos` (
 --
 
 INSERT INTO `categorias_puestos` (`id`, `puesto_id`, `categoria_funcion_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, '2018-07-19 03:49:17', '2018-07-19 03:49:17'),
-(2, 1, 3, '2018-07-19 03:49:17', '2018-07-19 03:49:17'),
-(3, 1, 5, '2018-07-19 03:49:17', '2018-07-19 03:49:17'),
-(4, 4, 6, '2018-07-22 05:37:02', '2018-07-22 05:37:02');
+(1, 6, 1, '2018-07-26 08:51:13', '2018-07-26 08:51:13'),
+(2, 6, 2, '2018-07-26 08:51:13', '2018-07-26 08:51:13'),
+(3, 6, 3, '2018-07-26 08:51:13', '2018-07-26 08:51:13'),
+(4, 6, 4, '2018-07-26 08:51:13', '2018-07-26 08:51:13'),
+(5, 6, 5, '2018-07-26 08:51:13', '2018-07-26 08:51:13'),
+(6, 7, 1, '2018-08-09 19:20:08', '2018-08-09 19:20:08'),
+(7, 7, 3, '2018-08-09 19:20:08', '2018-08-09 19:20:08'),
+(8, 7, 4, '2018-08-09 19:20:08', '2018-08-09 19:20:08');
 
 -- --------------------------------------------------------
 
@@ -96,7 +101,7 @@ INSERT INTO `categorias_puestos` (`id`, `puesto_id`, `categoria_funcion_id`, `cr
 --
 
 CREATE TABLE `citas` (
-  `cita_id` int(10) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `cliente_id` int(11) NOT NULL,
   `fecha_hora` datetime NOT NULL,
   `tipo_tramite` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -111,8 +116,10 @@ CREATE TABLE `citas` (
 -- Volcado de datos para la tabla `citas`
 --
 
-INSERT INTO `citas` (`cita_id`, `cliente_id`, `fecha_hora`, `tipo_tramite`, `usuario_id`, `tipo_cita_id`, `confirmacion_tramite`, `created_at`, `updated_at`) VALUES
-(2, 1, '2018-07-20 01:00:00', '1', 12, 1, 'No', '2018-07-19 04:48:58', '2018-07-19 04:48:58');
+INSERT INTO `citas` (`id`, `cliente_id`, `fecha_hora`, `tipo_tramite`, `usuario_id`, `tipo_cita_id`, `confirmacion_tramite`, `created_at`, `updated_at`) VALUES
+(2, 1, '2018-07-20 01:00:00', '1', 36, 1, 'No', '2018-07-19 04:48:58', '2018-07-19 04:48:58'),
+(5, 1, '2018-09-01 16:00:00', '1', 36, 3, 'No', '2018-08-01 06:20:17', '2018-08-01 06:45:14'),
+(6, 2, '2018-08-10 10:00:00', '7', 37, 1, 'No', '2018-08-09 18:33:23', '2018-08-09 18:33:23');
 
 -- --------------------------------------------------------
 
@@ -144,7 +151,8 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`id`, `nombre`, `apellido_paterno`, `apellido_materno`, `telefono`, `celular`, `correo`, `calle`, `colonia`, `numero_interior`, `numero_exterior`, `codigo_postal`, `estado_id`, `municipio_id`, `created_at`, `updated_at`) VALUES
-(1, 'Yazmin', 'Alvarado', 'Huerta', '61812800076', '6182596741', 'yazmin-77@hotmail.com', 'Cesar', 'col', '0', '312', '34048', '10', '282', '2018-07-09 22:48:02', '2018-07-10 20:55:32');
+(1, 'Laura Lucia', 'Herrera', 'Juarez', '1280003', '6182345678', 'laura89@hotmail.com', 'brisas', 'col forestal', '0', '345', '890765', '10', '282', '2018-07-28 06:45:24', '2018-08-10 01:57:50'),
+(2, 'luis', 'arellano', 'Reyez', '45678', '6182596741', 'luis123@hotmail.com', 'sauces', 'las fuentes', '0', '234', '34089', '10', '282', '2018-08-09 17:28:35', '2018-08-09 17:28:35');
 
 -- --------------------------------------------------------
 
@@ -171,7 +179,8 @@ INSERT INTO `conceptos` (`id`, `concepto`, `created_at`, `updated_at`) VALUES
 (5, 'Avaluo', '2018-07-18 19:34:08', '2018-07-18 19:34:08'),
 (6, 'Plano', '2018-07-18 19:34:20', '2018-07-18 19:34:20'),
 (7, 'Certificado', '2018-07-18 19:34:25', '2018-07-18 19:34:25'),
-(8, 'ISR Vendedor', '2018-07-18 19:34:41', '2018-07-18 19:34:41');
+(8, 'ISR Vendedor', '2018-07-18 19:34:41', '2018-07-18 19:34:41'),
+(9, 'Impuesto', '2018-08-09 18:03:49', '2018-08-09 18:03:49');
 
 -- --------------------------------------------------------
 
@@ -194,13 +203,31 @@ CREATE TABLE `conceptos_costos` (
 --
 
 INSERT INTO `conceptos_costos` (`concepto_costo_id`, `concepto`, `costo`, `costo_tramite_id`, `tramite_id`, `created_at`, `updated_at`) VALUES
-(1, 'Monto de Operación', '4000', 1, '1', '2018-07-18 22:11:07', '2018-07-18 22:11:07'),
-(2, 'Honorarios', '2022', 1, '1', '2018-07-18 22:11:07', '2018-07-18 22:11:07'),
-(3, 'Traslado de Dominio', '800', 1, '1', '2018-07-18 22:11:07', '2018-07-18 22:11:07'),
-(4, 'Derecho de Registro', '756', 1, '1', '2018-07-18 22:11:07', '2018-07-18 22:11:07'),
-(5, 'Avaluo', '458', 1, '1', '2018-07-18 22:11:07', '2018-07-18 22:11:07'),
-(6, 'Certificado', '200', 1, '1', '2018-07-18 22:11:07', '2018-07-18 22:11:07'),
-(7, 'ISR Vendedor', '0', 1, '1', '2018-07-18 22:11:07', '2018-07-18 22:11:07');
+(1, 'Monto de Operación', '100', 2, '1', '2018-07-18 22:11:07', '2018-07-18 22:11:07'),
+(2, 'Honorarios', '100', 2, '1', '2018-07-18 22:11:07', '2018-07-18 22:11:07'),
+(3, 'Traslado de Dominio', '100', 2, '1', '2018-07-18 22:11:07', '2018-07-18 22:11:07'),
+(4, 'Derecho de Registro', '100', 2, '1', '2018-07-18 22:11:07', '2018-07-18 22:11:07'),
+(5, 'Avaluo', '100', 2, '1', '2018-07-18 22:11:07', '2018-07-18 22:11:07'),
+(6, 'Certificado', '100', 2, '1', '2018-07-18 22:11:07', '2018-07-18 22:11:07'),
+(7, 'ISR Vendedor', '100', 2, '1', '2018-07-18 22:11:07', '2018-07-18 22:11:07'),
+(54, 'Monto de Operación', '100', 4, '1', '2018-08-11 22:18:57', '2018-08-11 22:18:57'),
+(55, 'Honorarios', '200', 4, '1', '2018-08-11 22:18:57', '2018-08-11 22:18:57'),
+(56, 'Traslado de Dominio', '300', 4, '1', '2018-08-11 22:18:57', '2018-08-11 22:18:57'),
+(57, 'Derecho de Registro', '400', 4, '1', '2018-08-11 22:18:57', '2018-08-11 22:18:57'),
+(58, 'Avaluo', '500', 4, '1', '2018-08-11 22:18:57', '2018-08-11 22:18:57'),
+(59, 'Plano', '600', 4, '1', '2018-08-11 22:18:57', '2018-08-11 22:18:57'),
+(60, 'Certificado', '700', 4, '1', '2018-08-11 22:18:57', '2018-08-11 22:18:57'),
+(61, 'ISR Vendedor', '800', 4, '1', '2018-08-11 22:18:57', '2018-08-11 22:18:57'),
+(62, 'Impuesto', '900', 4, '1', '2018-08-11 22:18:57', '2018-08-11 22:18:57'),
+(63, 'Monto de Operación', '100', 2, '7', '2018-08-13 16:24:27', '2018-08-13 16:24:27'),
+(64, 'Honorarios', '200', 2, '7', '2018-08-13 16:24:27', '2018-08-13 16:24:27'),
+(65, 'Traslado de Dominio', '300', 2, '7', '2018-08-13 16:24:28', '2018-08-13 16:24:28'),
+(66, 'Derecho de Registro', '400', 2, '7', '2018-08-13 16:24:28', '2018-08-13 16:24:28'),
+(67, 'Avaluo', '500', 2, '7', '2018-08-13 16:24:28', '2018-08-13 16:24:28'),
+(68, 'Plano', '600', 2, '7', '2018-08-13 16:24:28', '2018-08-13 16:24:28'),
+(69, 'Certificado', '700', 2, '7', '2018-08-13 16:24:28', '2018-08-13 16:24:28'),
+(70, 'ISR Vendedor', '800', 2, '7', '2018-08-13 16:24:28', '2018-08-13 16:24:28'),
+(71, 'Impuesto', '900', 2, '7', '2018-08-13 16:24:28', '2018-08-13 16:24:28');
 
 -- --------------------------------------------------------
 
@@ -599,13 +626,14 @@ CREATE TABLE `control_tramites` (
   `folio2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `otorgantes` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `contrato` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `puesto_id` int(11) DEFAULT NULL,
+  `presupuesto_id` int(11) DEFAULT NULL,
   `dependencia_id` int(11) DEFAULT NULL,
   `tramite_dependencia_id` int(11) DEFAULT NULL,
   `revision` int(11) DEFAULT NULL,
   `kinegrama_id` int(11) DEFAULT NULL,
   `terminado` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fecha_entrega` date DEFAULT NULL,
+  `nombre_recibe` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -614,9 +642,9 @@ CREATE TABLE `control_tramites` (
 -- Volcado de datos para la tabla `control_tramites`
 --
 
-INSERT INTO `control_tramites` (`id`, `carpeta_id`, `tramite_id`, `numero_escritura`, `cliente_id`, `fecha`, `volumen`, `folio1`, `folio2`, `otorgantes`, `contrato`, `puesto_id`, `dependencia_id`, `tramite_dependencia_id`, `revision`, `kinegrama_id`, `terminado`, `fecha_entrega`, `created_at`, `updated_at`) VALUES
-(1, 1, 0, '', 0, '0000-00-00', '', '', '', '', '', 0, 0, 0, 0, 0, '', '0000-00-00', NULL, NULL),
-(2, 2, 1, '6', 1, '2018-01-06', '8', '8', '8', '8', '1', NULL, NULL, NULL, 1, NULL, NULL, '2018-01-01', '2018-07-23 07:39:01', '2018-07-24 08:27:36');
+INSERT INTO `control_tramites` (`id`, `carpeta_id`, `tramite_id`, `numero_escritura`, `cliente_id`, `fecha`, `volumen`, `folio1`, `folio2`, `otorgantes`, `contrato`, `presupuesto_id`, `dependencia_id`, `tramite_dependencia_id`, `revision`, `kinegrama_id`, `terminado`, `fecha_entrega`, `nombre_recibe`, `created_at`, `updated_at`) VALUES
+(1, 1, 0, '', 0, '0000-00-00', '', '', '', '', '', 0, 0, 0, 0, 0, '', '0000-00-00', '', NULL, NULL),
+(3, 3, 7, '1', 2, '2018-08-13', '17', '1', '6', 'luis solis', '5', 2, NULL, NULL, 3, NULL, NULL, NULL, '', '2018-08-09 18:40:26', '2018-08-13 16:19:19');
 
 -- --------------------------------------------------------
 
@@ -630,13 +658,64 @@ CREATE TABLE `cortes` (
   `presupuesto_id` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `tipo_pago` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ingreso_trasferencia` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ingreso_trasferencia` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `total` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `vale` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `comentarios` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `comentarios` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `cortes`
+--
+
+INSERT INTO `cortes` (`corte_id`, `cliente_id`, `presupuesto_id`, `fecha`, `tipo_pago`, `ingreso_trasferencia`, `total`, `vale`, `comentarios`, `created_at`, `updated_at`) VALUES
+(3, 1, 4, '2006-08-18', 'Efectivo', NULL, '200', 'Si', 'Se tomaron 100 para papeleria', '2018-08-06 16:26:23', '2018-08-06 16:26:23');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `corte_cp_dep`
+--
+
+CREATE TABLE `corte_cp_dep` (
+  `id` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `total` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `comentario` text COLLATE utf8_spanish_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `corte_cp_dep`
+--
+
+INSERT INTO `corte_cp_dep` (`id`, `fecha`, `total`, `comentario`, `created_at`, `updated_at`) VALUES
+(1, '2018-08-06', '400', 'fghjk', '2018-08-06 18:19:40', '2018-08-06 18:19:40');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `corte_cp_im`
+--
+
+CREATE TABLE `corte_cp_im` (
+  `id` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `total` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `comentario` text COLLATE utf8_spanish_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `corte_cp_im`
+--
+
+INSERT INTO `corte_cp_im` (`id`, `fecha`, `total`, `comentario`, `created_at`, `updated_at`) VALUES
+(1, '2018-08-06', '0', 'jsajs', '2018-08-06 18:41:29', '2018-08-06 18:41:29');
 
 -- --------------------------------------------------------
 
@@ -661,7 +740,42 @@ INSERT INTO `costos_tramite` (`costo_tramite_id`, `tipo_tramite_id`, `nombre`, `
 (2, 1, 'Costo Especial 1', '2018-07-18 18:37:50', '2018-07-18 18:37:50'),
 (3, 1, 'Costo Especial 2', '2018-07-18 18:37:50', '2018-07-18 18:37:50'),
 (4, 1, 'Costo Especial 3', '2018-07-18 18:37:50', '2018-07-18 18:37:50'),
-(5, 1, 'Abierto', '2018-07-18 18:37:50', '2018-07-18 18:37:50');
+(5, 1, 'Abierto', '2018-07-18 18:37:50', '2018-07-18 18:37:50'),
+(6, 3, 'Costo Estandar', '2018-07-25 20:12:37', '2018-07-25 20:12:37'),
+(7, 3, 'Costo Especial 1', '2018-07-25 20:12:37', '2018-07-25 20:12:37'),
+(8, 3, 'Costo Especial 2', '2018-07-25 20:12:37', '2018-07-25 20:12:37'),
+(9, 3, 'Costo Especial 3', '2018-07-25 20:12:37', '2018-07-25 20:12:37'),
+(10, 3, 'Abierto', '2018-07-25 20:12:37', '2018-07-25 20:12:37'),
+(11, 4, 'Costo Estandar', '2018-07-28 06:50:15', '2018-07-28 06:50:15'),
+(12, 4, 'Costo Especial 1', '2018-07-28 06:50:15', '2018-07-28 06:50:15'),
+(13, 4, 'Costo Especial 2', '2018-07-28 06:50:15', '2018-07-28 06:50:15'),
+(14, 4, 'Costo Especial 3', '2018-07-28 06:50:15', '2018-07-28 06:50:15'),
+(15, 4, 'Abierto', '2018-07-28 06:50:15', '2018-07-28 06:50:15'),
+(16, 5, 'Costo Estandar', '2018-07-28 07:00:21', '2018-07-28 07:00:21'),
+(17, 5, 'Costo Especial 1', '2018-07-28 07:00:21', '2018-07-28 07:00:21'),
+(18, 5, 'Costo Especial 2', '2018-07-28 07:00:21', '2018-07-28 07:00:21'),
+(19, 5, 'Costo Especial 3', '2018-07-28 07:00:21', '2018-07-28 07:00:21'),
+(20, 5, 'Abierto', '2018-07-28 07:00:21', '2018-07-28 07:00:21'),
+(21, 6, 'Costo Estandar', '2018-08-09 17:49:36', '2018-08-09 17:49:36'),
+(22, 6, 'Costo Especial 1', '2018-08-09 17:49:36', '2018-08-09 17:49:36'),
+(23, 6, 'Costo Especial 2', '2018-08-09 17:49:36', '2018-08-09 17:49:36'),
+(24, 6, 'Costo Especial 3', '2018-08-09 17:49:36', '2018-08-09 17:49:36'),
+(25, 6, 'Abierto', '2018-08-09 17:49:36', '2018-08-09 17:49:36'),
+(26, 7, 'Costo Estandar', '2018-08-09 17:55:36', '2018-08-09 17:55:36'),
+(27, 7, 'Costo Especial 1', '2018-08-09 17:55:36', '2018-08-09 17:55:36'),
+(28, 7, 'Costo Especial 2', '2018-08-09 17:55:37', '2018-08-09 17:55:37'),
+(29, 7, 'Costo Especial 3', '2018-08-09 17:55:37', '2018-08-09 17:55:37'),
+(30, 7, 'Abierto', '2018-08-09 17:55:37', '2018-08-09 17:55:37'),
+(31, 8, 'Costo Estandar', '2018-08-12 23:03:10', '2018-08-12 23:03:10'),
+(32, 8, 'Costo Especial 1', '2018-08-12 23:03:10', '2018-08-12 23:03:10'),
+(33, 8, 'Costo Especial 2', '2018-08-12 23:03:10', '2018-08-12 23:03:10'),
+(34, 8, 'Costo Especial 3', '2018-08-12 23:03:10', '2018-08-12 23:03:10'),
+(35, 8, 'Abierto', '2018-08-12 23:03:10', '2018-08-12 23:03:10'),
+(36, 9, 'Costo Estandar', '2018-08-12 23:03:27', '2018-08-12 23:03:27'),
+(37, 9, 'Costo Especial 1', '2018-08-12 23:03:27', '2018-08-12 23:03:27'),
+(38, 9, 'Costo Especial 2', '2018-08-12 23:03:27', '2018-08-12 23:03:27'),
+(39, 9, 'Costo Especial 3', '2018-08-12 23:03:27', '2018-08-12 23:03:27'),
+(40, 9, 'Abierto', '2018-08-12 23:03:27', '2018-08-12 23:03:27');
 
 -- --------------------------------------------------------
 
@@ -701,8 +815,10 @@ CREATE TABLE `documentacion` (
 --
 
 INSERT INTO `documentacion` (`id`, `documento`, `costo`, `origen`, `created_at`, `updated_at`) VALUES
-(5, 'Acta', '1', 'Cliente', '2018-07-08 07:36:54', '2018-07-10 20:55:53'),
-(6, 'Comprobante de Domicilio', '0', 'Cliente', '2018-07-13 19:47:08', '2018-07-13 19:47:08');
+(6, 'Comprobante de Domicilio', '0', 'Cliente', '2018-07-13 19:47:08', '2018-08-10 02:01:19'),
+(7, 'Acta de Nacimiento', '0', 'Cliente', '2018-07-28 07:19:38', '2018-07-28 07:19:38'),
+(8, 'curp', 'abf', 'Cliente', '2018-08-09 17:48:52', '2018-08-09 17:59:30'),
+(9, 'INE', '0', 'Cliente', '2018-08-09 17:58:39', '2018-08-09 17:58:39');
 
 -- --------------------------------------------------------
 
@@ -3299,7 +3415,15 @@ INSERT INTO `funciones` (`funcion_id`, `nombre`, `categoria_funcion_id`, `create
 (50, 'Trámites Terminados', 8, NULL, NULL),
 (51, 'Ingreso', 8, NULL, NULL),
 (52, 'Egreso', 8, NULL, NULL),
-(53, 'Reportes', 8, NULL, NULL);
+(53, 'Reportes', 8, NULL, NULL),
+(54, 'Registrar Usuario', 9, NULL, NULL),
+(55, 'Eliminar Usuario', 9, NULL, NULL),
+(56, 'Asignar Funciones', 9, NULL, NULL),
+(57, 'Reportes', 9, NULL, NULL),
+(58, 'Editar Usuario', 9, NULL, NULL),
+(59, 'Consulta usuarios', 9, NULL, NULL),
+(60, 'puestos', 9, NULL, NULL),
+(61, 'Corte Impuesto', 7, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -3324,8 +3448,12 @@ CREATE TABLE `horarios_abogado` (
 --
 
 INSERT INTO `horarios_abogado` (`horario_abogado_id`, `tipo_horario`, `fecha_inicio`, `fecha_fin`, `hora_inicio`, `hora_fin`, `usuario_id`, `created_at`, `updated_at`) VALUES
-(3, 'Horario Laboral', '2018-07-28', '2018-07-31', '01:00:00', '01:00:00', 13, '2018-07-21 15:43:34', '2018-07-21 15:43:34'),
-(4, 'Horario Atencion Clientes', '2018-07-28', '2018-07-31', '01:00:00', '01:00:00', 13, '2018-07-21 15:44:34', '2018-07-21 15:44:34');
+(1, 'Horario Laboral', '2018-07-26', '2018-07-31', '09:00:00', '19:00:00', 32, '2018-07-26 08:36:58', '2018-07-26 08:36:58'),
+(2, 'Horario Atencion Clientes', '2018-07-26', '2018-07-31', '09:00:00', '17:00:00', 32, '2018-07-26 08:37:23', '2018-07-26 08:37:23'),
+(3, 'Horario Laboral', '2018-07-30', '2018-08-30', '09:00:00', '19:00:00', 36, '2018-07-29 06:12:35', '2018-07-29 06:12:35'),
+(4, 'Horario Atencion Clientes', '2018-07-30', '2018-08-30', '09:00:00', '17:00:00', 36, '2018-07-29 06:13:06', '2018-07-29 06:13:06'),
+(5, 'Horario Laboral', '2018-08-10', '2018-08-30', '09:00:00', '19:00:00', 37, '2018-08-09 18:31:03', '2018-08-09 18:31:03'),
+(6, 'Horario Atencion Clientes', '2018-08-09', '2018-08-30', '09:00:00', '17:00:00', 37, '2018-08-09 18:31:38', '2018-08-09 18:31:38');
 
 -- --------------------------------------------------------
 
@@ -3334,7 +3462,7 @@ INSERT INTO `horarios_abogado` (`horario_abogado_id`, `tipo_horario`, `fecha_ini
 --
 
 CREATE TABLE `kinegramas` (
-  `kinegrama_id` int(10) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `cliente_id` int(11) NOT NULL,
   `kinegrama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -3345,9 +3473,142 @@ CREATE TABLE `kinegramas` (
 -- Volcado de datos para la tabla `kinegramas`
 --
 
-INSERT INTO `kinegramas` (`kinegrama_id`, `cliente_id`, `kinegrama`, `created_at`, `updated_at`) VALUES
-(1, 1, '123', '2018-07-24 07:49:18', '2018-07-24 07:49:18'),
-(2, 1, '34', '2018-07-24 07:50:21', '2018-07-24 07:50:21');
+INSERT INTO `kinegramas` (`id`, `cliente_id`, `kinegrama`, `created_at`, `updated_at`) VALUES
+(1, 1, '2345', '2018-08-12 19:36:37', '2018-08-12 19:36:37');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `menu`
+--
+
+CREATE TABLE `menu` (
+  `menu_id` int(11) NOT NULL,
+  `puesto_id` int(11) NOT NULL,
+  `categoria_funcion_id` int(11) NOT NULL,
+  `funcion_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `menu`
+--
+
+INSERT INTO `menu` (`menu_id`, `puesto_id`, `categoria_funcion_id`, `funcion_id`, `created_at`, `updated_at`) VALUES
+(1, 6, 2, 5, '2018-08-09 03:04:55', '2018-08-09 03:04:55'),
+(2, 6, 2, 6, '2018-08-09 03:04:55', '2018-08-09 03:04:55'),
+(3, 6, 2, 7, '2018-08-09 03:04:55', '2018-08-09 03:04:55'),
+(4, 6, 2, 8, '2018-08-09 03:04:55', '2018-08-09 03:04:55'),
+(5, 6, 2, 9, '2018-08-09 03:04:55', '2018-08-09 03:04:55'),
+(6, 6, 2, 10, '2018-08-09 03:04:55', '2018-08-09 03:04:55'),
+(7, 6, 2, 11, '2018-08-09 03:04:55', '2018-08-09 03:04:55'),
+(8, 6, 2, 12, '2018-08-09 03:04:55', '2018-08-09 03:04:55'),
+(9, 3, 1, 1, '2018-08-09 06:00:00', '2018-08-10 06:00:00'),
+(10, 3, 1, 2, '2018-08-09 06:00:00', '2018-08-09 06:00:00'),
+(11, 3, 1, 3, NULL, NULL),
+(12, 3, 1, 4, NULL, NULL),
+(13, 3, 2, 5, NULL, NULL),
+(14, 3, 2, 6, NULL, NULL),
+(15, 3, 2, 7, NULL, NULL),
+(16, 3, 2, 8, NULL, NULL),
+(17, 3, 2, 9, NULL, NULL),
+(18, 3, 2, 10, NULL, NULL),
+(19, 3, 2, 11, NULL, NULL),
+(20, 3, 2, 12, NULL, NULL),
+(21, 3, 3, 13, NULL, NULL),
+(22, 3, 3, 14, NULL, NULL),
+(23, 3, 3, 15, NULL, NULL),
+(24, 3, 3, 16, NULL, NULL),
+(25, 3, 4, 17, NULL, NULL),
+(26, 3, 4, 18, NULL, NULL),
+(27, 3, 4, 19, NULL, NULL),
+(28, 3, 4, 20, NULL, NULL),
+(29, 3, 4, 21, NULL, NULL),
+(30, 3, 4, 22, NULL, NULL),
+(31, 3, 4, 23, NULL, NULL),
+(32, 3, 4, 24, NULL, NULL),
+(33, 3, 5, 25, NULL, NULL),
+(34, 3, 5, 26, NULL, NULL),
+(35, 3, 5, 27, NULL, NULL),
+(36, 3, 5, 28, NULL, NULL),
+(37, 3, 5, 29, NULL, NULL),
+(38, 3, 5, 30, NULL, NULL),
+(39, 3, 5, 31, NULL, NULL),
+(40, 3, 5, 32, NULL, NULL),
+(41, 3, 5, 33, NULL, NULL),
+(42, 3, 5, 34, NULL, NULL),
+(43, 3, 5, 35, NULL, NULL),
+(44, 3, 5, 36, NULL, NULL),
+(45, 3, 6, 37, NULL, NULL),
+(46, 3, 6, 38, NULL, NULL),
+(47, 3, 6, 39, NULL, NULL),
+(48, 3, 6, 40, NULL, NULL),
+(49, 3, 6, 41, NULL, NULL),
+(50, 3, 6, 42, NULL, NULL),
+(51, 3, 6, 43, NULL, NULL),
+(52, 3, 6, 44, NULL, NULL),
+(53, 3, 6, 45, NULL, NULL),
+(54, 3, 7, 46, NULL, NULL),
+(55, 3, 7, 47, NULL, NULL),
+(56, 3, 7, 48, NULL, NULL),
+(57, 3, 7, 49, NULL, NULL),
+(58, 3, 7, 61, NULL, NULL),
+(59, 3, 8, 50, NULL, NULL),
+(60, 3, 8, 51, NULL, NULL),
+(61, 3, 8, 52, NULL, NULL),
+(62, 3, 8, 53, NULL, NULL),
+(63, 3, 9, 54, NULL, NULL),
+(64, 3, 9, 55, NULL, NULL),
+(65, 3, 9, 56, NULL, NULL),
+(66, 3, 9, 57, NULL, NULL),
+(67, 3, 9, 58, NULL, NULL),
+(68, 3, 9, 59, NULL, NULL),
+(69, 3, 9, 60, NULL, NULL),
+(70, 7, 1, 1, '2018-08-09 19:23:47', '2018-08-09 19:23:47'),
+(71, 7, 3, 13, '2018-08-09 19:24:03', '2018-08-09 19:24:03'),
+(72, 7, 3, 14, '2018-08-09 19:24:03', '2018-08-09 19:24:03'),
+(73, 7, 3, 15, '2018-08-09 19:24:03', '2018-08-09 19:24:03'),
+(74, 7, 3, 16, '2018-08-09 19:24:03', '2018-08-09 19:24:03'),
+(75, 7, 4, 17, '2018-08-09 19:24:16', '2018-08-09 19:24:16'),
+(76, 7, 4, 18, '2018-08-09 19:24:16', '2018-08-09 19:24:16'),
+(77, 7, 4, 19, '2018-08-09 19:24:16', '2018-08-09 19:24:16'),
+(78, 7, 4, 20, '2018-08-09 19:24:16', '2018-08-09 19:24:16'),
+(79, 7, 4, 21, '2018-08-09 19:24:16', '2018-08-09 19:24:16'),
+(80, 7, 4, 22, '2018-08-09 19:24:16', '2018-08-09 19:24:16');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `menu_concepto`
+--
+
+CREATE TABLE `menu_concepto` (
+  `id` int(11) NOT NULL,
+  `puesto_id` int(11) NOT NULL,
+  `categoria_funcion_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `menu_concepto`
+--
+
+INSERT INTO `menu_concepto` (`id`, `puesto_id`, `categoria_funcion_id`, `created_at`, `updated_at`) VALUES
+(1, 6, 2, NULL, '2018-08-09 03:04:55'),
+(2, 3, 1, '2018-08-09 06:00:00', '2018-08-09 06:00:00'),
+(3, 3, 2, '2018-08-09 06:00:00', '2018-08-09 06:00:00'),
+(4, 3, 3, '2018-08-09 06:00:00', '2018-08-09 06:00:00'),
+(5, 3, 4, '2018-08-09 06:00:00', '2018-08-09 06:00:00'),
+(6, 3, 5, '2018-08-09 06:00:00', '2018-08-09 06:00:00'),
+(7, 3, 6, '2018-08-09 06:00:00', '2018-08-09 06:00:00'),
+(8, 3, 7, '2018-08-09 06:00:00', '2018-08-09 06:00:00'),
+(9, 3, 8, '2018-08-09 06:00:00', '2018-08-09 06:00:00'),
+(10, 3, 9, '2018-08-09 06:00:00', '2018-08-09 06:00:00'),
+(11, 7, 1, '2018-08-09 19:23:47', '2018-08-09 19:23:47'),
+(12, 7, 3, '2018-08-09 19:24:03', '2018-08-09 19:24:03'),
+(13, 7, 4, '2018-08-09 19:24:16', '2018-08-09 19:24:16');
 
 -- --------------------------------------------------------
 
@@ -5526,12 +5787,50 @@ INSERT INTO `municipios` (`id`, `municipio`) VALUES
 
 CREATE TABLE `pagos_dependencias` (
   `pago_dependencia_id` int(10) UNSIGNED NOT NULL,
-  `cliente_id` int(11) NOT NULL,
+  `fecha` date NOT NULL,
   `dependencia` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pago` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cantidad` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo_pago` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cuenta` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `entrega` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `pagos_dependencias`
+--
+
+INSERT INTO `pagos_dependencias` (`pago_dependencia_id`, `fecha`, `dependencia`, `cantidad`, `tipo_pago`, `cuenta`, `entrega`, `created_at`, `updated_at`) VALUES
+(1, '2018-08-06', 'Catastro', '100', 'Efectivo', '123', 'luis', '2018-08-06 17:52:23', '2018-08-06 17:52:23'),
+(2, '2018-08-06', 'Catastro', '300', 'Efectivo', '567', 'fer', '2018-08-06 17:52:33', '2018-08-06 17:52:33');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pago_impuestos`
+--
+
+CREATE TABLE `pago_impuestos` (
+  `pago_impuesto_id` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `impuesto` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `cantidad` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `tipo_pago` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `cuenta` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `entrega` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `pago_impuestos`
+--
+
+INSERT INTO `pago_impuestos` (`pago_impuesto_id`, `fecha`, `impuesto`, `cantidad`, `tipo_pago`, `cuenta`, `entrega`, `created_at`, `updated_at`) VALUES
+(1, '2005-08-18', 'Honorarios', '100', 'Efectivo', '123', 'luis', '2018-08-05 06:49:24', '2018-08-05 06:49:24'),
+(2, '2005-08-18', '88888', '8', 'Efectivo', '8', '8', '2018-08-05 07:34:20', '2018-08-05 07:34:20'),
+(3, '2005-08-18', '678', '678', 'Efectivo', '678', '678', '2018-08-05 07:36:12', '2018-08-05 07:36:12');
 
 -- --------------------------------------------------------
 
@@ -5569,6 +5868,38 @@ CREATE TABLE `presupuestos` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `presupuestos`
+--
+
+INSERT INTO `presupuestos` (`presupuesto_id`, `cliente_id`, `costo_tramite_id`, `carpeta_id`, `estatus`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, 2, 'pendiente', '2018-08-11 22:41:09', '2018-08-11 22:41:09'),
+(2, 2, 2, 3, 'pendiente', '2018-08-13 16:25:01', '2018-08-13 16:25:01');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `proyecto_dependencia`
+--
+
+CREATE TABLE `proyecto_dependencia` (
+  `id` int(11) NOT NULL,
+  `fecha_ingreso` date NOT NULL,
+  `numero_folio` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `dependencia` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `fecha_egreso` date DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `proyecto_dependencia`
+--
+
+INSERT INTO `proyecto_dependencia` (`id`, `fecha_ingreso`, `numero_folio`, `dependencia`, `fecha_egreso`, `created_at`, `updated_at`) VALUES
+(5, '2018-08-06', '6', 'Catastro', '2018-08-07', '2018-08-07 21:59:36', '2018-08-07 21:59:36'),
+(6, '2018-08-06', '6', 'Catastro', '2018-08-07', '2018-08-07 21:59:36', '2018-08-07 21:59:36');
+
 -- --------------------------------------------------------
 
 --
@@ -5589,7 +5920,10 @@ CREATE TABLE `puestos` (
 
 INSERT INTO `puestos` (`id`, `puesto`, `abogado`, `created_at`, `updated_at`) VALUES
 (2, 'Caja', 'no', '2018-07-22 05:35:56', '2018-07-22 05:35:56'),
-(3, 'Abogado', 'si', '2018-07-19 03:49:17', '2018-07-19 03:49:17');
+(3, 'Administrador', 'no', '2018-07-19 03:49:17', '2018-07-19 03:49:17'),
+(5, 'Abogado', 'si', '2018-07-26 03:52:44', '2018-07-26 03:52:44'),
+(6, 'AuxAbogado', 'no', '2018-07-26 08:51:13', '2018-07-26 08:51:13'),
+(7, 'Recepcion', 'no', '2018-08-09 19:20:08', '2018-08-09 19:20:08');
 
 -- --------------------------------------------------------
 
@@ -5600,13 +5934,39 @@ INSERT INTO `puestos` (`id`, `puesto`, `abogado`, `created_at`, `updated_at`) VA
 CREATE TABLE `recepcion_pagos` (
   `recepcion_pago_id` int(10) UNSIGNED NOT NULL,
   `cliente_id` int(11) NOT NULL,
+  `concepto_id` int(11) NOT NULL,
+  `carpeta_id` int(11) NOT NULL,
   `presupuesto_id` int(11) NOT NULL,
+  `cantidad` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo_pago` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
-  `deposito_cuenta` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deposito_cuenta` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `recepcion_pagos`
+--
+
+INSERT INTO `recepcion_pagos` (`recepcion_pago_id`, `cliente_id`, `concepto_id`, `carpeta_id`, `presupuesto_id`, `cantidad`, `tipo_pago`, `fecha`, `hora`, `deposito_cuenta`, `created_at`, `updated_at`) VALUES
+(10, 1, 1, 2, 1, '0', '', '2011-08-18', '16:41:34', '', '2018-08-11 22:41:34', '2018-08-11 22:41:34'),
+(11, 1, 2, 2, 1, '0', '', '2011-08-18', '16:41:34', '', '2018-08-11 22:41:34', '2018-08-11 22:41:34'),
+(12, 1, 3, 2, 1, '0', '', '2011-08-18', '16:41:34', '', '2018-08-11 22:41:34', '2018-08-11 22:41:34'),
+(13, 1, 4, 2, 1, '0', '', '2011-08-18', '16:41:34', '', '2018-08-11 22:41:34', '2018-08-11 22:41:34'),
+(14, 1, 5, 2, 1, '0', '', '2011-08-18', '16:41:34', '', '2018-08-11 22:41:34', '2018-08-11 22:41:34'),
+(15, 1, 6, 2, 1, '0', '', '2011-08-18', '16:41:34', '', '2018-08-11 22:41:35', '2018-08-11 22:41:35'),
+(16, 1, 7, 2, 1, '0', '', '2011-08-18', '16:41:34', '', '2018-08-11 22:41:35', '2018-08-11 22:41:35'),
+(17, 2, 63, 3, 2, '0', '', '2013-08-18', '10:25:01', '', '2018-08-13 16:25:01', '2018-08-13 16:25:01'),
+(18, 2, 64, 3, 2, '0', '', '2013-08-18', '10:25:01', '', '2018-08-13 16:25:01', '2018-08-13 16:25:01'),
+(19, 2, 65, 3, 2, '0', '', '2013-08-18', '10:25:01', '', '2018-08-13 16:25:01', '2018-08-13 16:25:01'),
+(20, 2, 66, 3, 2, '0', '', '2013-08-18', '10:25:01', '', '2018-08-13 16:25:01', '2018-08-13 16:25:01'),
+(21, 2, 67, 3, 2, '0', '', '2013-08-18', '10:25:01', '', '2018-08-13 16:25:01', '2018-08-13 16:25:01'),
+(22, 2, 68, 3, 2, '0', '', '2013-08-18', '10:25:01', '', '2018-08-13 16:25:01', '2018-08-13 16:25:01'),
+(23, 2, 69, 3, 2, '0', '', '2013-08-18', '10:25:01', '', '2018-08-13 16:25:01', '2018-08-13 16:25:01'),
+(24, 2, 70, 3, 2, '0', '', '2013-08-18', '10:25:01', '', '2018-08-13 16:25:01', '2018-08-13 16:25:01'),
+(25, 2, 71, 3, 2, '0', '', '2013-08-18', '10:25:01', '', '2018-08-13 16:25:01', '2018-08-13 16:25:01');
 
 -- --------------------------------------------------------
 
@@ -5616,6 +5976,7 @@ CREATE TABLE `recepcion_pagos` (
 
 CREATE TABLE `revisiones` (
   `revision_id` int(10) UNSIGNED NOT NULL,
+  `carpeta_id` int(11) DEFAULT NULL,
   `estatus1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fecha` date DEFAULT NULL,
   `cliente_id` int(11) DEFAULT NULL,
@@ -5623,8 +5984,8 @@ CREATE TABLE `revisiones` (
   `tipo_tramite_id` int(11) DEFAULT NULL,
   `documentacion_id` int(11) DEFAULT NULL,
   `comentario` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `comentario_cal` text COLLATE utf8mb4_unicode_ci,
   `tipo_revision` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `control_tramite_id` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -5633,8 +5994,8 @@ CREATE TABLE `revisiones` (
 -- Volcado de datos para la tabla `revisiones`
 --
 
-INSERT INTO `revisiones` (`revision_id`, `estatus1`, `fecha`, `cliente_id`, `estatus2`, `tipo_tramite_id`, `documentacion_id`, `comentario`, `tipo_revision`, `control_tramite_id`, `created_at`, `updated_at`) VALUES
-(1, NULL, '2018-07-23', 1, NULL, 1, NULL, 'Revisar bien todo', '1', 2, '2018-07-23 21:51:22', '2018-07-23 21:51:22');
+INSERT INTO `revisiones` (`revision_id`, `carpeta_id`, `estatus1`, `fecha`, `cliente_id`, `estatus2`, `tipo_tramite_id`, `documentacion_id`, `comentario`, `comentario_cal`, `tipo_revision`, `created_at`, `updated_at`) VALUES
+(1, 2, 'Aprovada', '2018-08-01', 1, 'Aprovada', 1, NULL, 'revisar porfa', 'revisado', '3', '2018-07-23 21:51:22', '2018-07-23 21:51:22');
 
 -- --------------------------------------------------------
 
@@ -5670,7 +6031,9 @@ CREATE TABLE `tipos_tramites` (
 --
 
 INSERT INTO `tipos_tramites` (`id`, `tramite`, `duracion`, `created_at`, `updated_at`) VALUES
-(1, 'Testamento', '30', '2018-07-18 18:37:50', '2018-07-18 18:37:50');
+(1, 'Compra Venta', '35', '2018-07-28 06:50:15', '2018-08-10 03:43:35'),
+(5, 'Testamento', '20', '2018-07-28 07:00:21', '2018-07-28 07:00:21'),
+(7, 'Arrendamiento', '15', '2018-08-09 17:55:36', '2018-08-09 17:55:36');
 
 -- --------------------------------------------------------
 
@@ -5691,7 +6054,7 @@ CREATE TABLE `tipo_citas` (
 --
 
 INSERT INTO `tipo_citas` (`id`, `tipo`, `duracion`, `created_at`, `updated_at`) VALUES
-(1, 'Inicio Trámite', '20', '2018-07-08 06:00:00', '2018-07-08 06:00:00'),
+(1, 'Inicio Tramite', '30', '2018-07-08 06:00:00', '2018-08-01 22:08:03'),
 (2, 'Continuidad', '29', '2018-07-08 06:00:00', '2018-07-08 06:00:00'),
 (3, 'Asuntos Varios', '26789', '2018-07-08 06:00:00', '2018-07-09 06:03:00');
 
@@ -5714,7 +6077,12 @@ CREATE TABLE `tramites_abogado` (
 --
 
 INSERT INTO `tramites_abogado` (`tramite_abogado_id`, `tipo_tramite_id`, `usuario_id`, `created_at`, `updated_at`) VALUES
-(1, 13, 1, '2018-07-21 15:40:29', '2018-07-21 15:40:29');
+(1, 1, 32, '2018-07-26 08:36:35', '2018-07-26 08:36:35'),
+(2, 2, 32, '2018-07-26 08:36:35', '2018-07-26 08:36:35'),
+(3, 1, 36, '2018-07-29 06:11:46', '2018-07-29 06:11:46'),
+(4, 5, 36, '2018-07-29 06:11:46', '2018-07-29 06:11:46'),
+(5, 5, 37, '2018-08-09 18:30:05', '2018-08-09 18:30:05'),
+(6, 7, 37, '2018-08-09 18:30:05', '2018-08-09 18:30:05');
 
 -- --------------------------------------------------------
 
@@ -5735,8 +6103,11 @@ CREATE TABLE `tramites_documento` (
 --
 
 INSERT INTO `tramites_documento` (`id`, `tipo_tramite_id`, `documentacion_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 5, '2018-07-18 18:37:50', '2018-07-18 18:37:50'),
-(2, 1, 6, '2018-07-18 18:37:50', '2018-07-18 18:37:50');
+(2, 1, 6, '2018-07-18 18:37:50', '2018-07-18 18:37:50'),
+(7, 5, 6, '2018-07-28 07:00:21', '2018-07-28 07:00:21'),
+(11, 7, 6, '2018-08-09 17:55:36', '2018-08-09 17:55:36'),
+(12, 7, 7, '2018-08-09 17:55:36', '2018-08-09 17:55:36'),
+(13, 7, 8, '2018-08-09 17:55:36', '2018-08-09 17:55:36');
 
 -- --------------------------------------------------------
 
@@ -5746,9 +6117,27 @@ INSERT INTO `tramites_documento` (`id`, `tipo_tramite_id`, `documentacion_id`, `
 
 CREATE TABLE `tramites_terminados` (
   `id` int(11) NOT NULL,
-  `carpeta` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
-  `folio_escritura` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
-  `tramite` varchar(255) COLLATE utf8_spanish_ci NOT NULL
+  `carpeta_Id` int(11) DEFAULT NULL,
+  `tramite_id` int(11) DEFAULT NULL,
+  `numero_escritura` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `cliente_id` int(11) DEFAULT NULL,
+  `fecha` datetime DEFAULT NULL,
+  `volumen` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `folio1` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `folio2` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `otorgantes` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `presupuesto_id` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `contrato` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `pusto_id` int(11) DEFAULT NULL,
+  `dependencia_id` int(11) DEFAULT NULL,
+  `tramite_dependencia_id` int(11) DEFAULT NULL,
+  `revicion` int(11) DEFAULT NULL,
+  `kinegrama_id` int(11) DEFAULT NULL,
+  `terminado` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `fecha_entrega` datetime DEFAULT NULL,
+  `nombre_recibe` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -5764,6 +6153,7 @@ CREATE TABLE `users` (
   `ap_materno` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `puesto_id` int(11) NOT NULL,
+  `estado` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -5774,10 +6164,11 @@ CREATE TABLE `users` (
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `nombre`, `ap_paterno`, `ap_materno`, `email`, `puesto_id`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(12, 'Laura Daniela', 'Cardenas', 'Herrera', 'laura89@hotmail.com', 3, '$2y$10$BCCnIL/4j8xVVA0fEsap5.WL0mWARfB41hVHOLFftvlE4CR.g9c2C', 'RY2QpKWCN8gy0AJ7X1dozscbYd0qqa6kuI1QxksbzqMHnS9hfLQVrgYRfXmN', '2018-07-05 18:04:14', '2018-07-09 23:35:14'),
-(13, 'carmen', 'Cardenas', 'Orizaba', 'carmen@hotmail.com', 3, '$2y$10$0mhHdkdkYwUPCKye6G4p4.pjemQXONTVuLp64D9HfXHI176IptYUK', NULL, '2018-07-21 15:38:48', '2018-07-21 15:38:48'),
-(14, 'Luis', 'Cardenas', 'Reyez', 'luisa@hotmail.com', 2, '$2y$10$jPDocjyOisBOmTrbByMgKeeC4va.X3CrrGDEZ4DNCFKb5mGX3/QTK', NULL, '2018-07-24 18:29:40', '2018-07-24 18:29:40');
+INSERT INTO `users` (`id`, `nombre`, `ap_paterno`, `ap_materno`, `email`, `puesto_id`, `estado`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(34, 'Yazmin Sarahi', 'Alvarado', 'Huerta', 'alhuya96@gmail.com', 3, 'Activo', '$2y$10$mBSdH9KVY3WhnCiYhFrJ5u6sQ66/IwzY.DQLeP0d96WAU.j7jC3By', 'HhTpgz4UogjcXijGSGJkdG55kObgqTO3qgKkdpcyzq7QUePjrcTDR5gs3hcq', '2018-07-27 05:22:23', '2018-07-28 00:26:32'),
+(36, 'Roberto', 'Rios', 'alanis', 'roberto@hotmail.com', 6, 'Activo', '$2y$10$M8fbyavYBJ2DSijbKcdr2OoM8kSqoiMmH7neXUW7GaOMbBRxo5LFi', '3SlQELUx43jedZUuQDrusOoVwI1u1VdEHIsxcDX5qPCTRC7NgNEIOiHMV8jp', '2018-07-29 06:11:41', '2018-07-29 06:11:41'),
+(37, 'Juan', 'Perez', 'Mendez', 'juan@hotmail.com', 5, 'Activo', '$2y$10$7Vs0cId1zZBQA0mKSfAGTOHMLm9KfPgjUzWVHVHYYFhva1dFyxFcK', NULL, '2018-08-09 18:22:44', '2018-08-09 18:22:44'),
+(38, 'Fabian', 'Cardenas', 'Barraza', 'fabian@hotmail.com', 2, 'Activo', '$2y$10$ez9dVwS/FJJygp/Jxrxq8eCxrm5gj8SJOtah8OigiSRkdjV4gh.lm', '4aX06p0pb13kmdYjoKCVtJoLbK0RI23ht2Wcu8aEg2XDtTmj1lM1xrxy9eQW', '2018-08-13 01:10:49', '2018-08-13 06:39:08');
 
 -- --------------------------------------------------------
 
@@ -5814,6 +6205,13 @@ CREATE TABLE `validacion_documentos` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `validacion_documentos`
+--
+
+INSERT INTO `validacion_documentos` (`valida_documento_id`, `cliente_id`, `estatus`, `tipo_tramite_id`, `documentacion_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 'completa', '1', 2, '2018-08-10 07:37:23', '2018-08-10 07:37:23');
+
 -- --------------------------------------------------------
 
 --
@@ -5837,7 +6235,10 @@ CREATE TABLE `validacion_documentos_abogado` (
 
 INSERT INTO `validacion_documentos_abogado` (`valida_documento_id`, `cliente_id`, `estatus`, `tipo_tramite`, `documentacion_id`, `comentario`, `created_at`, `updated_at`) VALUES
 (1, 1, NULL, '1', 1, 'Correcto', '2018-07-23 07:20:53', '2018-07-23 07:20:53'),
-(2, 1, NULL, '1', 2, 'Correcto', '2018-07-23 07:20:54', '2018-07-23 07:20:54');
+(2, 1, NULL, '1', 2, 'Correcto', '2018-07-23 07:20:54', '2018-07-23 07:20:54'),
+(3, 2, NULL, '7', 11, 'Todo Completo', '2018-08-09 18:39:58', '2018-08-09 18:39:58'),
+(4, 2, NULL, '7', 12, 'Todo Completo', '2018-08-09 18:39:58', '2018-08-09 18:39:58'),
+(5, 2, NULL, '7', 13, 'Todo Completo', '2018-08-09 18:39:58', '2018-08-09 18:39:58');
 
 --
 -- Índices para tablas volcadas
@@ -5865,7 +6266,7 @@ ALTER TABLE `categorias_puestos`
 -- Indices de la tabla `citas`
 --
 ALTER TABLE `citas`
-  ADD PRIMARY KEY (`cita_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `clientes`
@@ -5896,6 +6297,18 @@ ALTER TABLE `control_tramites`
 --
 ALTER TABLE `cortes`
   ADD PRIMARY KEY (`corte_id`);
+
+--
+-- Indices de la tabla `corte_cp_dep`
+--
+ALTER TABLE `corte_cp_dep`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `corte_cp_im`
+--
+ALTER TABLE `corte_cp_im`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `costos_tramite`
@@ -5945,7 +6358,19 @@ ALTER TABLE `horarios_abogado`
 -- Indices de la tabla `kinegramas`
 --
 ALTER TABLE `kinegramas`
-  ADD PRIMARY KEY (`kinegrama_id`);
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `menu`
+--
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`menu_id`);
+
+--
+-- Indices de la tabla `menu_concepto`
+--
+ALTER TABLE `menu_concepto`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `migrations`
@@ -5966,6 +6391,12 @@ ALTER TABLE `pagos_dependencias`
   ADD PRIMARY KEY (`pago_dependencia_id`);
 
 --
+-- Indices de la tabla `pago_impuestos`
+--
+ALTER TABLE `pago_impuestos`
+  ADD PRIMARY KEY (`pago_impuesto_id`);
+
+--
 -- Indices de la tabla `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -5976,6 +6407,12 @@ ALTER TABLE `password_resets`
 --
 ALTER TABLE `presupuestos`
   ADD PRIMARY KEY (`presupuesto_id`);
+
+--
+-- Indices de la tabla `proyecto_dependencia`
+--
+ALTER TABLE `proyecto_dependencia`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `puestos`
@@ -6070,55 +6507,67 @@ ALTER TABLE `carpetas`
 -- AUTO_INCREMENT de la tabla `categorias_funciones`
 --
 ALTER TABLE `categorias_funciones`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias_puestos`
 --
 ALTER TABLE `categorias_puestos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `cita_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `conceptos`
 --
 ALTER TABLE `conceptos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `conceptos_costos`
 --
 ALTER TABLE `conceptos_costos`
-  MODIFY `concepto_costo_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `concepto_costo_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT de la tabla `control_tramites`
 --
 ALTER TABLE `control_tramites`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `cortes`
 --
 ALTER TABLE `cortes`
-  MODIFY `corte_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `corte_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `corte_cp_dep`
+--
+ALTER TABLE `corte_cp_dep`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `corte_cp_im`
+--
+ALTER TABLE `corte_cp_im`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `costos_tramite`
 --
 ALTER TABLE `costos_tramite`
-  MODIFY `costo_tramite_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `costo_tramite_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de la tabla `dependencias`
@@ -6130,7 +6579,7 @@ ALTER TABLE `dependencias`
 -- AUTO_INCREMENT de la tabla `documentacion`
 --
 ALTER TABLE `documentacion`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `estados`
@@ -6148,19 +6597,31 @@ ALTER TABLE `estados_municipios`
 -- AUTO_INCREMENT de la tabla `funciones`
 --
 ALTER TABLE `funciones`
-  MODIFY `funcion_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `funcion_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT de la tabla `horarios_abogado`
 --
 ALTER TABLE `horarios_abogado`
-  MODIFY `horario_abogado_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `horario_abogado_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `kinegramas`
 --
 ALTER TABLE `kinegramas`
-  MODIFY `kinegrama_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `menu`
+--
+ALTER TABLE `menu`
+  MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+
+--
+-- AUTO_INCREMENT de la tabla `menu_concepto`
+--
+ALTER TABLE `menu_concepto`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -6178,31 +6639,43 @@ ALTER TABLE `municipios`
 -- AUTO_INCREMENT de la tabla `pagos_dependencias`
 --
 ALTER TABLE `pagos_dependencias`
-  MODIFY `pago_dependencia_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `pago_dependencia_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `pago_impuestos`
+--
+ALTER TABLE `pago_impuestos`
+  MODIFY `pago_impuesto_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `presupuestos`
 --
 ALTER TABLE `presupuestos`
-  MODIFY `presupuesto_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `presupuesto_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `proyecto_dependencia`
+--
+ALTER TABLE `proyecto_dependencia`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `puestos`
 --
 ALTER TABLE `puestos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `recepcion_pagos`
 --
 ALTER TABLE `recepcion_pagos`
-  MODIFY `recepcion_pago_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `recepcion_pago_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `revisiones`
 --
 ALTER TABLE `revisiones`
-  MODIFY `revision_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `revision_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tasks`
@@ -6214,7 +6687,7 @@ ALTER TABLE `tasks`
 -- AUTO_INCREMENT de la tabla `tipos_tramites`
 --
 ALTER TABLE `tipos_tramites`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_citas`
@@ -6226,13 +6699,13 @@ ALTER TABLE `tipo_citas`
 -- AUTO_INCREMENT de la tabla `tramites_abogado`
 --
 ALTER TABLE `tramites_abogado`
-  MODIFY `tramite_abogado_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `tramite_abogado_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `tramites_documento`
 --
 ALTER TABLE `tramites_documento`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `tramites_terminados`
@@ -6244,7 +6717,7 @@ ALTER TABLE `tramites_terminados`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -6256,13 +6729,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `validacion_documentos`
 --
 ALTER TABLE `validacion_documentos`
-  MODIFY `valida_documento_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `valida_documento_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `validacion_documentos_abogado`
 --
 ALTER TABLE `validacion_documentos_abogado`
-  MODIFY `valida_documento_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `valida_documento_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
