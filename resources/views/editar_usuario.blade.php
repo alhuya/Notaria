@@ -97,7 +97,7 @@
                       <label for="puesto" class="col-md-4 col-form-label text-md-right">{{ __('Puesto') }}</label>
 
                              <div class="col-md-6">
-                               <select name="estado" id="estado" class="form-control" required>
+                               <select name="puesto_id" id="estado" class="form-control" required>
                                 !<option value="">{{ __('-- Seleccione el puesto --') }}</option>
                                 @foreach($puestos as $puesto)
                                 <option value="{{ $puesto['id']}}">{{$puesto['puesto'] }}</option>

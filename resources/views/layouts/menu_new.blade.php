@@ -6,7 +6,7 @@
             <ul class="sidebar-nav">
               <li  data-toggle="collapse" data-target="#homr" class="btn-menu collapsed active">
                   <a  href="{{ route('home') }}" >
-                   Home</a>
+                   Inicio</a>
                 </li>
                  <!-- C L I E N T E S -->
                

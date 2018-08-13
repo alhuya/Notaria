@@ -36,7 +36,7 @@
   <thead>
     <tr>
       <th scope="col">Fecha</th>
-      <th scope="col">Folio</th>
+      <th scope="col">Número de Escritura</th>
       <th scope="col">Concepto</th>
       <th scope="col">Tipo de Pago</th>
       <th scope="col">Cuenta</th>
@@ -71,7 +71,7 @@
  
 
  <tr>  
-<th >Tola</th>
+<th >Total</th>
 <th ></th>
 <th ></th>
 <th ></th>

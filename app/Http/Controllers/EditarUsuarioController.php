@@ -97,7 +97,7 @@ class EditarUsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request){
-        $id = $request->input('usuario');
+        $id = $request->input('usuario'); 
         
             User::where('id',$id)->first()->update($request->all());
             return redirect('/editar_usuario')->with('status','Usuario editado exitosamente');

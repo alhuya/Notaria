@@ -141,8 +141,7 @@ Route::post('/alta_cita', 'AltaCitaController@store');
 Route::get('/tipos_citas', 'TiposCitasController@index')->name('tipo')->middleware('auth'); 
 Route::get('TipoCitas/{id}','TiposCitasController@store');  
 Route::post('/tipos_citas', 'TiposCitasController@update')->name('tipoedit');  
- <<<<< HEAD
-  
+   
 
 ///// TARIFAS //// 
 Route::get('/tarifas', 'TarifasController@index')->name('tarifas')->middleware('auth'); 
@@ -154,11 +153,7 @@ Route::get('/consulta_tramite', 'ConsultaTramiteController@index')->name('consul
 Route::get('tramite_documento/{id}', 'ConsultaTramiteControllerr@store'); 
 
 ///// VALIDA DOCUMENTACION ////
-Route::get('/validacion_documentacion', 'ValidacionDocumentacionController@index'=======
-Route::get('/cindex')->name('costo');
-osto
-Route::post('/concepto_costo', 'ontrolCler@=======
-Route::get('/concepto_costo', 'Concept)->name('valida_doc')->middleware('auth'); 
+Route::get('/validacion_documentacion', 'ValidacionDocumentacionController@index')->name('valida_doc')->middleware('auth'); 
 Route::get('tramite_documento/{id}', 'ValidacionDocumentacionController@store'); 
 Route::post('/validacion_documentacion', 'ValidacionDocumentacionController@store2'); 
 
@@ -186,7 +181,7 @@ Route::get('/consulta_citas', 'ConsultaCitaController@index')->name('consultacit
 //////// CONFIRMA TRAMITE /////
 
 Route::get('/confirma_tramite', 'ConfirmaTramiteController@index')->name('confirma')->middleware('auth'); 
-<<Route::get('tramite_documento/{id}', 'ConfirmaTramiteController@store');  
+Route::get('tramite_documento/{id}', 'ConfirmaTramiteController@store');  
 Route::post('/confirma_tramite', 'ConfirmaTramiteController@store2'); 
 ///////////VALIDA DOCUMENTOS /////////
   
@@ -246,19 +241,18 @@ Route::post('apertura_carpetas', 'AperturaCarpetasController@store');
  Route::get('/revicion3','Revicion3Controller@index')->name('rev3')->middleware('auth'); 
 
 ////////// FINIQUITO DE TRAMITES ////////
-Route::get('/finiquito_tramites','FiniquitoTramitesController@index')->name('finiquitar')->middleware('auth')Route::post('/concepto_costo', 'ConceptoCostoController@store'); 
->>>>>> 0d877ba///// CONCEPTO //9ffpto', 'ConceptoController@8index///eRoute::post('/concepto_costo', 'ConceptoCostoController@st';   
+Route::get('/finiquito_tramites','FiniquitoTramitesController@index')->name('finiquitar')->middleware('auth');   
 
 ///////// EDITA PRESUPUESTO //////
 Route::get('/edita_presupuesto','EditaPresupuestoController@index')->name('updateprep')->middleware('auth'); 
 Route::post('/edita_presupuesto','EditaPresupuestoController@store'); 
-) 
+ 
 
 //////// AUTORIZA PRESUPUESTO ////
 Route::get('/autoriza_presupuesto','AutorizaPresupuestoController@index')->name('prepa')->middleware('auth');   
 Route::post('/autoriza_presupuesto','AutorizaPresupuestoController@store'); 
  
-///////// RECEPCCIONr DE PAGOS /////
+///////// RECEPCCION DE PAGOS /////
  
 Route::get('/recepcion_pagos','RecepcionPagosController@index')->name('pago')->middleware('auth');  
 Route::post('/recepcion_pagos','RecepcionPagosController@store')->name('insert_pago');     
@@ -266,7 +260,7 @@ Route::post('/recepcion_pagos','RecepcionPagosController@store')->name('insert_p
 //////// CORTES //// 
 Route::get('/cortes','CortesController@index')->name('cortes')->middleware('auth'); 
 Route::post('/cortes','CortesController@store')->name('insert_corte'); 
-a
+
 //////////  Corte Impuesto //// 
 Route::get('/corteimp','CortesImpuestoController@index')->name('cortes_imp')->middleware('auth'); 
 Route::post('/corteimp','CortesImpuestoController@store');
@@ -275,28 +269,14 @@ Route::post('/corteimp','CortesImpuestoController@store');
 ///////// ACTUALIZA ////////
 Route::get('/actualiza','ActualizaController@index')->name('ac')->middleware('auth');   
 
-'///////// REGISTRO_GUIA //////// 
+///////// REGISTRO_GUIA //////// 
 Route::get('/registro_guia','RegistroGuiaController@index')->name('registro')->middleware('auth');  
 Route::post('/registro_guia','RegistroGuiaController@update');
-//Route::posceptoContra','RegistroGuiaController@store')->name('insert_reg'); 
+//Route::post('/registro_guia','RegistroGuiaController@store')->name('insert_reg'); 
 
  
 //////// ENTREGA KINEGRAMAS /////
-Route::get('/entrega_kinegramasd 
-ew///////onceREGA KINEGRAMAS /////te::get('/entrega_kinegramas','EntregaKite::get('/entrega_kinegramas','EntregaKit
-///////CNCETO ///// 
-
-Route::get(e
-Route::get('
-Route::get('/concepeptto', 'ConceptoContconcepto')->middRoute::ge('auth'); 
-Route::postoller@index')->name('concepto')->middleware('auth'); 
-Route::post(////////', 'ConceEDITAR CITA //////
-///////  
-
-/////// EDITAR CITA ////////////// 
-
-/////// E 'Editar///CitaController@indtar_cita',Route::get('/concepto', 'ConceptoController@index')->name('concepto')->middleware('auth'); 
-Route::post('/concepto', 'ConceptoContte::get('/entrega_kinegramas','EntregaKinegramasController@index')->name('entki')->middleware('auth'); 
+Route::get('/entrega_kinegramas','EntregaKinegramasController@index')->name('entki')->middleware('auth'); 
 Route::get('Kinegramas/{id}', 'EntregaKinegramasController@store'); 
 Route::post('/entrega_kinegramas','EntregaKinegramasController@store2');
 //Route::post('/entrega_kinegramas', 'EntregaKinegramasController@update');
@@ -319,10 +299,7 @@ Route::post('/control_pago_impuestos','ControlPagoImpuestosController@store')->n
 
 /////// CORTE CUENTAS POR PAGAR ////
 
-Route::get('/corte_cp','CorteCPController@index')->name('CCPRoute::get('/concepto_costo', 'ConceptoCostoController@index')->name('costo')->middleware('auth'); 
-Route::post(to_costo', 'Concepo','Conc=======
-Route::get('/concep@store'); 
-')->middleware('auth');  
+Route::get('/corte_cp','CorteCPController@index')->name('CCP')->middleware('auth');  
 Route::post('/corte_cp','CorteCPController@store');
 
 /////// TRAMITES TERMINADOS ////
@@ -370,3 +347,13 @@ Route::post('/horario_atencion_clientes','HorarioAtencionClienteController@store
 
 
  
+
+ 
+
+
+
+ 
+
+ 
+?>
+  
