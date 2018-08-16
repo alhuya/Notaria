@@ -2,7 +2,7 @@
 
 namespace Notaria\Http\Controllers;
 use Illuminate\Support\Facades\Auth; 
-use DB;
+use DB;  
 
 use Illuminate\Http\Request;
 use Notaria\Clientes;

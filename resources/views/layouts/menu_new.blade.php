@@ -37,7 +37,7 @@
                   <!-- r e p o r t e s -->
                   @foreach($funciones as $funcion)
                 @if($funcion->funcion_id == 4)
-                    <li><a href="#">Reportes</a></li>
+                    <li><a href="{{ route('rep') }}">Reportes</a></li>
                     @endif
                   @endforeach
                   </ul>
@@ -98,11 +98,11 @@
                          @if($funcion->funcion_id == 11)
                    <li><a href="{{ route('Doc_tram') }}">Documentación por Tramite</a></li>
                    @endif
-                    @endforeach
+                    @endforeach 
                   <!-- r e p o r t e s -->
                   @foreach($funciones as $funcion)
                          @if($funcion->funcion_id == 12)
-                  <li><a href="#">Reportes</a></li>
+                  <li><a href="{{ route('rep_tram') }}">Reportes</a></li> 
                   @endif
                     @endforeach
                 </ul>
@@ -137,17 +137,17 @@
                   @endforeach
                   <!--  r e p o r t e s -->
                   @foreach($funciones as $funcion)
-                   @if($funcion->funcion_id == 16)
-                  <li><a href="#">Reportes</a></li>
+                   @if($funcion->funcion_id == 16) 
+                  <li><a href="{{ route('reptarif') }}">Reportes</a></li>
                   @endif
                   @endforeach
                 </ul>
                 @endif
                    @endforeach
-
+ 
                   <!-- R E C E P C I O N   D E   C L I E N T E S -->
                   @foreach($conceptos as $concepto)
-                  @if($concepto->categoria_funcion_id == 4)
+                  @if($concepto->categoria_funcion_id == 4) 
           
             <li data-toggle="collapse" data-target="#recepcion" class="btn-menu collapsed ">
                   <a href="#">Recepción de Clientes</a>
@@ -157,6 +157,8 @@
                 @foreach($funciones as $funcion)
                    @if($funcion->funcion_id == 17)
                   <li><a href="{{ route('consulta_client') }}">Consulta Cliente</a></li>
+                  <!-- v i t a c o r a -->
+                  <li><a href="{{ route('vitacora') }}">Vitacora</a></li>
                   @endif
                    @endforeach
                    
@@ -209,7 +211,7 @@
                    <!-- r e p o r t e s -->
                    @foreach($funciones as $funcion)
                    @if($funcion->funcion_id == 24)
-                  <li><a href="#">Reportes</a></li> 
+                  <li><a href="{{ route('rep_recepcion') }}">Reportes</a></li> 
                   @endif
                    @endforeach
                 </ul>
@@ -309,11 +311,17 @@
                    @foreach($funciones as $funcion)
                    @if($funcion->funcion_id == 36)
                             <li><a href="{{ route('rev3') }}">Tercera Revicion de Expediente</a></li>
+                           
                    @endif
                    @endforeach
                         </ul>
+                        @foreach($funciones as $funcion)
+                   @if($funcion->funcion_id == 67)
+                        <li><a href="{{ route('rep_recepcion') }}">Reportes</a></li>
+                        @endif
+                   @endforeach
                   
-                  <li><a href="#">Reportes</a></li>
+                 
                 </ul>
                 @endif
                    @endforeach
@@ -394,7 +402,7 @@
                     <!-- r e p o r t e s -->
                     @foreach($funciones as $funcion)
                    @if($funcion->funcion_id == 45)
-                  <li><a href="#">Reportes</a></li>
+                  <li><a href="{{ route('rep_caja') }}">Reportes</a></li> 
                   @endif
                    @endforeach
                 </ul>
@@ -435,7 +443,7 @@
                   <!-- r e p o  r t e s -->
                   @foreach($funciones as $funcion)
                    @if($funcion->funcion_id == 49)
-                    <li><a href="#">Reportes </a></li>
+                    <li><a href="{{ route('rep_cuent_pag') }}">Reportes </a></li>
                     @endif
                    @endforeach
                 </ul>
@@ -477,7 +485,7 @@
                   <!-- r e p o r t e s -->
                   @foreach($funciones as $funcion)
                    @if($funcion->funcion_id == 53)
-                  <li><a href="#">Reportes</a></li>
+                  <li><a href="{{ route('rep_archiv') }}">Reportes</a></li>
                   @endif
                    @endforeach
                 </ul>

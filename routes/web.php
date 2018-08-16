@@ -9,7 +9,7 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/ 
+*/  
 
 Route::get('/', function () {
     return view('welcome'); 
@@ -67,7 +67,7 @@ Route::get('/tramite_abogado','TramiteAbogadoController@index')->name('tramite_a
 Route::POST('/tramite_abogado','TramiteAbogadoController@store');
 
 //// CONSULTA USUARIO ///
-
+ 
 Route::get('/consulta_usuario','ConsultaUsuarioController@index')->name('consulta_usuario')->middleware('auth'); 
 Route::get('User/{id}', 'ConsultaUsuarioController@store');  
 
@@ -84,6 +84,15 @@ Route::patch('/funciones/{id}/{puesto}','FuncionesController@store');
 /////////// REPORTES USUARIO /////
 
 Route::get('/reportes_usuario','ReportesUsuarioController@index')->name('reportes_usuario')->middleware('auth'); 
+Route::get('/reporte_us','ReportesUsController@index')->name('rep_us')->middleware('auth'); 
+Route::get('pdf', 'ReportesUsPDFController@index')->middleware('auth');
+Route::get('pdf/reporte_uspdf','ReportesUsPDFController@getGenerar');
+Route::get('/menu_usuarios','UsuariosMenuController@index')->name('menu_us')->middleware('auth');
+Route::get('Menu/{id}', 'UsuariosMenuController@store');   
+Route::get('pdf', 'MenuPDFuController@index')->middleware('auth');
+Route::get('pdf/menu_pdf','MenuPDFuController@getGenerar');
+
+
  
 ///////// REGISTRAR CLIENTE ////
 
@@ -112,22 +121,40 @@ Route::post('/editar_cliente', 'EditarClienteController@update')->name('client')
 Route::get('/eliminar_cliente', 'EliminarClienteController@index')->name('eliminar_client')->middleware('auth'); 
 Route::delete('/eliminar_cliente', 'EliminarClienteController@destroy');
 Route::get('Clientes/{id}', 'EliminarClienteController@store');  
+
+/// Reportes Clientes //
+Route::get('/Reportes_clientes', 'ReportesClientesController@index')->name('rep')->middleware('auth');
+Route::get('/reportes_allclientes','ReportesallclientesController@index')->name('reportes_cliente')->middleware('auth');
+Route::get('pdf', 'MPDFController@index')->name('mpdf')->middleware('auth');
+Route::get('pdf/generar','MPDFController@getGenerar');
+  
+ 
   
 ///// ELIMINAR DOCUMENTACION ///
 Route::get('/eliminar_documento', 'EliminarDoumentoController@index')->name('eliminar_doc')->middleware('auth'); 
 Route::delete('/eliminar_documento', 'EliminarDoumentoController@destroy'); 
 Route::get('Documentacion/{id}', 'EliminarDoumentoController@store'); 
-
+ 
+ 
 ////// COSNULTAR CLIENTE ///// 
 Route::get('/consulta_cliente', 'ConsultaClienteController@index')->name('consulta_client')->middleware('auth'); 
 Route::get('Clientes/{id}', 'ConsultaClienteController@store'); 
- 
+  
+//// VITACORA ////////////
+Route::get('/Vitacora', 'VitacoraController@index')->name('vitacora')->middleware('auth');
+Route::post('/Vitacora', 'VitacoraController@store')->name('insertvit');
+
 ///////// EDITAR DOCUMENTO ////////
  
 Route::get('/editar_documento', 'EditarDoumentoController@index')->name('editar_doc')->middleware('auth'); 
 Route::get('Documentacion/{id}', 'EditarDoumentoController@store'); 
 Route::patch('/editar_documento', 'EditarDoumentoController@update'); 
- 
+
+/// REPORTES TRAMITES ///////////
+Route::get('/reportes_tramites', 'ReportesTramitesController@index')->name('rep_tram')->middleware('auth');
+Route::get('/reporte_doctram', 'ReporteDOCTRAMController@index')->name('rep_doctram')->middleware('auth');
+Route::get('RepTramites/{id}', 'ReporteDOCTRAMController@store');  
+  
 ////// AGENDA //// 
 Route::get('/agenda', 'AgendaController@index')->name('agenda')->middleware('auth'); 
 Route::get('Citas/{id}', 'AgendaController@store');
@@ -140,8 +167,10 @@ Route::post('/alta_cita', 'AltaCitaController@store');
 //// EDITAR TIPOS CITAS //////
 Route::get('/tipos_citas', 'TiposCitasController@index')->name('tipo')->middleware('auth'); 
 Route::get('TipoCitas/{id}','TiposCitasController@store');  
-Route::post('/tipos_citas', 'TiposCitasController@update')->name('tipoedit');  
-   
+Route::post('/tipos_citas', 'TiposCitasController@update')->name('tipoedit');   
+
+/// REPORTES RECEPCION CLIENTES ///
+Route::get('/reportes_recepcion', 'ReportesRecepcionController@index')->name('rep_recepcion')->middleware('auth');   
 
 ///// TARIFAS //// 
 Route::get('/tarifas', 'TarifasController@index')->name('tarifas')->middleware('auth'); 
@@ -168,11 +197,16 @@ Route::post('/concepto_costo','ConceptoCostoController@store');
 Route::get('/concepto', 'ConceptoController@index')->name('concepto')->middleware('auth'); 
 Route::post('/concepto', 'ConceptoController@store');
  
+//// Reportes Tarifas /// 
+Route::get('/Reportes_Tarifario','ReportesTarifarioController@index')->name('reptarif')->middleware('auth'); 
+Route::get('/Reporte_Tarifa/{id}','ReporteTarifaController@index')->name('rtarifa')->middleware('auth'); 
+Route::get('pdf', 'PDFTarifasaController@index')->name('mpdf')->middleware('auth');
+Route::get('pdf/reporte_tarifas','PDFTarifasaController@getGenerar');  
 
 /////// EDITAR CITA ////////////////// 
 Route::get('/editar_cita', 'EditarCitaController@index')->name('editarcita')->middleware('auth'); 
 Route::post('/editar_cita','EditarCitaController@update')->name('edcit');  
- 
+   
 
 //////// Consulta Cita ///////////////
  
@@ -208,9 +242,6 @@ Route::post('apertura_carpetas', 'AperturaCarpetasController@store');
  ////// EDITAR CONCEPTO COSTO ////
  Route::get('/editar_concepto_costo','EditarConceptoCostoController@index')->name('editcc')->middleware('auth'); 
  Route::post('/editar_concepto_costo', 'EditarConceptoCostoController@update');
-
-  
-
   
  /////// PAGO DEPENDENCIAS ////////
  Route::get('/pago_dependencias','PagoDependenciasController@index')->name('pago')->middleware('auth'); 
@@ -220,14 +251,13 @@ Route::post('apertura_carpetas', 'AperturaCarpetasController@store');
  Route::post('/envio_control_calidad','EnvioCalidadController@store') ;
   
  ////////// PRESUPUESTO CONTROLER /////////
-
  Route::get('/presupuesto','PresupuestoController@index')->name('presupuesto')->middleware('auth');  
  Route::get('PresupuestoConsulta/{numero}','PresupuestoController@store');   
  
  //////////// REVICION 1 //////
  Route::get('/revicion1','Revicion1Controller@index')->name('rev1')->middleware('auth');  
  Route::get('ControlTramites/{id}','Revicion1Controller@store');   
- Route::post('/revicion1','Revicion1Controller@update')->name('insertrev'); 
+ Route::post('/revicion1','Revicion1Controller@update')->name('insertrev');  
  
  //////////// REVICION 2 ///////////////
  Route::get('/revicion2','Revicion2Controller@index')->name('rev2')->middleware('auth'); 
@@ -236,6 +266,10 @@ Route::post('apertura_carpetas', 'AperturaCarpetasController@store');
  ///////// REVICION 3 ///////////
  Route::get('/revicion3','Revicion3Controller@index')->name('rev3')->middleware('auth'); 
  Route::post('/revicion3','Revicion3Controller@update');
+
+ ///// REPORTES ABOGADOS ///
+ Route::get('/reportes_abogados','ReportesAbogadosController@index')->name('rep_abogados')->middleware('auth'); 
+
 
  ///////// EDITA PRESUPUESTO ///////
  Route::get('/revicion3','Revicion3Controller@index')->name('rev3')->middleware('auth'); 
@@ -246,12 +280,12 @@ Route::get('/finiquito_tramites','FiniquitoTramitesController@index')->name('fin
 ///////// EDITA PRESUPUESTO //////
 Route::get('/edita_presupuesto','EditaPresupuestoController@index')->name('updateprep')->middleware('auth'); 
 Route::post('/edita_presupuesto','EditaPresupuestoController@store'); 
- 
+  
 
 //////// AUTORIZA PRESUPUESTO ////
 Route::get('/autoriza_presupuesto','AutorizaPresupuestoController@index')->name('prepa')->middleware('auth');   
 Route::post('/autoriza_presupuesto','AutorizaPresupuestoController@store'); 
- 
+  
 ///////// RECEPCCION DE PAGOS /////
  
 Route::get('/recepcion_pagos','RecepcionPagosController@index')->name('pago')->middleware('auth');  
@@ -265,6 +299,8 @@ Route::post('/cortes','CortesController@store')->name('insert_corte');
 Route::get('/corteimp','CortesImpuestoController@index')->name('cortes_imp')->middleware('auth'); 
 Route::post('/corteimp','CortesImpuestoController@store');
 
+ /////// Reportes Cuentas por Pagar ///
+ Route::get('/reportes_cuentas_pagar','ReportesCuentasPagarController@index')->name('rep_cuent_pag')->middleware('auth'); 
  
 ///////// ACTUALIZA ////////
 Route::get('/actualiza','ActualizaController@index')->name('ac')->middleware('auth');   
@@ -285,6 +321,9 @@ Route::post('/entrega_kinegramas','EntregaKinegramasController@store2');
 Route::get('/Entregas','EntregasController@index')->name('entregas')->middleware('auth'); 
 Route::get('Entregas/{id}', 'EntregasController@store'); 
 Route::post('/Entregas','EntregasController@store2');
+ 
+//// Reportes Caja ///
+Route::get('/reportes_caja','ReportesCajaController@index')->name('rep_caja')->middleware('auth'); 
 
  
  
@@ -317,6 +356,11 @@ Route::post('/ingreso','ingresoController@store');
 Route::get('/egreso','egresoController@index')->name('egreso')->middleware('auth'); 
 Route::get('ProyectoDependencia/{id}','egresoController@store'); 
 Route::post('/egreso','egresoController@store2');  
+ 
+////// REPORTES ARCHIVO //
+Route::get('/reportes_archivo','ReportesArchivorController@index')->name('rep_archiv')->middleware('auth'); 
+Route::get('/reporte_tramterm','ReporteTramTermController@index')->name('rep_tramter')->middleware('auth'); 
+
 
 
 //////// ASIGNAR HORARIO LABORAL //////

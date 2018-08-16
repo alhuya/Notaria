@@ -39,7 +39,6 @@
       <th scope="col">Dependencia</th>
       <th scope="col">Cantidad</th>
       <th scope="col">Tipo de Pago</th>
-      <th scope="col">Cuenta</th>
       <th scope="col">Cantidad</th>
     
       
@@ -53,7 +52,6 @@
 <th >{{$dependencia->dependencia}}</th>
 <th >{{$dependencia->cantidad}}</th>
 <th >{{$dependencia->tipo_pago}}</th> 
-<th >{{$dependencia->cuenta}}</th>
 <th >{{$dependencia->entrega}}</th> 
 
 

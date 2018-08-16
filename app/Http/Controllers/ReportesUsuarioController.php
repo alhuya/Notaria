@@ -3,7 +3,9 @@
 namespace Notaria\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+ 
+use Illuminate\Support\Facades\Auth;
+use DB;
 class ReportesUsuarioController extends Controller
 {
     /**
@@ -13,8 +15,21 @@ class ReportesUsuarioController extends Controller
      */
     public function index()
     {
-         return view('reportes_usuario');
-    }
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
+ 
+         return view('/reportes_usuario', compact('conceptos','funciones')); 
+    } 
 
     /**
      * Show the form for creating a new resource.

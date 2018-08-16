@@ -84,7 +84,7 @@
             <div class="content">
                
 
-               <img src="{{ asset('imagenes/LogoCovel-05-1.png') }}" style="width: 80%; height:80%">
+               <img src="{{ asset('imagenes/Logotipo_Covel.png') }}" style="width: 50%; height:50%">
             </div>
         </div>
     </body>

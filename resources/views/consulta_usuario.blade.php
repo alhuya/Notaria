@@ -51,6 +51,7 @@
 					      <th scope="col">Apellido Paterno</th>
 					      <th scope="col">Apellido Materno</th>
 					       <th scope="col">Puesto</th>
+						   <th scope="col">Estado</th>
 					    </tr>
 					  </thead> 
 					  <tbody id="us">
@@ -85,7 +86,7 @@
     
     for(i=0; i<response.length; i++){
 
-      $("#us").append("'<tr><td>"+ $.trim(response[i].nombre) +"</td><td>"+ $.trim(response[i].ap_paterno) +"</td><td>"+ $.trim(response[i].ap_materno) +"</td><td>"+ $.trim(response[i].puesto) +"</td></tr>'");
+      $("#us").append("'<tr><td>"+ $.trim(response[i].nombre) +"</td><td>"+ $.trim(response[i].ap_paterno) +"</td><td>"+ $.trim(response[i].ap_materno) +"</td><td>"+ $.trim(response[i].puesto) +"</td><td>"+ $.trim(response[i].estado) +"</td></tr>'");
 	 
 					     
      

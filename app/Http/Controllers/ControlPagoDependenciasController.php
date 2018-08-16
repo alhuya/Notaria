@@ -61,8 +61,6 @@ class ControlPagoDependenciasController extends Controller
      
         $request->validate([
             'dependencia' => 'required|string|max:255',
-           
-            'cuenta' => 'required|numeric',
             'entrega' => 'required|string|max:255',    
 
         ]); 
@@ -70,12 +68,11 @@ class ControlPagoDependenciasController extends Controller
         $hoy = date("y-m-d");
    
  
-      $Dependencia = new PagoDependencia ;
+      $Dependencia = new PagoDependencia ; 
       $Dependencia->fecha = $hoy;
       $Dependencia->dependencia = $request->input('dependencia');
       $Dependencia->cantidad = $request->input('cantidad');
       $Dependencia->tipo_pago = $request->input('tipo_pago');
-      $Dependencia->cuenta= $request->input('cuenta');
       $Dependencia->entrega= $request->input('entrega');   
       $Dependencia->save();
 

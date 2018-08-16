@@ -9,7 +9,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Registro') }}</div>
+                <div style="text-align: center;" class="card-header">{{ __('Registro Cliente') }}</div>
  
                 <div class="card-body">
                     <form method="POST" action="{{ route('registrar_cliente') }}">
@@ -175,8 +175,7 @@
                                 @endif
                             </div>
                         </div>
-
-                         
+                                               
 
                         <div class="form-group row">    
                       <label for="estado" class="col-md-4 col-form-label text-md-right">{{ __('Estados') }}</label>

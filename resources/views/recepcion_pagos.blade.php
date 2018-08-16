@@ -10,7 +10,7 @@
         <div class="col-md-12">
         
             <div class="card">
-                <div class="card-header">{{ __('Recepcion de Pagos') }}</div>
+                <div style="text-align: center;" class="card-header">{{ __('Recepcion de Pagos') }}</div>
                
 
                 <div class="card-body">

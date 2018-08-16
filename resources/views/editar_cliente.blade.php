@@ -13,16 +13,11 @@
 </head> 
 
 <div class="container"> 
-<h2 style="text-align: center;">Editar Cliente</h2>
-          
-
-                    
-                        
-                         <div class="container">
+    <div class="container">
     <div class="row justify-content-center"> 
         <div class="col-md-8">
             <div class="card"> 
-                <div class="card-header">{{ __('Clientes') }}</div>
+                <div style="text-align: center;" class="card-header">{{ __('Editar Clientes') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('client') }}"> 

@@ -68,19 +68,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="impuesto" class="col-md-4 col-form-label text-md-right">{{ __('Cuenta') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="cuenta" type="text" class="form-control{{ $errors->has('cuenta') ? ' is-invalid' : '' }}" name="cuenta" value="{{ old('cuenta') }}" required autofocus>
- 
-                                @if ($errors->has('cuenta'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('cuenta') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div> 
+                       
                         <div class="form-group row">
                             <label for="entrega" class="col-md-4 col-form-label text-md-right">{{ __('Entrega') }}</label>
 
@@ -93,7 +81,7 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                        </div> 
                         
                         
                          <div class="form-group row mb-0">

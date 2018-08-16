@@ -9,7 +9,7 @@ use DB;
 
 class ControlPagoImpuestosController extends Controller
 {
-    /**
+    /** 
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -55,7 +55,6 @@ class ControlPagoImpuestosController extends Controller
         $request->validate([
             'impuesto' => 'required|string|max:255',
             'cantidad' => 'required|numeric',
-            'cuenta' => 'required|numeric',
             'entrega' => 'required|string|max:255',    
 
         ]); 
@@ -68,7 +67,6 @@ class ControlPagoImpuestosController extends Controller
         $Impuestos->impuesto = $request->input('impuesto');
         $Impuestos->cantidad = $request->input('cantidad');
         $Impuestos->tipo_pago = $request->input('tipo_pago');
-        $Impuestos->cuenta= $request->input('cuenta');
         $Impuestos->entrega= $request->input('entrega');   
         $Impuestos->save();
         return redirect('/control_pago_impuestos')->with('status','Pago de Impuesto Guardado');
