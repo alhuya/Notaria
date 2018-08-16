@@ -101,7 +101,7 @@
 @endsection
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!--<script src="{{ asset('js/user.js') }}" ></script>-->
+  <!--<script src="{{ asset('js/user.js') }}" ></script>--> 
 
 @section('script')
 <script type="text/javascript">
@@ -118,7 +118,9 @@
    $("#div1").append("'<tr><td>"+ $.trim(response[i].nombre) +"</td><td>"+ $.trim(response[i].nombre_funcion) +"</td>'");      
 
     }
-    $("#div2").append("'<p><a target='_blank' href='{{ action('MenuPDFuController@getGenerar',['accion'=>'ver','tipo'=>'digital' ]) }}'>Ver PDF digital</a></p>'"); 
+    var us = $('#usuario').val();
+
+    $("#div2").append("'<p><a target='_blank' href='{{ action('MenuPDFuController@getGenerar',['accion'=>'ver','tipo'=>'digital','id'=> 'us' ]) }}'>Ver PDF digital</a></p>'"); 
  
   
   });
