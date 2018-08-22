@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-08-2018 a las 18:52:15
+-- Tiempo de generación: 22-08-2018 a las 06:33:58
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.9
 
@@ -101,7 +101,42 @@ INSERT INTO `categorias_puestos` (`id`, `puesto_id`, `categoria_funcion_id`, `cr
 (14, 8, 6, '2018-08-13 17:38:53', '2018-08-13 17:38:53'),
 (15, 8, 7, '2018-08-13 17:38:54', '2018-08-13 17:38:54'),
 (16, 8, 8, '2018-08-13 17:38:54', '2018-08-13 17:38:54'),
-(17, 8, 9, '2018-08-13 17:38:54', '2018-08-13 17:38:54');
+(17, 8, 9, '2018-08-13 17:38:54', '2018-08-13 17:38:54'),
+(18, 9, 1, '2018-08-20 21:17:18', '2018-08-20 21:17:18'),
+(19, 9, 2, '2018-08-20 21:17:18', '2018-08-20 21:17:18'),
+(20, 9, 3, '2018-08-20 21:17:18', '2018-08-20 21:17:18'),
+(21, 9, 4, '2018-08-20 21:17:18', '2018-08-20 21:17:18'),
+(22, 9, 5, '2018-08-20 21:17:18', '2018-08-20 21:17:18'),
+(23, 9, 6, '2018-08-20 21:17:18', '2018-08-20 21:17:18'),
+(24, 9, 7, '2018-08-20 21:17:18', '2018-08-20 21:17:18'),
+(25, 9, 8, '2018-08-20 21:17:19', '2018-08-20 21:17:19'),
+(26, 10, 1, '2018-08-21 17:25:34', '2018-08-21 17:25:34'),
+(27, 10, 2, '2018-08-21 17:25:34', '2018-08-21 17:25:34'),
+(28, 10, 3, '2018-08-21 17:25:35', '2018-08-21 17:25:35'),
+(29, 10, 4, '2018-08-21 17:25:35', '2018-08-21 17:25:35'),
+(30, 10, 5, '2018-08-21 17:25:35', '2018-08-21 17:25:35'),
+(31, 10, 6, '2018-08-21 17:25:35', '2018-08-21 17:25:35'),
+(32, 10, 7, '2018-08-21 17:25:35', '2018-08-21 17:25:35'),
+(33, 10, 8, '2018-08-21 17:25:35', '2018-08-21 17:25:35'),
+(34, 10, 9, '2018-08-21 17:25:35', '2018-08-21 17:25:35'),
+(35, 11, 1, '2018-08-21 17:37:09', '2018-08-21 17:37:09'),
+(36, 11, 2, '2018-08-21 17:37:09', '2018-08-21 17:37:09'),
+(37, 11, 3, '2018-08-21 17:37:09', '2018-08-21 17:37:09'),
+(38, 11, 4, '2018-08-21 17:37:09', '2018-08-21 17:37:09'),
+(39, 11, 5, '2018-08-21 17:37:09', '2018-08-21 17:37:09'),
+(40, 11, 6, '2018-08-21 17:37:09', '2018-08-21 17:37:09'),
+(41, 11, 7, '2018-08-21 17:37:10', '2018-08-21 17:37:10'),
+(42, 11, 8, '2018-08-21 17:37:10', '2018-08-21 17:37:10'),
+(43, 11, 9, '2018-08-21 17:37:10', '2018-08-21 17:37:10'),
+(44, 12, 1, '2018-08-21 17:42:20', '2018-08-21 17:42:20'),
+(45, 12, 2, '2018-08-21 17:42:20', '2018-08-21 17:42:20'),
+(46, 12, 3, '2018-08-21 17:42:20', '2018-08-21 17:42:20'),
+(47, 12, 4, '2018-08-21 17:42:20', '2018-08-21 17:42:20'),
+(48, 12, 5, '2018-08-21 17:42:20', '2018-08-21 17:42:20'),
+(49, 12, 6, '2018-08-21 17:42:20', '2018-08-21 17:42:20'),
+(50, 12, 7, '2018-08-21 17:42:20', '2018-08-21 17:42:20'),
+(51, 12, 8, '2018-08-21 17:42:20', '2018-08-21 17:42:20'),
+(52, 12, 9, '2018-08-21 17:42:20', '2018-08-21 17:42:20');
 
 -- --------------------------------------------------------
 
@@ -126,9 +161,9 @@ CREATE TABLE `citas` (
 --
 
 INSERT INTO `citas` (`id`, `cliente_id`, `fecha_hora`, `tipo_tramite`, `usuario_id`, `tipo_cita_id`, `confirmacion_tramite`, `created_at`, `updated_at`) VALUES
-(2, 1, '2018-07-20 01:00:00', '1', 36, 1, 'No', '2018-07-19 04:48:58', '2018-07-19 04:48:58'),
-(5, 1, '2018-09-01 16:00:00', '1', 36, 3, 'No', '2018-08-01 06:20:17', '2018-08-01 06:45:14'),
-(6, 2, '2018-08-10 10:00:00', '7', 37, 1, 'No', '2018-08-09 18:33:23', '2018-08-09 18:33:23');
+(6, 2, '2018-08-10 10:00:00', '7', 37, 1, 'No', '2018-08-09 18:33:23', '2018-08-09 18:33:23'),
+(7, 7, '2018-08-21 10:00:00', '5', 37, 1, 'No', '2018-08-20 22:33:07', '2018-08-20 22:33:07'),
+(8, 8, '2018-08-22 10:00:00', '7', 37, 1, 'No', '2018-08-21 18:44:39', '2018-08-21 18:44:39');
 
 -- --------------------------------------------------------
 
@@ -163,7 +198,10 @@ INSERT INTO `clientes` (`id`, `nombre`, `apellido_paterno`, `apellido_materno`, 
 (1, 'Laura Lucia', 'Herrera', 'Juarez', '1280003', '6182345678', 'laura89@hotmail.com', 'brisas', 'col forestal', '0', '345', '890765', '10', '282', '2018-07-28 06:45:24', '2018-08-10 01:57:50'),
 (2, 'luis', 'arellano', 'Reyez', '45678', '6182596741', 'luis123@hotmail.com', 'sauces', 'las fuentes', '0', '234', '34089', '10', '282', '2018-08-09 17:28:35', '2018-08-09 17:28:35'),
 (4, 'Ricardo', 'cobos', 'Aguelles', '1280000000', '6180000000', 'ricardo@covel.com', 'flores', 'sauces', '0', '345', '34078', '10', '282', '2018-08-13 18:11:03', '2018-08-14 21:02:20'),
-(5, 'jose', 'rodriguez', 'dominguez', '6181280007', '6182596741', 'jose@hotmial.com', 'buganbilias', 'los sauces', '0', '231', '34089', '10', '282', '2018-08-14 20:18:06', '2018-08-14 20:18:06');
+(5, 'jose', 'rodriguez', 'dominguez', '6181280007', '6182596741', 'jose@hotmial.com', 'buganbilias', 'los sauces', '0', '231', '34089', '10', '282', '2018-08-14 20:18:06', '2018-08-14 20:18:06'),
+(6, 'Sarahi', 'Alvarado', 'Huerta', '6181280007', '6182596741', 'sarahi96@gmail.com', 'Cesar Guillermo Meraz', 'Felipe Angeles', '0', '312', '34048', '10', '282', '2018-08-19 20:59:56', '2018-08-19 20:59:56'),
+(7, 'Daniel', 'juarez', 'dominguez', '6181280067', '6182345690', 'miguel@hotmail.com', 'flores', 'arboledas', '0', '123', '34067', '10', '282', '2018-08-20 22:29:13', '2018-08-20 22:30:16'),
+(8, 'Ricardo', 'cobos', 'Arguelles', '6182345678', '6181234567', 'ricardo@covel.com', 'buganbilias', 'sauces', '0', '231', '34089', '10', '282', '2018-08-21 18:01:00', '2018-08-21 18:01:00');
 
 -- --------------------------------------------------------
 
@@ -238,7 +276,16 @@ INSERT INTO `conceptos_costos` (`concepto_costo_id`, `concepto`, `costo`, `costo
 (68, 'Plano', '600', 2, '7', '2018-08-13 16:24:28', '2018-08-13 16:24:28'),
 (69, 'Certificado', '700', 2, '7', '2018-08-13 16:24:28', '2018-08-13 16:24:28'),
 (70, 'ISR Vendedor', '800', 2, '7', '2018-08-13 16:24:28', '2018-08-13 16:24:28'),
-(71, 'Impuesto', '900', 2, '7', '2018-08-13 16:24:28', '2018-08-13 16:24:28');
+(71, 'Impuesto', '900', 2, '7', '2018-08-13 16:24:28', '2018-08-13 16:24:28'),
+(77, 'Monto de Operación', '100.00', 1, '5', '2018-08-20 05:30:39', '2018-08-20 05:30:39'),
+(78, 'Honorarios', '200.00', 1, '5', '2018-08-20 05:30:39', '2018-08-20 05:30:39'),
+(79, 'Traslado de Dominio', '300.00', 1, '5', '2018-08-20 05:30:39', '2018-08-20 05:30:39'),
+(80, 'Derecho de Registro', '400.00', 1, '5', '2018-08-20 05:30:39', '2018-08-20 05:30:39'),
+(81, 'Avaluo', '500.00', 1, '5', '2018-08-20 05:30:39', '2018-08-20 05:30:39'),
+(82, 'Plano', '600.00', 1, '5', '2018-08-20 05:30:39', '2018-08-20 05:30:39'),
+(83, 'Certificado', '700.00', 1, '5', '2018-08-20 05:30:39', '2018-08-20 05:30:39'),
+(84, 'ISR Vendedor', '800.00', 1, '5', '2018-08-20 05:30:39', '2018-08-20 05:30:39'),
+(85, 'Impuesto', '900.00', 1, '5', '2018-08-20 05:30:39', '2018-08-20 05:30:39');
 
 -- --------------------------------------------------------
 
@@ -630,7 +677,7 @@ CREATE TABLE `control_tramites` (
   `carpeta_id` int(11) DEFAULT NULL,
   `tramite_id` int(11) DEFAULT NULL,
   `numero_escritura` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `cliente_id` int(11) DEFAULT NULL,
+  `cliente_id` int(10) DEFAULT NULL,
   `fecha` date DEFAULT NULL,
   `volumen` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `folio1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -644,7 +691,7 @@ CREATE TABLE `control_tramites` (
   `kinegrama_id` int(11) DEFAULT NULL,
   `terminado` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fecha_entrega` date DEFAULT NULL,
-  `nombre_recibe` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre_recibe` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -654,8 +701,8 @@ CREATE TABLE `control_tramites` (
 --
 
 INSERT INTO `control_tramites` (`id`, `carpeta_id`, `tramite_id`, `numero_escritura`, `cliente_id`, `fecha`, `volumen`, `folio1`, `folio2`, `otorgantes`, `contrato`, `presupuesto_id`, `dependencia_id`, `tramite_dependencia_id`, `revision`, `kinegrama_id`, `terminado`, `fecha_entrega`, `nombre_recibe`, `created_at`, `updated_at`) VALUES
-(1, 1, 0, '', 0, '0000-00-00', '', '', '', '', '', 0, 0, 0, 0, 0, '', '0000-00-00', '', NULL, NULL),
-(3, 3, 7, '1', 2, '2018-08-13', '17', '1', '6', 'luis solis', '5', 2, NULL, NULL, 3, NULL, NULL, NULL, '', '2018-08-09 18:40:26', '2018-08-13 16:19:19');
+(1, 1, 5, '1', 6, '2018-08-20', '220', '32885', '32889', 'Carrillo Enriquez Emilio', '5', 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, '2018-08-20 04:59:39', '2018-08-20 14:41:40'),
+(2, 2, 7, NULL, 8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-08-21 19:00:31', '2018-08-21 19:00:31');
 
 -- --------------------------------------------------------
 
@@ -3435,7 +3482,9 @@ INSERT INTO `funciones` (`funcion_id`, `nombre_funcion`, `categoria_funcion_id`,
 (59, 'Consulta usuarios', 9, NULL, NULL),
 (60, 'puestos', 9, NULL, NULL),
 (61, 'Corte Impuesto', 7, NULL, NULL),
-(62, 'Reportes Abogado', 5, NULL, NULL);
+(62, 'Reportes Abogado', 5, NULL, NULL),
+(63, 'Consulta Revisiones', 5, NULL, NULL),
+(65, 'Requisitos con Terceros', 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -3486,7 +3535,8 @@ CREATE TABLE `kinegramas` (
 --
 
 INSERT INTO `kinegramas` (`id`, `cliente_id`, `kinegrama`, `created_at`, `updated_at`) VALUES
-(1, 1, '2345', '2018-08-12 19:36:37', '2018-08-12 19:36:37');
+(1, 1, '2345', '2018-08-12 19:36:37', '2018-08-12 19:36:37'),
+(2, 7, '123456789', '2018-08-20 22:56:10', '2018-08-20 22:56:10');
 
 -- --------------------------------------------------------
 
@@ -3588,7 +3638,33 @@ INSERT INTO `menu` (`menu_id`, `puesto_id`, `categoria_funcion_id`, `funcion_id`
 (78, 7, 4, 20, '2018-08-09 19:24:16', '2018-08-09 19:24:16'),
 (79, 7, 4, 21, '2018-08-09 19:24:16', '2018-08-09 19:24:16'),
 (80, 7, 4, 22, '2018-08-09 19:24:16', '2018-08-09 19:24:16'),
-(81, 3, 5, 67, NULL, NULL);
+(81, 3, 5, 67, NULL, NULL),
+(82, 3, 5, 63, NULL, NULL),
+(83, 3, 2, 65, NULL, NULL),
+(84, 9, 1, 4, '2018-08-20 21:19:52', '2018-08-20 21:19:52'),
+(85, 9, 2, 12, '2018-08-20 21:20:20', '2018-08-20 21:20:20'),
+(86, 9, 5, 25, '2018-08-20 21:20:57', '2018-08-20 21:20:57'),
+(87, 9, 5, 29, '2018-08-20 21:20:57', '2018-08-20 21:20:57'),
+(88, 9, 5, 62, '2018-08-20 21:20:57', '2018-08-20 21:20:57'),
+(89, 9, 5, 63, '2018-08-20 21:20:57', '2018-08-20 21:20:57'),
+(90, 10, 1, 1, '2018-08-21 17:34:02', '2018-08-21 17:34:02'),
+(91, 10, 1, 2, '2018-08-21 17:34:02', '2018-08-21 17:34:02'),
+(92, 10, 1, 3, '2018-08-21 17:34:02', '2018-08-21 17:34:02'),
+(93, 10, 1, 4, '2018-08-21 17:34:03', '2018-08-21 17:34:03'),
+(94, 10, 2, 5, '2018-08-21 17:34:16', '2018-08-21 17:34:16'),
+(95, 10, 2, 6, '2018-08-21 17:34:16', '2018-08-21 17:34:16'),
+(96, 10, 2, 7, '2018-08-21 17:34:16', '2018-08-21 17:34:16'),
+(97, 10, 2, 8, '2018-08-21 17:34:16', '2018-08-21 17:34:16'),
+(98, 10, 2, 9, '2018-08-21 17:34:16', '2018-08-21 17:34:16'),
+(99, 10, 2, 10, '2018-08-21 17:34:16', '2018-08-21 17:34:16'),
+(100, 10, 2, 11, '2018-08-21 17:34:16', '2018-08-21 17:34:16'),
+(101, 10, 2, 12, '2018-08-21 17:34:16', '2018-08-21 17:34:16'),
+(102, 10, 2, 65, '2018-08-21 17:34:16', '2018-08-21 17:34:16'),
+(103, 12, 1, 1, '2018-08-21 17:47:08', '2018-08-21 17:47:08'),
+(104, 12, 1, 4, '2018-08-21 17:47:08', '2018-08-21 17:47:08'),
+(105, 12, 2, 5, '2018-08-21 17:48:35', '2018-08-21 17:48:35'),
+(106, 12, 2, 11, '2018-08-21 17:48:35', '2018-08-21 17:48:35'),
+(107, 12, 2, 12, '2018-08-21 17:48:35', '2018-08-21 17:48:35');
 
 -- --------------------------------------------------------
 
@@ -3621,7 +3697,14 @@ INSERT INTO `menu_concepto` (`id`, `puesto_id`, `categoria_funcion_id`, `created
 (10, 3, 9, '2018-08-09 06:00:00', '2018-08-09 06:00:00'),
 (11, 7, 1, '2018-08-09 19:23:47', '2018-08-09 19:23:47'),
 (12, 7, 3, '2018-08-09 19:24:03', '2018-08-09 19:24:03'),
-(13, 7, 4, '2018-08-09 19:24:16', '2018-08-09 19:24:16');
+(13, 7, 4, '2018-08-09 19:24:16', '2018-08-09 19:24:16'),
+(14, 9, 1, '2018-08-20 21:19:52', '2018-08-20 21:19:52'),
+(15, 9, 2, '2018-08-20 21:20:20', '2018-08-20 21:20:20'),
+(16, 9, 5, '2018-08-20 21:20:57', '2018-08-20 21:20:57'),
+(17, 10, 1, '2018-08-21 17:34:03', '2018-08-21 17:34:03'),
+(18, 10, 2, '2018-08-21 17:34:16', '2018-08-21 17:34:16'),
+(19, 12, 1, '2018-08-21 17:47:08', '2018-08-21 17:47:08'),
+(20, 12, 2, '2018-08-21 17:48:35', '2018-08-21 17:48:35');
 
 -- --------------------------------------------------------
 
@@ -5886,8 +5969,8 @@ CREATE TABLE `presupuestos` (
 --
 
 INSERT INTO `presupuestos` (`presupuesto_id`, `cliente_id`, `costo_tramite_id`, `carpeta_id`, `estatus`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 2, 'pendiente', '2018-08-11 22:41:09', '2018-08-11 22:41:09'),
-(2, 2, 2, 3, 'pendiente', '2018-08-13 16:25:01', '2018-08-13 16:25:01');
+(1, 6, 1, 1, 'Autorizado', '2018-08-20 05:38:07', '2018-08-20 05:38:07'),
+(2, 7, 1, 2, 'Autorizado', '2018-08-20 22:42:25', '2018-08-20 22:42:25');
 
 -- --------------------------------------------------------
 
@@ -5937,7 +6020,11 @@ INSERT INTO `puestos` (`id`, `puesto`, `abogado`, `created_at`, `updated_at`) VA
 (5, 'Abogado', 'si', '2018-07-26 03:52:44', '2018-07-26 03:52:44'),
 (6, 'AuxAbogado', 'no', '2018-07-26 08:51:13', '2018-07-26 08:51:13'),
 (7, 'Recepcion', 'no', '2018-08-09 19:20:08', '2018-08-09 19:20:08'),
-(8, 'Director', 'si', '2018-08-13 17:38:53', '2018-08-13 17:38:53');
+(8, 'Director', 'si', '2018-08-13 17:38:53', '2018-08-13 17:38:53'),
+(9, 'Administrador2', 'si', '2018-08-20 21:17:18', '2018-08-20 21:17:18'),
+(10, 'Jefe', 'no', '2018-08-21 17:25:34', '2018-08-21 17:25:34'),
+(11, 'auxcaja', 'no', '2018-08-21 17:37:09', '2018-08-21 17:37:09'),
+(12, 'jefa', 'no', '2018-08-21 17:42:20', '2018-08-21 17:42:20');
 
 -- --------------------------------------------------------
 
@@ -5965,22 +6052,24 @@ CREATE TABLE `recepcion_pagos` (
 --
 
 INSERT INTO `recepcion_pagos` (`recepcion_pago_id`, `cliente_id`, `concepto_id`, `carpeta_id`, `presupuesto_id`, `cantidad`, `tipo_pago`, `fecha`, `hora`, `deposito_cuenta`, `created_at`, `updated_at`) VALUES
-(10, 1, 1, 2, 1, '0', '', '2011-08-18', '16:41:34', '', '2018-08-11 22:41:34', '2018-08-11 22:41:34'),
-(11, 1, 2, 2, 1, '0', '', '2011-08-18', '16:41:34', '', '2018-08-11 22:41:34', '2018-08-11 22:41:34'),
-(12, 1, 3, 2, 1, '0', '', '2011-08-18', '16:41:34', '', '2018-08-11 22:41:34', '2018-08-11 22:41:34'),
-(13, 1, 4, 2, 1, '0', '', '2011-08-18', '16:41:34', '', '2018-08-11 22:41:34', '2018-08-11 22:41:34'),
-(14, 1, 5, 2, 1, '0', '', '2011-08-18', '16:41:34', '', '2018-08-11 22:41:34', '2018-08-11 22:41:34'),
-(15, 1, 6, 2, 1, '0', '', '2011-08-18', '16:41:34', '', '2018-08-11 22:41:35', '2018-08-11 22:41:35'),
-(16, 1, 7, 2, 1, '0', '', '2011-08-18', '16:41:34', '', '2018-08-11 22:41:35', '2018-08-11 22:41:35'),
-(26, 2, 63, 3, 2, '100', 'Efectivo', '2018-08-13', '12:34:42', NULL, '2018-08-13 18:34:42', '2018-08-13 18:34:42'),
-(27, 2, 64, 3, 2, '0', 'Efectivo', '2018-08-13', '12:34:42', NULL, '2018-08-13 18:34:42', '2018-08-13 18:34:42'),
-(28, 2, 65, 3, 2, '0', 'Efectivo', '2018-08-13', '12:34:42', NULL, '2018-08-13 18:34:42', '2018-08-13 18:34:42'),
-(29, 2, 66, 3, 2, '0', 'Efectivo', '2018-08-13', '12:34:42', NULL, '2018-08-13 18:34:42', '2018-08-13 18:34:42'),
-(30, 2, 67, 3, 2, '0', 'Efectivo', '2018-08-13', '12:34:42', NULL, '2018-08-13 18:34:43', '2018-08-13 18:34:43'),
-(31, 2, 68, 3, 2, '0', 'Efectivo', '2018-08-13', '12:34:42', NULL, '2018-08-13 18:34:43', '2018-08-13 18:34:43'),
-(32, 2, 69, 3, 2, '0', 'Efectivo', '2018-08-13', '12:34:42', NULL, '2018-08-13 18:34:43', '2018-08-13 18:34:43'),
-(33, 2, 70, 3, 2, '0', 'Efectivo', '2018-08-13', '12:34:42', NULL, '2018-08-13 18:34:43', '2018-08-13 18:34:43'),
-(34, 2, 71, 3, 2, '0', 'Efectivo', '2018-08-13', '12:34:42', NULL, '2018-08-13 18:34:43', '2018-08-13 18:34:43');
+(10, 6, 77, 1, 1, '100.00', 'Efectivo', '2018-08-20', '00:49:23', NULL, '2018-08-20 06:49:23', '2018-08-20 06:49:23'),
+(11, 6, 78, 1, 1, '0', 'Efectivo', '2018-08-20', '00:49:23', NULL, '2018-08-20 06:49:23', '2018-08-20 06:49:23'),
+(12, 6, 79, 1, 1, '0', 'Efectivo', '2018-08-20', '00:49:23', NULL, '2018-08-20 06:49:24', '2018-08-20 06:49:24'),
+(13, 6, 80, 1, 1, '0', 'Efectivo', '2018-08-20', '00:49:23', NULL, '2018-08-20 06:49:24', '2018-08-20 06:49:24'),
+(14, 6, 81, 1, 1, '0', 'Efectivo', '2018-08-20', '00:49:23', NULL, '2018-08-20 06:49:24', '2018-08-20 06:49:24'),
+(15, 6, 82, 1, 1, '0', 'Efectivo', '2018-08-20', '00:49:23', NULL, '2018-08-20 06:49:24', '2018-08-20 06:49:24'),
+(16, 6, 83, 1, 1, '0', 'Efectivo', '2018-08-20', '00:49:23', NULL, '2018-08-20 06:49:24', '2018-08-20 06:49:24'),
+(17, 6, 84, 1, 1, '0', 'Efectivo', '2018-08-20', '00:49:23', NULL, '2018-08-20 06:49:24', '2018-08-20 06:49:24'),
+(18, 6, 85, 1, 1, '0', 'Efectivo', '2018-08-20', '00:49:23', NULL, '2018-08-20 06:49:24', '2018-08-20 06:49:24'),
+(28, 7, 77, 2, 2, '100.00', 'Efectivo', '2018-08-20', '16:51:50', NULL, '2018-08-20 22:51:50', '2018-08-20 22:51:50'),
+(29, 7, 78, 2, 2, '200.00', 'Efectivo', '2018-08-20', '16:51:50', NULL, '2018-08-20 22:51:50', '2018-08-20 22:51:50'),
+(30, 7, 79, 2, 2, '300.00', 'Efectivo', '2018-08-20', '16:51:50', NULL, '2018-08-20 22:51:50', '2018-08-20 22:51:50'),
+(31, 7, 80, 2, 2, '400.00', 'Efectivo', '2018-08-20', '16:51:50', NULL, '2018-08-20 22:51:51', '2018-08-20 22:51:51'),
+(32, 7, 81, 2, 2, '500.00', 'Efectivo', '2018-08-20', '16:51:50', NULL, '2018-08-20 22:51:51', '2018-08-20 22:51:51'),
+(33, 7, 82, 2, 2, '600.00', 'Efectivo', '2018-08-20', '16:51:50', NULL, '2018-08-20 22:51:51', '2018-08-20 22:51:51'),
+(34, 7, 83, 2, 2, '700.00', 'Efectivo', '2018-08-20', '16:51:50', NULL, '2018-08-20 22:51:51', '2018-08-20 22:51:51'),
+(35, 7, 84, 2, 2, '800.00', 'Efectivo', '2018-08-20', '16:51:50', NULL, '2018-08-20 22:51:51', '2018-08-20 22:51:51'),
+(36, 7, 85, 2, 2, '900.00', 'Efectivo', '2018-08-20', '16:51:50', NULL, '2018-08-20 22:51:51', '2018-08-20 22:51:51');
 
 -- --------------------------------------------------------
 
@@ -6009,7 +6098,8 @@ CREATE TABLE `revisiones` (
 --
 
 INSERT INTO `revisiones` (`revision_id`, `carpeta_id`, `estatus1`, `fecha`, `cliente_id`, `estatus2`, `tipo_tramite_id`, `documentacion_id`, `comentario`, `comentario_cal`, `tipo_revision`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Aprovada', '2018-08-01', 1, 'Aprovada', 1, NULL, 'revisar porfa', 'revisado', '3', '2018-07-23 21:51:22', '2018-07-23 21:51:22');
+(1, 1, 'Aprobada', '2018-08-20', NULL, NULL, NULL, NULL, 'Revisar Todo', 'Todo Bien', '1', '2018-08-20 06:09:21', '2018-08-20 06:09:21'),
+(2, 2, 'Aprobada', '2018-08-20', NULL, NULL, NULL, NULL, 'Rev 1', 'Esta bein', '1', '2018-08-20 22:46:45', '2018-08-20 22:46:45');
 
 -- --------------------------------------------------------
 
@@ -6186,18 +6276,25 @@ CREATE TABLE `tramites_terminados` (
   `folio1` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
   `folio2` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
   `otorgantes` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `contrato` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
-  `presupuesto_id` int(11) NOT NULL,
-  `dependencia_id` int(11) NOT NULL,
-  `tramite_dependencia_id` int(11) NOT NULL,
-  `revision` int(11) NOT NULL,
-  `kinegrama_id` int(11) NOT NULL,
-  `terminado` int(11) NOT NULL,
-  `fecha_entrega` date NOT NULL,
-  `nombre_recibe` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `contrato` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `presupuesto_id` int(11) DEFAULT NULL,
+  `dependencia_id` int(11) DEFAULT NULL,
+  `tramite_dependencia_id` int(11) DEFAULT NULL,
+  `revision` int(11) DEFAULT NULL,
+  `kinegrama_id` int(11) DEFAULT NULL,
+  `terminado` int(11) DEFAULT NULL,
+  `fecha_entrega` date DEFAULT NULL,
+  `nombre_recibe` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tramites_terminados`
+--
+
+INSERT INTO `tramites_terminados` (`id`, `carpeta_Id`, `tramite_id`, `numero_escritura`, `cliente_id`, `fecha`, `volumen`, `folio1`, `folio2`, `otorgantes`, `contrato`, `presupuesto_id`, `dependencia_id`, `tramite_dependencia_id`, `revision`, `kinegrama_id`, `terminado`, `fecha_entrega`, `nombre_recibe`, `created_at`, `updated_at`) VALUES
+(1, 2, 5, '2', 7, '2018-08-20 00:00:00', '223', '234', '345', 'Susy Garcia', '5', 2, NULL, NULL, 2, 2, NULL, '2018-08-22', 'Juan Lopez', '2018-08-21 07:34:48', '2018-08-21 07:34:48');
 
 -- --------------------------------------------------------
 
@@ -6224,11 +6321,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nombre`, `ap_paterno`, `ap_materno`, `email`, `puesto_id`, `estado`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(34, 'Yazmin Sarahi', 'Alvarado', 'Huerta', 'alhuya96@gmail.com', 3, 'Activo', '$2y$10$mBSdH9KVY3WhnCiYhFrJ5u6sQ66/IwzY.DQLeP0d96WAU.j7jC3By', 'ul7UVuMIpFvecwpKvKnSWx1xu4VOYAgMl4T9ifcb5SoCx0J5yxUZGjvcK7Us', '2018-07-27 05:22:23', '2018-07-28 00:26:32'),
+(34, 'Yazmin Sarahi', 'Alvarado', 'Huerta', 'alhuya96@gmail.com', 3, 'Activo', '$2y$10$mBSdH9KVY3WhnCiYhFrJ5u6sQ66/IwzY.DQLeP0d96WAU.j7jC3By', 'YtCiLuVc9CojZGHdyQZvuJS19Yvy1iBrrpRGWmoQ0HBqpEO12noujZvDt1VO', '2018-07-27 05:22:23', '2018-07-28 00:26:32'),
 (36, 'Roberto', 'Rios', 'alanis', 'roberto@hotmail.com', 6, 'Activo', '$2y$10$M8fbyavYBJ2DSijbKcdr2OoM8kSqoiMmH7neXUW7GaOMbBRxo5LFi', '3SlQELUx43jedZUuQDrusOoVwI1u1VdEHIsxcDX5qPCTRC7NgNEIOiHMV8jp', '2018-07-29 06:11:41', '2018-07-29 06:11:41'),
 (37, 'Juan', 'Perez', 'Mendez', 'juan@hotmail.com', 5, 'Activo', '$2y$10$7Vs0cId1zZBQA0mKSfAGTOHMLm9KfPgjUzWVHVHYYFhva1dFyxFcK', NULL, '2018-08-09 18:22:44', '2018-08-09 18:22:44'),
 (38, 'Fabian', 'Cardenas', 'Barraza', 'fabian@hotmail.com', 2, 'Activo', '$2y$10$ez9dVwS/FJJygp/Jxrxq8eCxrm5gj8SJOtah8OigiSRkdjV4gh.lm', 'CzuYFC9O5uAwKbyQVIy2hKP2bvZGqs5JhlQ3IIaO4D0Y19yMYScGrHGhJF5V', '2018-08-13 01:10:49', '2018-08-13 06:39:08'),
-(39, 'ricardo', 'cobos', 'Arguelles', 'ricardo@covel.com', 8, 'Activo', '$2y$10$GgsyxL2LfZKiMyKKXHJzLu38MuAwc8Crtxqgr3JowOqn/LnslzMY.', NULL, '2018-08-13 17:37:46', '2018-08-13 17:43:04');
+(39, 'ricardo', 'cobos', 'Arguelles', 'ricardo@covel.com', 8, 'Activo', '$2y$10$GgsyxL2LfZKiMyKKXHJzLu38MuAwc8Crtxqgr3JowOqn/LnslzMY.', NULL, '2018-08-13 17:37:46', '2018-08-13 17:43:04'),
+(40, 'Ramiro', 'Reyez', 'Rodriguez', 'rreyes@covelti.com', 9, 'Inactivo', '$2y$10$t/MjoGkmFhQ9O1rcLTOR1.rlRD1cS59SREuyKpxdPRB4FdlTpwlCa', '0vKJZE7VRFPDBIPSO3aIqYQAHnWJfWN8lYimateb6eBdYkrgyNLxlp0aI6Oh', '2018-08-20 21:10:56', '2018-08-21 02:44:31'),
+(41, 'Ricardo', 'Cobos', 'Arguelles', 'ricardo2@covel.com', 12, 'Activo', '$2y$10$kVgfyetdaOcZIpVKi4OljeTXYclag8Srj9VL9603RmFEdOj4E1yMK', 'Xk3lruDooFad0AXiknker3bdrhfH9mgE3eRkSk1ejZIcmBDG2AIS3JhUX6bu', '2018-08-21 17:31:40', '2018-08-21 17:49:28');
 
 -- --------------------------------------------------------
 
@@ -6298,7 +6397,11 @@ INSERT INTO `validacion_documentos_abogado` (`valida_documento_id`, `cliente_id`
 (2, 1, NULL, '1', 2, 'Correcto', '2018-07-23 07:20:54', '2018-07-23 07:20:54'),
 (3, 2, NULL, '7', 11, 'Todo Completo', '2018-08-09 18:39:58', '2018-08-09 18:39:58'),
 (4, 2, NULL, '7', 12, 'Todo Completo', '2018-08-09 18:39:58', '2018-08-09 18:39:58'),
-(5, 2, NULL, '7', 13, 'Todo Completo', '2018-08-09 18:39:58', '2018-08-09 18:39:58');
+(5, 2, NULL, '7', 13, 'Todo Completo', '2018-08-09 18:39:58', '2018-08-09 18:39:58'),
+(6, 7, NULL, '5', 7, 'Todo completo', '2018-08-20 22:40:45', '2018-08-20 22:40:45'),
+(7, 8, NULL, '7', 11, 'Todo Completo', '2018-08-21 18:56:49', '2018-08-21 18:56:49'),
+(8, 8, NULL, '7', 12, 'Todo Completo', '2018-08-21 18:56:50', '2018-08-21 18:56:50'),
+(9, 8, NULL, '7', 13, 'Todo Completo', '2018-08-21 18:56:50', '2018-08-21 18:56:50');
 
 -- --------------------------------------------------------
 
@@ -6326,7 +6429,15 @@ CREATE TABLE `vitacora` (
 INSERT INTO `vitacora` (`id`, `fecha`, `nombre`, `apellido_paterno`, `apellido_materno`, `telefono`, `celular`, `tipo`, `created_at`, `updated_at`) VALUES
 (1, '2018-08-14', 'luis', 'arellano', 'Reyez', '45678', '6182596741', 'Visitante', '2018-08-14 21:12:51', '2018-08-14 21:12:51'),
 (2, '2018-08-14', 'Laura Lucia', 'Herrera', 'Juarez', '1280003', '6182345678', 'Visitante', '2018-08-14 21:13:45', '2018-08-14 21:13:45'),
-(3, '2018-08-14', 'luis', 'arellano', 'Reyez', '45678', '6182596741', 'Tramite', '2018-08-14 21:34:11', '2018-08-14 21:34:11');
+(3, '2018-08-14', 'luis', 'arellano', 'Reyez', '45678', '6182596741', 'Tramite', '2018-08-14 21:34:11', '2018-08-14 21:34:11'),
+(4, '2018-08-17', 'juan', 'peres', 'ramires', '1280003', '6182345678', 'Visitante', '2018-08-17 17:19:19', '2018-08-17 17:19:19'),
+(7, '2018-08-19', 'Sarahi', 'Alvarado', 'Huerta', '6181280007', '6182596741', 'Tramite', '2018-08-19 21:06:02', '2018-08-19 21:06:02'),
+(8, '2018-08-20', 'Sarahi', 'Alvarado', 'Huerta', '6181280007', '6182596741', 'Visitante', '2018-08-20 21:41:43', '2018-08-20 21:41:43'),
+(9, '2018-08-20', 'Maria', 'Velazquez', 'Cumplido', '6181280045', '6182348970', 'Visitante', '2018-08-20 21:42:59', '2018-08-20 21:42:59'),
+(10, '2018-08-20', 'Ricardo', 'Cobos', 'Arguelles', '6181280007', '6182596741', 'Tramite', '2018-08-20 21:45:43', '2018-08-20 21:45:43'),
+(11, '2018-08-20', 'Cristian', 'Gonzalez', 'Vidales', '6182345678', '6181280009', 'Visitante', '2018-08-21 04:41:35', '2018-08-21 04:41:35'),
+(12, '2018-08-21', 'Sarahi', 'Alvarado', 'Huerta', '6181280007', '6182596741', 'Visitante', '2018-08-21 06:10:23', '2018-08-21 06:10:23'),
+(13, '2018-08-21', 'Ricardo', 'cobos', 'Aguelles', '1280000000', '6180000000', 'Visitante', '2018-08-21 18:22:35', '2018-08-21 18:22:35');
 
 --
 -- Índices para tablas volcadas
@@ -6378,7 +6489,9 @@ ALTER TABLE `conceptos_costos`
 -- Indices de la tabla `control_tramites`
 --
 ALTER TABLE `control_tramites`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `cliente_id` (`cliente_id`),
+  ADD KEY `cliente_id_2` (`cliente_id`);
 
 --
 -- Indices de la tabla `cortes`
@@ -6619,19 +6732,19 @@ ALTER TABLE `categorias_funciones`
 -- AUTO_INCREMENT de la tabla `categorias_puestos`
 --
 ALTER TABLE `categorias_puestos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `conceptos`
@@ -6643,13 +6756,13 @@ ALTER TABLE `conceptos`
 -- AUTO_INCREMENT de la tabla `conceptos_costos`
 --
 ALTER TABLE `conceptos_costos`
-  MODIFY `concepto_costo_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `concepto_costo_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT de la tabla `control_tramites`
 --
 ALTER TABLE `control_tramites`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `cortes`
@@ -6703,7 +6816,7 @@ ALTER TABLE `estados_municipios`
 -- AUTO_INCREMENT de la tabla `funciones`
 --
 ALTER TABLE `funciones`
-  MODIFY `funcion_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `funcion_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT de la tabla `horarios_abogado`
@@ -6715,19 +6828,19 @@ ALTER TABLE `horarios_abogado`
 -- AUTO_INCREMENT de la tabla `kinegramas`
 --
 ALTER TABLE `kinegramas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT de la tabla `menu_concepto`
 --
 ALTER TABLE `menu_concepto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -6769,19 +6882,19 @@ ALTER TABLE `proyecto_dependencia`
 -- AUTO_INCREMENT de la tabla `puestos`
 --
 ALTER TABLE `puestos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `recepcion_pagos`
 --
 ALTER TABLE `recepcion_pagos`
-  MODIFY `recepcion_pago_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `recepcion_pago_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de la tabla `revisiones`
 --
 ALTER TABLE `revisiones`
-  MODIFY `revision_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `revision_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `tasks`
@@ -6829,13 +6942,13 @@ ALTER TABLE `tramites_documento`
 -- AUTO_INCREMENT de la tabla `tramites_terminados`
 --
 ALTER TABLE `tramites_terminados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -6853,13 +6966,13 @@ ALTER TABLE `validacion_documentos`
 -- AUTO_INCREMENT de la tabla `validacion_documentos_abogado`
 --
 ALTER TABLE `validacion_documentos_abogado`
-  MODIFY `valida_documento_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `valida_documento_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `vitacora`
 --
 ALTER TABLE `vitacora`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
