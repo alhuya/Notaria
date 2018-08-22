@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use DB;
 use Notaria\ControlTramites;
 use Notaria\Reviciones;
-class Revicion1Controller extends Controller
+class Revicion1Controller extends Controller 
 {
     /**
      * Display a listing of the resource.
@@ -103,7 +103,7 @@ class Revicion1Controller extends Controller
 
         DB::table('revisiones')
         ->where('carpeta_id','=', $carpeta)
-        ->update(['comentario_cal' => $comentario,'estatus1' => $estatus]);
+        ->update(['comentario_cal' => $comentario,'estatus1' => $estatus]);//editar las reviciones cuando la condicion se cumpla
 
         
 

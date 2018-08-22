@@ -33,12 +33,12 @@ class RegisterController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @return void 
      */
 
     public function __construct()
     {
-       // $this->middleware('guest');
+      // $this->middleware('guest');
     }
 
     /**
@@ -47,7 +47,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */ 
-    protected function validator(array $data)
+    protected function validator(array $data) 
     {
         return Validator::make($data, [
             'nombre' => 'required|string|max:255',

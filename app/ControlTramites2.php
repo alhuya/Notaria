@@ -6,14 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use DB;
 
 class ControlTramites2 extends Model
+//funcion que devuelve la consulta a la tabla recepcion_pagos
 {
     public static function cliente($id){  
-    /*    return DB::table('control_tramites')
-    ->Join('tipos_tramites', 'control_tramites.tramite_id', '=', 'tipos_tramites.id')
-    ->Join('recepcion_pagos', 'control_tramites.carpeta_id', '=', 'recepcion_pagos.carpeta_id')
-    ->where('control_tramites.numero_escritura', '=', $id)
-    ->select('control_tramites.*','tipos_tramites.tramite','tipos_tramites.id','recepcion_pagos.')
-    ->get(); */
+   
 
   return  DB::table('recepcion_pagos')
     ->join('conceptos_costos', 'recepcion_pagos.concepto_id', '=', 'conceptos_costos.concepto_costo_id')

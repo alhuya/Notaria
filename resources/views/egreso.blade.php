@@ -1,16 +1,14 @@
 @extends('layouts.app')
 @section('content')
-@if(Gate::check('isAdministrador'))
 @include('layouts.menu_new')  
 
-@endif
  
 
  <div class="container">
     <div class="row justify-content-center"> 
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Egreso Dependencia') }}</div>
+                <div class="card-header" style="text-align: center;">{{ __('Egreso Dependencia') }}</div>
 					<div class="card-body">
 						<div class="container">
 							<div class="row">
@@ -93,7 +91,7 @@
   $(document).ready(function(){
   $("#numero").change(function(event){
   $.get("ProyectoDependencia/"+event.target.value+"",function(response ,state){
-    console.log(response);
+    //console.log(response);
      $("#div1").empty(); 
     
     for(i=0; i<response.length; i++){

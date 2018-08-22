@@ -1,20 +1,18 @@
 @extends('layouts.app')
-
 @section('content')
-@if(Gate::check('isAdministrador'))
 @include('layouts.menu_new')  
 
-@endif 
+
 <div class="container">
     <div class="row justify-content-center"> 
         <div class="col-md-8">
         
             <div class="card">
-                <div class="card-header">{{ __('Presupuesto') }}</div>
+                <div class="card-header" style="text-align: center;">{{ __('Presupuesto') }}</div>
                
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('prepa') }}">  
+                    <form method="POST" action="{{ route('prepa') }}"  autocomplete="off">  
                         @if(session('status'))
 
                         <div class="alert alert-success"> 
@@ -52,18 +50,7 @@
   </tbody>
 
 </table>
-<!--
- <div class="form-group row"> 
-                    
-                 
-                    <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Comentario') }}</label>
-            
-                        <div class="col-md-6">
-                        <textarea rows="4" cols="50" name="comentariocal"  class="form-control"></textarea>
 
-                        </div>  
-                          
-                    </div> -->
                     <div id="autorizar">
 
                     </div>
@@ -77,8 +64,8 @@
                             </div>
                         </div>
 
-    </div>
-    </div>
+                        </div>
+                        </div>
 
                     </form>
                 </div>
@@ -90,8 +77,7 @@
 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!--<script src="{{ asset('js/user.js') }}" ></script>-->
-
+  
  @section('script')  
  <script type="text/javascript">
   $(document).ready(function(){ 
@@ -99,26 +85,21 @@
 
         $("#numero").change(function(event){
             var numero = $('#numero').val(); 
-            console.log(numero);
+           // console.log(numero);
              
             $.get("PresupuestoConsulta/"+numero+"",function(response ,state){
-            console.log(response); 
+           // console.log(response); 
                  
                     $("#costo").empty();  
                     $("#concepto").empty();  
-                for(i=0; i<response.length; i++){
-                  
+                for(i=0; i<response.length; i++){               
                    
-                   $("#concepto").append('"<tr><th><td>'+response[i].concepto+'</td><td>'+response[i].costo+'</td></th><tr>"'); 
-                   
+                   $("#concepto").append('"<tr><th><td>'+response[i].concepto+'</td><td>'+response[i].costo+'</td></th><tr>"');                    
                       
                 }
                 $("#autorizar").append('<input type="radio" name="estatus" value="Autorizado"> Autorizar<br><input type="radio" name="estatus" value="No Autorizado"> No Autorizar<br>'); 
             }); 
-        });      
-   
-
-
+        }); 
 });
 </script>
 @endsection

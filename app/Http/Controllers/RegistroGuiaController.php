@@ -83,7 +83,7 @@ class RegistroGuiaController extends Controller
 
         if ($consulta->isEmpty()) {
      
- 
+ //si no se tiene registro con la carpeta se realiza el insert
       $control = new ControlTramites;
       $control->numero_escritura = $request->input('escritura'); 
       $control->fecha = $request->input('fecha');

@@ -34,7 +34,7 @@
                           
                             <div class="col-md-6"> 
                               <div >
-                              <button type="button" onclick="javascript:location.href='{{ route('rep_doctram') }}'" class="btn btn-primary btn-lg">Documentaciòn por Tràmite</button>
+                              <button type="button" onclick="javascript:location.href='{{ route('rep_doctram') }}'" class="btn btn-primary btn-lg">Documentación por Trámite</button>
                              
 
                                 </div>

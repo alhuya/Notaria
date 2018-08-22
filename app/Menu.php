@@ -10,6 +10,7 @@ class Menu extends Model
     
     protected $table = 'menu';
     protected $fillable = ['puesto_id','categoria_funcion_id','funcion_id'];  
+    //consulta de contendido del menu segun el usuario
 
     public static function categorias($id){ 
 
@@ -29,9 +30,8 @@ class Menu extends Model
         return DB::table('menu')
     ->Join('categorias_funciones', 'menu.categoria_funcion_id', '=', 'categorias_funciones.id')
     ->Join('funciones', 'menu.funcion_id', '=', 'funciones.funcion_id')
-    ->Join('users', 'menu.puesto_id', '=', 'users.puesto_id')
     ->where('menu.puesto_id', '=', $puesto)
-    ->select('menu.*', 'categorias_funciones.nombre','funciones.nombre_funcion','users.id')
+    ->select('menu.*', 'categorias_funciones.nombre','funciones.nombre_funcion')
     ->get();
 
     } 

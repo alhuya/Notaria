@@ -7,12 +7,12 @@
     <div class="row justify-content-center"> 
         <div class="col-md-8">
         
-            <div class="card">
-                <div class="card-header">{{ __('Edita Presupuesto') }}</div>
+            <div class="card"> 
+                <div class="card-header" style="text-align: center;">{{ __('Edita Presupuesto') }}</div>
                
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('updateprep') }}"> 
+                    <form method="POST" action="{{ route('updateprep') }}"  autocomplete="off"> 
                         @if(session('status'))
 
                         <div class="alert alert-success"> 
@@ -24,7 +24,7 @@
                         <div class="alert alert-danger">
                         {{session ('status2')}}
                             </div>
-                            @endif
+                            @endif 
  
                         <div class="form-group row"> 
                         @csrf 
@@ -89,9 +89,8 @@
                             </div>
                         </div>
 
-    </div>
-
-                    </form>
+                       </div>
+                      </form>
                 </div>
             </div>
         </div> 
@@ -109,13 +108,13 @@
 
 $("#numero").change(function(event){
         var id = $('#numero').val(); 
-        console.log(id);
+       // console.log(id);
         $("#tipo").change(function(event){ 
             var tipo = $('#tipo').val();  
-            console.log(tipo);
+          //  console.log(tipo);
              
             $.get("ElaboraPresupuesto/"+id+"/"+tipo+"",function(response ,state){
-            console.log(response);
+           // console.log(response);
                  
                     $("#costo").empty();  
                     $("#concepto").empty();  

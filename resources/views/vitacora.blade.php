@@ -1,25 +1,21 @@
 @extends('layouts.app')
 @section('content')
-@if(Gate::check('isAdministrador')) 
 @include('layouts.menu_new')  
 
-@endif 
 <head>
-  <title>Bootstrap Example</title>
+  <title>Bootstrap Example</title> 
   <meta charset="utf-8">
-  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
- <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--> 
- 
+  
 </head>
 
   <div class="container">
     <div class="row justify-content-center"> 
         <div class="col-md-8"> 
-            <div class="card"> 
-                <div class="card-header">{{ __('Vitacora') }}</div>
+            <div class="card">  
+                <div class="card-header" style="text-align: center;">{{ __('Bitácora') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('vitacora') }}"> 
+                    <form method="POST" action="{{ route('vitacora') }}" autocomplete="off"> 
                      
                       @if(session('status')) 
  
@@ -98,7 +94,7 @@
                             </div>
                         </div>                      
                         <div class="form-group row">    
-                      <label for="estado" class="col-md-4 col-form-label text-md-right">{{ __('Vitacora') }}</label>
+                      <label for="estado" class="col-md-4 col-form-label text-md-right">{{ __('Tipo') }}</label>
 
                              <div class="col-md-6">
                                <select name="tipo" id="tipo" class="form-control" required>

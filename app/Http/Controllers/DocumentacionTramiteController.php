@@ -3,7 +3,7 @@
 namespace Notaria\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Notaria\TiposTramites;
+use Notaria\TiposTramites; 
 use Notaria\Documentacion;
 use Notaria\tramite_documento;
 use DB;

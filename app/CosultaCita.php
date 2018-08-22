@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CosultaCita extends Model
 {
+    //funcion que devuelve la consulta a la tabla citas
     public static function cambios($fecha,$cliente){ 
          
         return DB::table('citas')

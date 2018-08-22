@@ -42,7 +42,6 @@ class AsignarHorarioLaboralController extends Controller
             ->select('menu.*') 
             ->get();
 
-        //$usuarios = User::orderBy('id', 'desc')->take(1)->where('tramite', '=', $tram)->get();
         return view('/asignar_horario_laboral', compact('usuarios','conceptos','funciones')); 
     }
 
@@ -64,6 +63,7 @@ class AsignarHorarioLaboralController extends Controller
      */
     public function store(Request $request)
     {
+        //Insert a la tabla HorarioAbogado
         $horario = new HorarioAbogado;
         $horario->tipo_horario = ('Horario Laboral');
         $horario->fecha_inicio = $request->input('fecha_i');   

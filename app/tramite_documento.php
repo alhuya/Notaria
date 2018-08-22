@@ -10,6 +10,7 @@ class tramite_documento extends Model
     protected $table = 'tramites_documento';
     protected $fillable = ['tipo_tramite_id','documentacion_id'];
 
+    //fucnion que devuelve la relacion de tramite con docmento
     public static function consult($id){ 
         return  DB::table('tramites_documento')
         ->join('tipos_tramites', 'tramites_documento.tipo_tramite_id', '=', 'tipos_tramites.id')

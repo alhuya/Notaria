@@ -22,7 +22,7 @@
             <div class="card"> 
                 <div class="card-header">{{ __('Entregas') }}</div> 
 
-
+ 
  
                 <div class="card-body"> 
 

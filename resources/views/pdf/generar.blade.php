@@ -85,14 +85,53 @@
         display: none;
     } 
     @endif
+    #footer { 
+  position: fixed; 
+  width: 100%; 
+  bottom: 0; 
+  left: 0;
+  right: 0;
+}
+.custom-footer-page-number:after {
+  content: counter(page);
+}
+
+body { 
+  font: 12pt Georgia, "Times New Roman", Times, serif; 
+  line-height: 1.3;}
+  @page { 
+    /* switch to landscape */ 
+   size: landscape; 
+   /* set page margins */ 
+   margin: 0.5cm; 
+   /* Default footers */ 
+   @bottom-left { 
+     content: "Department of Strategy"; 
+   } 
+   @bottom-right { 
+     content: counter(page) " of " counter(pages); 
+  }
+}
+
+body {
+    padding-top: 50px;
+}
+.custom-page-start {
+    margin-top: 50px;
+}
+
+   
+     
 </style>
 </head>
 <body>
     <div class="@if($tipo=='fisico') fisico @endif">
         <table width="100%" class="tabla1">
             <tr>
+                
                 <td width="73%" align="center"><img id="logo" src="{{ asset('imagenes/logo4.png') }}" alt="" width="255" height="57"></td>
                 <td width="27%" rowspan="3" align="center" style="padding-right:0">
+                
                     
                 </td> 
             </tr>
@@ -129,11 +168,11 @@
         <table width="100%" class="tabla3">
             <tr>
                 <td align="center" class="fondo"><strong>Nombre</strong></td>
-                <td align="center" class="fondo"><strong>Telefono</strong></td>
+                <td align="center" class="fondo"><strong>Telèfono</strong></td>
                 <td align="center" class="fondo"><strong>Celular</strong></td>
                 <td align="center" class="fondo"><strong>Correo</strong></td>
-                <td align="center" class="fondo"><strong>Direccion</strong></td>
-                <td align="center" class="fondo"><strong>Código Postal</strong></td>
+                <td align="center" class="fondo"><strong>Direcciòn</strong></td>
+                <td align="center" class="fondo"><strong>Còdigo Postal</strong></td>
                 <td align="center" class="fondo"><strong>Estado</strong></td>
                 <td align="center" class="fondo"><strong>Municipio</strong></td>
             </tr>
@@ -152,7 +191,15 @@
             @endforeach
           
            
-        </table>
+        </table> 
+        
     </div>
+    <div id="footer"> 
+    <table width="100%" class="tabla1">
+        <tr>
+         <td width="40%" align="right"><img id="logo" src="{{ asset('/imagenes/covel2.png') }}" alt="" width="45" height="57"></td>
+         </td> 
+       </table>
+  </div> 
 </body>
 </html>

@@ -16,9 +16,8 @@ class FiniquitoTramitesController extends Controller
     public function index()
     { 
 
-        $clientes = DB::table('control_tramites')
-        ->leftJoin('clientes', 'control_tramites.cliente_id', '=', 'clientes.id')
-        ->select('control_tramites.*', 'clientes.nombre','clientes.apellido_paterno','clientes.apellido_materno')
+        $clientes = DB::table('clientes')
+        ->select('clientes.*')
         ->get();
 
         $puesto = Auth::user()->puesto_id;

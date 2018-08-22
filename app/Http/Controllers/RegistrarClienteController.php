@@ -34,6 +34,7 @@ class RegistrarClienteController extends Controller
          ->get();
        
         $estados = Estados::all();
+        
         return view('registrar_cliente', compact('estados','conceptos','funciones'));
         
     }
@@ -74,7 +75,7 @@ class RegistrarClienteController extends Controller
 
         ]);
    
- 
+ //inser en la tabla clientes
       $cliente = new Clientes;
       $cliente->nombre = $request->input('nombre');
       $cliente->apellido_paterno = $request->input('apellido_paterno');

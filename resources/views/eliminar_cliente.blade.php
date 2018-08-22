@@ -6,10 +6,7 @@
 @endif 
 <head>
   <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
- <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--> 
- 
+  <meta charset="utf-8"> 
 </head>
 
 <div class="container"> 
@@ -22,7 +19,7 @@
  
                 <div class="card-body">
 
-                    <form method="POST" action=" {{ route('eliminar_client') }}" >
+                    <form method="POST" action=" {{ route('eliminar_client') }}"  autocomplete="off">
                     	{{ method_field('delete')}}
                       @if(session('status'))
 
@@ -31,6 +28,12 @@
                           
                         </div>
                         @endif
+
+                         @if(session('status2'))
+                        <div class="alert alert-danger">
+                        {{session ('status2')}}
+                            </div> 
+                            @endif
                         <div class="form-group row"> 
                             
                             @csrf   
@@ -178,14 +181,14 @@
 @endsection
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!--<script src="{{ asset('js/user.js') }}" ></script>-->
+ 
 
 @section('script')
 <script type="text/javascript">
   $(document).ready(function(){
   $("#cliente2").change(function(event){
     $.get("Clientes/"+event.target.value+"",function(response ,state){
-    console.log(response);
+   // console.log(response);
      $("#nombre").empty();  
      $("#ap_paterno").empty();  
      $("#ap_materno").empty(); 

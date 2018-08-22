@@ -1,26 +1,24 @@
 @extends('layouts.app')
-
 @section('content')
-@if(Gate::check('isAdministrador'))
 @include('layouts.menu_new')  
 
-@endif 
+
 <div class="container">
     <div class="row justify-content-center"> 
         <div class="col-md-8">
           
             <div class="card">
-                <div class="card-header">{{ __('Pago a Dependencia') }}</div>
+                <div class="card-header" style="text-align: center;">{{ __('Pago a Dependencia') }}</div>
                
 
                 <div class="card-body">
-                <form method="POST" action="{{ route('pagodep') }}">
+                <form method="POST" action="{{ route('pagodep') }}" autocomplete="off">
                         @csrf
 
                         @if(session('status'))
  
                         <div class="alert alert-success"> 
-                            {{session ('status')}}
+                            {{session ('status')}} 
                             
                         </div>
                         @endif 
@@ -55,16 +53,16 @@
                                         <strong>{{ $errors->first('cantidad') }}</strong>
                                     </span>
                                 @endif
-                            </div>
+                            </div> 
                         </div>
                         <div class="form-group row">
                             <label for="impuesto" class="col-md-4 col-form-label text-md-right">{{ __('Tipo de Pago') }}</label>
 
                             <div class="col-md-6">
                             <select name ="tipo_pago" class="form-control">
-                                <option value="Efectivo">Efectivo</option>
-                                <option value="Cheque">Cheque</option>
-                                <option value="Deposito">Deposito</option>
+                            @foreach($Tipos as $tipo)
+                                <option value="{{$tipo['tipo']}}">{{$tipo['tipo']}}</option>                               
+                            @endforeach
                                 </select>
                             </div>
                         </div>

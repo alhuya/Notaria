@@ -1,9 +1,8 @@
 @extends('layouts.app')
 @section('content')
-@if(Gate::check('isAdministrador'))
 @include('layouts.menu_new')  
 
-@endif 
+
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
@@ -20,19 +19,13 @@
                 <br><br>   
                  
             <div class="card">
-                <div class="card-header">{{ __('Kinegramas') }}</div> 
-
-
+                <div class="card-header" style="text-align: center;">{{ __('Kinegramas') }}</div> 
  
                 <div class="card-body"> 
-
-         
-                <form method="POST"  action="{{ route('entki') }}">
-
-                <div class="form-group row"> 
-        
+                <form method="POST"  action="{{ route('entki') }}" autocomplete="off">
+                <div class="form-group row">        
       
-        <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Número de Escritura') }}</label>
+             <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Número de Escritura') }}</label>
 
                 <div class="col-md-6">
                 <input list="browsers" name="escritura"  class="form-control" id ="input" required>                             
@@ -124,8 +117,6 @@
 
                             </div>
                             <div id="div1">
-                               <!-- <label id="nombre" class="form-control"></label>-->
-
                                </div>
 
                              <div class="form-group row mb-0">
@@ -148,15 +139,14 @@
 @endsection 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!--<script src="{{ asset('js/user.js') }}" ></script>-->
-
+ 
 @section('script')
 
 <script type="text/javascript">
   $(document).ready(function(){   
   $("#input").change(function(event){  
   $.get("Kinegramas/"+event.target.value+"",function(response ,state){ 
-    console.log(response);
+ //  console.log(response);
     $("#numero").empty();  
      $("#cliente").empty();  
      $("#tramite").empty(); 

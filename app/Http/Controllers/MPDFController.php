@@ -1,11 +1,9 @@
 <?php
-
 namespace Notaria\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Mpdf\Mpdf;
 use DB;
-
+//Reporte clientes
 class MPDFController extends Controller
 {
     /**
@@ -31,49 +29,15 @@ class MPDFController extends Controller
     }
     public function pdf($accion='ver',$tipo='digital')
     {
-        $ruc = "10072486893";
-        $numero = "00000412";
-        $nombres = "DAVID OLIVARES PEÑA";
+      
         $dia = date('d');
         $mes =  date('m');
-        $ayo =  date('y');
-        $direccion = "Lima Perú";
-        $dni = "23918745";
-        $total = 0;
+        $ayo =  date('y');  
+       
         
-        $articulos = [
-            [
-
-                "cantidad" => 3,
-                "descripcion" => "COCINA A GAS",
-                "precio" => 400.00,
-                "importe" => 1200,
-            ],
-            [
-                "cantidad" => 1,
-                "descripcion" => "PLANCHA",
-                "precio" => 85.00,
-                "importe" => 85.00,
-            ],
-        ];
-        foreach ($articulos as $key => $value) {
-            $total += $value["importe"];
-            $articulos[$key]["precio"] = number_format($value["precio"],2,'.',' ');;
-            $articulos[$key]["importe"] = number_format($value["importe"],2,'.',' ');;
- 
-        }
-        $total = number_format($total,2,'.',' ');
- 
-        $data['ruc'] = $ruc;
-        $data['numero'] = $numero;
-        $data['nombres'] = $nombres;
         $data['dia'] = $dia;
         $data['mes'] = $mes;
         $data['ayo'] = $ayo;
-        $data['direccion'] = $direccion;
-        $data['dni'] = $dni;
-        $data['articulos'] = $articulos; 
-        $data['total'] = $total;
         $data['tipo'] = $tipo;
 
         $clientes =DB::table('clientes')
@@ -90,11 +54,11 @@ class MPDFController extends Controller
         }else{
             $html = view('pdf.generar',$data,compact('clientes'))->render();
         }
-        $namefile = 'boleta_de_venta_'.time().'.pdf';
+        $namefile = 'Reporte_Clientes'.time().'.pdf';
  
         $defaultConfig = (new \Mpdf\Config\ConfigVariables())->getDefaults();
         $fontDirs = $defaultConfig['fontDir'];
- 
+  
         $defaultFontConfig = (new \Mpdf\Config\FontVariables())->getDefaults();
         $fontData = $defaultFontConfig['fontdata'];
         $mpdf = new Mpdf([

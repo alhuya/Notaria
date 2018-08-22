@@ -101,9 +101,9 @@
                       <label for="puesto" class="col-md-4 col-form-label text-md-right">{{ __('Funciones') }}</label>
 
                              <div class="col-md-6"> 
-                               
+                                
                                @foreach($variables as $variable)
-                            <input type="checkbox" name="funId[]" value=" {{$variable->funcion_id }}"> {{$variable->nombre }} <br>
+                            <input type="checkbox" name="funId[]" value=" {{$variable->funcion_id }}"> {{$variable->nombre_funcion }} <br>
                                                     
                             @endforeach
                                

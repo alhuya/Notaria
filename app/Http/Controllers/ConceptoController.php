@@ -54,7 +54,7 @@ class ConceptoController extends Controller
             'concepto' => 'required|string|max:255',
         ]);
  
-
+//Insert en la tabla concepto
         $concepto = new Concepto;
         $concepto->concepto = $request->input('concepto');      
         $concepto->save();

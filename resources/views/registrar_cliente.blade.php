@@ -1,9 +1,6 @@
- @extends('layouts.app') 
-
+@extends('layouts.app') 
 @section('content')
-
 @include('layouts.menu_new')  
- 
 
 <div class="container">
     <div class="row justify-content-center">
@@ -12,17 +9,15 @@
                 <div style="text-align: center;" class="card-header">{{ __('Registro Cliente') }}</div>
  
                 <div class="card-body">
-                    <form method="POST" action="{{ route('registrar_cliente') }}">
+                    <form method="POST" action="{{ route('registrar_cliente') }}"  autocomplete="off">
                     @csrf
-                       
-
                         @if(session('status'))
  
                         <div class="alert alert-success">
                             {{session ('status')}}
                             
                         </div> 
-                        @endif 
+                        @endif  
 
                         <div class="form-group row">
                             <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombres') }}</label>
@@ -215,27 +210,16 @@
         </div>
     </div>
 </div>
-<!--<div style=" 
-   margin:0;
-  box-sizing: border-box;
-  flex-direction: column;
-  min-height: 17vh;
-    right: 0;
-    ">
-<img src="{{ asset('/imagenes/covel2.png') }}" width="150px" height="90px" align="right">
-</div> -->
-@endsection
-
- 
+@endsection 
 @section('script')
 <script type="text/javascript">
   $(document).ready(function(){
-  $("#estado").change(function(event){
-  $.get("Estados_Municipios/"+event.target.value+"",function(response ,state){
-    console.log(response);
-    $("#municipio").empty();   
+  $("#estado").change(function(event){// se optiene el id del select
+  $.get("Estados_Municipios/"+event.target.value+"",function(response ,state){// se manda el valor del id al modelo Estado_Municpios
+    //console.log(response);
+    $("#municipio").empty();  // se limipia el select con el id de municipio 
    for(i=0; i<response.length; i++){
-      $("#municipio").append("<option value='"+response[i].id+"'>"+response[i].municipio+"</option>");
+      $("#municipio").append("<option value='"+response[i].id+"'>"+response[i].municipio+"</option>");//El option recibe el response y se manda al select con id municipio
     }
   });
 }); 

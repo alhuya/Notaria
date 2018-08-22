@@ -11,6 +11,7 @@ use Notaria\Clientes;
 use DB;
 use Notaria\ControlTramites;
 use Notaria\ControlTramitesFolio;
+use Notaria\GuiaCliente;
 
 class AsignacionFolioController extends Controller
 {
@@ -21,17 +22,13 @@ class AsignacionFolioController extends Controller
      */
     public function index()
     {
-    
-         
-        
-       
-        $clientes = Clientes::all();
-        $carpetas = ControlTramites::all();
-        $puesto = Auth::user()->puesto_id;
+        $clientes = Clientes::all();//optener todos los clientes
+        $carpetas = ControlTramites::all();//optener todo de la tabla control tramites
+        $puesto = Auth::user()->puesto_id;//optener el puesto_id del usuario logueado
                
        
         $conceptos = DB::table('menu_concepto')
-         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->where('menu_concepto.puesto_id', '=', $puesto)//optiene las categorias de menu
          ->select('menu_concepto.*')
          ->get();
  
@@ -62,6 +59,18 @@ class AsignacionFolioController extends Controller
     { 
         if($request->ajax()){ 
         $doc = ControlTramitesFolio::tramite($cliente,$carpeta);
+        return response()->json($doc); 
+      }
+    
+    
+
+    
+    } 
+
+    public function store2(Request $request ,$cliente)
+    { 
+        if($request->ajax()){ 
+        $doc = GuiaCliente::cliente($cliente);//se solicitan los datos del modelo GuiaCliente
         return response()->json($doc); 
       }
     

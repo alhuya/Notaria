@@ -5,17 +5,17 @@ namespace Notaria\Http\Controllers;
 use Illuminate\Http\Request;
 use Mpdf\Mpdf;
 use DB;
-
+//Reporte Tarifas
 class PDFTarifasaController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource. 
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     { 
-        
+        return view('pdf.index');
     }
 
     /**
@@ -24,19 +24,22 @@ class PDFTarifasaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    { 
         //
     }
 
     ///
-    public function getGenerar(Request $request)
+    public function destroy($id)
     {
-        $id = $request->get('id');
+        //
+    }
+    public function getGenerar(Request $request,$tramite,$client,$valor)
+    {
         $accion = $request->get('accion');
         $tipo = $request->get('tipo');
-        return $this->pdf($accion,$tipo,$id);
+        return $this->pdf($accion,$tipo,$tramite,$client,$valor);
     }
-    public function pdf($accion='ver',$tipo='digital',$id)
+    public function pdf($accion='ver',$tipo='digital',$tramite,$client,$valor)
     {
         $ruc = "10072486893";
         $numero = "00000412";
@@ -50,7 +53,6 @@ class PDFTarifasaController extends Controller
         
         $articulos = [
             [
-
                 "cantidad" => 3,
                 "descripcion" => "COCINA A GAS",
                 "precio" => 400.00,
@@ -82,33 +84,45 @@ class PDFTarifasaController extends Controller
         $data['articulos'] = $articulos; 
         $data['total'] = $total;
         $data['tipo'] = $tipo;
-
-        $valores = DB::table('tipos_tramites')
-        ->where('tipos_tramites.id', '=', $id)
-        ->select('tipos_tramites.*')
+        $Clientes =  DB::table('vitacora')
+        ->where('vitacora.id','=',$client)
+        ->select( 'vitacora.*')
         ->get(); 
- 
-        $Tarifas = DB::table('conceptos_costos')
-        ->leftJoin('tipos_tramites', 'conceptos_costos.tramite_id', '=', 'tipos_tramites.id')
-        ->leftJoin('tipo_tarifa', 'conceptos_costos.costo_tramite_id', '=', 'tipo_tarifa.id')
-        ->where('conceptos_costos.tramite_id', '=', $id)
-        ->select('conceptos_costos.*','tipos_tramites.tramite','tipos_tramites.id','tipo_tarifa.tipo')
-        ->get();  
+
+        $Tarifas =DB::table('conceptos_costos')        
+        ->where('tramite_id' ,'=' ,$tramite)
+        ->where('costo_tramite_id','=',$valor)
+        ->select( 'conceptos_costos.*')
+        ->get(); 
+
+        $suma = 0; 
+        foreach($Tarifas as $tarifa){
+          $var=  $tarifa->costo;
+          $suma += $var;
+        }
+
+      $valores =  DB::table('tipos_tramites')        
+        ->where('tipos_tramites.id' ,'=' ,$tramite)
+        ->select( 'tipos_tramites.*')
+        ->get(); 
+
+
+    
   
         if($accion=='html'){
-            return view('pdf.reporte_tarifas',$data,compact('Tarifas','valores'));
+            return view('pdf.reporte_tarifas',$data,compact('Tarifas','valores','Clientes','suma'));
         }else{
-            $html = view('pdf.reporte_tarifas',$data,compact('Tarifas','valores'))->render();
+            $html = view('pdf.reporte_tarifas',$data,compact('Tarifas','valores','Clientes','suma'))->render();
         }
-        $namefile = 'reporte_tarifas_'.time().'.pdf';
+        $namefile = 'Usuarios_'.time().'.pdf';
  
         $defaultConfig = (new \Mpdf\Config\ConfigVariables())->getDefaults();
         $fontDirs = $defaultConfig['fontDir'];
  
         $defaultFontConfig = (new \Mpdf\Config\FontVariables())->getDefaults();
-        $fontData = $defaultFontConfig['fontdata'];
+        $fontData = $defaultFontConfig['fontdata']; 
         $mpdf = new Mpdf([
-            'fontDir' => array_merge($fontDirs, [ 
+            'fontDir' => array_merge($fontDirs, [
                 public_path() . '/fonts',
             ]),
             'fontdata' => $fontData + [
@@ -118,19 +132,18 @@ class PDFTarifasaController extends Controller
                 ],
             ],
             'default_font' => 'arial',
-            // "format" => "A4",
+            // "format" => "A4", 
             "format" => [264.8,188.9],
         ]);
         // $mpdf->SetTopMargin(5);
         $mpdf->SetDisplayMode('fullpage');
         $mpdf->WriteHTML($html);
         // dd($mpdf);
-        if($accion=='ver'){
+        
             $mpdf->Output($namefile,"I");
-        }elseif($accion=='descargar'){
-            $mpdf->Output($namefile,"D");
-        }
+       
     }
+    
 
 
     /**
@@ -178,14 +191,4 @@ class PDFTarifasaController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

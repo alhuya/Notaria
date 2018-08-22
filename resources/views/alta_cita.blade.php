@@ -1,15 +1,12 @@
 @extends('layouts.app') 
-
 @section('content')
-@if(Gate::check('isAdministrador'))
 @include('layouts.menu_new')  
- 
-@endif 
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8"> 
             <div class="card">
-                <div class="card-header">{{ __('Alta de Cita') }}</div>
+                <div style="text-align: center;" class="card-header">{{ __('Alta de Cita') }}</div>
 
                 <div class="card-body"> 
                     <form method="POST" action="{{ route('cita') }}">
@@ -25,7 +22,7 @@
                         @if(session('status2'))
                         <div class="alert alert-danger">
                         {{session ('status2')}}
-                            </div>
+                            </div> 
                             @endif
 
                         <div class="form-group row">

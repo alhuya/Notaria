@@ -8,6 +8,7 @@ use DB;
 use Notaria\Citas;
 use Notaria\Agenda;
 class AgendaController extends Controller
+
 {
     /**
      * Display a listing of the resource.
@@ -17,20 +18,20 @@ class AgendaController extends Controller
     public function index()
     {
         $usuarios = DB::table('users')
-        ->leftJoin('puestos', 'users.puesto_id', '=', 'puestos.id')
+        ->leftJoin('puestos', 'users.puesto_id', '=', 'puestos.id')// Al cargar la pagina  consulta si el usuarios es abogado y manda los datos del usuarios
         ->where('puestos.abogado', '=', 'si')
         ->select('users.*', 'puestos.abogado')
         ->get();
 
-        $puesto = Auth::user()->puesto_id;
+        $puesto = Auth::user()->puesto_id;//optiene el puesto_id del usuario logueado
                
        
-       $conceptos = DB::table('menu_concepto')
+       $conceptos = DB::table('menu_concepto')//se optiene las categorias del puesto registrado
         ->where('menu_concepto.puesto_id', '=', $puesto)
         ->select('menu_concepto.*')
         ->get();
 
-        $funciones = DB::table('menu')
+        $funciones = DB::table('menu')//se optiene las funciones segun el puesto
         ->where('menu.puesto_id', '=', $puesto)
         ->select('menu.*')
         ->get();

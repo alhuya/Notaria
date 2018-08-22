@@ -4,6 +4,7 @@ namespace Notaria\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Notaria\TiposTramites;
 use DB;
 
 class ReporteTarifaController extends Controller
@@ -12,35 +13,33 @@ class ReporteTarifaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */ 
-    public function index(Request $request ,$id) {
+    public function index(Request $request) {
           
+        $tramites = TiposTramites::all();
+        
+
         $puesto = Auth::user()->puesto_id;
 
-
-        $valores = DB::table('tipos_tramites')
-         ->where('tipos_tramites.id', '=', $id)
-         ->select('tipos_tramites.*')
-         ->get();
+        $hoy = date('Y-m-d');
         
- 
-        $conceptos = DB::table('menu_concepto')
-         ->where('menu_concepto.puesto_id', '=', $puesto)
-         ->select('menu_concepto.*')
-         ->get();
- 
-         $funciones = DB::table('menu')
-         ->where('menu.puesto_id', '=', $puesto)  
-         ->select('menu.*')
-         ->get();
 
-         $Tarifas = DB::table('conceptos_costos')
-         ->leftJoin('tipos_tramites', 'conceptos_costos.tramite_id', '=', 'tipos_tramites.id')
-         ->leftJoin('tipo_tarifa', 'conceptos_costos.costo_tramite_id', '=', 'tipo_tarifa.id')
-         ->where('conceptos_costos.tramite_id', '=', $id)
-         ->select('conceptos_costos.*','tipos_tramites.tramite','tipos_tramites.id','tipo_tarifa.tipo')
-         ->get(); 
- 
-         return view('/Reporte_Tarifa', compact('conceptos','funciones','Tarifas','valores'));  
+        $Clientes =DB::table('vitacora')
+        ->where('vitacora.fecha', '=', $hoy)
+        ->select('vitacora.*')
+        ->get(); 
+            
+               
+       
+       $conceptos = DB::table('menu_concepto')
+        ->where('menu_concepto.puesto_id', '=', $puesto)
+        ->select('menu_concepto.*')
+        ->get();
+
+        $funciones = DB::table('menu')
+        ->where('menu.puesto_id', '=', $puesto)
+        ->select('menu.*') 
+        ->get();
+        return view('/Reporte_Tarifa', compact('tramites','conceptos','funciones','Clientes'));
     }
 
     /**

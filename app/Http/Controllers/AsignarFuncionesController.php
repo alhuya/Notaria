@@ -18,8 +18,8 @@ class AsignarFuncionesController extends Controller
      */
     public function index()
     { 
-         $puestos = puestos::all();
-         $puesto = Auth::user()->puesto_id;
+         $puestos = puestos::all();//se optiene todos los puestos
+         $puesto = Auth::user()->puesto_id;// se optiene el puesto_id del usuario logueado
                
        
          $conceptos = DB::table('menu_concepto')
@@ -53,7 +53,7 @@ class AsignarFuncionesController extends Controller
     public function store(Request $request ,$id)
     { 
       if($request->ajax()){
-        $usuarios = categoriaPuesto::categoria($id);
+        $usuarios = categoriaPuesto::categoria($id);//se pide la respuesta del modelo categoriapuesto de la fucnion categoria
         return response()->json($usuarios);
       }
     }

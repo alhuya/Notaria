@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.app') 
 @section('content')
 
 @include('layouts.menu_new')  
 
 
-<head>
+<head> 
   <title>Bootstrap Example</title> 
   <meta charset="utf-8">
   <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
@@ -29,21 +29,22 @@
                       
  
                         <div class="form-group row">
-                          
+                           
                             
                           
-                            <div class="col-md-6">
-                              <div >
+                            <div class="col">
+                              
                               <button type="button" onclick="javascript:location.href='{{ route('rep_us') }}'" class="btn btn-primary btn-lg">Usuarios</button>
                               <button type="button" onclick="javascript:location.href='{{ route('menu_us') }}'" class="btn btn-primary btn-lg">Menu Usuario</button>
+                              <button type="button" onclick="javascript:location.href='{{ route('r_abog') }}'" class="btn btn-primary btn-lg">Horario Abogado</button>
                              
 
-                                </div>
+                            
 
                                </div>
                             </div>
                         </div>
-                                             
+                                              
                 </div> 
             </div>
         </div>

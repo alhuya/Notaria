@@ -103,7 +103,7 @@ class EntregasController extends Controller
         $terminado->presupuesto_id = $consulta->presupuesto_id;
         $terminado->dependencia_id = $consulta->dependencia_id;
         $terminado->tramite_dependencia_id = $consulta->tramite_dependencia_id;
-        $terminado->revicion = $consulta->revision;
+        $terminado->revision = $consulta->revision;
         $terminado->kinegrama_id = $consulta->kinegrama_id;
         $terminado->terminado = $consulta->terminado;
         $terminado->fecha_entrega = $consulta->fecha_entrega;

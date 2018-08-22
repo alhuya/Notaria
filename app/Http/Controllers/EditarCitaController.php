@@ -31,9 +31,9 @@ class EditarCitaController extends Controller
         ->select('users.*', 'puestos.abogado')
         ->get();
 
-        $citas = Citas::all();
+        $citas = Citas::all();// 
         $clientes = Clientes::all();
-        $tramites = TiposTramites::all();
+        $tramites = TiposTramites::all(); 
         $tipos = TipoCitas::all();
 
         $puesto = Auth::user()->puesto_id;
@@ -51,8 +51,7 @@ class EditarCitaController extends Controller
 
 
 
-        return view('/editar_cita', compact('tramites','citas','clientes','tipos','usuarios','funciones','conceptos
-        '));
+        return view('/editar_cita', compact('tramites','citas','clientes','tipos','usuarios','funciones','conceptos'));
     }
 
     /**
@@ -70,7 +69,7 @@ class EditarCitaController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     */ 
+     */  
     public function store(Request $request)
     { 
        

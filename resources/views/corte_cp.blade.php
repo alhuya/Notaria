@@ -1,10 +1,7 @@
 @extends('layouts.app')
-
 @section('content')
-@if(Gate::check('isAdministrador'))
 @include('layouts.menu_new')  
 
-@endif 
 <div class="container">
     <div class="row justify-content-center"> 
         <div class="col-md-12"> 
@@ -32,70 +29,56 @@
                 
            
 
-    <table class="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">Fecha</th>
-      <th scope="col">Dependencia</th>
-      <th scope="col">Cantidad</th>
-      <th scope="col">Tipo de Pago</th>
-      <th scope="col">Cantidad</th>
-    
-      
-    </tr>
-  </thead>
-  <tbody >
+                        <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Dependencia</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Tipo de Pago</th>
+                        <th scope="col">Cantidad</th>
+                        
+                        
+                        </tr>
+                    </thead>
+                    <tbody >
 
-  @foreach($Dependencias as $dependencia)
-  <tr>  
-<th >{{$dependencia->fecha}}</th>
-<th >{{$dependencia->dependencia}}</th>
-<th >{{$dependencia->cantidad}}</th>
-<th >{{$dependencia->tipo_pago}}</th> 
-<th >{{$dependencia->entrega}}</th> 
+                    @foreach($Dependencias as $dependencia)
+                    <tr>  
+                    <th >{{$dependencia->fecha}}</th>
+                    <th >{{$dependencia->dependencia}}</th>
+                    <th >{{$dependencia->cantidad}}</th>
+                    <th >{{$dependencia->tipo_pago}}</th> 
+                    <th >{{$dependencia->entrega}}</th> 
 
+                    @endforeach
+                    
+                    </tr>                            
+                    
+                    </tbody>   
 
- 
+                <tr>  
+                <th >Total</th> 
+                <th ></th>
+                <th ><input type="text" name="total" value="{{$suma}}" style="border:none" readonly></th>
+                <th ></th>
+                <th ></th>
+                <th ></th>
+                </tr>   
+            </tbody>
 
-  @endforeach
- 
-  </tr>        
-  
-   
-  </tbody>
-  
- 
+            </table>
+           <div class="form-group row"> 
+            
+                        
+            <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Comentario') }}</label>
 
- <tr>  
-<th >Total</th> 
-<th ></th>
-<th ><input type="text" name="total" value="{{$suma}}" style="border:none" readonly></th>
-<th ></th>
-<th ></th>
-<th ></th>
+                <div class="col-md-6">
+                <textarea rows="4" cols="50" name="comentario"  class="form-control"></textarea>
 
- 
-
-
-
-
- </tr>        
- 
-  
- </tbody>
-
-</table>
-<div class="form-group row"> 
-    
-                 
-    <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Comentario') }}</label>
-
-        <div class="col-md-6">
-        <textarea rows="4" cols="50" name="comentario"  class="form-control"></textarea>
-
-        </div>  
-          
-    </div> 
+                </div>  
+                
+            </div> 
 
                          <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
@@ -116,7 +99,7 @@
 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!--<script src="{{ asset('js/user.js') }}" ></script>-->
+
 
  @section('script')  
  <script type="text/javascript">
@@ -125,7 +108,7 @@
 
         $("#numero").change(function(event){
             var numero = $('#numero').val(); 
-            console.log(numero);
+          //  console.log(numero);
              
             $.get("PresupuestoConsulta/"+numero+"",function(response ,state){
             console.log(response);   

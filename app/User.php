@@ -29,7 +29,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
  
- 
+ //fucnion que devuelve os usuarios
     public static function usuarios($id){ 
         return DB::table('users')
     ->leftJoin('puestos', 'users.puesto_id', '=', 'puestos.id')

@@ -11,10 +11,10 @@
     <div class="row justify-content-center">
      <div class="col-md-8"> 
                 <div class="card">
-                    <div class="card-header">{{ __('Validación de Dodumentación') }}</div>
+                    <div style="text-align: center;" class="card-header">{{ __('Validación de Dodumentación') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('valida_doc') }}"> 
+                        <form method="POST" action="{{ route('valida_doc') }}" autocomplete="off"> 
                         	@if(session('status'))
 
                         <div class="alert alert-success">
@@ -24,7 +24,7 @@
                         @endif
                             @csrf 
 
-                        <div class="form-group row"> 
+                        <div class="form-group row">  
         
                     <label for="clientes" class="col-md-4 col-form-label text-md-right">{{ __('Clientes') }}</label>
 

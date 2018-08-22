@@ -89,20 +89,33 @@ class EliminarClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        // 
+    } 
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id 
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response 
      */
     public function destroy(Request $request)
     {
         $id = $request->input('cliente');
-        $cliente = Clientes::find($id);
+ 
+       $consulta = DB::table('control_tramites')
+        ->where('control_tramites.cliente_id', '=', $id)
+        ->select('control_tramites.*')
+        ->get();
+
+        if ($consulta->isEmpty()) {
+
+        $cliente = Clientes::find($id);//eliminar cliente cuando el id coincida
         $cliente->delete();
        return redirect('/eliminar_cliente')->with('status','Cliente eliminado exitosamente');
     }
+    else{
+
+        return redirect('/eliminar_cliente')->with('status2','No se puede eliminar el cliente ');
+    }
+}
 }

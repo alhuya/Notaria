@@ -94,7 +94,7 @@ class Revicion2Controller extends Controller
 
         DB::table('revisiones')
         ->where('carpeta_id','=', $carpeta)
-        ->update(['comentario_cal' => $comentario,'estatus2' => $estatus]);
+        ->update(['comentario_cal' => $comentario,'estatus2' => $estatus]);//Editar cuando el id coincida con un elemento
 
 
         return redirect('/revicion2')->with('status','Revision 2 guardada exitosamente');

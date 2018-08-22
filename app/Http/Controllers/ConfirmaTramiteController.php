@@ -57,7 +57,7 @@ class ConfirmaTramiteController extends Controller
     public function store(Request $request, $id)
     { 
         if($request->ajax()){
-            $cliente = tramite_documento::consult($id);
+            $cliente = tramite_documento::consult($id);//se optiene la respuesta del modelo tramite_documento
             return response()->json($cliente); 
     }
 } 
@@ -68,6 +68,7 @@ public function store2(Request $request)
         $docID;
         foreach ($documentosId as $documentoId) { 
             $docID=  $documentoId;   
+            
     $validar = new ValidaDocumentosAbogado ;
     $validar->tipo_tramite = $request->input('tramite');
     $validar->cliente_id = $request->input('cliente');

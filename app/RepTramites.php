@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class RepTramites extends Model
 {
+    //fucnion que relaciona un tramite con documentos
     public static function reportes($id){ 
         return DB::table('tramites_documento')
         ->Join('tipos_tramites', 'tramites_documento.tipo_tramite_id', '=', 'tipos_tramites.id')

@@ -5,41 +5,31 @@
   <title>Bootstrap Example</title> 
   <meta charset="utf-8"> 
 </head> 
-<div class="container">
+<div class="container"> 
   <div class="container">
     <div class="row justify-content-center"> 
         <div class="col-md-8">
             <div class="card"> 
-                <div style="text-align: center;" class="card-header">{{ __('Reportes Clientes') }}</div>
+                <div style="text-align: center;" class="card-header">{{ __('Reportes Recepcion Clientes') }}</div>
                 <div class="card-body">
                         <div class="form-group row">
                             
-                            <div class="col-md-6">
-                              <div >
-                              <button type="button" onclick="javascript:location.href='{{ route('reportes_cliente') }}'" class="btn btn-primary btn-lg">Clientes</button>                             
+                            <div class="col-md-12">
+                              <div>
+                              <button type="button" onclick="javascript:location.href='{{ route('rep_vitacora') }}'" class="btn btn-primary btn-lg">Bitácora</button> 
+                              <button type="button" onclick="javascript:location.href='{{ route('rep_citabog') }}'" class="btn btn-primary btn-lg">Citas por Abogado</button> 
+                                                          
 
                                 </div>
                                </div>
                             </div>
                         </div>                                             
                 </div>
-            </div>
+            </div> 
         </div>
-    </div>
+    </div> 
 </div>
 @endsection
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!--<script src="{{ asset('js/user.js') }}" ></script>-->
-
-@section('script')
-<script type="text/javascript">
-  $(document).ready(function(){
-
-});
-</script>
-@endsection
-
 
  
 

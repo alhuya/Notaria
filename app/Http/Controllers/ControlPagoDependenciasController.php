@@ -7,18 +7,20 @@ use DB;
 use Illuminate\Http\Request;
 use Notaria\Dependencias;
 use Notaria\PagoDependencia;
+use Notaria\TipoPago;
 
 
 class ControlPagoDependenciasController extends Controller
 {
     /**
      * Display a listing of the resource. 
-     *
+     * 
      * @return \Illuminate\Http\Response
      */
-    public function index() 
-   {
+    public function index()  
+   { 
     $Dependencias = Dependencias::all();
+    $Tipos = TipoPago::all();
     
                
        
@@ -37,7 +39,7 @@ class ControlPagoDependenciasController extends Controller
 
      
       
-        return view('/control_pago_dependencias',compact('Dependencias','conceptos','funciones'));
+        return view('/control_pago_dependencias',compact('Dependencias','conceptos','funciones','Tipos'));
     } 
 
     /**
@@ -65,9 +67,9 @@ class ControlPagoDependenciasController extends Controller
 
         ]); 
   
-        $hoy = date("y-m-d");
+        $hoy = date("y-m-d");//año/mes/dia
    
- 
+ //Insert en la tabla pagoDependencia
       $Dependencia = new PagoDependencia ; 
       $Dependencia->fecha = $hoy;
       $Dependencia->dependencia = $request->input('dependencia');

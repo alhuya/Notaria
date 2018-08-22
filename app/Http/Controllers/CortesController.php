@@ -41,7 +41,7 @@ class CortesController extends Controller
         
         
         $suma = 0; 
-        foreach($pagos as $pago){
+        foreach($pagos as $pago){//Suma de los pagos realizados
           $var=  $pago->cantidad;
           $suma += $var;
 
@@ -77,7 +77,8 @@ class CortesController extends Controller
         ->select('cortes.*')
         ->get();
         
-        if ($consulta->isEmpty()) { 
+        if ($consulta->isEmpty()) { //si no se encuentra resultado en la consulta se realiza el insert
+
             $corte = new Corte ;
             $corte->cliente_id = $request->input('cliente');
             $corte->presupuesto_id = $request->input('presupuesto');

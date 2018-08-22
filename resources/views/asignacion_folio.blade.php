@@ -1,19 +1,11 @@
-@if (Auth::check())
-
-
-
 @extends('layouts.app')
 @section('content')
-@if(Gate::check('isAdministrador'))
 @include('layouts.menu_new')  
 
-@endif 
+ 
 <head>
   <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
- <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
- 
+  <meta charset="utf-8"> 
 </head> 
 
 <div class="container">
@@ -21,82 +13,67 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('ASIGNACION DE FOLIO INTERNO') }}</div>
-                <br><br>   
+                <div class="card-header"  style="text-align: center;">{{ __('ASIGNACION DE FOLIO INTERNO') }}</div>
+                <br><br>    
                 
 
                 <div class="card-body"> 
-                <form method="POST" action="{{ route('folio') }}">
+                <form method="POST" action="{{ route('folio') }}"  autocomplete="off">
                      
                       @if(session('status')) 
 
                         <div class="alert alert-success">
                           {{session ('status')}} 
-                           
-                        </div>
+                            
+                        </div> 
                         @endif
-                        @csrf  
+                        @csrf 
+
                        <div class="form-group row"> 
-                    
-                
                     <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Cliente') }}</label>
-            
                         <div class="col-md-6">
                             <input list="browsers" name="cliente"  class="form-control" id ="cliente" required>                             
                             <datalist  id="browsers">                               
                             @foreach($clientes as $cliente) 
-                            <option value="{{ $cliente->id}}"> </option>
+                            <option value="{{ $cliente->id}}"> {{ $cliente->nombre}} {{ $cliente->apellido_paterno}} {{ $cliente->apellido_materno}}</option>
                             @endforeach
                             </datalist>
                         </div> 
-                        
                     </div> 
-                    <div class="form-group row"> 
-                    
-                
+
+
+                    <div class="form-group row">
                     <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Carpeta') }}</label>
-            
                         <div class="col-md-6">
                             <input list="browsers2" name="carpeta"  class="form-control" id ="carpeta" required>                             
                             <datalist  id="browsers2">                               
-                            @foreach($carpetas as $carpeta) 
-                            <option value="{{ $carpeta->carpeta_id}} "></option>
-                            @endforeach
+                           
                             </datalist>
                         </div> 
-                        
                     </div> 
 
                         <div class="form-group row">
-                          
                             <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Trámite') }}</label>
-                          
                             <div class="col-md-6">
                               <div id="div1">
-                               <!-- <label id="nombre" class="form-control"></label>-->
-
                                </div>
                             </div>
                         </div> 
 
                          <div class="form-group row">
                             <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Número de Escritura') }}</label>
-
                            <div class="col-md-6">
-                              <div id="div3">
-                               <!-- <label id="nombre" class="form-control"></label>-->
+                              <div id="div3">                            
 
                                </div>
                             </div>
-
                             </div>
 
                        <div class="form-group row">
                             <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Fecha') }}</label>
-
                             <div class="col-md-6">
                               <div id="div4">
-                               <!-- <label id="nombre" class="form-control"></label>-->
+                             
 
                                </div>
                             </div>
@@ -106,8 +83,7 @@
 
                            <div class="col-md-6">
                               <div id="div5">
-                               <!-- <label id="nombre" class="form-control"></label>-->
-
+                           
                                </div>
                             </div>
 
@@ -117,8 +93,6 @@
 
                             <div class="col-md-6">
                               <div id="div6">
-                               <!-- <label id="nombre" class="form-control"></label>-->
-
                                </div>
                             </div>
                             </div>
@@ -128,8 +102,7 @@
 
                            <div class="col-md-6">
                               <div id="div7">
-                               <!-- <label id="nombre" class="form-control"></label>-->
-
+                           
                                </div>
                             </div>
 
@@ -139,30 +112,19 @@
                             <label for="folio2" class="col-md-4 col-form-label text-md-right">{{ __('Otorgantes') }}</label>
 
                             <div class="col-md-6">
-                              <div id="div8">
-                               <!-- <label id="nombre" class="form-control"></label>-->
-
+                              <div id="div8">                           
                                </div>
                             </div>
-
-
                             </div>
 
 
-                        <div class="form-group row"> 
-        
-      
-        <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Contrato') }}</label>
-
-               <div class="col-md-6">
-                              <div id="div9">
-                               <!-- <label id="nombre" class="form-control"></label>-->
-
+                        <div class="form-group row">       
+                        <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Contrato') }}</label>
+                         <div class="col-md-6">
+                              <div id="div9">                          
                                </div>
-                            </div>
-                               
-                      </div> 
-
+                            </div>                               
+                         </div>
                         
 
                     </form>
@@ -186,10 +148,27 @@
   $(document).ready(function(){
     $("#cliente").change(function(event){
         var cliente = $('#cliente').val();
-        console.log(cliente);
+       // console.log(cliente);
+       $.get("GuiaCliente/"+cliente+"",function(response ,state){
+        console.log(response);
+
+         $("#browsers2").empty();   
+         
+
+                for(i=0; i<response.length; i++){
+                  $("#browsers2").append('<option value="'+response[i].carpeta_id+'"</option>'); 
+                 
+ 
+
+                      
+                }
+
+       }); 
+        
+      
         $("#carpeta").change(function(event){ 
             var carpeta = $('#carpeta').val();
-            console.log(carpeta); 
+         //   console.log(carpeta); 
             
             $.get("ControlTramitesFolio/"+cliente+"/"+carpeta+"",function(response ,state){
             console.log(response);
@@ -225,8 +204,5 @@
 @endsection
 
  
- 
-
-@endif
 
 

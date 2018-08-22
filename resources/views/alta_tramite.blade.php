@@ -1,27 +1,21 @@
 @extends('layouts.app')
-
 @section('content')
-@if(Gate::check('isAdministrador'))
-@include('layouts.menu_new')  
+@include('layouts.menu_new') 
 
-@endif 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Alta Trámite') }}</div> 
-
+                <div class="card-header" style="text-align: center;">{{ __('Alta Trámite') }}</div> 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('alta_tramite') }}">
+                    <form method="POST" action="{{ route('alta_tramite') }}" autocomplete="off">
                         @if(session('status'))
-
                         <div class="alert alert-success">
-                            {{session ('status')}}
-                            
+                            {{session ('status')}}                            
                         </div>
                         @endif
                         @csrf
-
+ 
                         <div class="form-group row"> 
                             <label for="tramite" class="col-md-4 col-form-label text-md-right">{{ __('Trámite') }}</label>
 
@@ -49,7 +43,8 @@
                                     </span>
                                 @endif 
                             </div>
-                        </div>   
+                        </div>  
+
                                 
                           <div class="form-group row">    
                       <label for="puesto" class="col-md-4 col-form-label text-md-right">{{ __('Documentos') }}</label>
@@ -70,7 +65,6 @@
                                 </button>
                             </div> 
                         </div>
-
                     </form>
                 </div>
             </div>

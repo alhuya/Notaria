@@ -1,10 +1,6 @@
 @extends('layouts.app')
-    @section('content')
-    @if(Gate::check('isAdministrador'))
-    @include('layouts.menu_new')  
-
-
-    @endif 
+ @section('content')
+ @include('layouts.menu_new')  
 
     <link rel="stylesheet" type="text/css" href="css/app.css">   
     <div class="container">
@@ -14,7 +10,7 @@
                     <div class="card-header">{{ __('Puestos') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('puestos_us') }}">
+                        <form method="POST" action="{{ route('puestos_us') }}" autocomplete="off">
                         	@if(session('status'))
 
                         <div class="alert alert-success">
@@ -64,7 +60,7 @@
 
                                 
                                 </div> 
-                            </div>
+                            </div> 
                     
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">

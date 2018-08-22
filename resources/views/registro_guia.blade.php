@@ -1,9 +1,7 @@
 @extends('layouts.app')
 @section('content')
-@if(Gate::check('isAdministrador'))
-@include('layouts.menu_new')  
+@include('layouts.menu_new')   
 
-@endif 
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
@@ -14,16 +12,16 @@
 
 <div class="container">
  <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center"> 
         <div class="col-md-8">
           
                 <br><br>  
               
             <div class="card">
-                <div class="card-header">{{ __('Guía Registro') }}</div>  
+                <div class="card-header" style="text-align: center;">{{ __('Guía Registro') }}</div>  
 
                 <div class="card-body"> 
-                <form method="POST"  action="{{ route('registro') }}">
+                <form method="POST"  action="{{ route('registro') }}"  autocomplete="off">
                
                       @if(session('status'))  
 
@@ -41,20 +39,18 @@
                      </div>
                   @endif  
                         @csrf 
-                        <div class="form-group row"> 
-        
-      
-        <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Número de Carpeta') }}</label>
 
-                <div class="col-md-6">
-                <input list="browsers" name="carpeta"  class="form-control" id ="input" required>                             
-                <datalist  id="browsers">                              
-                    @foreach($Tramites as $tramite)
-                    <option value="{{ $tramite['carpeta_id']}}">@endforeach
-                </datalist>
-            </div>
-                
-            </div>    
+                        <div class="form-group row"> 
+                <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Número de Carpeta') }}</label>
+
+                        <div class="col-md-6">
+                        <input list="browsers" name="carpeta"  class="form-control" id ="input" required>                             
+                        <datalist  id="browsers">                              
+                            @foreach($Tramites as $tramite)
+                            <option value="{{ $tramite['carpeta_id']}}">@endforeach
+                        </datalist>
+                    </div>                
+                    </div>    
 
                         
 
@@ -83,7 +79,8 @@
                                     </span>
                                 @endif
                             </div>
-</div>
+                            </div>
+
                             <div class="form-group row">
                             <label for="volumen" class="col-md-4 col-form-label text-md-right">{{ __('Volumen') }}</label>
 
@@ -147,24 +144,17 @@
                         <div class="form-group row"> 
         
       
-        <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Contrato') }}</label>
+                <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Contrato') }}</label>
 
-                <div class="col-md-6">
-                <input list="browsers2" name="contrato"  class="form-control" id ="input" required>                              
-                <datalist  id="browsers2">                              
-                    @foreach($Tipos as $tipo)
-                    <option value="{{ $tipo['id']}}">{{ $tipo['tramite']}}</option>@endforeach
-                </datalist>
-            </div>
-                
-            </div> 
-                               
-
-                              
-
-                          
-                         
-                
+                        <div class="col-md-6">
+                        <input list="browsers2" name="contrato"  class="form-control" id ="input" required>                              
+                        <datalist  id="browsers2">                              
+                            @foreach($Tipos as $tipo)
+                            <option value="{{ $tipo['id']}}">{{ $tipo['tramite']}}</option>@endforeach
+                        </datalist>
+                    </div>
+                        
+                    </div> 
 
                          <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
@@ -184,16 +174,15 @@
 @endsection 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!--<script src="{{ asset('js/user.js') }}" ></script>-->
+ 
 
 @section('script')
 <script type="text/javascript">
   $(document).ready(function(){
   $("#doc1").change(function(event){
   $.get("tramite_documento/"+event.target.value+"",function(response ,state){ 
-    console.log(response);
-     $("#div1").empty();  
-    
+  //  console.log(response);
+     $("#div1").empty();      
     for(i=0; i<response.length; i++){ 
     $("#div1").append(' <input type="checkbox" name="docId[]" value='+response[i].id+'> '+response[i].documento+' <br>');
          

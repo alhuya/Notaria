@@ -14,11 +14,7 @@
 
 <div class="container"> 
 
-          
-
-                    
-                        
-                         <div class="container">
+  <div class="container">
     <div class="row justify-content-center"> 
         <div class="col-md-8">
             <div class="card"> 
@@ -34,7 +30,8 @@
                           
                             <div class="col-md-6">
                               <div >
-                              <button type="button" onclick="javascript:location.href='{{ route('reportes_cliente') }}'" class="btn btn-primary btn-lg">Clientes</button>
+                              <button type="button" onclick="javascript:location.href='{{ route('rep_presupuesto') }}'" class="btn btn-primary btn-lg">Presupuesto</button>
+                              <button type="button" onclick="javascript:location.href='{{ route('rep_guia') }}'" class="btn btn-primary btn-lg">Guía</button>
                              
 
                                 </div>
@@ -67,7 +64,7 @@
 @endsection
 
 
- 
+  
 
 
 

@@ -1,9 +1,8 @@
 @extends('layouts.app')
 @section('content')
-@if(Gate::check('isAdministrador'))
 @include('layouts.menu_new')   
 
-@endif 
+
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
@@ -17,26 +16,24 @@
     <div class="row justify-content-center"> 
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Primera Revisión de Expediente') }}</div>
+                <div class="card-header"  style="text-align: center;">{{ __('Segunda Revisión de Expediente') }}</div>
                 <br><br>   
                 
 
                 <div class="card-body">
-                <form method="POST" action="{{ route('rev2') }}"> 
+                <form method="POST" action="{{ route('rev2') }}"  autocomplete="off">
                      
                       @if(session('status')) 
   
                         <div class="alert alert-success">
                           {{session ('status')}} 
-                           
+                            
                         </div>
                         @endif
                         @csrf 
-                                    <div class="form-group row">  
-                    
-                
+                                    
+                         <div class="form-group row"> 
                     <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Número de Carpeta') }}</label>
-            
                         <div class="col-md-6"> 
                             <input list="browsers" name="carpeta"  class="form-control" id ="carpeta" required>                             
                             <datalist  id="browsers">                              
@@ -44,17 +41,13 @@
                             <option value="{{ $revision->carpeta_id}} "> </option>
                             @endforeach
                             </datalist>
-                        </div> 
-                        
+                        </div>
                     </div> 
 
                         <div class="form-group row">
-                          
-                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Trámite') }}</label>
-                          
+                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Trámite') }}</label>                          
                             <div class="col-md-6">
-                              <div id="div1">
-                               <!-- <label id="nombre" class="form-control"></label>-->
+                              <div id="div1">                            
 
                                </div>
                             </div>
@@ -63,13 +56,10 @@
                         
                         
                     
-                        <div class="form-group row">
-                          
-                          <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Número de Folio') }}</label>
-                        
+                        <div class="form-group row">                          
+                          <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Número de Folio') }}</label>                        
                           <div class="col-md-6">
-                            <div id="div2">
-                             <!-- <label id="nombre" class="form-control"></label>-->
+                            <div id="div2">                         
 
                              </div>
                           </div>
@@ -79,57 +69,38 @@
                       <label for="puesto" class="col-md-4 col-form-label text-md-right">{{ __('Documentos') }}</label>
 
                              <div class="col-md-6" id="div4">
-                            
-                            
-                          
-                               
                            </div>
                         </div>  
 
  
                       
                       <div class="form-group row"> 
-                    
-                 
                     <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Comentario de Abogado') }}</label>
-            
                         <div class="col-md-6">
                        <div id="div3"></div>
-
-                        </div>  
-                         
+                        </div>                           
                     </div> 
  
 
                        <div class="form-group row"> 
-                    
-                 
                     <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Comentario') }}</label>
-            
                         <div class="col-md-6">
                         <textarea rows="4" cols="50" name="comentariocal"  class="form-control"></textarea>
-
-                        </div>  
-                          
+                        </div>                            
                     </div> 
 
                                           
 
                      <div class="form-group row"> 
-                    
-                
                     <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Estatus') }}</label>
-            
                         <div class="col-md-6"> 
-                            <input list="browsers3" name="estatus"  class="form-control" id ="var" required>                             
-                            <datalist  id="browsers3">                              
-                          
+                            <input list="browsers3" name="estatus"  class="form-control" id ="var" required>                           
+                            <datalist  id="browsers3">
                             <option value="Aprovada "></option>
                             <option value="Cancelada "></option>
                             <option value="Revisión "></option>
                             </datalist>
                         </div> 
-                        
                     </div> 
 
                          <div class="form-group row mb-0">
@@ -154,14 +125,14 @@
 @endsection
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
-  <!--<script src="{{ asset('js/user.js') }}" ></script>-->
+ 
  
 @section('script') 
 <script type="text/javascript">
   $(document).ready(function(){
   $("#carpeta").change(function(event){
   $.get("ControlTramites/"+event.target.value+"",function(response ,state){
-    console.log(response);
+  //  console.log(response);
      $("#div1").empty();   
      $("#div2").empty();  
     for(i=0; i<response.length; i++){

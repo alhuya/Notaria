@@ -18,16 +18,16 @@ class ConsultaClienteController extends Controller
     public function index() 
     {
         $clientes = Clientes::all();
-        $puesto = Auth::user()->puesto_id;
+        $puesto = Auth::user()->puesto_id;//Se optiene el puesto_id del usuario logueado
                
        
         $conceptos = DB::table('menu_concepto')
-         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->where('menu_concepto.puesto_id', '=', $puesto)//se optiene las categorias del menu
          ->select('menu_concepto.*')
          ->get();
  
          $funciones = DB::table('menu')
-         ->where('menu.puesto_id', '=', $puesto)
+         ->where('menu.puesto_id', '=', $puesto)//se optiene las fucniones del menu
          ->select('menu.*')
          ->get();
         return view('consulta_cliente', compact('clientes','conceptos','funciones'));
@@ -52,7 +52,7 @@ class ConsultaClienteController extends Controller
     public function store(Request $request,$id)
     {
         if($request->ajax()){
-        $cliente = Clientes::clientes($id);
+        $cliente = Clientes::clientes($id);// se optienen la respuesta del modelo clientes 
         return response()->json($cliente);
       }
     }

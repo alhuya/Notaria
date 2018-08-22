@@ -4,16 +4,16 @@
  
  
 
-
+ 
     <link rel="stylesheet" type="text/css" href="css/app.css">   
     <div class="container">
     <div class="row justify-content-center">
      <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Consulta Trámites') }}</div>
+                    <div class="card-header" style="text-align: center;">{{ __('Consulta Trámites') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('puestos_us') }}"> 
+                        <form method="POST" action="{{ route('puestos_us') }}" autocomplete="off"> 
                         	@if(session('status'))
 
                         <div class="alert alert-success">
@@ -64,14 +64,14 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!--<script src="{{ asset('js/user.js') }}" ></script>-->
+
 
 @section('script')
 <script type="text/javascript">
   $(document).ready(function(){
   $("#cliente2").change(function(event){
   $.get("tramite_documento/"+event.target.value+"",function(response ,state){
-    console.log(response); 
+  //  console.log(response); 
      $("#div1").empty(); 
    
      

@@ -21,7 +21,7 @@ class ConsultaTramiteController extends Controller
  
         $tramites = TiposTramites::all();
 
-        $puesto = Auth::user()->puesto_id;
+        $puesto = Auth::user()->puesto_id;//puesto_id del usuario logueado
                
        
         $conceptos = DB::table('menu_concepto')

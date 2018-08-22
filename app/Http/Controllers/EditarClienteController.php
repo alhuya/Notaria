@@ -90,7 +90,7 @@ class EditarClienteController extends Controller
      */
     public function update(Request $request){
         $id = $request->input('cliente');
-         Clientes::where('id',$id)->first()->update($request->all()); 
+         Clientes::where('id',$id)->first()->update($request->all()); //Se actualiza la fila segun el id
 
             return redirect('/editar_cliente')->with('status','Cliente editado exitosamente');
     }

@@ -26,19 +26,19 @@ class AltaCitaController extends Controller
         ->select('users.*', 'puestos.abogado')
         ->get();
 
-        $clientes = Clientes::all();
-        $tramites = TiposTramites::all();
-        $tipos = TipoCitas::all();
+        $clientes = Clientes::all();//se manda todo lo de la tabla clientes
+        $tramites = TiposTramites::all();//todo de la tabla tipostramites
+        $tipos = TipoCitas::all();//tiposcitas
 
-        $puesto = Auth::user()->puesto_id;
+        $puesto = Auth::user()->puesto_id;//se optiene el pueto_id del usuario logueados
                
        
-        $conceptos = DB::table('menu_concepto')
+        $conceptos = DB::table('menu_concepto')//se optienen las categorias del menu
          ->where('menu_concepto.puesto_id', '=', $puesto)
          ->select('menu_concepto.*')
          ->get();
  
-         $funciones = DB::table('menu')
+         $funciones = DB::table('menu')//se optienen las fucniones del menu
          ->where('menu.puesto_id', '=', $puesto)
          ->select('menu.*')
          ->get();
@@ -65,11 +65,11 @@ class AltaCitaController extends Controller
     {
         $fecha = $request->input('fecha'); 
         $abogado = $request->input('abogado');
-        $hoy = Now(); 
-        $dia=date("w", strtotime($fecha));
+        $hoy = Now(); //fecha y hora del dia de hoy 2018-08-21 00:00:00
+        $dia=date("w", strtotime($fecha));//Se optiene solo la fecha
 
         $abogados = DB::table('horarios_abogado')  
-        ->where('horarios_abogado.usuario_id','=', $abogado)  
+        ->where('horarios_abogado.usuario_id','=', $abogado)  //se consulta el horario del abogado
         ->where('horarios_abogado.tipo_horario','=','Horario Atencion Clientes')     
         ->select('horarios_abogado.*')
         ->get(); 

@@ -1,14 +1,12 @@
 @extends('layouts.app')
 @section('content')
-@if(Gate::check('isAdministrador')) 
 @include('layouts.menu_new')  
 
-@endif 
+
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
-  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
- <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--> 
+
  
 </head>
 
@@ -26,56 +24,39 @@
                                 <option value="{{ $cliente['id']}} {{ $cliente['nombre']}} {{ $cliente['apellido_paterno']}} {{ $cliente['apellido_materno']}}"></option>
                                 @endforeach  
                                </datalist>
-
-                           </div>
-                            
+                           </div>                            
                         </div> 
-
-                    
-                        
-                         <div class="container">
-    
+                    <div class="container">    
                 <div class="card-body">
                 <form method="POST" action="{{ route('register') }}">
                         @csrf
               <div class="container">
 					<table class="table table-striped">
-					  <thead>
-					  	 
-					    <tr>
-					      
+					  <thead>					  	 
+					    <tr>					      
 					      <th scope="col">Nombre</th>
 					      <th scope="col">Apellido Paterno</th>
 					      <th scope="col">Apellido Materno</th>
-                          <th scope="col">Telefono</th>
+                 <th scope="col">Telefono</th>
 					      <th scope="col">Celular</th>
 					      <th scope="col">Correo</th>
-                          <th scope="col">Calle</th>
+                <th scope="col">Calle</th>
 					      <th scope="col">Colonia</th>
 					      <th scope="col">Numero Interior</th>
-                          <th scope="col">Numero Exterior</th>
-                          <th scope="col">Codigo Postal</th>
-                          <th scope="col">Estado</th>
-                          <th scope="col">Municipio</th>
+                <th scope="col">Numero Exterior</th>
+                <th scope="col">Codigo Postal</th>
+                <th scope="col">Estado</th>
+                 <th scope="col">Municipio</th>
 					    
 					    </tr>
 					  </thead>
 					  <tbody id="nombre">
-                     
-					  
-					      
-					     
-					    
-                          
-					     
-					    
-					    
 				
 					  </tbody>
 					</table>
           </div>
-                    </form>
-                </div>
+           </form>
+       </div>
  
                           
 
@@ -84,14 +65,13 @@
 @endsection
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!--<script src="{{ asset('js/user.js') }}" ></script>-->
 
 @section('script')
 <script type="text/javascript">
   $(document).ready(function(){
   $("#cliente2").change(function(event){
     $.get("Clientes/"+event.target.value+"",function(response ,state){
-    console.log(response);
+   // console.log(response);
      $("#nombre").empty();  
   
    

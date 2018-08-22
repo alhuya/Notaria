@@ -1,9 +1,8 @@
 @extends('layouts.app')
-@section('content')
-@if(Gate::check('isAdministrador')) 
+@section('content') 
 @include('layouts.menu_new')  
 
-@endif 
+
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
@@ -17,11 +16,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8"> 
             <div class="card">
-                <div class="card-header">{{ __('Asignar Funciones') }}</div> 
+                <div class="card-header" style="text-align: center;">{{ __('Asignar Funciones') }}</div> 
  
                 <div class="card-body">
 
-                    <form method="GET" action="asignar_funciones">
+                    <form method="GET" action="asignar_funciones"  autocomplete="off">
                    
                       @if(session('status'))
 
@@ -78,18 +77,15 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!--<script src="{{ asset('js/user.js') }}" ></script> -->
   @section('script')
-<script type="text/javascript">
+<script type="text/javascript"> 
   $(document).ready(function(){
   $("#input").change(function(event){
   $.get("categoriaPuesto/"+event.target.value+"",function(response ,state){
-    console.log(response);
-     $("#div1").empty();   
-   
-     
+   // console.log(response);
+     $("#div1").empty();         
     
     for(i=0; i<response.length; i++){
-      $("#div1").append(' <a href="funciones/'+response[i].id+'/'+response[i].puesto_id+'">'+response[i].nombre+'</a><br>');
-      
+      $("#div1").append(' <a href="funciones/'+response[i].id+'/'+response[i].puesto_id+'">'+response[i].nombre+'</a><br>');      
  
      
     }

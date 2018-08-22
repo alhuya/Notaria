@@ -1,10 +1,7 @@
 @extends('layouts.app')
-
 @section('content')
-@if(Gate::check('isAdministrador'))
 @include('layouts.menu_new')  
 
-@endif 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -12,7 +9,7 @@
                 <div class="card-header">{{ __('Concepto Costo') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('costo') }}"> 
+                    <form method="POST" action="{{ route('costo') }}"  autocomplete="off"> 
                         @if(session('status'))
  
                         <div class="alert alert-success">
@@ -61,12 +58,8 @@
              </div>
                
           </div> 
- 
 
-
-
-
-         <div class="row">
+     <div class="row">
     <div class="col">
     <label for="docuemnto" class="col-md-6 col-form-label text-md-right">{{ __('Concepto') }}</label> 
     @foreach($variables as $variable)
@@ -80,19 +73,17 @@
         </span> 
     @endif
 
-    </div>
+    </div> 
      
 
      <div class="col">
-    <label for="docuemnto" class="col-md-6 col-form-label text-md-right">{{ __('Costo') }}</label>
+    <label for="docuemnto" class="col-md-6 col-form-label text-md-right">{{ __('Importe') }}</label>
     @foreach($variables as $variable) 
 
 <input id="costou" type="text" class="form-control" name="costo[]"  autofocus>
 @endforeach
 
-    </div>
- 
-                        
+    </div>       
    
     <div class="col-12">
     <br><br>
@@ -103,8 +94,7 @@
                                 </button>
                             </div>
                         </div>
-                         </div>          
-    
+                         </div>    
                         </form>
                 </div>
             </div>

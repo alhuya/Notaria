@@ -22,7 +22,7 @@ class ConsultaUsuarioController extends Controller
         ->select('users.*', 'puestos.puesto','puestos.abogado')
         ->get();
 
-        $puesto = Auth::user()->puesto_id;
+        $puesto = Auth::user()->puesto_id;//se optiene el puesto_id del login
                
        
         $conceptos = DB::table('menu_concepto')
@@ -57,7 +57,7 @@ class ConsultaUsuarioController extends Controller
     public function store(Request $request , $id)
     {
       if($request->ajax()){
-        $usuarios = User::usuarios($id);
+        $usuarios = User::usuarios($id);//respuesta del modelo user 
         return response()->json($usuarios);
       }
     }

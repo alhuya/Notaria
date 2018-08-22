@@ -94,18 +94,29 @@ class EliminarTramiteController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
+     * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
     {
         $id = $request->input('tramite');
+
+        $consulta = DB::table('control_tramites')
+        ->where('control_tramites.tramite_id', '=', $id)
+        ->select('control_tramites.*')
+        ->get();
+
+        if ($consulta->isEmpty()) {
         $tramite = TiposTramites::find($id);
         $tramite->delete();
 
-        $doc = tramite_documento::where('tipo_tramite_id',$id);
+        $doc = tramite_documento::where('tipo_tramite_id',$id);//eliminar fila del modelo tramite_documento segun el id
         $doc->delete();
        return redirect('/eliminar_tramite')->with('status','Tramite eliminado exitosamente');
+        }
+        else{
+            return redirect('/eliminar_tramite')->with('status2','No se puede eliminar el cliente ');
+        }
     }
 }

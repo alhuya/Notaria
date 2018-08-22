@@ -93,10 +93,16 @@
                             @endif
                         @endforeach
                         </ul>
-                      <!-- d o c u m e n t a c i o n  p o r  t r a m i t e -->
+                      <!-- Requisitos al Cliente -->
                       @foreach($funciones as $funcion)
                          @if($funcion->funcion_id == 11)
-                   <li><a href="{{ route('Doc_tram') }}">Documentación por Tramite</a></li>
+                   <li><a href="{{ route('Doc_tram') }}">Requisitos al Cliente</a></li>
+                   @endif
+                    @endforeach 
+                    <!-- Requisitos de Terceros -->
+                    @foreach($funciones as $funcion)
+                         @if($funcion->funcion_id == 65)
+                   <li><a href="{{ route('req_ter') }}">Requisitos con Terceros</a></li>
                    @endif
                     @endforeach 
                   <!-- r e p o r t e s -->
@@ -158,7 +164,7 @@
                    @if($funcion->funcion_id == 17)
                   <li><a href="{{ route('consulta_client') }}">Consulta Cliente</a></li>
                   <!-- v i t a c o r a -->
-                  <li><a href="{{ route('vitacora') }}">Vitacora</a></li>
+                  <li><a href="{{ route('vitacora') }}">Bitácora</a></li>
                   @endif
                    @endforeach
                    
@@ -271,18 +277,25 @@
                   </a></li>
                   <ul class="sub-menu collapse" id="guia">
                    <!-- r e g i s t r o  t r a m i t e  p a g o  d e p e n d en c i a s -->
-                   @foreach($funciones as $funcion)
+                 <!--  @foreach($funciones as $funcion)
                    @if($funcion->funcion_id == 31)
                             <li ><a href="{{ route('pago') }}">Registro de Tramite a Pago a Dependencia</a></li>
                    @endif
-                   @endforeach
+                   @endforeach-->
                    <!-- e n v i o  a  c o n t r o l  d e   c a  l i d a d -->
                    @foreach($funciones as $funcion)
                    @if($funcion->funcion_id == 32)
                             <li ><a href="{{ route('envio') }}">Envio a Control de Calidad</a></li>
+                           
+                   @endif
+                   @endforeach 
+                   <!-- c o n s u l t a   r e v i s i o n e s -->
+                   @foreach($funciones as $funcion)
+                   @if($funcion->funcion_id == 63)
+                   <li ><a href="{{ route('c_rev1') }}">Consulta Revisiones</a></li>
                    @endif
                    @endforeach
-                   <!-- f i n i q u i t o  d e  t r a m i t e s -->
+                   <!-- f i n i q u i t o  d e  t r a m i t e s --> 
                    @foreach($funciones as $funcion)
                    @if($funcion->funcion_id == 33)
                             <li ><a href="{{ route('finiquitar') }}">Finiquito de Trámites</a></li>
@@ -317,7 +330,7 @@
                         </ul>
                         @foreach($funciones as $funcion)
                    @if($funcion->funcion_id == 67)
-                        <li><a href="{{ route('rep_recepcion') }}">Reportes</a></li>
+                        <li><a href="{{ route('rep_abogados') }}">Reportes</a></li>
                         @endif
                    @endforeach
                   

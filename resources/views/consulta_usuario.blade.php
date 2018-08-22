@@ -1,30 +1,26 @@
 @extends('layouts.app')
 @section('content')
-@if(Gate::check('isAdministrador'))
 @include('layouts.menu_new')  
 
-@endif
- 
 
  <div class="container">
     <div class="row justify-content-center"> 
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Usuarios') }}</div>
+            <div class="card"> 
+                <div class="card-header">{{ __('Consulta Usuarios') }}</div>
 					<div class="card-body">
 						<div class="container">
 							<div class="row">
 						        <div class="span2">
 						            <div class="btn-group pull-right" data-toggle="buttons-radio">
-						                <!--<button class="btn active">All</button>
-						                <button class="btn">Starred</button>-->
+						               
 						            </div>
 						        </div>
 						                           
 						        
 						    </div>
 						</div>
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}"  autocomplete="off">
 
 					
 					<div class="form-group row"> 
@@ -79,11 +75,8 @@
   $(document).ready(function(){
   $("#usuario").change(function(event){
   $.get("User/"+event.target.value+"",function(response ,state){
-    console.log(response);
-     $("#div1").empty(); 
-   
- 
-    
+   // console.log(response);
+     $("#div1").empty();  
     for(i=0; i<response.length; i++){
 
       $("#us").append("'<tr><td>"+ $.trim(response[i].nombre) +"</td><td>"+ $.trim(response[i].ap_paterno) +"</td><td>"+ $.trim(response[i].ap_materno) +"</td><td>"+ $.trim(response[i].puesto) +"</td><td>"+ $.trim(response[i].estado) +"</td></tr>'");

@@ -3,7 +3,7 @@
 namespace Notaria\Http\Controllers;
  
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+ 
 use Notaria\Concepto; 
 use Notaria\ControlTramites; 
 use Notaria\CostoTramite;
@@ -86,7 +86,7 @@ class PresupuestoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    { 
     
     }
 

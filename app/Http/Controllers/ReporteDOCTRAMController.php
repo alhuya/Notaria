@@ -19,10 +19,13 @@ class ReporteDOCTRAMController extends Controller
         $Tramites =DB::table('tipos_tramites')
         ->select('tipos_tramites.*')
         ->get();  
+        $hoy = date('Y-m-d');
 
-        $Clientes =DB::table('clientes')
-        ->select('clientes.*')
+        $Clientes =DB::table('vitacora')
+        ->where('vitacora.fecha', '=', $hoy)
+        ->select('vitacora.*')
         ->get(); 
+            
 
         $puesto = Auth::user()->puesto_id; 
                
@@ -32,7 +35,7 @@ class ReporteDOCTRAMController extends Controller
          ->select('menu_concepto.*')
          ->get();
  
-         $funciones = DB::table('menu')
+         $funciones = DB::table('menu') 
          ->where('menu.puesto_id', '=', $puesto)
          ->select('menu.*')
          ->get();

@@ -51,7 +51,7 @@ class ControlPagoImpuestosController extends Controller
      */
     public function store(Request $request) 
     {
-
+//Validacion de los inputs
         $request->validate([
             'impuesto' => 'required|string|max:255',
             'cantidad' => 'required|numeric',
@@ -61,7 +61,7 @@ class ControlPagoImpuestosController extends Controller
         
         $hoy = date("y-m-d");
    
- 
+ //insert en la tabla pago impuesto
         $Impuestos = new PagoImpuesto ;  
         $Impuestos->fecha = $hoy; 
         $Impuestos->impuesto = $request->input('impuesto');

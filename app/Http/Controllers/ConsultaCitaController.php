@@ -21,16 +21,16 @@ class ConsultaCitaController extends Controller
         ->where('puestos.abogado', '=', 'si')
         ->select('users.*', 'puestos.abogado')
         ->get();
-        $puesto = Auth::user()->puesto_id;
+        $puesto = Auth::user()->puesto_id;//se optiene el puesto_id del usuario logueado
                
        
         $conceptos = DB::table('menu_concepto')
-         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->where('menu_concepto.puesto_id', '=', $puesto)//se optiene las categorias del menu
          ->select('menu_concepto.*')
          ->get();
  
          $funciones = DB::table('menu')
-         ->where('menu.puesto_id', '=', $puesto)
+         ->where('menu.puesto_id', '=', $puesto)//se optiene las fuciones del menu
          ->select('menu.*')
          ->get();
         return view('/consulta_citas', compact('usuarios','funciones','conceptos'));

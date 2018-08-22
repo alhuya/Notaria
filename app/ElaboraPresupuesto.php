@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use DB;
 class ElaboraPresupuesto extends Model
 { 
+    //consulta que devuelve la consulta a la tabla concepto_costo
     public static function consulta($id,$tipo){ 
 
         $consultas = DB::table('control_tramites')

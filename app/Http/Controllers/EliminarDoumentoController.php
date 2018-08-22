@@ -108,7 +108,7 @@ class EliminarDoumentoController extends Controller
         $documentos->delete();
 
        
-        $doc = tramite_documento::where('documentacion_id',$id);
+        $doc = tramite_documento::where('documentacion_id',$id);//elimina el documento segun el id
         $doc->delete();
 
         

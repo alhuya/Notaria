@@ -1,16 +1,13 @@
 @extends('layouts.app')
-
 @section('content')
-@if(Gate::check('isAdministrador'))
 @include('layouts.menu_new')  
 
-@endif 
 <div class="container">
     <div class="row justify-content-center"> 
         <div class="col-md-8">
           
             <div class="card">
-                <div class="card-header">{{ __('Ingreso a Dependencia') }}</div>
+                <div class="card-header"  style="text-align: center;">{{ __('Ingreso a Dependencia') }}</div>
                
 
                 <div class="card-body">

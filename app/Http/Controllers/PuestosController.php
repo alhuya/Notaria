@@ -16,7 +16,7 @@ class PuestosController extends Controller
     public function index()
     {
         $categorias = Categorias::all();
-        $puesto = Auth::user()->puesto_id;
+        $puesto = Auth::user()->puesto_id;//Se optiene el puesto_id del usuario logueado
                
        
         $conceptos = DB::table('menu_concepto')

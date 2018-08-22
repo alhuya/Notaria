@@ -7,6 +7,7 @@ use DB;
 
 class Entregas extends Model
 {
+    //fucnion que devuelve datos de la tabla control_tramites solo si se encuentra un kinegrama registrado
     public static function valor($id){ 
 
         $consultas =  DB::table('control_tramites')

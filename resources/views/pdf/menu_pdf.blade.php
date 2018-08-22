@@ -88,7 +88,7 @@
 </style>
 </head>
 <body>
-    <div class="@if($tipo=='fisico') fisico @endif">
+    
         <table width="100%" class="tabla1">
             <tr>
                 <td width="73%" align="center"><img id="logo" src="{{ asset('imagenes/logo4.png') }}" alt="" width="255" height="57"></td>
@@ -96,7 +96,7 @@
                     
                 </td> 
             </tr>
-            <tr>
+            <tr> 
                 <td align="center">Tecnológico 109, Burócrata, 34279 Durango, Dgo.</td>
             </tr>
             <tr>
@@ -105,13 +105,13 @@
            
              
         </table>
-        <h2 style="text-align: center;" >Reporte de Tarifas</h2>
+        <h2 style="text-align: center;" >Reporte Menú de Usuario</h2>
         <table width="100%" class="tabla2"> 
-            <tr> 
-                <td width="11%">Tarifa:</td>
-                @foreach($valores as $valor) 
-                <td width="37%" class="linea"><span class="text">{{$valor->tramite }}</span></td>
-                @endforeach
+        <tr>
+                <td width="11%">Usuario:</td>
+               @foreach($usuarios as $usuario)
+                <td width="37%" class="linea"><span class="text">{{$usuario->nombre }} {{$usuario->ap_materno }} </span></td>
+              @endforeach
                 <td width="5%">&nbsp;</td>
                 <td width="13%">&nbsp;</td>
                 <td width="4%">&nbsp;</td>
@@ -124,7 +124,7 @@
                 <td ></td> 
                 <td></td>
                 <td></td>
-                <td>&nbsp;</td>
+                <td>&nbsp;</td> 
                 <td align="center" class="border"><span class="text">{{ $dia }}</span></td>
                 <td align="center" class="border"><span class="text">{{ $mes }}</span></td>
                 <td align="center" class="border"><span class="text">{{ $ayo }}</span></td>
@@ -134,16 +134,15 @@
         
         <table width="100%" class="tabla3">
             <tr>
-                <td align="center" class="fondo"><strong>Concepto</strong></td>
-                <td align="center" class="fondo"><strong>Costo</strong></td>
-                <td align="center" class="fondo"><strong>Tipo Pago</strong></td>                             
+                <td align="center" class="fondo"><strong>Categoria</strong></td>
+                <td align="center" class="fondo"><strong>Funcion</strong></td>
+                                   
             </tr>
-          @foreach($Tarifas as $tarifa)
+          @foreach($valores as $valor)
             <tr> 
-                <td width="20%" align="center"><span class="text"> {{ $tarifa->concepto }}</span></td>
-                <td ><span class="text">{{ $tarifa->costo }}</span></td>
-                <td><span class="text">{{ $tarifa->tipo }}</span></td>
-               
+                <td width="20%" align="center"><span class="text"> {{ $valor->nombre }}</span></td>
+                <td ><span class="text">{{ $valor->nombre_funcion }}</span></td>
+                             
             </tr>
             @endforeach
           

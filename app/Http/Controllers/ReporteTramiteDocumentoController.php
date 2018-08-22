@@ -3,23 +3,44 @@
 namespace Notaria\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Notaria\Clientes; 
+use Notaria\Menu;
+use DB;
 
-class ActualizaController extends Controller
+class ReporteTramiteDocumentoController extends Controller
 {
-    /**
+    /** 
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('/actualiza'); 
+        $usuarios =DB::table('users')
+        ->Join('puestos', 'users.puesto_id', '=', 'puestos.id')
+        ->select( 'users.*','puestos.puesto')
+        ->get();    
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
+ 
+         return view('/Reporte_tramite_documento', compact('conceptos','funciones')); 
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response 
      */
     public function create()
     {
@@ -32,9 +53,12 @@ class ActualizaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request,$id)
+    { 
+        if($request->ajax()){
+        $cliente = Menu::categorias($id);
+        return response()->json($cliente); 
+      }
     }
 
     /**

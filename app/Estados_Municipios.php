@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Model;
  
 class Estados_Municipios extends Model
 {
-     protected $table = 'estados_municipios';
-    protected $fillable = ['estados_id','municipio_id'];
+     protected $table = 'estados_municipios';//tabla
+    protected $fillable = ['estados_id','municipio_id'];//campos
+    
 
+//fucnion que devuelve la consulta de la tabla estados municipios
     public static function estmun($id){ 
         
             return  DB::table('estados_municipios')

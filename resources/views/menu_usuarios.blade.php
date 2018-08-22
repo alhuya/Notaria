@@ -1,9 +1,8 @@
 @extends('layouts.app')
 @section('content')
-@if(Gate::check('isAdministrador'))
 @include('layouts.menu_new')  
 
-@endif 
+
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
@@ -15,12 +14,12 @@
 <div class="container">
   <div class="container"> 
     <div class="row justify-content-center">
-        <div class="col-md-8">  
+        <div class="col-md-8">   
             <div class="card">
                 <div class="card-header">{{ __('Menú Usuarios') }}</div>
 
                 <div class="card-body">
-                    <form method="post" action="{{ route('ed') }}">
+                    <form method="post" action="{{ route('ed') }}" autocomplete="off">
        
                       @if(session('status'))  
                         <div class="alert alert-success">
@@ -34,7 +33,7 @@
                    
                 <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Usuarios') }}</label>
 
-                        <div class="col-md-6">
+                        <div class="col-md-8 ">
                         <input list="browsers" name="usuario"  class="form-control" id ="usuario" required>                             
                         <datalist  id="browsers">                              
                             @foreach($usuarios as $usuario)
@@ -45,20 +44,17 @@
                     @csrf     
                     <style>
                                 table {
-                                border-collapse: collapse;
+                                border-collapse: collapse; 
                                 border-spacing: 0;
                                 width: 100%;
                                 border: 1px solid #ddd;
                                 }
-
                                 th, td {
                                 text-align: left;
                                 padding: 8px;
                                 }
-
                                 tr:nth-child(even){background-color: #f2f2f2} 
                                 thead, tbody { display: block; } 
-
                                 tbody {
                                     height: 200px;       /* Just for the demo          */
                                     overflow-y: auto;    /* Trigger vertical scroll    */
@@ -75,8 +71,8 @@
                                 <tr>
                                 <th scope='col'>Tràmite</th>
                                 <th scope='col'>Documentaciòn</th> 
-                                </tr
-                                ><tbody  id="div1">
+                                </tr>
+                                <tbody  id="div1">
                                 </tbody>
                         
                      
@@ -88,7 +84,7 @@
                     </form>
 
                 </div>
-                <div id="div2"></div>
+                <div id="div2"></div> 
             </div> 
         </div>
     </div>
@@ -101,7 +97,7 @@
 @endsection
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!--<script src="{{ asset('js/user.js') }}" ></script>--> 
+  <!--<script src="{{ asset('js/user.js') }}" ></script>-->  
 
 @section('script')
 <script type="text/javascript">
@@ -109,18 +105,17 @@
   $("#usuario").change(function(event){
   
   
-  $.get("Menu/"+event.target.value+"",function(response ,state){
-    console.log(response);
+  $.get("Menu/"+event.target.value+"",function(response ,state){ 
+   console.log(response);
      $("#div1").empty();
      $("#div2").empty();  
  
     for(i=0; i<response.length; i++){   
    $("#div1").append("'<tr><td>"+ $.trim(response[i].nombre) +"</td><td>"+ $.trim(response[i].nombre_funcion) +"</td>'");      
-
     }
     var us = $('#usuario').val();
 
-    $("#div2").append("'<p><a target='_blank' href='{{ action('MenuPDFuController@getGenerar',['accion'=>'ver','tipo'=>'digital','id'=> 'us' ]) }}'>Ver PDF digital</a></p>'"); 
+    $("#div2").append("<a target='_blank' href='pdf/menu_pdf/"+us+"'>Ver PDF digital</a>"); 
  
   
   });
@@ -128,10 +123,3 @@
 });
 </script>
 @endsection
-
-
- 
-
-
-
-

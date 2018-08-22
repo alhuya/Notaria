@@ -34,7 +34,7 @@
                           
                             <div class="col-md-6">
                               <div >
-                              <button type="button" onclick="javascript:location.href='{{ route('reportes_cliente') }}'" class="btn btn-primary btn-lg">Clientes</button>
+                              <button type="button" onclick="javascript:location.href='{{ route('rep_citabog') }}'" class="btn btn-primary btn-lg">Cita por Abogado</button>
                              
 
                                 </div>

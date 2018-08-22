@@ -1,14 +1,11 @@
 @extends('layouts.app')
 @section('content')
-@if(Gate::check('isAdministrador'))
-@include('layouts.menu_new')    
+@include('layouts.menu_new')  
 
-@endif 
+
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
-  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
- <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
  
 </head> 
 
@@ -16,14 +13,14 @@
 <h2 style="text-align: center;">Editar Trámite</h2> 
          
                         
-                         <div class="container">
+    <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Trámites') }}</div>
 
                 <div class="card-body">
-                <form method="POST" action="{{ route('editar_tramite') }}">
+                <form method="POST" action="{{ route('editar_tramite') }}" autocomplete="off">
                       {{ method_field('patch')}}
                       @if(session('status')) 
 
@@ -87,14 +84,14 @@
 @endsection
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!--<script src="{{ asset('js/user.js') }}" ></script>-->
+  
 
 @section('script')
 <script type="text/javascript">
   $(document).ready(function(){
   $("#input").change(function(event){
   $.get("TiposTramites/"+event.target.value+"",function(response ,state){
-    console.log(response);
+  //  console.log(response);
      $("#uno").empty(); 
      $("#dos").empty(); 
       

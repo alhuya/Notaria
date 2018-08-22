@@ -20,19 +20,19 @@ class AltaTramiteController extends Controller
      */
     public function index()
     {
-        $documentos = Documentacion::all();
+        $documentos = Documentacion::all();//se optienen toda la documentacion
 
        
-        $puesto = Auth::user()->puesto_id;
+        $puesto = Auth::user()->puesto_id;//se optiene el puesto_id del usuario logueado
                
        
        $conceptos = DB::table('menu_concepto')
-        ->where('menu_concepto.puesto_id', '=', $puesto)
+        ->where('menu_concepto.puesto_id', '=', $puesto)//se optiene las categorias del menu
         ->select('menu_concepto.*')
         ->get();
 
         $funciones = DB::table('menu')
-        ->where('menu.puesto_id', '=', $puesto)
+        ->where('menu.puesto_id', '=', $puesto)//se optienen las funciones del menu
         ->select('menu.*')
         ->get();
         return view('alta_tramite', compact('documentos','conceptos','funciones'));
@@ -56,7 +56,7 @@ class AltaTramiteController extends Controller
      */
     public function store(Request $request)
     {
- 
+ //Se validacion de los inputs
         $request->validate([
             'tramite' => 'required|string|max:255',
             'tiempo' => 'required|numeric|',        
@@ -64,7 +64,7 @@ class AltaTramiteController extends Controller
 
         ]);
 
-
+//insert en la tabla tipos tramites
         $tramites = new TiposTramites;
         $tramites->tramite = $request->input('tramite');
         $tramites->duracion = $request->input('tiempo');
@@ -84,7 +84,8 @@ class AltaTramiteController extends Controller
         $documentosId = $request->input('docId');
         $docID;
         foreach ($documentosId as $documentoId) {
-            $docID=  $documentoId;   
+            $docID=  $documentoId; 
+            //insert tramite documento  
             $tramdoc = new tramite_documento;
             $tramdoc->tipo_tramite_id = $tramiteID;
             $tramdoc->documentacion_id = $docID;   

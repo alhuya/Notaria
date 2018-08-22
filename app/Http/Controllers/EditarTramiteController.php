@@ -88,7 +88,7 @@ class EditarTramiteController extends Controller
     public function update(Request $request)
     {
         $id = $request->input('tramites');
-        TiposTramites::where('id',$id)->first()->update($request->all());
+        TiposTramites::where('id',$id)->first()->update($request->all());//Edita tramite donde coincide el id
             return redirect('/editar_tramite')->with('status','Tramite editado exitosamente');
     }
 

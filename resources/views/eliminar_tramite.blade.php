@@ -1,42 +1,37 @@
 @extends('layouts.app')
 @section('content')
-@if(Gate::check('isAdministrador')) 
 @include('layouts.menu_new')  
  
-@endif 
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
-  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
- <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--> 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
  
 </head>
-
 <div class="container">
-<h2 style="text-align: center;">Eliminar Trámite</h2> 
-         
-                    
-                        
+<h2 style="text-align: center;">Eliminar Trámite</h2>                         
     <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8"> 
             <div class="card">
                 <div class="card-header">{{ __('Trámites') }}</div>
- 
                 <div class="card-body">
-
-                    <form method="POST" action="{{ route('eliminar_tramite') }}"> 
+                
+                    <form method="POST" action="{{ route('eliminar_tramite') }}" autocomplete="off"> 
                     	{{ method_field('delete')}}
                       @if(session('status')) 
-
                         <div class="alert alert-success">
                           {{session ('status')}}
-                          
                         </div>
                         @endif
+
+                         @if(session('status2'))
+                        <div class="alert alert-danger">
+                        {{session ('status2')}}
+                            </div> 
+                            @endif
                         @csrf
-                      <div class="form-group row"> 
-                            
+                      <div class="form-group row">                             
                         <label for="documentos" class="col-md-4 col-form-label text-md-right">{{ __('Trámites') }}</label>
 
                                 <div class="col-md-6">
@@ -90,23 +85,21 @@
 
 @endsection
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!--<script src="{{ asset('js/user.js') }}" ></script>-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 @section('script')
 <script type="text/javascript">
   $(document).ready(function(){
   $("#tramite").change(function(event){ 
     $.get("TiposTramites/"+event.target.value+"",function(response ,state){
-    console.log(response);
+    //console.log(response);
      $("#uno").empty();  
      $("#dos").empty();  
     
    
     for(i=0; i<response.length; i++){ 
       $("#uno").append(""+ $.trim(response[i].tramite) +"");
-      $("#dos").append(""+ $.trim(response[i].duracion) +"");  
-    
+      $("#dos").append(""+ $.trim(response[i].duracion) +"");      
        
          
     }

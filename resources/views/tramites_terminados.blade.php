@@ -1,6 +1,5 @@
 @extends('layouts.app') 
-@section('content')
- 
+@section('content') 
 @include('layouts.menu_new')  
 
  
@@ -62,24 +61,20 @@
 					  </tbody>
 					</table>
           </div>
-                    </form>
-                </div>
- 
-                          
-
-      
+          </form>
+           </div>
 
 @endsection
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!--<script src="{{ asset('js/user.js') }}" ></script>-->
+
 
 @section('script')
 <script type="text/javascript"> 
   $(document).ready(function(){
   $("#escritura").change(function(event){
     $.get("TramitesTerminados/"+event.target.value+"",function(response ,state){
-    console.log(response);
+   // console.log(response);
      $("#nombre").empty();  
   
    

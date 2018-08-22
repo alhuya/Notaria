@@ -80,7 +80,7 @@ class CortesImpuestoController extends Controller
         ->select('corte_cp_im.*')
         ->get(); 
         
-        if ($consulta->isEmpty()) { 
+        if ($consulta->isEmpty()) { //si el corte del dia no se a realizado nos deja hacer el insert
             $cortedep = new CorteImpuestos ;
             $cortedep->fecha = $hoy ;
             $cortedep->total = $request->input('total');

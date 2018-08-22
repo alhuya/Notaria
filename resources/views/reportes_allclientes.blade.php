@@ -40,6 +40,7 @@ table {
 th, td {
     text-align: left;
     padding: 8px;
+  
 }
 
 tr:nth-child(even){background-color: #f2f2f2}
@@ -48,11 +49,11 @@ tr:nth-child(even){background-color: #f2f2f2}
 <body>
 <div style="overflow: scroll;">
   <table>
-  <thead>
+  <thead> 
 					  	 
                            <tr>
                              
-                             <th scope="col">Nombre</th>
+                             <th scope="col" width='30%'>Nombre</th>
                              <th scope="col">Apellido Paterno</th>
                              <th scope="col">Apellido Materno</th>
                              <th scope="col">Telefono</th>
@@ -70,7 +71,7 @@ tr:nth-child(even){background-color: #f2f2f2}
                           
                            @foreach($clientes as $cliente)
                            <tr>                             
-                             <th >{{ $cliente->nombre}}</th> 
+                             <th  >{{ $cliente->nombre}}</th> 
                              <th >{{ $cliente->apellido_paterno}} </th> 
                              <th >{{ $cliente->apellido_materno}} </th> 
                              <th >{{ $cliente->telefono}} </th> 

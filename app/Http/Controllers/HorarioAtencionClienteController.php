@@ -62,6 +62,7 @@ class HorarioAtencionClienteController extends Controller
      */
     public function store(Request $request)
     {
+        //Insert en el modelo HorarioAbogado
         $horario = new HorarioAbogado;
         $horario->tipo_horario = ('Horario Atencion Clientes');
         $horario->fecha_inicio = $request->input('fecha_i');   

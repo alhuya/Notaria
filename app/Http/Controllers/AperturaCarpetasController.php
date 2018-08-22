@@ -20,17 +20,8 @@ class AperturaCarpetasController extends Controller
     public function index()
      
     {
-// $idPuesto =  $puestos->select('id','nombre')->where('nombre', '=', $nom)->get();
-       /* $tramites =   DB::table('control_tramites')
-        ->select ('control_tramites.carpeta_id')
-        ->get();*/
-  
 
-        
-        
-
-        //dd($tramites);
-        $numeros = DB::table('control_tramites')
+        $numeros = DB::table('control_tramites')//Se optiene el ultimo elemento de la tabla control_tramites
         -> orderBy('id', 'desc')
         -> take(1)
         ->select('control_tramites.carpeta_id') 
@@ -91,7 +82,7 @@ class AperturaCarpetasController extends Controller
      if( $n == null    ){
          $n = 1;
      }
-    $validar = new ControlTramites ;
+    $validar = new ControlTramites ;//insert 
     $validar->carpeta_id = $n;
     $validar->cliente_id =$request->input('cliente');
     $validar->tramite_id= $request->input('tramite');

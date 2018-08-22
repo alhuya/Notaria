@@ -109,7 +109,7 @@ class EliminarUsuarioController extends Controller
     {
         $id = $request->input('usuario');
       $user = User::find($id);
-      $user->delete();
+      $user->delete();//eliminar user segun el id 
      return redirect('/eliminar_usuario')->with('status','Usuario eliminado exitosamente');
     }
 }

@@ -1,12 +1,10 @@
-@extends('layouts.app') 
 
+@extends('layouts.app') 
 @section('content')
-@if(Gate::check('isAdministrador'))
 @include('layouts.menu_new')  
 
-@endif 
 <div class="container">
-<//img src="{{ asset('/imagenes/fondo2.png') }}" width="100%" height="%50" style="position:absolute; z-index:1;"" >
+
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -66,7 +64,7 @@
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span> 
-                                @endif
+                                @endif 
                             </div> 
                         </div>
                         <div class="form-group row">    

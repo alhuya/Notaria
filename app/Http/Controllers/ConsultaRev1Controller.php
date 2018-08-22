@@ -3,18 +3,41 @@
 namespace Notaria\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use DB;
+use Notaria\ControlTramites;
+use Notaria\Reviciones;
+use Notaria\ConsultaRevisiones;
 
-class ReporteTramiteController extends Controller
+class ConsultaRev1Controller extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index() 
     {
-        //
-    } 
+        $revisiones = DB::table('revisiones')
+        ->select('revisiones.*')
+        ->get();
+        
+        $puesto = Auth::user()->puesto_id;
+               
+       
+        $conceptos = DB::table('menu_concepto')
+         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->select('menu_concepto.*')
+         ->get();
+ 
+         $funciones = DB::table('menu')
+         ->where('menu.puesto_id', '=', $puesto)
+         ->select('menu.*')
+         ->get();
+
+
+        return view('/Consulta_rev1',compact('revisiones','conceptos','funciones')); 
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -32,9 +55,12 @@ class ReporteTramiteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
-        //
+        if($request->ajax()){
+        $cliente = ConsultaRevisiones::rev($id);
+        return response()->json($cliente); 
+      }
     }
 
     /**
@@ -67,7 +93,7 @@ class ReporteTramiteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    { 
+    {
         //
     }
 

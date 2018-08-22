@@ -88,7 +88,7 @@ class TiposCitasController extends Controller
     public function update(Request $request)
     {
         $id = $request->input('tipotram');
-        TipoCitas::where('id',$id)->first()->update($request->all());
+        TipoCitas::where('id',$id)->first()->update($request->all());//editar el modelo tipocitas cuando el id coincide
             return redirect('/tipos_citas')->with('status','Tipo de cita editada exitosamente');
     }
 

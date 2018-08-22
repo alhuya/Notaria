@@ -99,19 +99,10 @@ class EditarUsuarioController extends Controller
     public function update(Request $request){
         $id = $request->input('usuario'); 
         
-            User::where('id',$id)->first()->update($request->all());
+            User::where('id',$id)->first()->update($request->all());//edita el usuario dependiendo del id
             return redirect('/editar_usuario')->with('status','Usuario editado exitosamente');
 
-        /* $usuarios = new User;
-         $usuarios->nombre = $request->input('nombre');
-         $usuarios->ap_paterno = $request->input('ap_paterno');
-         $usuarios->ap_materno = $request->input('ap_materno');
-         $usuarios->email = $request->input('correo');
-         $usuarios->puesto = $request->input('puesto');
-         $usuarios->abogado = 'no';
-         $usuarios->save();
-        return redirect('/eliminar_usuario')->with('status','Puesto guardado exitosamente');
-        */
+     
     }
 
     /**

@@ -7,6 +7,7 @@ use DB;
 
 class ControlTramitesFolio extends Model
 {
+    //funcion que devuelve la consulta contol_tramites
     public static function tramite($cliente,$carpeta){ 
         return DB::table('control_tramites') 
     ->leftJoin('tipos_tramites', 'control_tramites.tramite_id', '=', 'tipos_tramites.id')

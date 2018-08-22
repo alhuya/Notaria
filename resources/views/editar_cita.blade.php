@@ -1,18 +1,15 @@
-@extends('layouts.app') 
-
+@extends('layouts.app')  
 @section('content')
-@if(Gate::check('isAdministrador'))
 @include('layouts.menu_new')  
- 
-@endif 
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8"> 
             <div class="card">
-                <div class="card-header">{{ __('Editar Cita') }}</div>
+                <div class="card-header" style="text-align: center;" >{{ __('Editar Cita') }}</div>
 
                 <div class="card-body"> 
-                    <form method="POST" action="{{ route('edcit') }}">
+                    <form method="POST" action="{{ route('edcit') }}" autocomplete="off">
                         @csrf 
 
                         @if(session('status'))

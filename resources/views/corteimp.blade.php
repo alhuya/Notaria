@@ -1,10 +1,7 @@
 @extends('layouts.app')
-
-@section('content') 
-@if(Gate::check('isAdministrador'))
+@section('content')
 @include('layouts.menu_new')  
 
-@endif 
 <div class="container">
     <div class="row justify-content-center"> 
         <div class="col-md-12"> 
@@ -30,63 +27,55 @@
                 
            
 
-    <table class="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">Fecha</th>
-      <th scope="col">Dependencia</th>
-      <th scope="col">Cantidad</th>
-      <th scope="col">Tipo de Pago</th>
-      <th scope="col">Cuenta</th>
-      <th scope="col">Cantidad</th>
-    
-      
-    </tr>
-  </thead>
-  <tbody >
+            <table class="table table-bordered">
+        <thead>
+            <tr>
+            <th scope="col">Fecha</th>
+            <th scope="col">Dependencia</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Tipo de Pago</th>
+            <th scope="col">Cantidad</th>
+            
+            
+            </tr>
+        </thead>
+        <tbody >
 
-  @foreach($Impuestos as $impuesto)
-  <tr>  
-<th >{{$impuesto->fecha}}</th>
-<th >{{$impuesto->impuesto}}</th>
-<th >{{$impuesto->cantidad}}</th>
-<th >{{$impuesto->tipo_pago}}</th> 
-<th >{{$impuesto->cuenta}}</th>
-<th >{{$impuesto->entrega}}</th> 
+        @foreach($Impuestos as $impuesto)
+        <tr>  
+        <th >{{$impuesto->fecha}}</th>
+        <th >{{$impuesto->impuesto}}</th>
+        <th >{{$impuesto->cantidad}}</th>
+        <th >{{$impuesto->tipo_pago}}</th>
+        <th >{{$impuesto->entrega}}</th> 
 
 
- 
+        
 
-  @endforeach
- 
-  </tr>        
-  
-   
-  </tbody>
-  
- 
+        @endforeach
+        
+        </tr>        
+        
+        
+        </tbody>
+        
+        
 
- <tr>  
-<th >Total</th> 
-<th ></th>
-<th ><input type="text" name="total" value="{{$suma}}" style="border:none" readonly></th>
-<th ></th>
-<th ></th>
-<th ></th>
+        <tr>  
+        <th >Total</th> 
+        <th ></th>
+        <th ><input type="text" name="total" value="{{$suma}}" style="border:none" readonly></th>
+        <th ></th>
+        <th ></th>
+        <th ></th>
+        </tr>       
+        
+        
+        </tbody>
 
- 
-
-
-
-
- </tr>        
- 
-  
- </tbody>
-
-</table>
-<div class="form-group row"> 
-    
+        </table>
+        <div class="form-group row"> 
+            
                  
     <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Comentario') }}</label>
 
@@ -116,7 +105,7 @@
 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!--<script src="{{ asset('js/user.js') }}" ></script>-->
+ 
 
  @section('script')  
  <script type="text/javascript">
@@ -125,23 +114,19 @@
 
         $("#numero").change(function(event){
             var numero = $('#numero').val(); 
-            console.log(numero);
+           // console.log(numero);
              
             $.get("PresupuestoConsulta/"+numero+"",function(response ,state){
-            console.log(response);   
+           // console.log(response);   
                     $("#concepto").empty();  
                 for(i=0; i<response.length; i++){
-                 
-                    
-                   $("#concepto").append('"<tr><th><td>'+response[i].concepto+'</td><td>'+response[i].costo+'</td><td> <input class="form-control" type="text" name="pago[]" value="0"></td><td><select name="tipo[]"><option value="Efectivo">Efectivo</option><option value="Cheque">Cheque</option><option value="Deposito">Deposito</option></select></td><td> <input class="form-control" type="text" name="cuenta[]" ></td><tr></th>"'); 
+                                     
+                   $("#concepto").append('"<tr><th><td>'+response[i].concepto+'</td><td>'+response[i].costo+'</td><td> <input class="form-control" type="text" name="pago[]" value="0"></td><td><select name="tipo[]"><option value="Efectivo">Efectivo</option><option value="Cheque">Cheque</option><option value="Deposito">Deposito</option></select></td><td> <input class="form-control" type="text" name="cuenta[]" ></td><tr></th>"');
 
                       
                 } 
             }); 
-        });      
-   
-
-
+        }); 
 });
 </script>
 @endsection

@@ -11,7 +11,7 @@ class Kinegramas extends Model
 
     protected $fillable = ['cliente_id','kinegrama'];
 
-   
+   //consulta que verifica que ya se hayan realizado todos los pagos 
     public static function valor($id){    
         
         

@@ -6,30 +6,32 @@ use DB;
 
 use Illuminate\Http\Request;
 use Notaria\Documentacion; 
+use Notaria\Dependencias;
 
 class AltaDocmentacionController extends Controller
 {
     /**
-     * Display a listing of the resource. 
+     * Display a listing of the resource.  
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $puesto = Auth::user()->puesto_id;
+        $puesto = Auth::user()->puesto_id;//se optiene el puesto_id del usuario que esta logueado
+        $Dependencias = dependencias::all();
                
        
         $conceptos = DB::table('menu_concepto')
-         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->where('menu_concepto.puesto_id', '=', $puesto)//se optiene las categorias del menu
          ->select('menu_concepto.*')
          ->get();
  
          $funciones = DB::table('menu')
-         ->where('menu.puesto_id', '=', $puesto)
+         ->where('menu.puesto_id', '=', $puesto)//se optienen las fucniones del menu
          ->select('menu.*')
          ->get();
 
-          return view('alta_documentacion',compact('conceptos','funciones'));
+          return view('alta_documentacion',compact('conceptos','funciones','Dependencias'));
     }
     
 
@@ -51,6 +53,7 @@ class AltaDocmentacionController extends Controller
      */
     public function store(Request $request)
     {
+    //Validaciones de los inputs
         $request->validate([
             'documento' => 'required|string|max:255',
             'costo' => 'required|numeric|max:255',
@@ -58,7 +61,7 @@ class AltaDocmentacionController extends Controller
 
         ]);
  
-
+//Insert en la tabla Documentacion
         $documentacion = new Documentacion;
         $documentacion->documento = $request->input('documento');
         $documentacion->costo = $request->input('costo');

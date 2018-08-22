@@ -1,14 +1,11 @@
 @extends('layouts.app')
 @section('content')
-@if(Gate::check('isAdministrador'))
 @include('layouts.menu_new')   
 
-@endif 
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
-  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
- <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+ 
  
 </head> 
 
@@ -16,45 +13,36 @@
  <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Finiquito de Trámites') }}</div>
+            <div class="card"> 
+                <div class="card-header"  style="text-align: center;">{{ __('Finiquito de Trámites') }}</div>
                 <br><br>   
                 
 
                 <div class="card-body">
-                <form method="POST" action="{{ route('envio') }}"> 
-                     
-                      @if(session('status')) 
- 
+                <form method="POST" action="{{ route('envio') }}"  autocomplete="off">                      
+                      @if(session('status'))  
                         <div class="alert alert-success">
-                          {{session ('status')}} 
-                           
+                          {{session ('status')}}                            
                         </div>
                         @endif
                         @csrf 
-                                    <div class="form-group row"> 
-                    
-                
+
+                      <div class="form-group row"> 
                     <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Cliente') }}</label>
-            
                         <div class="col-md-6"> 
                             <input list="browsers" name="cliente"  class="form-control" id ="var" required>                             
                             <datalist  id="browsers">                              
                             @foreach($clientes as $cliente) 
-                            <option value="{{ $cliente->cliente_id}} "> {{ $cliente->nombre}} {{ $cliente->apellido_paterno}} {{ $cliente->apellido_materno}} </option>
+                            <option value="{{ $cliente->id}} "> {{ $cliente->nombre}} {{ $cliente->apellido_paterno}} {{ $cliente->apellido_materno}} </option>
                             @endforeach
                             </datalist>
-                        </div> 
-                        
+                        </div>                         
                     </div> 
 
-                        <div class="form-group row">
-                          
-                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Trámite') }}</label>
-                          
+                        <div class="form-group row">                          
+                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Trámite') }}</label>                          
                             <div class="col-md-6">
-                              <div id="div1">
-                               <!-- <label id="nombre" class="form-control"></label>-->
+                              <div id="div1">                              
 
                                </div>
                             </div>
@@ -63,8 +51,7 @@
                         
                         
                     
-                        <div class="form-group row">
-                          
+                        <div class="form-group row">                          
                           <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Número de Carpeta') }}</label>
                         
                           <div class="col-md-6">

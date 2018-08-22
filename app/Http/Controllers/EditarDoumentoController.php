@@ -18,7 +18,7 @@ class EditarDoumentoController extends Controller
     { 
         $Documentos = Documentacion::all();
 
-        $puesto = Auth::user()->puesto_id;
+        $puesto = Auth::user()->puesto_id;//puesto_id de la tabla user
                
        
         $conceptos = DB::table('menu_concepto')
@@ -52,7 +52,7 @@ class EditarDoumentoController extends Controller
     public function store(Request $request,$id)
     {
         if($request->ajax()){
-            $documentos = Documentacion::doc($id);
+            $documentos = Documentacion::doc($id);//se optiene la respuesta del modelo Documentacion
             return response()->json($documentos);
           }
     }
@@ -95,9 +95,10 @@ class EditarDoumentoController extends Controller
             'origen' => 'required|string|max:255',
 
         ]);
+
         $id = $request->input('documentos');
         
-        Documentacion::where('id',$id)->first()->update($request->all());
+        Documentacion::where('id',$id)->first()->update($request->all());//actualizar dato
             return redirect('/editar_documento')->with('status','Documento editado exitosamente');
     }
 

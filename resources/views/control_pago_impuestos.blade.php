@@ -1,18 +1,15 @@
 @extends('layouts.app') 
-
 @section('content')
-@if(Gate::check('isAdministrador'))
 @include('layouts.menu_new')  
 
-@endif 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-8"> 
             <div class="card">
-                <div class="card-header">{{ __('Pago de Impuesto') }}</div>
+                <div class="card-header" style="text-align: center;">{{ __('Pago de Impuesto') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('pagoimp') }}">
+                    <form method="POST" action="{{ route('pagoimp') }}" autocomplete="off">
                         @csrf
 
                         @if(session('status'))

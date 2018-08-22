@@ -1,20 +1,16 @@
 @extends('layouts.app')
-
 @section('content')
-@if(Gate::check('isAdministrador'))
 @include('layouts.menu_new')  
 
-@endif 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Alta Concepto') }}</div>
+                <div class="card-header" style="text-align: center;">{{ __('Alta Concepto') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('concepto') }}">
+                    <form method="POST" action="{{ route('concepto') }}"  autocomplete="off">
                         @if(session('status'))
-
                         <div class="alert alert-success">
                             {{session ('status')}}
                             
@@ -50,6 +46,6 @@
                 </div> 
             </div>
         </div>
-    </div>
+    </div> 
 </div>
 @endsection

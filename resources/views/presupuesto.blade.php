@@ -1,20 +1,17 @@
 @extends('layouts.app')
-
 @section('content')
-@if(Gate::check('isAdministrador'))
-@include('layouts.menu_new')  
+@include('layouts.menu_new')   
 
-@endif 
 <div class="container">
     <div class="row justify-content-center"> 
         <div class="col-md-8">
         
             <div class="card">
-                <div class="card-header">{{ __('Presupuesto') }}</div>
+                <div class="card-header" style="text-align: center;">{{ __('Presupuesto') }}</div>
                
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('insertprep') }}">  
+                    <form method="POST" action="{{ route('insertprep') }}" autocomplete="off">  
                         @if(session('status'))
 
                         <div class="alert alert-success"> 
@@ -24,7 +21,7 @@
                         @endif
                         @if(session('status2'))
                         <div class="alert alert-danger">
-                        {{session ('status2')}}
+                        {{session ('status2')}} 
                             </div>
                             @endif
  
@@ -84,14 +81,14 @@
 
         $("#numero").change(function(event){
             var numero = $('#numero').val(); 
-            console.log(numero);
+          //  console.log(numero);
               
             $.get("PresupuestoConsulta/"+numero+"",function(response ,state){
-            console.log(response); 
+           // console.log(response); 
                  
-                    $("#costo").empty();  
+                    $("#costo").empty();   
                     $("#concepto").empty();
-                    var total = 0;
+                    var total = 0; 
                     var total2 = 0;
                     var cantidad = 0;
                     var resta = 0;   

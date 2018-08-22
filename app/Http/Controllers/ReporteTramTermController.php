@@ -5,7 +5,10 @@ namespace Notaria\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DB;
-
+use Notaria\TramitesTerminados;
+use Notaria\CarpetasTerm;
+use Notaria\TramTermClient;
+use Notaria\TramTermCarpet;
 class ReporteTramTermController extends Controller
 {
     /**
@@ -15,7 +18,8 @@ class ReporteTramTermController extends Controller
      */
     public function index()
     {
-       
+  
+        
         $Tramites =DB::table('tramites_terminados')
         ->Join('clientes', 'tramites_terminados.cliente_id', '=', 'clientes.id')
         ->Join('tipos_tramites', 'tramites_terminados.tramite_id', '=', 'tipos_tramites.id')
@@ -53,15 +57,43 @@ class ReporteTramTermController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request,$id)
+    { 
+        if($request->ajax()){ 
+        $cliente = TramitesTerminados::tramites($id);
+        return response()->json($cliente); 
+      }
+    }
+    ///////////// 
+    public function store1(Request $request)
+    { 
+        if($request->ajax()){
+        $cliente = CarpetasTerm::carpeta(); 
+        return response()->json($cliente); 
+      }
+    } 
+    //////////////////// 
+
+    public function store2(Request $request,$id)
+    { 
+        if($request->ajax()){ 
+        $cliente = TramTermClient::client($id);
+        return response()->json($cliente); 
+      } 
+    }
+
+    public function store3(Request $request,$id)
+    { 
+        if($request->ajax()){
+        $cliente = TramTermCarpet::carpet($id);
+        return response()->json($cliente); 
+      }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $id 
      * @return \Illuminate\Http\Response
      */
     public function show($id)

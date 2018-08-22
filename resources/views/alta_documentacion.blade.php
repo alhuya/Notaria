@@ -58,7 +58,9 @@
                                 <select name="origen" id="origen" class="form-control" required>
                                 !<option value="">{{ __('-- Seleccione el origen --') }}</option>
                                 <option value="Cliente">{{ __('Cliente') }}</option>
-                                <option value="Terceros">{{ __('Terceros') }}</option>
+                                @foreach($Dependencias as $dependencia)
+                                <option value="{{$dependencia -> id}}">{{$dependencia->dependencia }}</option>
+                                @endforeach
                                </select>
                             </div> 
                         </div>

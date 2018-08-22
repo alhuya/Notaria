@@ -40,12 +40,12 @@ class CorteCPController extends Controller
                
        
         $conceptos = DB::table('menu_concepto')
-         ->where('menu_concepto.puesto_id', '=', $puesto)
+         ->where('menu_concepto.puesto_id', '=', $puesto)//se optiene las categorias segun el puesto
          ->select('menu_concepto.*')
          ->get();
  
          $funciones = DB::table('menu')
-         ->where('menu.puesto_id', '=', $puesto)
+         ->where('menu.puesto_id', '=', $puesto)//se optiene las funciones del menu segun el puesto
          ->select('menu.*')
          ->get();
 

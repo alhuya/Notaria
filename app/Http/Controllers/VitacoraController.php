@@ -30,7 +30,7 @@ class VitacoraController extends Controller
         ->select('menu.*')
         ->get();
 
-        return view('vitacora', compact('clientes','conceptos','funciones'));
+        return view('/Bitacora', compact('clientes','conceptos','funciones'));
     }
 
     /**
@@ -65,7 +65,7 @@ class VitacoraController extends Controller
       $cliente->celular= $request->input('celular');
       $cliente->tipo= $request->input('tipo');   
       $cliente->save();
-      return redirect('/Vitacora')->with('status','Cliente guardado en vitacora');
+      return redirect('/Bitacora')->with('status','Cliente guardado en Bitacora');
     }
 
     /**

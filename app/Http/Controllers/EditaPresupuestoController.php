@@ -20,7 +20,7 @@ class EditaPresupuestoController extends Controller
     {
         $Tramites = ControlTramites::all();
        
-        $puesto = Auth::user()->puesto_id;
+        $puesto = Auth::user()->puesto_id;//se optiene el puesto_id del usuario logueado
                
         
         $conceptos = DB::table('menu_concepto')
@@ -61,9 +61,6 @@ class EditaPresupuestoController extends Controller
      */ 
     public function store(Request $request)
     { 
-        
-
-
 
          $pagos= DB::table('recepcion_pagos')
          ->where('recepcion_pagos.carpeta_id', '=', 2 )

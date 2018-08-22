@@ -1,15 +1,10 @@
 @extends('layouts.app')
 @section('content')
-@if(Gate::check('isAdministrador'))
 @include('layouts.menu_new')  
 
-@endif 
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
-  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
- <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
- 
 </head> 
 
 <div class="container">
@@ -17,24 +12,20 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('CONFIRMA TRAMITE') }}</div>
+                <div class="card-header" style="text-align: center;">{{ __('CONFIRMA TRAMITE') }}</div>
                 <br><br>   
                 
 
                 <div class="card-body">
-                <form method="POST" action="{{ route('confirma') }}"> 
-                     
+                <form method="POST" action="{{ route('confirma') }}" autocomplete="off">                      
                       @if(session('status')) 
-
                         <div class="alert alert-success">
-                          {{session ('status')}}  
-                           
+                          {{session ('status')}}                             
                         </div> 
                         @endif
                         @csrf 
-                                    <div class="form-group row"> 
-                    
-                
+
+                     <div class="form-group row">  
                     <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Cliente') }}</label>
             
                         <div class="col-md-6">
@@ -43,45 +34,32 @@
                             @foreach($clientes as $cliente) 
                             <option value="{{ $cliente->id}}">{{ $cliente->nombre}} {{ $cliente->apellido_paterno}} {{ $cliente->apellido_materno}}</option>@endforeach
                             </datalist>
-                        </div>  
-                         
+                        </div> 
                     </div> 
 
-                      <div class="form-group row"> 
-                    
-                 
-                    <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Tramite') }}</label>
-            
+                      <div class="form-group row">                  
+                    <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Trâmite') }}</label>
                         <div class="col-md-6">
                             <input list="browsers2" name="tramite"  class="form-control" id ="doc1" required>                             
                             <datalist  id="browsers2">                              
                             @foreach($tramites as $tramite) 
                             <option value="{{ $tramite->id}}">{{ $tramite->tramite}}</option>@endforeach
                             </datalist>
-                        </div>  
-                         
+                        </div>
                     </div> 
 
                         <div class="form-group row">    
                       <label for="puesto" class="col-md-4 col-form-label text-md-right">{{ __('Documentos') }}</label>
-
-                             <div class="col-md-6"> 
-                               
+                             <div class="col-md-6">                                
                              <div id="div1">
-
-                             </div> 
-                               
+                             </div>                                
                            </div>
                         </div> 
 
-                        <div class="form-group row"> 
-                    
-                 
+                        <div class="form-group row">   
                     <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Comentario') }}</label>
-            
                         <div class="col-md-6">
                         <textarea rows="4" cols="50" name="comentario"  class="form-control"></textarea>
-
                         </div>  
                          
                     </div> 
@@ -99,19 +77,19 @@
             </div>
         </div> 
     </div>
-</div> 
+</div>  
 
 @endsection 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!--<script src="{{ asset('js/user.js') }}" ></script>-->
+
 
 @section('script')
 <script type="text/javascript">
   $(document).ready(function(){
   $("#doc1").change(function(event){
   $.get("tramite_documento/"+event.target.value+"",function(response ,state){ 
-    console.log(response);
+   // console.log(response);
      $("#div1").empty(); 
     
     for(i=0; i<response.length; i++){ 

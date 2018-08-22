@@ -7,8 +7,6 @@
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
-  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
- <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
  
 </head> 
 
@@ -16,13 +14,13 @@
  <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card"> 
                 <div class="card-header">{{ __('CONFIRMA TRAMITE') }}</div>
                 <br><br>   
                 
 
                 <div class="card-body">
-                <form method="POST" action="{{ route('confirma') }}"> 
+                <form method="POST" action="{{ route('confirma') }}" autocomplete="off"> 
                      
                       @if(session('status')) 
 
@@ -32,8 +30,7 @@
                         </div>
                         @endif
                         @csrf 
-                                    <div class="form-group row"> 
-                    
+                  <div class="form-group row">                    
                 
                     <label for="usuarios" class="col-md-4 col-form-label text-md-right">{{ __('Cliente') }}</label>
             
@@ -98,22 +95,20 @@
                 </div>
             </div> 
         </div> 
-    </div>
+    </div> 
 </div> 
 
 @endsection 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!--<script src="{{ asset('js/user.js') }}" ></script>-->
-
+ 
 @section('script')
 <script type="text/javascript">
   $(document).ready(function(){
   $("#doc1").change(function(event){
   $.get("tramite_documento/"+event.target.value+"",function(response ,state){ 
-    console.log(response);
-     $("#div1").empty(); 
-    
+   // console.log(response);
+     $("#div1").empty();    
     for(i=0; i<response.length; i++){ 
     $("#div1").append(' <input type="checkbox" name="docId[]" value='+response[i].id+'> '+response[i].documento+' <br>');
          

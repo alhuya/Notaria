@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use DB;
 class PresupuestoConsulta extends Model
 { 
+    //fucnion que devulve el concepto y el pago de un presupuesto
     public static function var($numero){ 
 
         $c=  DB::table('recepcion_pagos')

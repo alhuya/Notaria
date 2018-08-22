@@ -1,14 +1,12 @@
 <?php
-
 namespace Notaria\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Mpdf\Mpdf;
 use DB;
-
+//pdf categorias fucniones segun el puesto
 class MenuPDFuController extends Controller
-{ 
-    /**
+{  
+    /** 
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -17,7 +15,6 @@ class MenuPDFuController extends Controller
     {
         return view('pdf.index');
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -27,7 +24,6 @@ class MenuPDFuController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -38,7 +34,6 @@ class MenuPDFuController extends Controller
     {
         //
     }
-
     /**
      * Display the specified resource.
      *
@@ -49,7 +44,6 @@ class MenuPDFuController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -60,7 +54,6 @@ class MenuPDFuController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -72,7 +65,6 @@ class MenuPDFuController extends Controller
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -83,13 +75,13 @@ class MenuPDFuController extends Controller
     {
         //
     }
-    public function getGenerar(Request $request)
+    public function getGenerar(Request $request,$id)
     {
         $accion = $request->get('accion');
         $tipo = $request->get('tipo');
-        return $this->pdf($accion,$tipo);
+        return $this->pdf($accion,$tipo,$id);
     }
-    public function pdf($accion='ver',$tipo='digital')
+    public function pdf($accion='ver',$tipo='digital',$id)
     {
         $ruc = "10072486893";
         $numero = "00000412";
@@ -103,7 +95,6 @@ class MenuPDFuController extends Controller
         
         $articulos = [
             [
-
                 "cantidad" => 3,
                 "descripcion" => "COCINA A GAS",
                 "precio" => 400.00,
@@ -136,21 +127,31 @@ class MenuPDFuController extends Controller
         $data['total'] = $total;
         $data['tipo'] = $tipo;
 
-        $clientes =DB::table('clientes')
-        ->join('municipios', 'clientes.municipio_id', '=', 'municipios.id')
-        ->join('estados', 'clientes.estado_id', '=', 'estados.id')
-        ->select( 'clientes.*','municipios.municipio','estados.estado')
-        ->get(); 
+        $usuarios= DB::table('users')
+        -> where('users.id', '=', $id)
+        ->select('users.*')
+        ->get();
+ 
+        $puesto;
 
+        foreach($usuarios as $usuario){
+            $puesto = $usuario->puesto_id;
+        }
 
-        
+       $valores =  DB::table('menu')
+       ->Join('categorias_funciones', 'menu.categoria_funcion_id', '=', 'categorias_funciones.id')
+       ->Join('funciones', 'menu.funcion_id', '=', 'funciones.funcion_id')
+       ->where('menu.puesto_id', '=', $puesto)
+       ->select('menu.*', 'categorias_funciones.nombre','funciones.nombre_funcion')
+       ->get();
+    
   
         if($accion=='html'){
-            return view('pdf.generar',$data,compact('clientes'));
+            return view('pdf.menu_pdf',$data,compact('valores','usuarios'));
         }else{
-            $html = view('pdf.generar',$data,compact('clientes'))->render();
+            $html = view('pdf.menu_pdf',$data,compact('valores','usuarios'))->render();
         }
-        $namefile = 'boleta_de_venta_'.time().'.pdf';
+        $namefile = 'Usuarios_'.time().'.pdf';
  
         $defaultConfig = (new \Mpdf\Config\ConfigVariables())->getDefaults();
         $fontDirs = $defaultConfig['fontDir'];
@@ -168,18 +169,15 @@ class MenuPDFuController extends Controller
                 ],
             ],
             'default_font' => 'arial',
-            // "format" => "A4",
+            // "format" => "A4", 
             "format" => [264.8,188.9],
         ]);
         // $mpdf->SetTopMargin(5);
         $mpdf->SetDisplayMode('fullpage');
         $mpdf->WriteHTML($html);
         // dd($mpdf);
-        if($accion=='ver'){
+        
             $mpdf->Output($namefile,"I");
-        }elseif($accion=='descargar'){
-            $mpdf->Output($namefile,"D");
-        }
+       
     }
-
 }

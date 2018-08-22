@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
  
 use Illuminate\Support\Facades\Auth;
 use DB;
+use Notaria\UsActivos;
+use Notaria\UsInactivos;
+use Notaria\allUs;
 class ReportesUsuarioController extends Controller
 {
     /**
@@ -47,9 +50,28 @@ class ReportesUsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store1(Request $request)
     {
-        //
+        if($request->ajax()){
+        $cliente1 = UsActivos::activos();
+        return response()->json($cliente1); 
+      }
+    }
+
+    public function store2(Request $request)
+    {
+        if($request->ajax()){
+        $cliente2 = UsInactivos::inactivo();
+        return response()->json($cliente2); 
+      }
+    }
+
+    public function store3(Request $request)
+    {
+        if($request->ajax()){
+        $cliente3 = allUs::todos();
+        return response()->json($cliente3); 
+      }
     }
 
     /**

@@ -68,7 +68,7 @@ class AutorizaPresupuestoController extends Controller
      */
     public function store(Request $request)
     {
-        $id = $request->input('carpeta'); 
+        $id = $request->input('carpeta'); //se optiene lo que el input 
         $estado = $request->input('estatus');
        
 

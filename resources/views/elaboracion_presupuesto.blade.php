@@ -1,21 +1,19 @@
 @extends('layouts.app')
-
 @section('content')
-@if(Gate::check('isAdministrador'))
 @include('layouts.menu_new')  
  
-@endif 
+
 <div class="container">
     <div class="row justify-content-center"> 
         <div class="col-md-8">
         
             <div class="card">
-                <div class="card-header">{{ __('Elaboración de Presupuesto') }}</div>
+                <div class="card-header" style="text-align: center;">{{ __('Elaboración de Presupuesto') }}</div>
                
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('insertprep') }}"> 
-                        @if(session('status'))
+                    <form method="POST" action="{{ route('insertprep') }}" autocomplete="off"> 
+                        @if(session('status')) 
 
                         <div class="alert alert-success"> 
                             {{session ('status')}}
@@ -92,7 +90,7 @@
                             </div>
                         </div>
 
-    </div>
+                        </div>
 
                     </form>
                 </div>
@@ -104,7 +102,7 @@
 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!--<script src="{{ asset('js/user.js') }}" ></script>-->
+  
  
  @section('script')  
  <script type="text/javascript">
@@ -112,10 +110,10 @@
 
 $("#numero").change(function(event){
         var id = $('#numero').val(); 
-        console.log(id);
+        //console.log(id);
         $("#tipo").change(function(event){
             var tipo = $('#tipo').val();  
-            console.log(tipo);
+          //  console.log(tipo);
              
             $.get("ElaboraPresupuesto/"+id+"/"+tipo+"",function(response ,state){
             console.log(response);
